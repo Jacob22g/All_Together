@@ -177,7 +177,8 @@
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
                 android:text="_____ Social SignUp _____"
-                android:gravity="center"/>
+                android:gravity="center"
+                android:fontFamily="@font/poppins_medium"/>
 
         </LinearLayout>
 
