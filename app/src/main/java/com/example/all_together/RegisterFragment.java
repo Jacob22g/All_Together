@@ -12,7 +12,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class RegisterFragment extends Fragment {
+
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseAuth.AuthStateListener listener;
 
     interface OnRegisterFragmentListener{
         void onRegister(String username, String password, String email);
@@ -49,6 +54,7 @@ public class RegisterFragment extends Fragment {
                 callback.onRegister(usernameEditText.getText().toString(),
                         passwordEitText.getText().toString(),
                         emailEditText.getText().toString());
+
             }
         });
 
