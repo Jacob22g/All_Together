@@ -207,7 +207,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="16sp"
-                android:text="_____ Social SignUp _____"
+                android:text="__ Social SignUp __"
                 android:gravity="center"
                 android:fontFamily="@font/poppins_medium"/>
 
@@ -235,7 +235,3 @@
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
-
-
