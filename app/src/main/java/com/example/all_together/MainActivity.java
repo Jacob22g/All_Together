@@ -6,7 +6,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -18,12 +17,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener {
+public class MainActivity extends AppCompatActivity {
 
-    final String REGISTER_FRAGMENT_TAG = "register_fragment";
-
+    final String FRAGMENT_REGISTER_TAG = "fragment_register";
     DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
@@ -35,24 +34,36 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeAsUpIndicator(R.drawable.home_icon2);
+        TextView register_btn = (TextView) findViewById(R.id.text);
 
-        Button registerBtn = findViewById(R.id.regiser_btn);
-        registerBtn.setOnClickListener(new View.OnClickListener() {
+        Button login = findViewById(R.id.login_btn);
+
+        login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                RegisterFragment registerFragment = new RegisterFragment();
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                FragmentTransaction transaction = fragmentManager.beginTransaction();
-                transaction.add(R.id.root_layout, registerFragment,REGISTER_FRAGMENT_TAG);
-                transaction.addToBackStack(null);
+                FragmentManager registerFragment = getSupportFragmentManager();
+                FragmentTransaction transaction = registerFragment.beginTransaction();
+                transaction.add(R.id.root_layout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
                 transaction.commit();
+
             }
         });
 
+
+//        register_btn.setOnClickListener(new View.OnClickListener() {
+//
+//            public void onClick(View v) {
+//
+////                FragmentManager registerFragment = getSupportFragmentManager();
+////                FragmentTransaction transaction = registerFragment.beginTransaction();
+////                transaction.add(R.id.root_layout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+////                transaction.commit();
+//            }
+//        });
+
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setHomeAsUpIndicator(R.drawable.home_icon2);
     }
 
     @Override
@@ -75,13 +86,5 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         MenuInflater menuInflater = getMenuInflater();
         menuInflater.inflate(R.menu.menu, menu);
         return true;
-    }
-
-    @Override
-    public void onRegister(String username, String password, String email) {
-
-        Toast.makeText(this, username + ", " + password + ", " + email, Toast.LENGTH_SHORT).show();
-        Fragment fragment = getSupportFragmentManager().findFragmentByTag(REGISTER_FRAGMENT_TAG);
-        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
     }
 }

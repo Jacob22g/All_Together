@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "578744026384",
+    "firebase_url": "https://all-together-e88a5.firebaseio.com",
+    "project_id": "all-together-e88a5",
+    "storage_bucket": "all-together-e88a5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:578744026384:android:4d8493e585c49f83a85195",
+        "android_client_info": {
+          "package_name": "com.example.all_together"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "578744026384-dn63kellj0lnah3qv6936gv1dpgj9v6b.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyApCSCh78ixqtGzEEl-Qe4mKl_2-IS3od8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "578744026384-dn63kellj0lnah3qv6936gv1dpgj9v6b.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

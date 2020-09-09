@@ -18,6 +18,7 @@
         android:id="@+id/item2"
         android:checkable="true"
         android:title="Log Out"
-        app:showAsAction="never" />
+        app:showAsAction="never"
+        android:visible="false"/>
 
 </menu>

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
 
 android {
     compileSdkVersion 29
@@ -32,6 +33,7 @@ dependencies {
     implementation 'com.android.support:support-fragment:29.0.0'
     implementation 'com.android.support:recyclerview-v7:29.0.0'
     implementation 'com.android.support:appcompat-v7:29.0.0'
+    implementation 'com.google.firebase:firebase-database:19.3.0'
     testImplementation 'junit:junit:4.12'
     implementation 'com.android.support:design:29.0.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
