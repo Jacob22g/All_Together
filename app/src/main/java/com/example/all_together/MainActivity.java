@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.cardview.widget.CardView;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,9 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener {
 
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
+
+    CardView cardView;
+
     DrawerLayout drawerLayout;
     private Toolbar toolbar;
 
@@ -32,6 +36,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        cardView = findViewById(R.id.cardView);
+
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
 
@@ -39,18 +45,17 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         register_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager registerFragment = getSupportFragmentManager();
-                FragmentTransaction transaction = registerFragment.beginTransaction();
-                transaction.add(R.id.root_layout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                RegisterFragment registerFragment = new RegisterFragment();
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction transaction = fragmentManager.beginTransaction();
+                transaction.add(R.id.root_layout, registerFragment,FRAGMENT_REGISTER_TAG);
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-//                RegisterFragment registerFragment = new RegisterFragment();
-//                FragmentManager fragmentManager = getSupportFragmentManager();
-//                FragmentTransaction transaction = fragmentManager.beginTransaction();
-//                transaction.add(R.id.root_layout, registerFragment,REGISTER_FRAGMENT_TAG);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
+                // make card not visible
+                cardView.setVisibility(View.GONE);
+
+
             }
         });
 
@@ -66,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 Toast.makeText(this, "LogOut is selected", Toast.LENGTH_SHORT).show();
         }
 
-            //drawerLayout.openDrawer(GravityCompat.START);
+        //drawerLayout.openDrawer(GravityCompat.START);
         return super.onOptionsItemSelected(item);
     }
 
@@ -83,5 +88,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         Toast.makeText(this, username + ", " + password + ", " + email, Toast.LENGTH_SHORT).show();
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
         getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        // make card visible
+        cardView.setVisibility(View.VISIBLE);
     }
 }
