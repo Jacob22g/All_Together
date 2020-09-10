@@ -26,6 +26,21 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
+                <RadioGroup
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:orientation="horizontal">
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Volenteer"/>
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="in need"/>
+                </RadioGroup>
+
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -38,6 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/username_register"
+                        android:inputType="text"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_medium" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -49,11 +65,13 @@
                     android:layout_marginTop="5dp"
                     android:hint="Password"
                     android:textSize="20sp"
+                    app:endIconMode="password_toggle"
                     app:startIconDrawable="@drawable/ic_lock">
                     <com.google.android.material.textfield.TextInputEditText
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/password_register"
+                        android:inputType="textPassword"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_medium" />
                 </com.google.android.material.textfield.TextInputLayout>
@@ -70,11 +88,67 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/email_register"
+                        android:inputType="textEmailAddress"
                         android:maxLines="1"
                         android:fontFamily="@font/poppins_medium" />
-        </com.google.android.material.textfield.TextInputLayout>
+                </com.google.android.material.textfield.TextInputLayout>
 
-        </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp">
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginTop="5dp"
+                    android:hint="First Name"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_emoji_people_24">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/first_name_register"
+                        android:inputType="text"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginTop="5dp"
+                        android:hint="Last Name"
+                        android:textSize="20sp"
+                        app:startIconDrawable="@drawable/ic_baseline_emoji_people_24">
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/last_name_register"
+                            android:inputType="text"
+                            android:maxLines="1"
+                            android:fontFamily="@font/poppins_medium" />
+                    </com.google.android.material.textfield.TextInputLayout>
+                </LinearLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="Age"
+                    android:textSize="20sp"
+                    app:startIconDrawable="@drawable/ic_baseline_eco_24">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/age_register"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:fontFamily="@font/poppins_medium" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+            </LinearLayout>
 
         <Button
             android:layout_width="wrap_content"

@@ -27,7 +27,7 @@ public class RegisterFragment extends Fragment {
         try {
             callback = (OnRegisterFragmentListener) context;
         } catch (ClassCastException ex){
-            throw new ClassCastException("The activity must implement OnRegisterFragmentListener inteface");
+            throw new ClassCastException("The activity must implement OnRegisterFragmentListener interface");
         }
     }
 
