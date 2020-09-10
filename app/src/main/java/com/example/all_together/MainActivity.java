@@ -5,6 +5,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.CoreComponentFactory;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
@@ -52,6 +54,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private ArrayList<User> Users = new ArrayList<>();
 
     private DatabaseReference mDatabase;
+    private DrawerLayout drawerLayout;
+    private NavigationView navigationView;
+    private CoordinatorLayout coordinatorLayout;
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
 
@@ -62,15 +67,34 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
 
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setIcon(R.drawable.icons_menu_w);
+
         cardView = findViewById(R.id.cardView);
-        toolbar = findViewById(R.id.myToolbar);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         collapsingToolbarLayout = findViewById(R.id.collapsingLayout);
+        drawerLayout = findViewById(R.id.drawerLayout);
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+        //navigationView = findViewById(R.id.navigationView);
+
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+//                item.setChecked(true);
+//                drawerLayout.closeDrawers();
+//                return false;
+//            }
+//        });
+
 
         final EditText passwordEt = findViewById(R.id.passwordInput);
         final EditText emailEt = findViewById(R.id.emailInput);
+
 
         TextView register_btn = (TextView) findViewById(R.id.register_btn);
         register_btn.setOnClickListener(new View.OnClickListener() {
@@ -81,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                 FragmentManager registerFragment = getSupportFragmentManager();
                 FragmentTransaction transaction = registerFragment.beginTransaction();
-                transaction.add(R.id.root_layout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
                 transaction.addToBackStack(null);
                 transaction.commit();
             }
@@ -143,18 +167,27 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.item1:
-                Toast.makeText(this, "Help is selected", Toast.LENGTH_SHORT).show();
-                return true;
-            case  R.id.item2:
-                mAuth.signOut();
-                cardView.setVisibility(View.VISIBLE);
-                Toast.makeText(this, "LogOut is selected", Toast.LENGTH_SHORT).show();
-                return true;
-        }
 
-        //drawerLayout.openDrawer(GravityCompat.START);
+        if(item.getItemId()==R.id.home){
+            drawerLayout.openDrawer(GravityCompat.START);
+        }
+//        switch (item.getItemId()) {
+//            case R.id.home:
+//                drawerLayout.openDrawer(GravityCompat.START);
+//                Toast.makeText(this, "Home is selected", Toast.LENGTH_SHORT).show();
+//                return true;
+//            case R.id.SignIn:
+//                Toast.makeText(this, "SignIn is selected", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.SignUp:
+//                Toast.makeText(this, "SignUp is selected", Toast.LENGTH_SHORT).show();
+//                break;
+//            case R.id.SignOut:
+//                mAuth.signOut();
+//                Toast.makeText(this, "SignOut is selected", Toast.LENGTH_SHORT).show();
+//                break;
+//        }
+
         return super.onOptionsItemSelected(item);
     }
 

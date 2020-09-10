@@ -1,11 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 
+<androidx.drawerlayout.widget.DrawerLayout
+    android:id="@+id/drawerLayout"
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/root_layout"
+    android:id="@+id/coordinatorLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:id="@+id/navigationView"-->
+<!--        android:layout_gravity="start"-->
+<!--        app:headerLayout="@layout/header_layout"-->
+<!--        app:menu="@menu/menu"/>-->
+
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
@@ -134,6 +149,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin" />
 
+
         </com.google.android.material.appbar.CollapsingToolbarLayout>
 
     </com.google.android.material.appbar.AppBarLayout>
@@ -238,3 +254,5 @@
     </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>
