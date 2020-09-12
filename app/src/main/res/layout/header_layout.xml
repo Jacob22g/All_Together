@@ -4,9 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/myToolbar"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="120dp"
     android:background="@color/colorPrimaryDark"
-    android:padding="5dp"
+    android:padding="10dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark"
     app:popupTheme="@style/Theme.AppCompat.Light">
     
@@ -14,8 +14,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/navigation_header_container"
+        android:text="asdsad"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-        android:textSize="22dp"/>
+        android:textSize="20dp"/>
 
 </androidx.appcompat.widget.Toolbar>
 

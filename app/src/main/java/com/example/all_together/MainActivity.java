@@ -18,10 +18,6 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.opengl.Visibility;
 import android.os.Bundle;
-import android.text.TextUtils;
-import android.view.Gravity;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -70,31 +66,21 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
+        toolbar.setNavigationIcon(R.drawable.icons_menu_w);
 
-        ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setIcon(R.drawable.icons_menu_w);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//        actionBar.setIcon(R.drawable.icons_menu_w);
 
         cardView = findViewById(R.id.cardView);
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         collapsingToolbarLayout = findViewById(R.id.collapsingLayout);
         drawerLayout = findViewById(R.id.drawerLayout);
         coordinatorLayout = findViewById(R.id.coordinatorLayout);
-        //navigationView = findViewById(R.id.navigationView);
-
-//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-//            @Override
-//            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-//                item.setChecked(true);
-//                drawerLayout.closeDrawers();
-//                return false;
-//            }
-//        });
-
+        navigationView = findViewById(R.id.navigation_view);
 
         final EditText passwordEt = findViewById(R.id.passwordInput);
         final EditText emailEt = findViewById(R.id.emailInput);
-
 
         TextView register_btn = (TextView) findViewById(R.id.register_btn);
         register_btn.setOnClickListener(new View.OnClickListener() {
@@ -128,6 +114,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                             Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
                             //intent.putExtra(userName,"userName");
                             startActivity(intent);
+                            finish();
                         }
                         else
                             Toast.makeText(MainActivity.this, "Sign In Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
@@ -137,21 +124,52 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 });
 
 
-                listener = new FirebaseAuth.AuthStateListener() {
-                    @Override
-                    public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+        listener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
 
-                        FirebaseUser user = firebaseAuth.getCurrentUser();
+                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                        if (user != null) { //sign in or sign up
+                 if (user != null) { //sign in or sign up
 
-                        } else { // sign out
+                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
+                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
+                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+                 } else { // sign out
 
-                        }
-                    }
-                };
+                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
+                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
+                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+                 }
+                }
+        };
 
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+//                item.setChecked(true);
+
+                drawerLayout.closeDrawers();
+
+                switch (item.getItemId()) {
+                    case R.id.sign_up:
+                        Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.sign_in:
+                        Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.sign_out:
+                        Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
+                        //firebaseAuth.signOut();
+                        break;
+                }
+
+                return false;
             }
+        });
+
+    }
 
     @Override
     public void onStart() {
@@ -168,7 +186,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
 
-        if(item.getItemId()==R.id.home){
+        if(item.getItemId()== android.R.id.home){
+
             drawerLayout.openDrawer(GravityCompat.START);
         }
 //        switch (item.getItemId()) {
@@ -192,15 +211,17 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     }
 
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.menu, menu);
-        return true;
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        MenuInflater menuInflater = getMenuInflater();
+//        menuInflater.inflate(R.menu.menu, menu);
+//        return true;
+//    }
 
     @Override
     public void onRegister(final String userName, String password, String email) {
+
+        cardView.setVisibility(View.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -230,5 +251,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
 
 
-
+    @Override
+    public void onBackPressed() {
+        if (getFragmentManager().getBackStackEntryCount() > 0)
+            getFragmentManager().popBackStack();
+        else
+            super.onBackPressed();
+    }
 }
