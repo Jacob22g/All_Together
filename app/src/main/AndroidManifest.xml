@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="false"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MyHomeActivity"></activity>
+        <activity android:name=".MainAppActivity"></activity>
+        <activity android:name=".MyHomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

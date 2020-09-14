@@ -111,9 +111,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         //Add why a user was unable to log in
                         if (task.isSuccessful()) {
                             Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
-                            //intent.putExtra(userName,"userName");
+//                            Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
+//                            //intent.putExtra(userName,"userName");
+//                            startActivity(intent);
+
+                            Intent intent = new Intent(getApplicationContext(),MainAppActivity.class);
                             startActivity(intent);
+
                             finish();
                         }
                         else
