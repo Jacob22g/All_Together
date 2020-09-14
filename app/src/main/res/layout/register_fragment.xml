@@ -90,7 +90,7 @@
                 android:layout_marginTop="5dp"
                 android:hint="Email"
                 android:textSize="20sp"
-                app:startIconDrawable="@drawable/ic_baseline_email_24">
+                app:startIconDrawable="@drawable/ic_email">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/email_register"
@@ -113,7 +113,7 @@
                     android:layout_weight="1"
                     android:hint="First Name"
                     android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_emoji_people_24">
+                    app:startIconDrawable="@drawable/ic_emoji_people">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/first_name_register"
@@ -131,7 +131,7 @@
                     android:layout_weight="1"
                     android:hint="Last Name"
                     android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_baseline_emoji_people_24">
+                    app:startIconDrawable="@drawable/ic_emoji_people">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/last_name_register"

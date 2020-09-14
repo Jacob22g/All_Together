@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
         };
 
+
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
