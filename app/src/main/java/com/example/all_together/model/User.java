@@ -1,4 +1,4 @@
-package com.example.all_together;
+package com.example.all_together.model;
 
 public class User {
 

@@ -8,11 +8,10 @@
     android:gravity="center"
     >
 
-    <TextView
-        android:id="@+id/text_profile"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="DashboardFragment"/>
+        android:id="@+id/volunteer_recycler"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
 </RelativeLayout>
