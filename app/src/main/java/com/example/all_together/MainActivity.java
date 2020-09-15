@@ -58,12 +58,26 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
     private FirebaseAuth.AuthStateListener listener;
     private FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    
+    FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Go to Main App Activity
+        firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+        //check if user is null
+        if (firebaseUser != null){
+
+            Toast.makeText(this, "Auto Login From FireBase", Toast.LENGTH_SHORT).show();
+            
+            Intent intent = new Intent(this, MainAppActivity.class);
+            startActivity(intent);
+            finish();
+        }
+        
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icons_menu_w);
