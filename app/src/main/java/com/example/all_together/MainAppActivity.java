@@ -1,52 +1,65 @@
 package com.example.all_together;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
-import androidx.navigation.ui.AppBarConfiguration;
-import androidx.navigation.ui.NavigationUI;
-
 import android.os.Bundle;
-import android.util.Log;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import com.example.all_together.ui.BottomNavigationViewHelper;
+import com.example.all_together.ui.add.AddFragment;
+import com.example.all_together.ui.chat.ChatFragment;
+import com.example.all_together.ui.dashboard.DashboardFragment;
+import com.example.all_together.ui.home.HomeFragment;
+import com.example.all_together.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class MainAppActivity extends AppCompatActivity {
-
-    private static final String TAG = "HomeActivity";
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_app);
 
+        BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.nav_view);
         setBottomNavigationViewEx();
-
+        bottomNavigationViewEx.setOnNavigationItemSelectedListener(listener);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
     }
 
-    private void setBottomNavigationViewEx(){
+    private BottomNavigationViewEx.OnNavigationItemSelectedListener listener =
+            new BottomNavigationView.OnNavigationItemSelectedListener() {
+                @Override
+                public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                    Fragment selectedFragment = null;
+                    switch (item.getItemId()) {
+                        case R.id.navigation_home:
+                            selectedFragment = new HomeFragment();
+                            break;
+                        case R.id.navigation_dashboard:
+                            selectedFragment = new DashboardFragment();
+                            break;
+                        case R.id.navigation_add:
+                            selectedFragment = new AddFragment();
+                            break;
+                        case R.id.navigation_profile:
+                            selectedFragment = new ProfileFragment();
+                            break;
+                        case R.id.navigation_chat:
+                            selectedFragment = new ChatFragment();
+                            break;
+                    }
+                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
+                    return true;
+                }
+            };
+
+    private void setBottomNavigationViewEx() {
         BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.nav_view);
         BottomNavigationViewHelper.setBottomNavigationView(bottomNavigationViewEx);
+        BottomNavigationViewHelper.enableNavigation(this, bottomNavigationViewEx);
 
     }
-
-
-
-
-//        //BottomNavigationView navView = findViewById(R.id.nav_view);
-//        BottomNavigationViewEx bottomNavigationViewEx = (BottomNavigationViewEx) findViewById(R.id.nav_view);
-//
-//        // Passing each menu ID as a set of Ids because each menu should be considered as top level destinations.
-//        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-//                R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_search, R.id.navigation_profile)
-//                .build();
-//        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-//
-//        // To change to action bar menu title, But we are in Theme No action bar
-////        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
-//
-//        NavigationUI.setupWithNavController(bottomNavigationViewEx, navController);
-
 }

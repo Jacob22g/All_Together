@@ -19,15 +19,15 @@
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.all_together.ui.notifications.NotificationsFragment"
+        android:name="com.example.all_together.ui.add.AddFragment"
         android:label="Notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_add" />
 
     <fragment
         android:id="@+id/navigation_search"
-        android:name="com.example.all_together.ui.search.SearchFragment"
+        android:name="com.example.all_together.ui.chat.ChatFragment"
         android:label="Search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_chat" />
 
     <fragment
         android:id="@+id/navigation_profile"

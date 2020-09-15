@@ -1,4 +1,4 @@
-package com.example.all_together.ui.dashboard;
+package com.example.all_together.ui.add;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -11,10 +11,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.all_together.R;
 
-public class DashboardFragment extends Fragment {
+public class AddFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_dashboard,container,false);
+        return inflater.inflate(R.layout.fragment_add,container,false);
     }
 }

@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Sign Up in Successful" , Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
                     //intent.putExtra(userName,"userName");
                     startActivity(intent);
 //                    String user_id = mAuth.getCurrentUser().getUid();
