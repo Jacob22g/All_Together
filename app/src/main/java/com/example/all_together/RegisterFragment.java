@@ -79,50 +79,49 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-//        final EditText usernameEditText = rootView.findViewById(R.id.username_register);
-//        final EditText passwordEitText = rootView.findViewById(R.id.password_register);
-//        final EditText emailEditText = rootView.findViewById(R.id.email_register);
+        final EditText usernameEditText = rootView.findViewById(R.id.username_register);
+        final EditText passwordEitText = rootView.findViewById(R.id.password_register);
+        final EditText emailEditText = rootView.findViewById(R.id.email_register);
 
         Button submitBtn = rootView.findViewById(R.id.submit_register);
 
-//        submitBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                final String userName = usernameEditText.getText().toString();
-//                final String password = passwordEitText.getText().toString();
-//                final String email = emailEditText.getText().toString();
-//
-//                if(TextUtils.isEmpty(userName)){
-//                    usernameEditText.setError("User Name is Required");
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(email)){
-//                    emailEditText.setError("User Email is Required");
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(password)){
-//                    passwordEitText.setError("Password is Required");
-//                    return;
-//                }
-//
-//                if (password.length()< MIN_CHARACTERS_PASSWORD ) {
-//                    passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
-//                    return;
-//                }
-//
-//                callback.onRegister(usernameEditText.getText().toString(),
-//                        passwordEitText.getText().toString(),
-//                        emailEditText.getText().toString());
-//
-//            }
-//        });
-//
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String userName = usernameEditText.getText().toString();
+                final String password = passwordEitText.getText().toString();
+                final String email = emailEditText.getText().toString();
+
+                if(TextUtils.isEmpty(userName)){
+                    usernameEditText.setError("User Name is Required");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(email)){
+                    emailEditText.setError("User Email is Required");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(password)){
+                    passwordEitText.setError("Password is Required");
+                    return;
+                }
+
+                if (password.length()< MIN_CHARACTERS_PASSWORD ) {
+                    passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
+                    return;
+                }
+
+                callback.onRegister(usernameEditText.getText().toString(),
+                        passwordEitText.getText().toString(),
+                        emailEditText.getText().toString());
+
+            }
+        });
+
         return rootView;
-        //   }
-    }
+      }
 }
 
 //class RegisterF<MaterialEditText> extends AppCompatActivity {
