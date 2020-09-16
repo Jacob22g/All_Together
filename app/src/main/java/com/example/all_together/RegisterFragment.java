@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 
@@ -30,9 +32,10 @@ import java.util.HashMap;
 
 public class RegisterFragment extends Fragment {
 
+
     public static int MIN_CHARACTERS_PASSWORD = 6;
 
-    interface OnRegisterFragmentListener{
+    interface OnRegisterFragmentListener {
         void onRegister(String username, String password, String email);
     }
 
@@ -44,7 +47,7 @@ public class RegisterFragment extends Fragment {
 
         try {
             callback = (OnRegisterFragmentListener) context;
-        } catch (ClassCastException ex){
+        } catch (ClassCastException ex) {
             throw new ClassCastException("The activity must implement OnRegisterFragmentListener interface");
         }
     }
@@ -55,48 +58,70 @@ public class RegisterFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.register_fragment, container, false);
 
-        final EditText usernameEditText = rootView.findViewById(R.id.username_register);
-        final EditText passwordEitText = rootView.findViewById(R.id.password_register);
-        final EditText emailEditText = rootView.findViewById(R.id.email_register);
+        Button layout1 = rootView.findViewById(R.id.layout1);
+        Button layout2 = rootView.findViewById(R.id.layout2);
+        final CardView cardView1 = rootView.findViewById(R.id.cardView1);
+        final CardView cardView2 = rootView.findViewById(R.id.cardView2);
 
-        Button submitBtn = rootView.findViewById(R.id.submit_register);
-
-        submitBtn.setOnClickListener(new View.OnClickListener() {
+        layout1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                final String userName = usernameEditText.getText().toString();
-                final String password = passwordEitText.getText().toString();
-                final String email = emailEditText.getText().toString();
-
-                if(TextUtils.isEmpty(userName)){
-                    usernameEditText.setError("User Name is Required");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(email)){
-                    emailEditText.setError("User Email is Required");
-                    return;
-                }
-
-                if(TextUtils.isEmpty(password)){
-                    passwordEitText.setError("Password is Required");
-                    return;
-                }
-
-                if (password.length()< MIN_CHARACTERS_PASSWORD ) {
-                    passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
-                    return;
-                }
-
-                callback.onRegister(usernameEditText.getText().toString(),
-                        passwordEitText.getText().toString(),
-                        emailEditText.getText().toString());
-
+                cardView2.setVisibility(View.GONE);
+                cardView1.setVisibility(View.VISIBLE);
             }
         });
 
+        layout2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardView1.setVisibility(View.GONE);
+                cardView2.setVisibility(View.VISIBLE);
+            }
+        });
+
+//        final EditText usernameEditText = rootView.findViewById(R.id.username_register);
+//        final EditText passwordEitText = rootView.findViewById(R.id.password_register);
+//        final EditText emailEditText = rootView.findViewById(R.id.email_register);
+
+        Button submitBtn = rootView.findViewById(R.id.submit_register);
+
+//        submitBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                final String userName = usernameEditText.getText().toString();
+//                final String password = passwordEitText.getText().toString();
+//                final String email = emailEditText.getText().toString();
+//
+//                if(TextUtils.isEmpty(userName)){
+//                    usernameEditText.setError("User Name is Required");
+//                    return;
+//                }
+//
+//                if(TextUtils.isEmpty(email)){
+//                    emailEditText.setError("User Email is Required");
+//                    return;
+//                }
+//
+//                if(TextUtils.isEmpty(password)){
+//                    passwordEitText.setError("Password is Required");
+//                    return;
+//                }
+//
+//                if (password.length()< MIN_CHARACTERS_PASSWORD ) {
+//                    passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
+//                    return;
+//                }
+//
+//                callback.onRegister(usernameEditText.getText().toString(),
+//                        passwordEitText.getText().toString(),
+//                        emailEditText.getText().toString());
+//
+//            }
+//        });
+//
         return rootView;
+        //   }
     }
 }
 

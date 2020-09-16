@@ -232,7 +232,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     @Override
     public void onRegister(final String userName, String password, String email) {
 
-        cardView.setVisibility(View.VISIBLE);
+//        cardView.setVisibility(View.VISIBLE);
 
         mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
@@ -241,7 +241,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Sign Up in Successful" , Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-                    //intent.putExtra(userName,"userName");
                     startActivity(intent);
 //                    String user_id = mAuth.getCurrentUser().getUid();
 //                    DatabaseReference CurrentUser_db =  mDatabase.child(user_id);

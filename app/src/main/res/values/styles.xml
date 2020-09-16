@@ -10,9 +10,9 @@
 
     <style name="TextBox" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorSecondary</item>
-        <item name="colorPrimaryDark">@color/colorSecondaryDark</item>
-        <item name="colorAccent">@color/colorSecondaryLight</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorPrimaryLight</item>
     </style>
 
 </resources>
