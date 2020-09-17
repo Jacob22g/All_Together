@@ -58,11 +58,11 @@ public class MainAppActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         TextView userTv = headerView.findViewById(R.id.navigation_header_container);
         userTv.setText(firebaseUser.getEmail());
-        if (firebaseUser != null) { //sign in or sign up
+        if (firebaseUser != null) { //signed in
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-        } else { // sign out
+        } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);

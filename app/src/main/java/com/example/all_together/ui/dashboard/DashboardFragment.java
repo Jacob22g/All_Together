@@ -1,6 +1,7 @@
 package com.example.all_together.ui.dashboard;
 
 import android.app.ProgressDialog;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,7 +11,9 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -18,6 +21,7 @@ import com.example.all_together.R;
 import com.example.all_together.adapter.VolunteerAdapter;
 import com.example.all_together.model.Volunteer;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -27,13 +31,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
     final String TAG = "tag";
 
-    List<Volunteer> volunteerList  = new ArrayList<>();;
+    List<Volunteer> volunteerList  = new ArrayList<>();
     VolunteerAdapter adapter;
     RecyclerView recyclerView;
 
@@ -45,17 +50,20 @@ public class DashboardFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference myRef = database.getReference("volunteerList");;
 
+    CoordinatorLayout coordinatorLayout;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+        final View view = inflater.inflate(R.layout.fragment_dashboard,container,false);
+
+        coordinatorLayout = view.findViewById(R.id.coordinator_dashboard);
 
         recyclerView =  view.findViewById(R.id.volunteer_recycler);
         adapter = new VolunteerAdapter(volunteerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
-        recyclerView.setAdapter(adapter);
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -70,17 +78,75 @@ public class DashboardFragment extends Fragment {
             }
         };
 
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN ,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+
+                int toPosition = target.getAdapterPosition();
+                int fromPosition = viewHolder.getAdapterPosition();
+
+                if (fromPosition < toPosition) {
+                    for (int i = fromPosition; i < toPosition; i++) {
+                        Collections.swap(volunteerList, i, i + 1);
+                    }
+                } else {
+                    for (int i = fromPosition; i > toPosition; i--) {
+                        Collections.swap(volunteerList, i, i - 1);
+                    }
+                }
+
+                adapter.notifyItemMoved(fromPosition, toPosition);
+
+                // save list
+                // Need to update the DB after release
+//                myRef.setValue(volunteerList);
+
+                return true;
+            }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+
+                final int position = viewHolder.getAdapterPosition();
+                final Volunteer item = volunteerList.get(position);
+
+                volunteerList.remove(viewHolder.getAdapterPosition());
+                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+
+                Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item removed from list", Snackbar.LENGTH_LONG)
+                        .setAction("UNDO", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+
+                                volunteerList.add(position, item);
+                                adapter.notifyItemInserted(position);
+                                myRef.setValue(volunteerList);
+                            }
+                        });
+                //snackbar.setActionTextColor(Color.MAGENTA);
+                snackbar.show();
+
+                myRef.setValue(volunteerList);
+            }
+        };
+
+        ItemTouchHelper helper = new ItemTouchHelper(callback);
+        helper.attachToRecyclerView(recyclerView);
+
+        recyclerView.setAdapter(adapter);
         adapter.setListener(new VolunteerAdapter.VolunteerListener() {
             @Override
             public void onVolunteerClicked(int position, View view) {
 
                 Volunteer volunteer = volunteerList.get(position);
                 volunteer.setCompleted(!volunteer.isCompleted());
+                adapter.notifyItemChanged(position);
 
                 Toast.makeText(getContext(), "Volunteer "+position+" "+volunteer.isCompleted(), Toast.LENGTH_SHORT).show();
 
                 // Need to update the DB
-//                myRef.setValue(volunteerList);
+                myRef.setValue(volunteerList);
+
 //                myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(volunteerList);
             }
         });
@@ -90,7 +156,7 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                volunteerList.add(new Volunteer("Title","Description",false));
+                volunteerList.add(new Volunteer("Title"+volunteerList.size(),"Description",false));
                 adapter.notifyItemInserted(volunteerList.size());
 
                 // Write to DB
