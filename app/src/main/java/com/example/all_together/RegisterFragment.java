@@ -60,10 +60,13 @@ public class RegisterFragment extends Fragment {
 
         Button layout1 = rootView.findViewById(R.id.layout1);
         Button layout2 = rootView.findViewById(R.id.layout2);
+        Button back = rootView.findViewById(R.id.back_to_login_btn);
+
+        final CardView cardView = rootView.findViewById(R.id.cardView);
         final CardView cardView1 = rootView.findViewById(R.id.cardView1);
         final CardView cardView2 = rootView.findViewById(R.id.cardView2);
 
-        layout1.setOnClickListener(new View.OnClickListener() {
+        layout1.setOnClickListener(new View.OnClickListener() { //layout for volunteer
             @Override
             public void onClick(View v) {
                 cardView2.setVisibility(View.GONE);
@@ -71,11 +74,20 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        layout2.setOnClickListener(new View.OnClickListener() {
+        layout2.setOnClickListener(new View.OnClickListener() { //layout for need help
             @Override
             public void onClick(View v) {
                 cardView1.setVisibility(View.GONE);
                 cardView2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cardView1.setVisibility(View.GONE);
+                cardView2.setVisibility(View.GONE);
+                cardView.setVisibility(View.VISIBLE);
             }
         });
 
@@ -122,6 +134,7 @@ public class RegisterFragment extends Fragment {
 
         return rootView;
       }
+
 }
 
 //class RegisterF<MaterialEditText> extends AppCompatActivity {
