@@ -56,7 +56,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.register_fragment, container, false);
+        final View rootView = inflater.inflate(R.layout.register_fragment, container, false);
 
         Button layout1 = rootView.findViewById(R.id.layout1);
         Button layout2 = rootView.findViewById(R.id.layout2);

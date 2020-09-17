@@ -224,20 +224,12 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:gravity="center">
 
-                <ImageView
-                    android:layout_width="60dp"
-                    android:layout_height="60dp"
-                    android:layout_marginEnd="150dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/icon_facebook" />
-
-
                 <com.google.android.gms.common.SignInButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="138dp"
+                    android:layout_height="45dp"
                     android:id="@+id/googleSignIn"/>
 
             </LinearLayout>
