@@ -85,9 +85,12 @@ public class RegisterFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cardView1.setVisibility(View.GONE);
-                cardView2.setVisibility(View.GONE);
-                cardView.setVisibility(View.VISIBLE);
+
+                callback.onRegister("","","");
+
+//                cardView1.setVisibility(View.GONE);
+//                cardView2.setVisibility(View.GONE);
+//                cardView.setVisibility(View.VISIBLE);
             }
         });
 
