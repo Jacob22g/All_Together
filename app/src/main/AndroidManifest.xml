@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="false"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".MainAppActivity"></activity>
+        <activity android:name=".OldUserActivity"></activity>
+        <activity android:name=".MainAppActivity" />
         <activity android:name=".MyHomeActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -20,15 +21,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.HomeActivity"></activity>
-        <activity android:name=".ui.add.AddActivity"></activity>
-        <activity android:name=".ui.chat.ChatActivity"></activity>
-        <activity android:name=".ui.dashboard.DashboardActivity"></activity>
-        <activity android:name=".ui.profile.ProfileActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.add.AddActivity" />
+        <activity android:name=".ui.chat.ChatActivity" />
+        <activity android:name=".ui.dashboard.DashboardActivity" />
+        <activity android:name=".ui.profile.ProfileActivity" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
     </application>
 
 </manifest>
