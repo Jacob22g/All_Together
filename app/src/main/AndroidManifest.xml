@@ -3,6 +3,7 @@
     package="com.example.all_together">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="false"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".OldUserActivity"></activity>
+        <activity android:name=".OldUserActivity" />
         <activity android:name=".MainAppActivity" />
         <activity android:name=".MyHomeActivity" />
         <activity android:name=".MainActivity">
@@ -21,11 +22,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.home.HomeActivity" />
-        <activity android:name=".ui.add.AddActivity" />
-        <activity android:name=".ui.chat.ChatActivity" />
-        <activity android:name=".ui.dashboard.DashboardActivity" />
-        <activity android:name=".ui.profile.ProfileActivity" />
 
         <meta-data
             android:name="preloaded_fonts"
