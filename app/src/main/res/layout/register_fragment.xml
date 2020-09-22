@@ -211,10 +211,10 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView2"
-            android:layout_width="350dp"
-            android:layout_height="265dp"
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="15dp">
 
             <LinearLayout
@@ -330,6 +330,8 @@
                     android:layout_marginTop="20dp"
                     android:layout_marginBottom="10dp"
                     />
+
+
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>

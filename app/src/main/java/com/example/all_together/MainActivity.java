@@ -16,6 +16,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -36,6 +38,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,60 +51,58 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener {
 
+    final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
+    final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
     private Toolbar toolbar;
     private CardView cardView;
-
     private ArrayList<User> Users = new ArrayList<>();
-
     private DatabaseReference mDatabase;
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private CoordinatorLayout coordinatorLayout;
-
     private CollapsingToolbarLayout collapsingToolbarLayout;
-
     private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
-
     private FirebaseAuth.AuthStateListener listener;
-    private FirebaseAuth mAuth = FirebaseAuth.getInstance();
-    
-    FirebaseUser firebaseUser;
+    private FirebaseAuth mAuth;
+    private FirebaseUser firebaseUser;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Go to Main App Activity
+        mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+        // Go to Main App Activity
         //check if user is null
         if (firebaseUser != null){
-
             Toast.makeText(this, "Auto Login From FireBase", Toast.LENGTH_SHORT).show();
-            
             Intent intent = new Intent(this, MainAppActivity.class);
             startActivity(intent);
             finish();
         }
 
         googleSignInButton = findViewById(R.id.googleSignIn);
+
+        // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
-                .requestEmail().build();
+                .requestEmail()
+                .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                signIn();
+                        signIn();
             }
         });
 
-        
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icons_menu_w);
@@ -198,13 +199,21 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 switch (item.getItemId()) {
                     case R.id.sign_up:
                         Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
+                        cardView.setVisibility(View.GONE);
+                        FragmentManager registerFragment = getSupportFragmentManager();
+                        FragmentTransaction transaction = registerFragment.beginTransaction();
+                        transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
                         break;
                     case R.id.sign_in:
                         Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+//                        cardView.setVisibility(View.VISIBLE);
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
-                        //firebaseAuth.signOut();
+                        FirebaseAuth firebaseAuth = null;
+                        firebaseAuth.signOut();
                         break;
                 }
 
@@ -214,22 +223,20 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
     }
 
-    public void signIn(){
-
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent,RC_SIGN_IN);
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mAuth.addAuthStateListener(listener);
-    }
 
     @Override
     protected void onStop() {
         super.onStop();
         mAuth.removeAuthStateListener(listener);
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        mAuth.addAuthStateListener(listener);
+        updateUI(currentUser);
     }
 
     @Override
@@ -239,33 +246,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
             drawerLayout.openDrawer(GravityCompat.START);
         }
-//        switch (item.getItemId()) {
-//            case R.id.home:
-//                drawerLayout.openDrawer(GravityCompat.START);
-//                Toast.makeText(this, "Home is selected", Toast.LENGTH_SHORT).show();
-//                return true;
-//            case R.id.SignIn:
-//                Toast.makeText(this, "SignIn is selected", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.SignUp:
-//                Toast.makeText(this, "SignUp is selected", Toast.LENGTH_SHORT).show();
-//                break;
-//            case R.id.SignOut:
-//                mAuth.signOut();
-//                Toast.makeText(this, "SignOut is selected", Toast.LENGTH_SHORT).show();
-//                break;
-//        }
 
         return super.onOptionsItemSelected(item);
     }
 
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        MenuInflater menuInflater = getMenuInflater();
-//        menuInflater.inflate(R.menu.menu, menu);
-//        return true;
-//    }
 
     @Override
     public void onRegister(final String userName, String password, String email) {
@@ -314,15 +298,41 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             super.onBackPressed();
     }
 
+    public void signIn(){
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent,RC_SIGN_IN);
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-       if(requestCode==RC_SIGN_IN & resultCode == RESULT_OK){
-
+       if(requestCode==RC_SIGN_IN){
            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
            handleSignInResult(task);
         }
     }
+
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+//        if (requestCode == RC_SIGN_IN) {
+//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+//            try {
+//                // Google Sign In was successful, authenticate with Firebase
+//                GoogleSignInAccount account = task.getResult(ApiException.class);
+//                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
+//                firebaseAuthWithGoogle(account.getIdToken());
+//            } catch (ApiException e) {
+//                // Google Sign In failed, update UI appropriately
+//                Log.w(TAG, "Google sign in failed", e);
+//                // ...
+//            }
+//        }
+//    }
+
 
     private void handleSignInResult(Task<GoogleSignInAccount>completedTask){
         try {
@@ -356,9 +366,30 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         });
     }
 
-    private void updateUI(FirebaseUser fUser){
+//    private void firebaseAuthWithGoogle(String idToken) {
+//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            FirebaseUser user = mAuth.getCurrentUser();
+//                            updateUI(user);
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            updateUI(null);
+//                        }
+//
+//                        // ...
+//                    }
+//                });
+//    }
+
+    private void updateUI(FirebaseUser fUser) {
+
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (account != null){
+        if (account != null) {
             String personName = account.getDisplayName();
             String personGivenName = account.getGivenName();
             String personFamilyName = account.getFamilyName();
@@ -366,11 +397,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             String personId = account.getId();
             Uri personPhoto = account.getPhotoUrl();
 
-            Toast.makeText(MainActivity.this, personName + personEmail, Toast.LENGTH_SHORT).show();
+            Toast.makeText(MainActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
 
-
-
-
+            Intent intent = new Intent(MainActivity.this, MainAppActivity.class);
+            startActivity(intent);
         }
     }
+
 }

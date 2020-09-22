@@ -1,9 +1,12 @@
 package com.example.all_together;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,12 +20,18 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
+import com.bumptech.glide.Glide;
 import com.example.all_together.ui.BottomNavigationViewHelper;
 import com.example.all_together.ui.add.AddFragment;
 import com.example.all_together.ui.chat.ChatFragment;
 import com.example.all_together.ui.dashboard.DashboardFragment;
 import com.example.all_together.ui.home.HomeFragment;
 import com.example.all_together.ui.profile.ProfileFragment;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -35,9 +44,19 @@ public class MainAppActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
+    //user details
+
+    TextView fullName,email,age;
+    ImageView photo;
+    Button signOut;
+
+
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+
+    GoogleSignInClient mGoogleSignInClient;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -46,6 +65,39 @@ public class MainAppActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
+        fullName = findViewById(R.id.userFullNameTv);
+        email = findViewById(R.id.userEmailTv);
+        age = findViewById(R.id.userAgeTv);
+        photo = findViewById(R.id.userPhotoIv);
+        signOut = findViewById(R.id.signOutBtn);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+        if (account != null) {
+            String personName = account.getDisplayName();
+            //String personGivenName = account.getGivenName();
+            //String personFamilyName = account.getFamilyName();
+            String personEmail = account.getEmail();
+            //String personId = account.getId();
+            Uri personPhoto = account.getPhotoUrl();
+
+            fullName.setText(personName);
+            age.setText("23");
+            email.setText(personEmail);
+            Glide.with(this).load(String.valueOf(personPhoto)).into(photo);
+        }
+
+//        signOut.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switch (v.getId()){
+//                    case R.id.signOutBtn:
+//                        signOut();
+//                        break;
+//                }
+//            }
+//        });
+
 
         coordinatorLayout = findViewById(R.id.container);
         navigationView = findViewById(R.id.navigation_view_activitymainapp);
@@ -171,4 +223,16 @@ public class MainAppActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),MainActivity.class));
         finish();
     }
+
+//    private void signOut(){
+//        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                Toast.makeText(MainAppActivity.this, "Sign Out complete", Toast.LENGTH_SHORT).show();
+//                finish();
+//            }
+//        });
+//    }
+
+
 }
