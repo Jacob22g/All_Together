@@ -252,11 +252,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
 
     @Override
-    public void onRegister(final String userName, String password, String email) {
+    public void onRegister(String email,String password) {
 
 //        cardView.setVisibility(View.VISIBLE);
 
-        if(userName.equals("") && password.equals("") && email.equals(""))
+        if(password.equals("") && email.equals(""))
             // Back Button Pressed
             cardView.setVisibility(View.VISIBLE);
 
@@ -398,9 +398,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             Uri personPhoto = account.getPhotoUrl();
 
             Toast.makeText(MainActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(MainActivity.this, MainAppActivity.class);
-            startActivity(intent);
         }
     }
 
