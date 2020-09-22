@@ -36,7 +36,7 @@ public class RegisterFragment extends Fragment {
     public static int MIN_CHARACTERS_PASSWORD = 6;
 
     interface OnRegisterFragmentListener {
-        void onRegister(String username, String password, String email);
+        void onRegister(String email, String password);
     }
 
     OnRegisterFragmentListener callback;
@@ -86,7 +86,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                callback.onRegister("","","");
+                callback.onRegister("","");
 
 //                cardView1.setVisibility(View.GONE);
 //                cardView2.setVisibility(View.GONE);
@@ -94,7 +94,7 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        final EditText usernameEditText = rootView.findViewById(R.id.username_register);
+        //final EditText usernameEditText = rootView.findViewById(R.id.username_register);
         final EditText passwordEitText = rootView.findViewById(R.id.password_register);
         final EditText emailEditText = rootView.findViewById(R.id.email_register);
 
@@ -104,14 +104,14 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                final String userName = usernameEditText.getText().toString();
+                //final String userName = usernameEditText.getText().toString();
                 final String password = passwordEitText.getText().toString();
                 final String email = emailEditText.getText().toString();
 
-                if(TextUtils.isEmpty(userName)){
-                    usernameEditText.setError("User Name is Required");
-                    return;
-                }
+//                if(TextUtils.isEmpty(userName)){
+//                    usernameEditText.setError("User Name is Required");
+//                    return;
+//                }
 
                 if(TextUtils.isEmpty(email)){
                     emailEditText.setError("User Email is Required");
@@ -128,9 +128,8 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-                callback.onRegister(usernameEditText.getText().toString(),
-                        passwordEitText.getText().toString(),
-                        emailEditText.getText().toString());
+                callback.onRegister(emailEditText.getText().toString(),
+                        passwordEitText.getText().toString());
 
             }
         });
