@@ -49,12 +49,16 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener {
+public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener {
 
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
+    final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
+
+    boolean flag = false;
+
     private Toolbar toolbar;
     private CardView cardView;
     private ArrayList<User> Users = new ArrayList<>();
@@ -65,9 +69,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
+
     private FirebaseAuth.AuthStateListener listener;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference users = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,7 +107,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                        signIn();
+                signIn();
+
+                // if()
+//                Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+//                startActivity(intent);
             }
         });
 
@@ -128,11 +140,11 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                 FragmentManager registerFragment = getSupportFragmentManager();
                 FragmentTransaction transaction = registerFragment.beginTransaction();
-                transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                transaction.add(R.id.drawerLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-                cardView.setVisibility(View.GONE);
+//                cardView.setVisibility(View.GONE);
             }
         });
 
@@ -144,27 +156,30 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 String password = passwordEt.getText().toString();
                 String email = emailEt.getText().toString();
 
-                mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        //Add why a user was unable to log in
-                        if (task.isSuccessful()) {
-                            Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
+                if (!email.isEmpty() && !password.isEmpty()) {
+
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            //Add why a user was unable to log in
+                            if (task.isSuccessful()) {
+                                Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
 //                            Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
 //                            //intent.putExtra(userName,"userName");
 //                            startActivity(intent);
 
-                            Intent intent = new Intent(getApplicationContext(),MainAppActivity.class);
-                            startActivity(intent);
+                                Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+                                startActivity(intent);
 
-                            finish();
+                                finish();
+                            } else
+                                Toast.makeText(MainActivity.this, "Sign In Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
-                        else
-                            Toast.makeText(MainActivity.this, "Sign In Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-                    }
-                });
+                    });
+
+                }
+            }
+        });
 
 
         listener = new FirebaseAuth.AuthStateListener() {
@@ -178,6 +193,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                      navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
                      navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                      navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+
+
                  } else { // sign out
 
                      navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
@@ -199,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 switch (item.getItemId()) {
                     case R.id.sign_up:
                         Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
-                        cardView.setVisibility(View.GONE);
+//                        cardView.setVisibility(View.GONE);
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
                         transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
@@ -208,7 +225,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         break;
                     case R.id.sign_in:
                         Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
-//                        cardView.setVisibility(View.VISIBLE);
+//                        //cardView.setVisibility(View.VISIBLE);
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
@@ -252,24 +269,48 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
 
     @Override
-    public void onRegister(String email,String password) {
+    public void onRegister(String email, String password, String firstName, String lastName) {
 
-//        cardView.setVisibility(View.VISIBLE);
+//        //cardView.setVisibility(View.VISIBLE);
 
         if(password.equals("") && email.equals(""))
+
+            // Simulate back press
+            getSupportFragmentManager().popBackStack();
             // Back Button Pressed
-            cardView.setVisibility(View.VISIBLE);
+//            cardView.setVisibility(View.VISIBLE);
 
         else {
+
+            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+            progressDialog.setMessage("Loading, Please wait..");
+            progressDialog.show();
 
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
 
                     if (task.isSuccessful()) {
-                        Toast.makeText(MainActivity.this, "Sign Up in Successful", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-                        startActivity(intent);
+
+                        Toast.makeText(MainActivity.this, "Sign Up is Successful", Toast.LENGTH_SHORT).show();
+
+                        progressDialog.dismiss();
+
+//                        flag = true;
+                        // Open data fragment insertion for new users
+                        FragmentManager registerFragment = getSupportFragmentManager();
+                        FragmentTransaction transaction = registerFragment.beginTransaction();
+                        transaction.add(R.id.drawerLayout,new AfterRegisterFragment(), FRAGMENT_AFTER_REGISTER_TAG);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+
+//                        getSupportFragmentManager().beginTransaction().replace(R.id.drawerLayout,new AfterRegisterFragment()).commit();
+
+//                        cardView.setVisibility(View.GONE);
+
+//                        Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+//                        startActivity(intent);
+
 //                    String user_id = mAuth.getCurrentUser().getUid();
 //                    DatabaseReference CurrentUser_db =  mDatabase.child(user_id);
 //                    CurrentUser_db.child("Email").setValue(email);
@@ -277,23 +318,58 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     }
 
                     //Add why a user was unable to log in
-                    else
+                    else{
+                        progressDialog.dismiss();
                         Toast.makeText(MainActivity.this, "Sign Up Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
 
                 }
             });
         }
 
-            Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
-            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//        if(flag) {
+//
+////            Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
+////            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+////
+////
+////            FragmentManager registerFragment = getSupportFragmentManager();
+////            FragmentTransaction transaction = registerFragment.beginTransaction();
+////            transaction.add(R.id.drawerLayout,new AfterRegisterFragment(), FRAGMENT_AFTER_REGISTER_TAG);
+////            transaction.addToBackStack(null);
+////            transaction.commit();
+//            flag = false;
+//
+//        } else {
 
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
+        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+//        }
+    }
+
+    @Override
+    public void onAfterRegister() {
+
+        // All the work is happening in the fragment
+        //     save user profile data
+
+        Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+        startActivity(intent);
+
+        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_AFTER_REGISTER_TAG);
+        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        finish();
     }
 
     @Override
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0)
             getSupportFragmentManager().popBackStack();
-//            cardView.setVisibility(View.VISIBLE);
+//            //cardView.setVisibility(View.VISIBLE);
         else
             super.onBackPressed();
     }
@@ -398,6 +474,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             Uri personPhoto = account.getPhotoUrl();
 
             Toast.makeText(MainActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
+
+//            Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+//            startActivity(intent);
         }
     }
 

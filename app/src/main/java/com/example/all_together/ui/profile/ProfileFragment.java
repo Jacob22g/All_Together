@@ -31,17 +31,28 @@ public class ProfileFragment extends Fragment {
 
         profileImage = view.findViewById(R.id.userPhotoIv);
 
-        Button changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
-        changePicBtn.setOnClickListener(new View.OnClickListener() {
+        ImageView imageView = view.findViewById(R.id.userPhotoIv);
+        imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public boolean onLongClick(View v) {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent,IMAGE_REQUEST);
-
+                return false;
             }
         });
+
+//        Button changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
+//        changePicBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+//                intent.setType("image/*");
+//                startActivityForResult(intent,IMAGE_REQUEST);
+//
+//            }
+//        });
 
         return view;
     }

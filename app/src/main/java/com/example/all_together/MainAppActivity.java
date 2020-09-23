@@ -107,23 +107,19 @@ public class MainAppActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icons_menu_w);
 
-        View headerView = navigationView.getHeaderView(0);
-        TextView userTv = headerView.findViewById(R.id.navigation_header_container);
-        userTv.setText(firebaseUser.getEmail());
-        if (firebaseUser != null) { //signed in
-            navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-        } else { // signed out
-            navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-        }
-
-        // No need for action bar because we have a toolbar as an action bar
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setHomeAsUpIndicator(R.drawable.icons_menu_w);
+        //  To check sign from google
+//        View headerView = navigationView.getHeaderView(0);
+//        TextView userTv = headerView.findViewById(R.id.navigation_header_container);
+//        userTv.setText(firebaseUser.getEmail());
+//        if (firebaseUser != null) { //signed in
+//            navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+//        } else { // signed out
+//            navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
+//            navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
+//            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+//        }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
