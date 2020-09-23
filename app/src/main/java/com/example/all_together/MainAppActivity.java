@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +48,7 @@ public class MainAppActivity extends AppCompatActivity {
     //user details
 
     TextView fullName,email,age;
-    ImageView photo;
+    ImageButton photo;
     Button signOut;
 
 
@@ -69,23 +70,24 @@ public class MainAppActivity extends AppCompatActivity {
         fullName = findViewById(R.id.userFullNameTv);
         email = findViewById(R.id.userEmailTv);
         age = findViewById(R.id.userAgeTv);
-        photo = findViewById(R.id.userPhotoIv);
+        //photo = findViewById(R.id.userPhotoIv);
+        photo = findViewById(R.id.change_profile_pic_btn);
         signOut = findViewById(R.id.signOutBtn);
 
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (account != null) {
-            String personName = account.getDisplayName();
-            //String personGivenName = account.getGivenName();
-            //String personFamilyName = account.getFamilyName();
-            String personEmail = account.getEmail();
-            //String personId = account.getId();
-            Uri personPhoto = account.getPhotoUrl();
-
-            fullName.setText(personName);
-            age.setText("23");
-            email.setText(personEmail);
-            Glide.with(this).load(String.valueOf(personPhoto)).into(photo);
-        }
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+//        if (account != null) {
+//            String personName = account.getDisplayName();
+//            //String personGivenName = account.getGivenName();
+//            //String personFamilyName = account.getFamilyName();
+//            String personEmail = account.getEmail();
+//            //String personId = account.getId();
+//            Uri personPhoto = account.getPhotoUrl();
+//
+//            fullName.setText(personName);
+//            age.setText("23");
+//            email.setText(personEmail);
+//            Glide.with(this).load(String.valueOf(personPhoto)).into(photo);
+//        }
 
 //        signOut.setOnClickListener(new View.OnClickListener() {
 //            @Override

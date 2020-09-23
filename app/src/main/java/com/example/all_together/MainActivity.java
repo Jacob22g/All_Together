@@ -475,8 +475,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
             Toast.makeText(MainActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
 
-//            Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+            startActivity(intent);
         }
     }
 

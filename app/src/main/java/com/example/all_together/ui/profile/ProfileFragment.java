@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -29,30 +30,19 @@ public class ProfileFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile,container,false);
 
-        profileImage = view.findViewById(R.id.userPhotoIv);
+        //profileImage = view.findViewById(R.id.userPhotoIv);
 
-        ImageView imageView = view.findViewById(R.id.userPhotoIv);
-        imageView.setOnLongClickListener(new View.OnLongClickListener() {
+        ImageButton changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
+        changePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
+
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent,IMAGE_REQUEST);
-                return false;
+
             }
         });
-
-//        Button changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
-//        changePicBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-//                intent.setType("image/*");
-//                startActivityForResult(intent,IMAGE_REQUEST);
-//
-//            }
-//        });
 
         return view;
     }
