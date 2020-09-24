@@ -72,7 +72,7 @@ public class MainAppActivity extends AppCompatActivity {
         age = findViewById(R.id.userAgeTv);
         //photo = findViewById(R.id.userPhotoIv);
         photo = findViewById(R.id.change_profile_pic_btn);
-        signOut = findViewById(R.id.signOutBtn);
+        //signOut = findViewById(R.id.signOutBtn);
 
 //        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
 //        if (account != null) {
