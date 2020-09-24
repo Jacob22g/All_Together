@@ -25,47 +25,23 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
-            <LinearLayout
+            <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp">
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginHorizontal="40dp"
+                android:hint="Full Name"
+                android:textSize="20sp"
+                app:startIconDrawable="@drawable/ic_emoji_people">
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/full_name_add_info"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:hint="First Name"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_emoji_people">
+                    android:fontFamily="@font/poppins_medium"
+                    android:inputType="text"
+                    android:maxLines="1" />
+            </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/first_name_add_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:inputType="text"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:layout_weight="1"
-                    android:hint="Last Name"
-                    android:textSize="20sp"
-                    app:startIconDrawable="@drawable/ic_emoji_people">
-
-                    <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/last_name_add_info"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:inputType="text"
-                        android:maxLines="1" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:layout_width="match_parent"
@@ -92,7 +68,7 @@
                 android:layout_marginTop="5dp"
                 android:hint="Country"
                 android:textSize="20sp"
-                app:startIconDrawable="@drawable/ic_baseline_eco_24">
+                app:startIconDrawable="@drawable/ic_baseline_location_city_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/country_add_info"
@@ -110,7 +86,7 @@
                 android:layout_marginTop="5dp"
                 android:hint="City"
                 android:textSize="20sp"
-                app:startIconDrawable="@drawable/ic_baseline_eco_24">
+                app:startIconDrawable="@drawable/ic_baseline_home_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/city_add_info"

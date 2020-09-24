@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
 
     @Override
-    public void onRegister(String email, String password, String firstName, String lastName) {
+    public void onRegister(String email, String password) {
 
 //        //cardView.setVisibility(View.VISIBLE);
 

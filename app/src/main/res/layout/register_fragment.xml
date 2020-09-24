@@ -138,66 +138,6 @@
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="40dp">
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:hint="First Name"
-                            android:textSize="20sp"
-                            app:startIconDrawable="@drawable/ic_emoji_people">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/first_name_register"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
-                                android:inputType="text"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:hint="Last Name"
-                            android:textSize="20sp"
-                            app:startIconDrawable="@drawable/ic_emoji_people">
-
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/last_name_register"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
-                                android:inputType="text"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="40dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Age"
-                        android:textSize="20sp"
-                        app:startIconDrawable="@drawable/ic_baseline_eco_24">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/age_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:inputType="number"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
                     <Button
                         style="@style/Widget.AppCompat.Button.Colored"
                         android:id="@+id/submit_register"

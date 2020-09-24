@@ -35,7 +35,7 @@ public class RegisterFragment extends Fragment {
     public static int MIN_CHARACTERS_PASSWORD = 6;
 
     interface OnRegisterFragmentListener {
-        void onRegister(String email, String password, String firstName, String lastName);
+        void onRegister(String email, String password);
     }
 
     OnRegisterFragmentListener callback;
@@ -85,7 +85,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                callback.onRegister("","","","");
+                callback.onRegister("","");
 
 //                cardView1.setVisibility(View.GONE);
 //                cardView2.setVisibility(View.GONE);
@@ -93,11 +93,8 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        //final EditText usernameEditText = rootView.findViewById(R.id.username_register);
         final EditText passwordEitText = rootView.findViewById(R.id.password_register);
         final EditText emailEditText = rootView.findViewById(R.id.email_register);
-        final EditText firstNameEditText = rootView.findViewById(R.id.first_name_register);
-        final EditText lastNameEditText = rootView.findViewById(R.id.last_name_register);
 
         Button submitBtn = rootView.findViewById(R.id.submit_register);
 
@@ -105,11 +102,8 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //final String userName = usernameEditText.getText().toString();
                 final String password = passwordEitText.getText().toString();
                 final String email = emailEditText.getText().toString();
-                final String firstName = firstNameEditText.getText().toString();
-                final String lastName = lastNameEditText.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
                      emailEditText.setError("User Email is Required");
@@ -121,22 +115,12 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-//                if(TextUtils.isEmpty(firstName)){
-//                    firstNameEditText.setError("First name is Required");
-//                    return;
-//                }
-//
-//                if(TextUtils.isEmpty(lastName)){
-//                    lastNameEditText.setError("Lase name is Required");
-//                    return;
-//                }
-
                 if (password.length()< MIN_CHARACTERS_PASSWORD ) {
                     passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
                     return;
                 }
 
-                callback.onRegister(email, password, firstName, lastName);
+                callback.onRegister(email, password);
 
             }
         });
