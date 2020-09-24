@@ -167,1220 +167,1281 @@
 
         </LinearLayout>
 
-            <LinearLayout
+        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <LinearLayout
+                <TextView
                     android:layout_width="match_parent"
-                    android:layout_height="255dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="Your next volunteering"
-                            android:fontFamily="@font/poppins_medium"
-                            android:gravity="center" />
-
-                    </LinearLayout>
-
-                    <TableLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TableRow
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_height="wrap_content"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:text="name"
-                                android:textStyle="bold"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"/>
-
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"
-                                android:text="Time"
-                                android:textStyle="bold" />
-
-                            <TextView
-                                android:layout_height="wrap_content"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:text="Location"
-                                android:textStyle="bold"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"/>
-
-                        </TableRow>
-                    </TableLayout>
-
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        >
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical"
-                            android:background="@drawable/table_background">
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                        </TableLayout>
-
-
-                    </ScrollView>
-
-
-                </LinearLayout> \\first table
+                    android:layout_height="wrap_content"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:text="Your volunteering"
+                    android:fontFamily="@font/poppins_medium"
+                    android:gravity="center" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="255dp"
-                    android:orientation="vertical"
-                    android:padding="10dp">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/next_vol_card_btn"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center">
+                        android:text="Next Volunteering"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:background="@color/colorPrimary"/>
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:text="Volunteering I did"
-                            android:fontFamily="@font/poppins_medium"
-                            android:gravity="center" />
-
-                    </LinearLayout>
-
-                    <TableLayout
-                        android:layout_width="match_parent"
+                    <Button
+                        android:id="@+id/old_vol_card_btn"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:text="Old Volunteering"
+                        android:layout_weight="1"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:background="@color/colorPrimaryLight"/>
 
-                        <TableRow
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content">
-                            <TextView
-                                android:layout_height="wrap_content"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:text="name"
-                                android:textStyle="bold"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"/>
+                </LinearLayout>
 
-                            <TextView
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"
-                                android:text="Time"
-                                android:textStyle="bold" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
 
-                            <TextView
-                                android:layout_height="wrap_content"
-                                android:layout_width="0dp"
-                                android:layout_weight="1"
-                                android:text="Location"
-                                android:textStyle="bold"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center"/>
-
-                        </TableRow>
-                    </TableLayout>
-
-                    <ScrollView
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardNextVol"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        >
+                        android:backgroundTint="@color/grayBlueColor"
+                        android:visibility="visible">
 
-                        <TableLayout
+                        <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="7dp"
                             android:orientation="vertical"
-                            android:background="@drawable/table_background">
+                            android:padding="10dp">
 
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center">
+
                                 <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
+                                    android:textSize="18sp"
+                                    android:text="Your next volunteering"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    android:gravity="center" />
 
-                                <TextView
+                            </LinearLayout>
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TableRow
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="name"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="Time"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="Location"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
+
+                                </TableRow>
+                            </TableLayout>
+
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                >
+
+                                <TableLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    android:orientation="vertical"
+                                    android:background="@drawable/table_background">
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                </TableLayout>
+
+
+                            </ScrollView>
+
+
+                        </LinearLayout> \\first table
+
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardOldVol"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/grayBlueColor"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical"
+                            android:layout_marginBottom="7dp"
+                            android:padding="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:gravity="center">
 
                                 <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
+                                    android:textSize="18sp"
+                                    android:text="Volunteering I did"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    android:gravity="center" />
 
-                            </TableRow>
+                            </LinearLayout>
 
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TableRow
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="name"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
+
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="Time"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="Location"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
+
+                                </TableRow>
+                            </TableLayout>
+
+                            <ScrollView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TableLayout
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi levi"
-
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="28/10/20 ,10:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Haifa"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dani Or"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,12:15"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Tel-Aviv"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Ran Avidan"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,13:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Lod" />
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Dana Ron"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="29/10/20 ,14:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Acre" />
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Avi Markovich"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="30/10/20 ,10:20"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Qiryat Gat"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Eli Bonder"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="1/11/20 ,12:00"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Jerusalem"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
-
-
-                            </TableRow>
-
-                        </TableLayout>
-
-
-                    </ScrollView>
-
-
-                </LinearLayout> \\second table
+                                    android:orientation="vertical"
+                                    android:background="@drawable/table_background">
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi levi"
+
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="28/10/20 ,10:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Haifa"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dani Or"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,12:15"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Tel-Aviv"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Ran Avidan"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,13:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Lod" />
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Dana Ron"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="29/10/20 ,14:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_width="0dp"
+                                            android:layout_height="match_parent"
+                                            android:layout_weight="1"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"
+                                            android:text="Acre" />
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Avi Markovich"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="30/10/20 ,10:20"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Qiryat Gat"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+                                    <TableRow
+                                        android:layout_width="0dp"
+                                        android:layout_height="wrap_content">
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Eli Bonder"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="1/11/20 ,12:00"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+                                        <TextView
+                                            android:layout_height="wrap_content"
+                                            android:layout_width="0dp"
+                                            android:layout_weight="1"
+                                            android:text="Jerusalem"
+                                            android:fontFamily="@font/poppins_medium"
+                                            android:gravity="center"/>
+
+
+                                    </TableRow>
+
+                                </TableLayout>
+
+
+                            </ScrollView>
+
+
+                        </LinearLayout> \\second table
+
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
 
             </LinearLayout>
 
