@@ -5,169 +5,168 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:background="#E1EEF1">
-
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:background="#9FD2DA">
+            android:background="#E1EEF1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingBottom="30dp"
-                android:orientation="horizontal"
-                android:background="@drawable/first_layer_home">
-
-                <ImageButton
-                    android:id="@+id/change_profile_pic_btn"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_marginStart="20dp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/old"
-                    android:background="@color/whiteColor"/>
+                android:orientation="vertical"
+                android:background="#9FD2DA">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical">
+                    android:paddingBottom="40px"
+                    android:orientation="horizontal"
+                    android:background="@drawable/first_layer_home">
 
-                    <TextView
-                        android:id="@+id/userFullNameTv"
-                        android:layout_width="wrap_content"
+                    <ImageButton
+                        android:id="@+id/change_profile_pic_btn"
+                        android:layout_width="300px"
+                        android:layout_height="300px"
+                        android:layout_marginTop="170px"
+                        android:layout_marginStart="20px"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/old"
+                        android:background="@color/whiteColor"/>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="24sp"
-                        android:text="Lidan Nissim"
-                        android:textStyle="bold"
-                        android:layout_marginTop="60dp"
-                        android:layout_marginStart="20dp"/>
-                    <TextView
-                        android:id="@+id/userAddressTv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="20sp"
-                        android:text="Tel-Aviv, Israel"
-                        android:layout_marginTop="5dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginBottom="10dp" />
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/userFullNameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="24sp"
+                            android:text="Lidan Nissim"
+                            android:textStyle="bold"
+                            android:layout_marginTop="190px"
+                            android:layout_marginStart="60px"/>
+                        <TextView
+                            android:id="@+id/userAddressTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="20sp"
+                            android:text="Tel-Aviv, Israel"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginStart="60px"
+                            android:layout_marginBottom="15px" />
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
-            android:paddingBottom="10dp"
-            android:paddingTop="10dp"
-            android:gravity="center"
-            android:weightSum="3"
-            android:background="@drawable/second_layer_home">
-
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:orientation="horizontal"
+                android:paddingRight="5px"
+                android:paddingLeft="5px"
+                android:paddingBottom="5px"
+                android:paddingTop="5px"
                 android:gravity="center"
-                android:layout_margin="5dp">
+                android:weightSum="3"
+                android:background="@drawable/second_layer_home">
 
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
                     android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:text="Volunteering"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"
-                    />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="40"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"/>
-
-            </LinearLayout>
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:text="Lavel"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Excellent"
+                    android:orientation="vertical"
                     android:gravity="center"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"/>
+                    android:layout_margin="5px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:text="Volunteering"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"
+                        />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="40"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/grayDarkColor"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_margin="5px">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:text="Lavel"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="Excellent"
+                        android:gravity="center"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                </LinearLayout>
+                <View
+                    android:layout_width="1px"
+                    android:layout_height="match_parent"
+                    android:background="@color/grayDarkColor"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="normal"
+                        android:text="Likes"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:text="20"
+                        android:textSize="16sp"
+                        android:fontFamily="@font/poppins_medium"/>
+
+                </LinearLayout>
+
 
             </LinearLayout>
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
+
             <LinearLayout
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center"
-                android:layout_margin="5dp">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="normal"
-                    android:text="Likes"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"/>
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="20"
-                    android:textSize="18sp"
-                    android:fontFamily="@font/poppins_medium"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-        <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical">
@@ -184,7 +183,8 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:padding="5px">
 
                     <Button
                         android:id="@+id/next_vol_card_btn"
@@ -194,7 +194,9 @@
                         android:layout_weight="1"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:background="@color/colorPrimary"/>
+                        android:background="@color/colorPrimary"
+                        android:layout_marginEnd="5px"
+                        android:layout_marginStart="5px"/>
 
                     <Button
                         android:id="@+id/old_vol_card_btn"
@@ -204,179 +206,181 @@
                         android:layout_weight="1"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:background="@color/colorPrimaryLight"/>
+                        android:background="@color/colorPrimaryLight"
+                        android:layout_marginStart="5px"
+                        android:layout_marginEnd="5px"/>
 
                 </LinearLayout>
 
                 <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardNextVol"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:backgroundTint="@color/grayBlueColor"
-                    android:visibility="visible">
+                    android:orientation="vertical">
 
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardNextVol"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginBottom="7dp"
-                        android:orientation="vertical"
-                        android:padding="10dp">
+                        android:backgroundTint="@color/grayBlueColor"
+                        android:visibility="visible">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_marginBottom="7dp"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:padding="20px">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
-                                android:text="Your next volunteering"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center" />
+                                android:orientation="vertical"
+                                android:gravity="center">
 
-                        </LinearLayout>
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
                                 <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="name"
-                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:text="Your next volunteering"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    android:gravity="center" />
 
-                                <TextView
+                            </LinearLayout>
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TableRow
                                     android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Time"
-                                    android:textStyle="bold" />
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="name"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
 
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Location"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="Time"
+                                        android:textStyle="bold" />
 
-                            </TableRow>
-                        </TableLayout>
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="Location"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerNew"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                                </TableRow>
+                            </TableLayout>
 
-                        </androidx.recyclerview.widget.RecyclerView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerNew"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </androidx.recyclerview.widget.RecyclerView>
 
 
-                    </LinearLayout> \\first table
+                        </LinearLayout> \\first table
 
-                </androidx.cardview.widget.CardView>
+                    </androidx.cardview.widget.CardView>
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/cardOldVol"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:backgroundTint="@color/grayBlueColor"
-                    android:visibility="gone">
-
-                    <LinearLayout
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cardOldVol"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:layout_marginBottom="7dp"
-                        android:padding="10dp">
+                        android:backgroundTint="@color/grayBlueColor"
+                        android:visibility="gone">
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="vertical"
-                            android:gravity="center">
+                            android:layout_marginBottom="20px"
+                            android:padding="20px">
 
-                            <TextView
+                            <LinearLayout
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:textSize="18sp"
-                                android:text="Volunteering I did"
-                                android:fontFamily="@font/poppins_medium"
-                                android:gravity="center" />
+                                android:orientation="vertical"
+                                android:gravity="center">
 
-                        </LinearLayout>
-
-                        <TableLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="vertical">
-
-                            <TableRow
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content">
                                 <TextView
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="name"
-                                    android:textStyle="bold"
+                                    android:textSize="18sp"
+                                    android:text="Volunteering I did"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    android:gravity="center" />
 
-                                <TextView
+                            </LinearLayout>
+
+                            <TableLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical">
+
+                                <TableRow
                                     android:layout_width="0dp"
-                                    android:layout_height="match_parent"
-                                    android:layout_weight="1"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"
-                                    android:text="Time"
-                                    android:textStyle="bold" />
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="name"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
 
-                                <TextView
-                                    android:layout_height="wrap_content"
-                                    android:layout_width="0dp"
-                                    android:layout_weight="1"
-                                    android:text="Location"
-                                    android:textStyle="bold"
-                                    android:fontFamily="@font/poppins_medium"
-                                    android:gravity="center"/>
+                                    <TextView
+                                        android:layout_width="0dp"
+                                        android:layout_height="match_parent"
+                                        android:layout_weight="1"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"
+                                        android:text="Time"
+                                        android:textStyle="bold" />
 
-                            </TableRow>
-                        </TableLayout>
+                                    <TextView
+                                        android:layout_height="wrap_content"
+                                        android:layout_width="0dp"
+                                        android:layout_weight="1"
+                                        android:text="Location"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/poppins_medium"
+                                        android:gravity="center"/>
 
-                        <androidx.recyclerview.widget.RecyclerView
-                            android:id="@+id/recyclerOld"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent">
+                                </TableRow>
+                            </TableLayout>
 
-                        </androidx.recyclerview.widget.RecyclerView>
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/recyclerOld"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                            </androidx.recyclerview.widget.RecyclerView>
 
 
-                    </LinearLayout> \\second table
+                        </LinearLayout> \\second table
 
-                </androidx.cardview.widget.CardView>
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+
             </LinearLayout>
 
-            </LinearLayout>
 
-
-    </LinearLayout>
+        </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
