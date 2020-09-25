@@ -3,18 +3,31 @@ package com.example.all_together;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TableLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
 public class VolunteeringAdapter extends RecyclerView.Adapter<VolunteeringAdapter.VolunteeringViewHolder> {
 
-    private List<Volunteering>volunteeringList;
+    public List<Volunteering>volunteeringList;
+    public MyVolunteeringInfoListener listener;
+
+    public interface MyVolunteeringInfoListener{
+        void onVolunteeringClicked(int position, View view);
+    }
+
+    public void setListener(MyVolunteeringInfoListener listener){
+        this.listener = listener;
+    }
 
     public VolunteeringAdapter(List<Volunteering> volunteeringList) {
         this.volunteeringList = volunteeringList;
@@ -55,7 +68,7 @@ public class VolunteeringAdapter extends RecyclerView.Adapter<VolunteeringAdapte
         TextView locationTv;
         TextView dateTv;
         TextView hourTv;
-        //ImageView info;
+        //ImageButton infoBtn;
 
         public VolunteeringViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -64,12 +77,23 @@ public class VolunteeringAdapter extends RecyclerView.Adapter<VolunteeringAdapte
                 dateTv = itemView.findViewById(R.id.date_on_card);
                 hourTv = itemView.findViewById(R.id.hour_on_card);
 
-//                info.setOnClickListener(new View.OnClickListener() {
+                itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        if(listener!=null){
+                            listener.onVolunteeringClicked(getAdapterPosition(),view);
+                        }
+                    }
+                });
+
+//                infoBtn.setOnClickListener(new View.OnClickListener() {
 //                    @Override
 //                    public void onClick(View v) {
-//
+//                        Toast.makeText(v.getContext(), "Your Name is: " + v., Toast.LENGTH_SHORT).show();
 //                    }
 //                });
             }
+
+
     }
 }

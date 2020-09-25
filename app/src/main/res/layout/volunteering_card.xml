@@ -61,17 +61,6 @@
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"/>
 
-        <ImageButton
-            android:id="@+id/info_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/ic_sharp_info_24"
-            android:background="@color/whiteColor">
-        </ImageButton>
-
-
-
-
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

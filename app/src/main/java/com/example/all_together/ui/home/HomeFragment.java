@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -61,13 +62,19 @@ public class HomeFragment extends Fragment {
         recyclerViewNew.setHasFixedSize(true);
         recyclerViewNew.setLayoutManager(new LinearLayoutManager(rootView.getContext(),LinearLayoutManager.VERTICAL, false));
 
-        List<Volunteering>volunteeringListNew = new ArrayList<>();
+        final List<Volunteering>volunteeringListNew = new ArrayList<>();
         volunteeringListNew.add(new Volunteering("Lidan", "Haifa", "12/05/20", "12:15", "Shopping"));
         volunteeringListNew.add(new Volunteering("Lida", "Haifa", "12/05/20", "12:15", "Shopping"));
         volunteeringListNew.add(new Volunteering("Lid", "Haifa", "12/05/20", "12:15", "Shopping"));
         volunteeringListNew.add(new Volunteering("Li", "Haifa", "12/05/20", "12:15", "Shopping"));
 
         VolunteeringAdapter volunteeringAdapterNew = new VolunteeringAdapter(volunteeringListNew);
+        volunteeringAdapterNew.setListener(new VolunteeringAdapter.MyVolunteeringInfoListener() {
+            @Override
+            public void onVolunteeringClicked(int position, View view) {
+                Toast.makeText(view.getContext(), "My name is:" + volunteeringListNew.get(position).getName(), Toast.LENGTH_SHORT).show();
+            }
+        });
         recyclerViewNew.setAdapter(volunteeringAdapterNew);
 
 
