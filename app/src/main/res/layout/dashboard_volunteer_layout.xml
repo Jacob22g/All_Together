@@ -10,16 +10,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
-
-        <ImageView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:id="@+id/volunteer_iv"
-            android:scaleType="fitXY"
-            android:src="@drawable/volunteer_icon"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -34,9 +26,9 @@
                 android:paddingStart="15dp"
                 android:layout_marginTop="5dp"
                 android:textSize="20sp"
-                android:text="Volunteer Title"
+                android:text="Volunteer Type"
                 android:textStyle="bold"
-                android:id="@+id/volunteer_title_tv"/>
+                android:id="@+id/volunteer_type_tv"/>
 
             <TextView
                 android:layout_width="match_parent"
@@ -44,16 +36,28 @@
                 android:layout_weight="1"
                 android:paddingStart="20dp"
                 android:textSize="15sp"
-                android:text="Volunteer description"
-                android:id="@+id/volunteer_description_tv"/>
+                android:text="Volunteer location"
+                android:id="@+id/volunteer_location_tv"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingStart="20dp"
+                android:textSize="15sp"
+                android:text="Volunteer date"
+                android:id="@+id/volunteer_date_tv"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:paddingStart="20dp"
+                android:textSize="15sp"
+                android:text="Volunteer time"
+                android:id="@+id/volunteer_time_tv"/>
 
         </LinearLayout>
-
-        <CheckBox
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/volunteer_cb"
-            android:text="Done"/>
 
     </LinearLayout>
 

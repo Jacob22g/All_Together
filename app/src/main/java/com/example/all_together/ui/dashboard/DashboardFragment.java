@@ -1,7 +1,6 @@
 package com.example.all_together.ui.dashboard;
 
 import android.app.ProgressDialog;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,8 +17,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.all_together.R;
-import com.example.all_together.adapter.VolunteerAdapter;
-import com.example.all_together.model.Volunteer;
+import com.example.all_together.adapter.DashboardVolunteeringAdapter;
+import com.example.all_together.model.Volunteering;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -38,8 +37,8 @@ public class DashboardFragment extends Fragment {
 
     final String TAG = "tag";
 
-    List<Volunteer> volunteerList  = new ArrayList<>();
-    VolunteerAdapter adapter;
+    List<Volunteering> volunteerList  = new ArrayList<>();
+    DashboardVolunteeringAdapter adapter;
     RecyclerView recyclerView;
 
     FloatingActionButton fab;
@@ -47,8 +46,11 @@ public class DashboardFragment extends Fragment {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
 
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("volunteerList");;
+    DatabaseReference myRef = database.getReference("volunteerList");
+    DatabaseReference usersDB = database.getReference("users");
 
     CoordinatorLayout coordinatorLayout;
 
@@ -61,7 +63,7 @@ public class DashboardFragment extends Fragment {
         coordinatorLayout = view.findViewById(R.id.coordinator_dashboard);
 
         recyclerView =  view.findViewById(R.id.volunteer_recycler);
-        adapter = new VolunteerAdapter(volunteerList);
+        adapter = new DashboardVolunteeringAdapter(volunteerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -108,7 +110,7 @@ public class DashboardFragment extends Fragment {
             public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
 
                 final int position = viewHolder.getAdapterPosition();
-                final Volunteer item = volunteerList.get(position);
+                final Volunteering item = volunteerList.get(position);
 
                 volunteerList.remove(viewHolder.getAdapterPosition());
                 adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
@@ -134,15 +136,15 @@ public class DashboardFragment extends Fragment {
         helper.attachToRecyclerView(recyclerView);
 
         recyclerView.setAdapter(adapter);
-        adapter.setListener(new VolunteerAdapter.VolunteerListener() {
+        adapter.setListener(new DashboardVolunteeringAdapter.VolunteerListener() {
             @Override
             public void onVolunteerClicked(int position, View view) {
 
-                Volunteer volunteer = volunteerList.get(position);
-                volunteer.setCompleted(!volunteer.isCompleted());
+                Volunteering volunteering = volunteerList.get(position);
+
                 adapter.notifyItemChanged(position);
 
-                Toast.makeText(getContext(), "Volunteer "+position+" "+volunteer.isCompleted(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Volunteer "+position, Toast.LENGTH_SHORT).show();
 
                 // Need to update the DB
                 myRef.setValue(volunteerList);
@@ -156,7 +158,19 @@ public class DashboardFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                volunteerList.add(new Volunteer("Title"+volunteerList.size(),"Description",false));
+//                usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//
+//                    }
+//                });
+
+                volunteerList.add(new Volunteering("name","location","af","hour","type",firebaseUser.getUid()));
                 adapter.notifyItemInserted(volunteerList.size());
 
                 // Write to DB
@@ -170,7 +184,7 @@ public class DashboardFragment extends Fragment {
     private void ReadFirebaseDB(){
         // Read from the database
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading Volunteer list, Please wait..");
+        progressDialog.setMessage("Loading Volunteering list, Please wait..");
         progressDialog.show();
 
         myRef.addValueEventListener(new ValueEventListener() {
@@ -183,8 +197,8 @@ public class DashboardFragment extends Fragment {
 
                 if (dataSnapshot.exists()){
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
-                        Volunteer volunteer = ds.getValue(Volunteer.class);
-                        volunteerList.add(volunteer);
+                        Volunteering volunteering = ds.getValue(Volunteering.class);
+                        volunteerList.add(volunteering);
                     }
                     adapter.notifyDataSetChanged();
                 }

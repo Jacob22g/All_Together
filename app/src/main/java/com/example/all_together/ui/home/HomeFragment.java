@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.CalendarView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -16,8 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.all_together.R;
-import com.example.all_together.Volunteering;
-import com.example.all_together.VolunteeringAdapter;
+import com.example.all_together.model.Volunteering;
+import com.example.all_together.adapter.HomeVolunteeringAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,13 +62,13 @@ public class HomeFragment extends Fragment {
         recyclerViewNew.setLayoutManager(new LinearLayoutManager(rootView.getContext(),LinearLayoutManager.VERTICAL, false));
 
         final List<Volunteering>volunteeringListNew = new ArrayList<>();
-        volunteeringListNew.add(new Volunteering("Lidan", "Haifa", "12/05/20", "12:15", "Shopping"));
-        volunteeringListNew.add(new Volunteering("Lida", "Haifa", "12/05/20", "12:15", "Shopping"));
-        volunteeringListNew.add(new Volunteering("Lid", "Haifa", "12/05/20", "12:15", "Shopping"));
-        volunteeringListNew.add(new Volunteering("Li", "Haifa", "12/05/20", "12:15", "Shopping"));
+        volunteeringListNew.add(new Volunteering("Lidan", "Haifa", "12/05/20", "12:15", "Shopping","1"));
+        volunteeringListNew.add(new Volunteering("Lida", "Haifa", "12/05/20", "12:15", "Shopping","1"));
+        volunteeringListNew.add(new Volunteering("Lid", "Haifa", "12/05/20", "12:15", "Shopping","1"));
+        volunteeringListNew.add(new Volunteering("Li", "Haifa", "12/05/20", "12:15", "Shopping","1"));
 
-        VolunteeringAdapter volunteeringAdapterNew = new VolunteeringAdapter(volunteeringListNew);
-        volunteeringAdapterNew.setListener(new VolunteeringAdapter.MyVolunteeringInfoListener() {
+        HomeVolunteeringAdapter volunteeringAdapterNew = new HomeVolunteeringAdapter(volunteeringListNew);
+        volunteeringAdapterNew.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
             @Override
             public void onVolunteeringClicked(int position, View view) {
                 Toast.makeText(view.getContext(), "My name is:" + volunteeringListNew.get(position).getName(), Toast.LENGTH_SHORT).show();
@@ -83,12 +82,12 @@ public class HomeFragment extends Fragment {
         recyclerViewOld.setLayoutManager(new LinearLayoutManager(rootView.getContext(),LinearLayoutManager.VERTICAL, false));
 
         List<Volunteering>volunteeringListOld = new ArrayList<>();
-        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv", "10/05/20", "12:15", "Shopping"));
-        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv", "10/05/20", "12:15", "Shopping"));
-        volunteeringListOld.add(new Volunteering("Avi", "Haifa", "12/05/20", "12:15", "Shopping"));
-        volunteeringListOld.add(new Volunteering("Avi", "Haifa", "12/05/20", "12:15", "Shopping"));
+        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv", "10/05/20", "12:15", "Shopping","1"));
+        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv", "10/05/20", "12:15", "Shopping","1"));
+        volunteeringListOld.add(new Volunteering("Avi", "Haifa", "12/05/20", "12:15", "Shopping","1"));
+        volunteeringListOld.add(new Volunteering("Avi", "Haifa", "12/05/20", "12:15", "Shopping","1"));
 
-        VolunteeringAdapter volunteeringAdapterOld = new VolunteeringAdapter(volunteeringListOld);
+        HomeVolunteeringAdapter volunteeringAdapterOld = new HomeVolunteeringAdapter(volunteeringListOld);
         recyclerViewOld.setAdapter(volunteeringAdapterOld);
 
         return rootView;

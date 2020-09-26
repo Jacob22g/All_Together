@@ -1,22 +1,19 @@
-package com.example.all_together;
+package com.example.all_together.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TableLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.button.MaterialButton;
+import com.example.all_together.R;
+import com.example.all_together.model.Volunteering;
 
 import java.util.List;
 
-public class VolunteeringAdapter extends RecyclerView.Adapter<VolunteeringAdapter.VolunteeringViewHolder> {
+public class HomeVolunteeringAdapter extends RecyclerView.Adapter<HomeVolunteeringAdapter.VolunteeringViewHolder> {
 
     public List<Volunteering>volunteeringList;
     public MyVolunteeringInfoListener listener;
@@ -29,14 +26,14 @@ public class VolunteeringAdapter extends RecyclerView.Adapter<VolunteeringAdapte
         this.listener = listener;
     }
 
-    public VolunteeringAdapter(List<Volunteering> volunteeringList) {
+    public HomeVolunteeringAdapter(List<Volunteering> volunteeringList) {
         this.volunteeringList = volunteeringList;
     }
 
     @NonNull
     @Override
     public VolunteeringViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.volunteering_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_volunteering_card,parent,false);
         VolunteeringViewHolder volunteeringViewHolder = new VolunteeringViewHolder(view);
         return volunteeringViewHolder;
     }
