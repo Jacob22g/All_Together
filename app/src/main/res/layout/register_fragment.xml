@@ -163,7 +163,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="60dp"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="15dp">
 
             <ScrollView
@@ -180,16 +180,16 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="40dp"
                         android:layout_marginTop="5dp"
-                        android:hint="Email"
+                        android:hint="Phone Number"
                         android:textSize="20sp"
-                        app:startIconDrawable="@drawable/ic_email">
+                        app:startIconDrawable="@drawable/ic_phone">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/email_register_help"
+                            android:id="@+id/phone_register"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:inputType="textEmailAddress"
+                            android:inputType="phone"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -204,7 +204,7 @@
                         app:startIconDrawable="@drawable/ic_lock">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/password_register_help"
+                            android:id="@+id/password_old_register"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
@@ -212,65 +212,102 @@
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="40dp">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="40dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:hint="Email"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:startIconDrawable="@drawable/ic_email">-->
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:hint="First Name"
-                            android:textSize="20sp"
-                            app:startIconDrawable="@drawable/ic_emoji_people">
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/email_register_help"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/poppins_medium"-->
+<!--                            android:inputType="textEmailAddress"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/first_name_register_help"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
-                                android:inputType="text"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="40dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:hint="Password"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:endIconMode="password_toggle"-->
+<!--                        app:startIconDrawable="@drawable/ic_lock">-->
 
-                        <com.google.android.material.textfield.TextInputLayout
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="5dp"
-                            android:layout_weight="1"
-                            android:hint="Last Name"
-                            android:textSize="20sp"
-                            app:startIconDrawable="@drawable/ic_emoji_people">
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/password_register_help"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/poppins_medium"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
-                            <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/last_name_register_help"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/poppins_medium"
-                                android:inputType="text"
-                                android:maxLines="1" />
-                        </com.google.android.material.textfield.TextInputLayout>
-                    </LinearLayout>
+<!--                    <LinearLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="40dp">-->
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="40dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Age"
-                        android:textSize="20sp"
-                        app:startIconDrawable="@drawable/ic_baseline_eco_24">
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:hint="First Name"-->
+<!--                            android:textSize="20sp"-->
+<!--                            app:startIconDrawable="@drawable/ic_emoji_people">-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/age_register_help"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:inputType="number"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/first_name_register_help"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/poppins_medium"-->
+<!--                                android:inputType="text"-->
+<!--                                android:maxLines="1" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                        <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:layout_width="0dp"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:layout_marginTop="5dp"-->
+<!--                            android:layout_weight="1"-->
+<!--                            android:hint="Last Name"-->
+<!--                            android:textSize="20sp"-->
+<!--                            app:startIconDrawable="@drawable/ic_emoji_people">-->
+
+<!--                            <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/last_name_register_help"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:fontFamily="@font/poppins_medium"-->
+<!--                                android:inputType="text"-->
+<!--                                android:maxLines="1" />-->
+<!--                        </com.google.android.material.textfield.TextInputLayout>-->
+<!--                    </LinearLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="40dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:hint="Age"-->
+<!--                        android:textSize="20sp"-->
+<!--                        app:startIconDrawable="@drawable/ic_baseline_eco_24">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/age_register_help"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/poppins_medium"-->
+<!--                            android:inputType="number"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
 
                     <Button

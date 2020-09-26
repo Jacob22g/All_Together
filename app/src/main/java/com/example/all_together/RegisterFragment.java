@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -33,9 +35,11 @@ import java.util.HashMap;
 public class RegisterFragment extends Fragment {
 
     public static int MIN_CHARACTERS_PASSWORD = 6;
+    public static int PHONE_NUMBER_CHARACTERS = 9;
 
     interface OnRegisterFragmentListener {
         void onRegister(String email, String password);
+        void onPhoneRegister(String phoneNumber,String password);
     }
 
     OnRegisterFragmentListener callback;
@@ -93,8 +97,45 @@ public class RegisterFragment extends Fragment {
             }
         });
 
-        final EditText passwordEitText = rootView.findViewById(R.id.password_register);
+        final EditText passwordEditText = rootView.findViewById(R.id.password_register);
         final EditText emailEditText = rootView.findViewById(R.id.email_register);
+
+        final EditText passwordOldEditText = rootView.findViewById(R.id.password_old_register);
+        final EditText phoneEditText = rootView.findViewById(R.id.phone_register);
+
+        Button submitOldBtn = rootView.findViewById(R.id.submit_register_help);
+
+        submitOldBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final String passwordOld = passwordOldEditText.getText().toString();
+                final String phoneNumber = phoneEditText.getText().toString();
+
+                if(TextUtils.isEmpty(phoneNumber)){
+                    phoneEditText.setError("Phone Number is Required");
+                    return;
+                }
+
+                if (phoneNumber.length()< PHONE_NUMBER_CHARACTERS ) {
+                    passwordEditText.setError("Phone Number Must be at least " + PHONE_NUMBER_CHARACTERS + " Numbers ");
+                    return;
+                }
+
+                if(TextUtils.isEmpty(passwordOld)){
+                    passwordEditText.setError("Password is Required");
+                    return;
+                }
+
+                if (passwordOld.length()< MIN_CHARACTERS_PASSWORD ) {
+                    passwordEditText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
+                    return;
+                }
+
+                callback.onPhoneRegister(phoneNumber, passwordOld);
+
+            }
+        });
 
         Button submitBtn = rootView.findViewById(R.id.submit_register);
 
@@ -102,7 +143,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                final String password = passwordEitText.getText().toString();
+                final String password = passwordEditText.getText().toString();
                 final String email = emailEditText.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
@@ -111,12 +152,12 @@ public class RegisterFragment extends Fragment {
                 }
 
                 if(TextUtils.isEmpty(password)){
-                    passwordEitText.setError("Password is Required");
+                    passwordEditText.setError("Password is Required");
                     return;
                 }
 
-                if (password.length()< MIN_CHARACTERS_PASSWORD ) {
-                    passwordEitText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
+                if (password.length() == MIN_CHARACTERS_PASSWORD ) {
+                    passwordEditText.setError("Password Must be " + MIN_CHARACTERS_PASSWORD + " Characters ");
                     return;
                 }
 
@@ -127,8 +168,8 @@ public class RegisterFragment extends Fragment {
 
         return rootView;
       }
-
 }
+
 
 //class RegisterF<MaterialEditText> extends AppCompatActivity {
 //

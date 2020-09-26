@@ -54,6 +54,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
+    final String FRAGMENT_VERIFY_TAG = "fragment_verify";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
 
@@ -267,8 +268,37 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
+    public void onPhoneRegister(String phoneNumber, String password) {
+
+        if(password.equals("") && phoneNumber.equals(""))
+            // Simulate back press
+            getSupportFragmentManager().popBackStack();
+        else {
+
+//            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
+//            progressDialog.setMessage("Loading, Please wait..");
+//            progressDialog.show();
+            FragmentVerifyPhoneNumber verifyPhoneNumber = FragmentVerifyPhoneNumber.newInstance(phoneNumber);
+            getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumber,FRAGMENT_VERIFY_TAG).commit();
+
+//            FragmentManager verifyFragment = getSupportFragmentManager();
+//            FragmentTransaction transaction = verifyFragment.beginTransaction();
+//
+
+//
+//            transaction.add(R.id.drawerLayout, new FragmentVerifyPhoneNumber(),FRAGMENT_VERIFY_TAG);
+//            transaction.addToBackStack(null);
+//            transaction.commit();
+//
+//            FragmentVerifyPhoneNumber fragInfo = new FragmentClass();
+//            fragInfo.setArguments(bundle);
+//
+//            transaction.replace(R.id.fragment_single, fragInfo);
+//            transaction.commit();
+        }
+    }
+
     public void onRegister(String email, String password) {
 
 //        //cardView.setVisibility(View.VISIBLE);
@@ -327,6 +357,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
             });
         }
+
+
+
 
 //        if(flag) {
 //
