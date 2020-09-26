@@ -11,6 +11,9 @@ public class Volunteering {
     private String oldUID;
     private String volunteerUID;
 
+    public Volunteering() {
+    }
+
     public Volunteering(String name, String location, String date, String hour, String type, String oldUID) {
         Name = name;
         Location = location;

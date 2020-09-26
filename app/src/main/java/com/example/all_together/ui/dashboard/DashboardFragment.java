@@ -49,8 +49,8 @@ public class DashboardFragment extends Fragment {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference myRef = database.getReference("volunteerList");
-    DatabaseReference usersDB = database.getReference("users");
+    DatabaseReference volunteersDB = database.getReference("volunteerList");
+//    DatabaseReference usersDB = database.getReference("users");
 
     CoordinatorLayout coordinatorLayout;
 
@@ -122,13 +122,13 @@ public class DashboardFragment extends Fragment {
 
                                 volunteerList.add(position, item);
                                 adapter.notifyItemInserted(position);
-                                myRef.setValue(volunteerList);
+                                volunteersDB.setValue(volunteerList);
                             }
                         });
                 //snackbar.setActionTextColor(Color.MAGENTA);
                 snackbar.show();
 
-                myRef.setValue(volunteerList);
+                volunteersDB.setValue(volunteerList);
             }
         };
 
@@ -144,10 +144,10 @@ public class DashboardFragment extends Fragment {
 
                 adapter.notifyItemChanged(position);
 
-                Toast.makeText(getContext(), "Volunteer "+position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), volunteering.getOldUID()+" , " + position, Toast.LENGTH_SHORT).show();
 
                 // Need to update the DB
-                myRef.setValue(volunteerList);
+                volunteersDB.setValue(volunteerList);
 
 //                myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(volunteerList);
             }
@@ -170,11 +170,11 @@ public class DashboardFragment extends Fragment {
 //                    }
 //                });
 
-                volunteerList.add(new Volunteering("name","location","af","hour","type",firebaseUser.getUid()));
+                volunteerList.add(new Volunteering("name","location","date","hour","type"+volunteerList.size(), firebaseUser.getUid()));
                 adapter.notifyItemInserted(volunteerList.size());
 
                 // Write to DB
-                myRef.setValue(volunteerList);
+                volunteersDB.setValue(volunteerList);
             }
         });
 
@@ -187,7 +187,7 @@ public class DashboardFragment extends Fragment {
         progressDialog.setMessage("Loading Volunteering list, Please wait..");
         progressDialog.show();
 
-        myRef.addValueEventListener(new ValueEventListener() {
+        volunteersDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 // This method is called once with the initial value and again

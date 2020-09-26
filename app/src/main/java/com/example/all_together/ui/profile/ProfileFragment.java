@@ -45,8 +45,10 @@ public class ProfileFragment extends Fragment {
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference usersDB = database.getReference("users");
+
     private StorageReference storageRef;
 
     final int IMAGE_REQUEST = 111;
@@ -128,8 +130,6 @@ public class ProfileFragment extends Fragment {
         });
 
         downloadImage();
-
-        // next step is to change text parameters
 
         return view;
     }
