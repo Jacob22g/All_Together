@@ -146,8 +146,8 @@ public class DashboardFragment extends Fragment {
 
                 Toast.makeText(getContext(), volunteering.getOldUID()+" , " + position, Toast.LENGTH_SHORT).show();
 
-                // Need to update the DB
-                volunteersDB.setValue(volunteerList);
+//                // Need to update the DB
+//                volunteersDB.setValue(volunteerList);
 
 //                myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(volunteerList);
             }
@@ -170,7 +170,7 @@ public class DashboardFragment extends Fragment {
 //                    }
 //                });
 
-                volunteerList.add(new Volunteering("name","location","date","hour","type"+volunteerList.size(), firebaseUser.getUid()));
+                volunteerList.add(new Volunteering("name","city","str","date","hour","type"+volunteerList.size(),"bla bli blopy", firebaseUser.getUid()));
                 adapter.notifyItemInserted(volunteerList.size());
 
                 // Write to DB
