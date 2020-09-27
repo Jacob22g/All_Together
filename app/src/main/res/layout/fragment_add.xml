@@ -25,16 +25,15 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="40dp"
             android:layout_marginTop="15dp"
-            android:hint="Title"
+            android:hint="description"
             android:textSize="20sp"
-            app:startIconDrawable="@drawable/ic_user">
+            app:startIconDrawable="@drawable/ic_emoji_people">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_volunteer_title"
+                android:id="@+id/new_volunteer_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:inputType="text"
-                android:maxLines="1" />
+                android:inputType="text" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
@@ -134,12 +133,14 @@
             android:id="@+id/new_volunteer_location_street_tv"
             android:textSize="20sp"/>
 
-        <EditText
+        <Button
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="number"
-            android:id="@+id/new_volunteer_location_number_tv"
-            android:textSize="20sp"/>
+            android:layout_height="wrap_content"
+            android:text="submit"
+            android:textSize="20sp"
+            android:layout_marginVertical="20dp"
+            android:layout_marginHorizontal="50dp"
+            android:id="@+id/submit_new_volunteering"/>
 
     </LinearLayout>
 </ScrollView>

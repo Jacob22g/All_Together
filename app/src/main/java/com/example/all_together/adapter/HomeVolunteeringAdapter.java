@@ -43,7 +43,7 @@ public class HomeVolunteeringAdapter extends RecyclerView.Adapter<HomeVolunteeri
 
             Volunteering volunteering = volunteeringList.get(position);
             holder.nameTv.setText(volunteering.getName());
-            holder.locationTv.setText(volunteering.getLocation());
+            holder.locationTv.setText(volunteering.getLocationCity());
             holder.dateTv.setText(volunteering.getDate());
             holder.hourTv.setText(volunteering.getHour());
             //holder.info.setImageResource(R.drawable.ic_sharp_info_24);

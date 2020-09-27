@@ -2,11 +2,13 @@ package com.example.all_together.model;
 
 public class Volunteering {
 
-    private String Name;
-    private String Location;
-    private String Date;
-    private String Hour;
-    private String Type;
+    private String name;
+    private String locationCity;
+    private String locationStreet;
+    private String date;
+    private String hour;
+    private String type;
+    private String description;
 
     private String oldUID;
     private String volunteerUID;
@@ -14,13 +16,71 @@ public class Volunteering {
     public Volunteering() {
     }
 
-    public Volunteering(String name, String location, String date, String hour, String type, String oldUID) {
-        Name = name;
-        Location = location;
-        Date = date;
-        Hour = hour;
-        Type = type;
+    public Volunteering(String name, String locationCity, String locationStreet, String date, String hour, String type, String description, String oldUID) {
+        this.name = name;
+        this.locationCity = locationCity;
+        this.locationStreet = locationStreet;
+        this.date = date;
+        this.hour = hour;
+        this.type = type;
+        this.description = description;
         this.oldUID = oldUID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLocationCity() {
+        return locationCity;
+    }
+
+    public void setLocationCity(String locationCity) {
+        this.locationCity = locationCity;
+    }
+
+    public String getLocationStreet() {
+        return locationStreet;
+    }
+
+    public void setLocationStreet(String locationStreet) {
+        this.locationStreet = locationStreet;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getHour() {
+        return hour;
+    }
+
+    public void setHour(String hour) {
+        this.hour = hour;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getOldUID() {
@@ -38,48 +98,6 @@ public class Volunteering {
     public void setVolunteerUID(String volunteerUID) {
         this.volunteerUID = volunteerUID;
     }
-
-    public String getName() {
-        return Name;
-    }
-
-    public String getLocation() {
-        return Location;
-    }
-
-    public String getDate() {
-        return Date;
-    }
-
-    public String getHour() {
-        return Hour;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public void setName(String name) {
-        Name = name;
-    }
-
-    public void setLocation(String location) {
-        Location = location;
-    }
-
-    public void setDate(String date) {
-        Date = date;
-    }
-
-    public void setHour(String hour) {
-        Hour = hour;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
-
 }
 
 

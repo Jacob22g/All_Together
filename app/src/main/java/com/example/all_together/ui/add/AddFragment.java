@@ -25,6 +25,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -36,8 +37,17 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.example.all_together.R;
+import com.example.all_together.model.Volunteering;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -45,17 +55,42 @@ import static android.content.Context.LOCATION_SERVICE;
 
 public class AddFragment extends Fragment implements LocationListener {
 
+    final String TAG = "tag";
+
+    FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    FirebaseAuth.AuthStateListener authStateListener;
+
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference volunteersDB = database.getReference("volunteerList");
+    DatabaseReference usersDB = database.getReference("users");
+
+    List<Volunteering> volunteerList  = new ArrayList<>();
+
     final int LOCATION_PERMISSION_REQUEST = 191;
     LocationManager manager;
     Geocoder geocoder;
     Handler handler;
     TextView locationTv;
+    EditText streetEt;
+    EditText cityEt;
+
+    String spinnerText;
+
+    String userName;
+
+    EditText descriptionEt;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add,container,false);
+
+        // Description:
+
+        descriptionEt = view.findViewById(R.id.new_volunteer_description);
 
         // Categories:
 
@@ -72,8 +107,8 @@ public class AddFragment extends Fragment implements LocationListener {
 
                 ((TextView)parent.getChildAt(0)).setTextSize(20);
 
-                String s = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), s+"", Toast.LENGTH_SHORT).show();
+                spinnerText = parent.getItemAtPosition(position).toString();
+                Toast.makeText(getContext(), spinnerText+"", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -131,6 +166,8 @@ public class AddFragment extends Fragment implements LocationListener {
 
         geocoder = new Geocoder(getContext());
         locationTv = view.findViewById(R.id.new_volunteer_location_tv);
+        streetEt = view.findViewById(R.id.new_volunteer_location_street_tv);
+        cityEt = view.findViewById(R.id.new_volunteer_location_city_tv);
         handler = new Handler();
 
 
@@ -166,6 +203,7 @@ public class AddFragment extends Fragment implements LocationListener {
             public void onClick(View v) {
 
                 if (!manager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+                    // GPS is off
                     buildAlertMessageNoGps();
                 else {
 
@@ -181,6 +219,80 @@ public class AddFragment extends Fragment implements LocationListener {
                     }
 
                 }
+            }
+        });
+
+        // load the list to add an item then save the hole list
+        volunteersDB.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // This method is called once with the initial value and again
+                // whenever data at this location is updated.
+                volunteerList.clear();
+                if (dataSnapshot.exists()){
+                    for (DataSnapshot ds : dataSnapshot.getChildren()){
+                        Volunteering volunteering = ds.getValue(Volunteering.class);
+                        volunteerList.add(volunteering);
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(DatabaseError error) {
+                // Failed to read value
+                Log.w(TAG, "Failed to read value.", error.toException());
+            }
+        });
+
+        // get user name
+        usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        switch (ds.getKey()){
+                            case "user_name":
+                                userName = ds.getValue(String.class);
+                                break;
+//                            case "city":
+//                                cityEt = ds.getValue(String.class);
+//                                break;
+                        }
+                    }
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        Button submitBtn = view.findViewById(R.id.submit_new_volunteering);
+        submitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // 0. check if all values are submitted
+
+                // 1. get all the parameters into a volunteering object
+                Volunteering volunteering = new Volunteering();
+                volunteering.setDate(dateTv.getText().toString());
+                volunteering.setHour(timeTv.getText().toString());
+                volunteering.setType(spinnerText);
+                volunteering.setName(userName);
+                volunteering.setDescription(descriptionEt.getText().toString());
+                volunteering.setOldUID(firebaseUser.getUid());
+
+                volunteering.setLocationCity(cityEt.getText().toString());
+                volunteering.setLocationStreet(streetEt.getText().toString());
+
+                // 2. add it to the volunteerList
+                volunteerList.add(volunteering);
+
+                // 3. save it in the firebase
+                volunteersDB.setValue(volunteerList);
+
+                // 4. if ok go to the volunteering page
+
             }
         });
 
@@ -252,6 +364,9 @@ public class AddFragment extends Fragment implements LocationListener {
                             locationTv.setText(bestAddress.getFeatureName() +
                                     ", " + bestAddress.getThoroughfare() + ", " + bestAddress.getSubThoroughfare() +
                                     ", " + bestAddress.getAdminArea() + ", " + bestAddress.getLocality());
+
+                            cityEt.setText(bestAddress.getLocality()+"");
+                            streetEt.setText(bestAddress.getThoroughfare()+"");
                         }
                     });
 

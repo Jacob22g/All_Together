@@ -71,7 +71,7 @@ public class DashboardVolunteeringAdapter extends RecyclerView.Adapter<Dashboard
         holder.volunteerTypeTV.setText(volunteering.getType());
         holder.volunteerDateTV.setText(volunteering.getDate());
         holder.volunteerHourTV.setText(volunteering.getHour());
-        holder.volunteerLocationTV.setText(volunteering.getLocation());
+        holder.volunteerLocationTV.setText(volunteering.getLocationCity());
     }
 
     @Override
