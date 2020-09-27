@@ -61,8 +61,8 @@ public class RegisterFragment extends Fragment {
 
         final View rootView = inflater.inflate(R.layout.register_fragment, container, false);
 
-        Button layout1 = rootView.findViewById(R.id.layout1);
-        Button layout2 = rootView.findViewById(R.id.layout2);
+        final Button layout1 = rootView.findViewById(R.id.layout1);
+        final Button layout2 = rootView.findViewById(R.id.layout2);
         Button back = rootView.findViewById(R.id.back_to_login_btn);
 
         final CardView cardView = rootView.findViewById(R.id.cardView);
@@ -74,6 +74,8 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 cardView2.setVisibility(View.GONE);
                 cardView1.setVisibility(View.VISIBLE);
+                layout1.setBackgroundColor(getResources().getColor(R.color.colorPrimary) );
+                layout2.setBackgroundColor(getResources().getColor(R.color.grayBlueColor) );
             }
         });
 
@@ -82,6 +84,9 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 cardView1.setVisibility(View.GONE);
                 cardView2.setVisibility(View.VISIBLE);
+                layout1.setBackgroundColor(getResources().getColor(R.color.grayBlueColor));
+                layout2.setBackgroundColor(getResources().getColor(R.color.colorPrimary));
+
             }
         });
 

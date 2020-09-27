@@ -164,15 +164,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="30dp"
                     android:layout_weight="5"
-                    android:text="Remember me" />
+                    android:text="Remember me"
+                    android:fontFamily="@font/poppins_medium"/>
 
                 <Button
-                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:backgroundTint="@color/colorPrimary"
+                    android:fontFamily="@font/poppins_medium"
                     android:id="@+id/login_btn"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="30dp"
                     android:layout_weight="5"
+                    android:textStyle="bold"
                     android:text="Login"/>
 
             </LinearLayout>

@@ -34,11 +34,12 @@ public class FragmentVerifyPhoneNumber extends Fragment {
     private static final String ARGS_PHONE_NUMBER = "args_phone_number";
 
     Button confirmBtn;
-    EditText phoneNumberEt;
+    EditText verifyCodeEt;
     ProgressBar progressBar;
     private String phoneNumber;
     String verificationCodeBySystem;
     PhoneAuthProvider.ForceResendingToken mResendToken;
+
 
     public static FragmentVerifyPhoneNumber newInstance(String phoneNumber){
         FragmentVerifyPhoneNumber verifyFragment = new FragmentVerifyPhoneNumber();
@@ -47,8 +48,6 @@ public class FragmentVerifyPhoneNumber extends Fragment {
         verifyFragment.setArguments(bundle);
         return verifyFragment;
     }
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -60,8 +59,17 @@ public class FragmentVerifyPhoneNumber extends Fragment {
         }
 
         confirmBtn = rootView.findViewById(R.id.confirm_verify_phone);
-        phoneNumberEt = rootView.findViewById(R.id.phone_register);
         progressBar = rootView.findViewById(R.id.progress_bar_verify);
+        verifyCodeEt = rootView.findViewById(R.id.verify_code);
+
+        confirmBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                    progressBar.setVisibility(View.VISIBLE);
+                    verificationCodeBySystem = verifyCodeEt.getText().toString();
+                    verifyCode(verificationCodeBySystem);
+            }
+        });
 
         //Toast.makeText(getContext(), "Your Phone Number: " + phoneNumber, Toast.LENGTH_SHORT).show();
 
@@ -115,9 +123,9 @@ public class FragmentVerifyPhoneNumber extends Fragment {
                         new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
-
                                 if(task.isSuccessful()){
 //                                    FirebaseUser user = task.getResult().getUser();
+                                    Toast.makeText(getContext(), "Goooood", Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(getContext(),MainAppActivity.class);
                                     intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     startActivity(intent);

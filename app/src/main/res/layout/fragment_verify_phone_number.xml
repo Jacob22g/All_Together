@@ -32,22 +32,32 @@
             android:text="Verify Phone Number"
             android:textSize="26sp"/>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Enter the code you received to your phone"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
             <EditText
                 android:id="@+id/verify_code"
+                android:background="@color/grayBlueColor"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
-                android:hint="Enter the code you received to your phone"
-                android:textColor="@color/grayBlueColor"
                 android:textSize="16sp"
                 android:gravity="center"
                 android:padding="14px"
                 android:layout_margin="20px"
                 />
+            
 
             <Button
                 android:id="@+id/confirm_verify_phone"
-                style="@style/Widget.AppCompat.Button.Colored"
+                android:backgroundTint="@color/colorPrimary"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -55,7 +65,7 @@
                 android:layout_gravity="center"
                 android:text="Confirm"
                 android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/whiteColor" />
+                android:textColor="@color/grayDarkColor" />
 
             <ProgressBar
                 android:id="@+id/progress_bar_verify"
