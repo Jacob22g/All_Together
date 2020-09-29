@@ -60,7 +60,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="24sp"
-                    android:text="Lidan Nissim"
+                    android:text="Name"
                     android:textStyle="bold"
                     android:layout_marginTop="10dp"/>
                 <TextView
@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
                     android:textSize="20sp"
-                    android:text="Tel-Aviv, Israel"
+                    android:text="City, Country"
                     android:layout_marginTop="5dp"
                     android:layout_marginBottom="10dp"
                     />
@@ -111,7 +111,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="40"
+                        android:text=""
                         android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"/>
 
@@ -140,7 +140,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="Excellent"
+                        android:text="Beginner"
                         android:gravity="center"
                         android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"/>
@@ -170,7 +170,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="20"
+                        android:text="0"
                         android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"/>
 

@@ -117,7 +117,7 @@
                 android:id="@+id/image_profile_add_info"/>
 
             <Button
-                style="@style/Widget.AppCompat.Button.Colored"
+                android:background="@drawable/background_button_dark"
                 android:id="@+id/submit_add_info"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

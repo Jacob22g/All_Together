@@ -191,10 +191,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Next Volunteering"
+                        android:textColor="@color/grayDarkColor"
                         android:layout_weight="1"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:background="@color/colorPrimary"
+                        android:background="@drawable/background_button_dark"
                         android:layout_marginEnd="5px"
                         android:layout_marginStart="5px"/>
 
@@ -203,10 +204,11 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:text="Old Volunteering"
+                        android:textColor="@color/grayDarkColor"
                         android:layout_weight="1"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:background="@color/colorPrimaryLight"
+                        android:background="@drawable/background_button_light"
                         android:layout_marginStart="5px"
                         android:layout_marginEnd="5px"/>
 
