@@ -1,5 +1,6 @@
 package com.example.all_together;
 
+
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -36,6 +37,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
     Button confirmBtn;
     EditText verifyCodeEt;
     ProgressBar progressBar;
+
     private String phoneNumber;
     String verificationCodeBySystem;
     PhoneAuthProvider.ForceResendingToken mResendToken;
@@ -66,8 +68,8 @@ public class FragmentVerifyPhoneNumber extends Fragment {
             @Override
             public void onClick(View v) {
                     progressBar.setVisibility(View.VISIBLE);
-                    verificationCodeBySystem = verifyCodeEt.getText().toString();
-                    verifyCode(verificationCodeBySystem);
+                    String code = verifyCodeEt.getText().toString();
+                    verifyCode(code);
             }
         });
 
@@ -81,9 +83,9 @@ public class FragmentVerifyPhoneNumber extends Fragment {
     private void sandVerificationCodeToUser(String phoneNumber) {
         PhoneAuthProvider.getInstance().verifyPhoneNumber(
                 "+972" + phoneNumber,        // Phone number to verify
-                90,                 // Timeout duration
+                120,                 // Timeout duration
                 TimeUnit.SECONDS,   // Unit of timeout
-                TaskExecutors.MAIN_THREAD,               // Activity (for callback binding)
+                getActivity(),               // Activity (for callback binding)
                 mCallbacks);// OnVerificationStateChangedCallbacks
     }
 
@@ -118,8 +120,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
 
     private void signInByCredential(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.signInWithCredential(credential)
-                .addOnCompleteListener((Executor) FragmentVerifyPhoneNumber.this,
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(),
                         new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
@@ -131,6 +132,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
                                     startActivity(intent);
 
                                 }else {
+
                                     Toast.makeText(getContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }
                             }
