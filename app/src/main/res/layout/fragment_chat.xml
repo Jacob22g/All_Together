@@ -5,12 +5,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorPrimary">
 
-    <TextView
-        android:id="@+id/text_profile"
+    <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center"
-        android:textSize="20sp"
-        android:text="ChatFragment"/>
+        android:id="@+id/chats_list_recycler"/>
 
 </RelativeLayout>

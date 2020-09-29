@@ -18,14 +18,14 @@
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_add"
         android:name="com.example.all_together.ui.add.AddFragment"
         android:label="Notifications"
         tools:layout="@layout/fragment_add" />
 
     <fragment
-        android:id="@+id/navigation_search"
-        android:name="com.example.all_together.ui.chat.ChatFragment"
+        android:id="@+id/navigation_chat"
+        android:name="com.example.all_together.ui.chat.ChatsFragment"
         android:label="Search"
         tools:layout="@layout/fragment_chat" />
 

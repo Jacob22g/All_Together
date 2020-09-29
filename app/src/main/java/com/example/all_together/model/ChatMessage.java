@@ -7,6 +7,9 @@ public class ChatMessage {
     private String receiver;
     private long messageTime;
 
+    public ChatMessage() {
+    }
+
     public ChatMessage(String messageText, String sender, String receiver, long messageTime) {
         this.messageText = messageText;
         this.sender = sender;

@@ -17,6 +17,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -35,9 +36,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.all_together.R;
+import com.example.all_together.VolunteeringFragment;
 import com.example.all_together.model.Volunteering;
+import com.example.all_together.ui.dashboard.DashboardFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -166,8 +171,8 @@ public class AddFragment extends Fragment implements LocationListener {
 
         geocoder = new Geocoder(getContext());
         locationTv = view.findViewById(R.id.new_volunteer_location_tv);
-        streetEt = view.findViewById(R.id.new_volunteer_location_street_tv);
-        cityEt = view.findViewById(R.id.new_volunteer_location_city_tv);
+        streetEt = view.findViewById(R.id.new_volunteer_location_street_et);
+        cityEt = view.findViewById(R.id.new_volunteer_location_city_et);
         handler = new Handler();
 
 
@@ -271,7 +276,23 @@ public class AddFragment extends Fragment implements LocationListener {
             @Override
             public void onClick(View v) {
 
-                // 0. check if all values are submitted
+                // 0. check if all required values are submitted
+                if (TextUtils.isEmpty(dateTv.getText().toString())) {
+                    dateTv.setError("Date is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(timeTv.getText().toString())) {
+                    timeTv.setError("Hour is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(cityEt.getText().toString())) {
+                    cityEt.setError("City is Required");
+                    return;
+                }
+                if (TextUtils.isEmpty(streetEt.getText().toString())) {
+                    streetEt.setError("Street is Required");
+                    return;
+                }
 
                 // 1. get all the parameters into a volunteering object
                 Volunteering volunteering = new Volunteering();
@@ -292,6 +313,16 @@ public class AddFragment extends Fragment implements LocationListener {
                 volunteersDB.setValue(volunteerList);
 
                 // 4. if ok go to the volunteering page
+//                // going to dashboard fragment for now
+//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DashboardFragment()).commit();
+
+                Fragment fragment = new VolunteeringFragment(volunteering);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
             }
         });
@@ -361,9 +392,9 @@ public class AddFragment extends Fragment implements LocationListener {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-                            locationTv.setText(bestAddress.getFeatureName() +
-                                    ", " + bestAddress.getThoroughfare() + ", " + bestAddress.getSubThoroughfare() +
-                                    ", " + bestAddress.getAdminArea() + ", " + bestAddress.getLocality());
+//                            locationTv.setText(bestAddress.getFeatureName() +
+//                                    ", " + bestAddress.getThoroughfare() + ", " + bestAddress.getSubThoroughfare() +
+//                                    ", " + bestAddress.getAdminArea() + ", " + bestAddress.getLocality());
 
                             cityEt.setText(bestAddress.getLocality()+"");
                             streetEt.setText(bestAddress.getThoroughfare()+"");
@@ -376,13 +407,10 @@ public class AddFragment extends Fragment implements LocationListener {
             }
         }.start();
     }
-
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) { }
-
     @Override
     public void onProviderEnabled(String provider) { }
-
     @Override
     public void onProviderDisabled(String provider) { }
 

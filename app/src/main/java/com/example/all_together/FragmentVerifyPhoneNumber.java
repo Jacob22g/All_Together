@@ -8,6 +8,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -50,6 +51,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
         verifyFragment.setArguments(bundle);
         return verifyFragment;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -115,6 +117,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
             Toast.makeText(getContext(), "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            Log.e("phone","Error " + e.getMessage());
         }
     };
 

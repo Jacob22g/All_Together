@@ -12,11 +12,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.all_together.R;
+import com.example.all_together.VolunteeringFragment;
 import com.example.all_together.adapter.DashboardVolunteeringAdapter;
 import com.example.all_together.model.Volunteering;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -84,24 +87,25 @@ public class DashboardFragment extends Fragment {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
 
-                int toPosition = target.getAdapterPosition();
-                int fromPosition = viewHolder.getAdapterPosition();
-
-                if (fromPosition < toPosition) {
-                    for (int i = fromPosition; i < toPosition; i++) {
-                        Collections.swap(volunteerList, i, i + 1);
-                    }
-                } else {
-                    for (int i = fromPosition; i > toPosition; i--) {
-                        Collections.swap(volunteerList, i, i - 1);
-                    }
-                }
-
-                adapter.notifyItemMoved(fromPosition, toPosition);
-
-                // save list
-                // Need to update the DB after release
-//                myRef.setValue(volunteerList);
+                // No need to make list movement
+//                int toPosition = target.getAdapterPosition();
+//                int fromPosition = viewHolder.getAdapterPosition();
+//
+//                if (fromPosition < toPosition) {
+//                    for (int i = fromPosition; i < toPosition; i++) {
+//                        Collections.swap(volunteerList, i, i + 1);
+//                    }
+//                } else {
+//                    for (int i = fromPosition; i > toPosition; i--) {
+//                        Collections.swap(volunteerList, i, i - 1);
+//                    }
+//                }
+//
+//                adapter.notifyItemMoved(fromPosition, toPosition);
+//
+//                // save list
+//                // Need to update the DB after release
+////                myRef.setValue(volunteerList);
 
                 return true;
             }
@@ -144,7 +148,16 @@ public class DashboardFragment extends Fragment {
 
                 adapter.notifyItemChanged(position);
 
-                Toast.makeText(getContext(), volunteering.getOldUID()+" , " + position, Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
+
+                // Open This volunteering
+                Fragment fragment = new VolunteeringFragment(volunteering, position);
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.container, fragment);
+                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
 
 //                // Need to update the DB
 //                volunteersDB.setValue(volunteerList);
@@ -153,30 +166,18 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        fab = view.findViewById(R.id.dashboard_fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                usersDB.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//        fab = view.findViewById(R.id.dashboard_fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
 //
-//                    }
+//                volunteerList.add(new Volunteering("name","city","str","date","hour","type"+volunteerList.size(),"bla bli blopy", firebaseUser.getUid()));
+//                adapter.notifyItemInserted(volunteerList.size());
 //
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//
-//                    }
-//                });
-
-                volunteerList.add(new Volunteering("name","city","str","date","hour","type"+volunteerList.size(),"bla bli blopy", firebaseUser.getUid()));
-                adapter.notifyItemInserted(volunteerList.size());
-
-                // Write to DB
-                volunteersDB.setValue(volunteerList);
-            }
-        });
+//                // Write to DB
+//                volunteersDB.setValue(volunteerList);
+//            }
+//        });
 
         return view;
     }
