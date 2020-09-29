@@ -1,19 +1,16 @@
 package com.example.all_together;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
@@ -21,18 +18,13 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.all_together.ui.BottomNavigationViewHelper;
 import com.example.all_together.ui.add.AddFragment;
-import com.example.all_together.ui.chat.ChatFragment;
+import com.example.all_together.ui.chat.ChatsFragment;
 import com.example.all_together.ui.dashboard.DashboardFragment;
 import com.example.all_together.ui.home.HomeFragment;
 import com.example.all_together.ui.profile.ProfileFragment;
-import com.google.android.gms.auth.api.signin.GoogleSignIn;
-import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
@@ -193,7 +185,7 @@ public class MainAppActivity extends AppCompatActivity {
                             selectedFragment = new ProfileFragment();
                             break;
                         case R.id.navigation_chat:
-                            selectedFragment = new ChatFragment();
+                            selectedFragment = new ChatsFragment();
                             break;
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();

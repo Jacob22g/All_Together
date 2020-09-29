@@ -6,11 +6,10 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 
-import com.example.all_together.MainAppActivity;
 import com.example.all_together.R;
 
 import com.example.all_together.ui.add.AddFragment;
-import com.example.all_together.ui.chat.ChatFragment;
+import com.example.all_together.ui.chat.ChatsFragment;
 import com.example.all_together.ui.dashboard.DashboardFragment;
 import com.example.all_together.ui.home.HomeFragment;
 import com.example.all_together.ui.profile.ProfileFragment;
@@ -54,7 +53,7 @@ public class BottomNavigationViewHelper {
                         break;
 
                     case R.id.navigation_chat:// ACTIVITY_NUM = 4;
-                        Intent intentEmail = new Intent(context, ChatFragment.class);
+                        Intent intentEmail = new Intent(context, ChatsFragment.class);
                         context.startActivity(intentEmail);
                         break;
                 }
