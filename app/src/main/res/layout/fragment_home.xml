@@ -17,66 +17,74 @@
                 android:orientation="vertical"
                 android:background="#9FD2DA">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingBottom="40px"
                     android:orientation="horizontal"
-                    android:background="@drawable/first_layer_home">
+                    android:background="@drawable/first_layer">
 
-                    <ImageButton
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        xmlns:app="http://schemas.android.com/apk/res-auto"
                         android:id="@+id/change_profile_pic_btn"
-                        android:layout_width="300px"
-                        android:layout_height="300px"
-                        android:layout_marginTop="170px"
-                        android:layout_marginStart="20px"
-                        android:scaleType="centerCrop"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_margin="10dp"
                         android:src="@drawable/old"
-                        android:background="@color/whiteColor"/>
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@color/colorPrimaryLight" />
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/userFullNameTv"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Name"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="20dp"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_toEndOf="@id/change_profile_pic_btn"/>
 
-                        <TextView
-                            android:id="@+id/userFullNameTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="24sp"
-                            android:text="Lidan Nissim"
-                            android:textStyle="bold"
-                            android:layout_marginTop="190px"
-                            android:layout_marginStart="60px"/>
-                        <TextView
-                            android:id="@+id/userAddressTv"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="20sp"
-                            android:text="Tel-Aviv, Israel"
-                            android:layout_marginTop="5dp"
-                            android:layout_marginStart="60px"
-                            android:layout_marginBottom="15px" />
+                    <TextView
+                        android:id="@+id/userAddressTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="17sp"
+                        android:text="Address"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_below="@id/userFullNameTv"
+                        android:layout_toEndOf="@id/change_profile_pic_btn"
+                        />
 
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/userAgeTv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="17sp"
+                        android:text="Null"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_below="@id/userAddressTv"
+                        android:layout_toEndOf="@id/change_profile_pic_btn"/>
 
-                </LinearLayout>
+                </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="70dp"
                 android:orientation="horizontal"
-                android:paddingRight="5px"
-                android:paddingLeft="5px"
-                android:paddingBottom="5px"
-                android:paddingTop="5px"
+                android:paddingRight="3dp"
+                android:paddingLeft="3dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
                 android:gravity="center"
-                android:weightSum="3"
-                android:background="@drawable/second_layer_home">
+                android:weightSum="2"
+                android:background="@drawable/second_layer">
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -84,7 +92,7 @@
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="5px">
+                    android:layout_margin="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -99,22 +107,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="40"
-                        android:textSize="16sp"
+                        android:text="0"
+                        android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"/>
 
                 </LinearLayout>
+
                 <View
                     android:layout_width="1px"
                     android:layout_height="match_parent"
                     android:background="@color/grayDarkColor"/>
+
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_weight="1"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
                     android:gravity="center"
-                    android:layout_margin="5px">
+                    android:layout_margin="5dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -128,12 +138,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="Excellent"
+                        android:text="Beginner"
                         android:gravity="center"
-                        android:textSize="16sp"
+                        android:textSize="18sp"
                         android:fontFamily="@font/poppins_medium"/>
 
                 </LinearLayout>
+
+
                 <View
                     android:layout_width="1px"
                     android:layout_height="match_parent"
@@ -157,7 +169,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textStyle="bold"
-                        android:text="20"
+                        android:text="0"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_medium"/>
 
@@ -169,7 +181,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
 
                 <TextView
                     android:layout_width="match_parent"

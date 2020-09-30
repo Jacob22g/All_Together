@@ -14,11 +14,11 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView"
-            android:layout_width="350dp"
-            android:layout_height="265dp"
+            android:layout_width="1000px"
+            android:layout_height="700px"
             android:layout_gravity="center_horizontal"
-            app:cardCornerRadius="15dp"
-            android:layout_marginTop="100dp">
+            app:cardCornerRadius="45px"
+            android:layout_marginTop="250px">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -29,25 +29,26 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="30px"
                     android:fontFamily="@font/poppins_medium"
                     android:text="All Together"
                     android:textSize="30sp" />
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:layout_marginEnd="10dp"
+                    android:layout_height="170px"
+                    android:layout_marginStart="30px"
+                    android:layout_marginTop="15px"
+                    android:layout_marginBottom="15px"
+                    android:layout_marginEnd="30px"
                     android:hint="Email"
                     android:textSize="17sp"
+
                     app:boxBackgroundMode="outline"
-                    app:boxCornerRadiusBottomEnd="15dp"
-                    app:boxCornerRadiusBottomStart="15dp"
-                    app:boxCornerRadiusTopEnd="15dp"
-                    app:boxCornerRadiusTopStart="15dp"
+                    app:boxCornerRadiusBottomEnd="45px"
+                    app:boxCornerRadiusBottomStart="45px"
+                    app:boxCornerRadiusTopEnd="45px"
+                    app:boxCornerRadiusTopStart="45px"
                     app:startIconDrawable="@drawable/ic_user">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -60,7 +61,7 @@
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="170px"
                     android:layout_marginStart="10dp"
                     android:layout_marginEnd="10dp"
                     android:hint="Password"
@@ -151,7 +152,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="220dp">
+            android:layout_marginTop="545px">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -187,8 +188,8 @@
                     android:layout_height="wrap_content"
                     android:textSize="16sp"
                     android:text="New User? "
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
+                    android:layout_marginTop="28px"
+                    android:layout_marginBottom="28px"
                     android:fontFamily="@font/poppins_medium"/>
 
                 <TextView
