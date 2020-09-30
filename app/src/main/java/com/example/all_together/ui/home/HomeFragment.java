@@ -54,12 +54,13 @@ public class HomeFragment extends Fragment {
     Button nextVolCardBtn,oldVolCardBtn;
     CardView nextVolCardView,oldVolCardView;
 
-    private StorageReference storageRef;
+    StorageReference storageRef;
+    StorageReference imageStorageRef;
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference usersDB = database.getReference("users");
 
-    CircleImageView changePicBtn;
+    CircleImageView profileImage;
     Uri profileImageUri_local;
     Uri downloadUrl;
 
@@ -83,8 +84,11 @@ public class HomeFragment extends Fragment {
         userNameTv = rootView.findViewById(R.id.userFullNameTv);
         userAddressTv = rootView.findViewById(R.id.userAddressTv);
         userAgeTv = rootView.findViewById(R.id.userAgeTv);
+        profileImage = rootView.findViewById(R.id.change_profile_pic_btn);
 
         storageRef = FirebaseStorage.getInstance().getReference();
+
+        loadImage();
 
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -175,8 +179,6 @@ public class HomeFragment extends Fragment {
         HomeVolunteeringAdapter volunteeringAdapterOld = new HomeVolunteeringAdapter(volunteeringListOld);
         recyclerViewOld.setAdapter(volunteeringAdapterOld);
 
-        //downloadImage();
-
         return rootView;
 
     }
@@ -187,7 +189,7 @@ public class HomeFragment extends Fragment {
 
         if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
             profileImageUri_local = data.getData();
-            Glide.with(getContext()).load(profileImageUri_local).into(changePicBtn);
+            Glide.with(getContext()).load(profileImageUri_local).into(profileImage);
 
             uploadImage();
 
@@ -243,44 +245,19 @@ public class HomeFragment extends Fragment {
                 });
     }
 
-    private void downloadImage(){
+    private void loadImage(){
 
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading profile Please wait..");
-        progressDialog.show();
+        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
 
-        File localFile = null;
-        try {
-
-            localFile = File.createTempFile("images", "jpg");
-            final File finalLocalFile = localFile;
-
-            StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-
-            imageStoreRef.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            // Successfully downloaded data to local file
-                            Uri profileUri = Uri.fromFile(finalLocalFile);
-                            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-
-                            progressDialog.dismiss();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle failed download
-                    Toast.makeText(getContext(), "Download Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-//            Uri profileUri = Uri.fromFile(localFile);
-//            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageURL = uri.toString();
+                Glide.with(getContext())
+                        .load(imageURL)
+                        .into(profileImage);
+            }
+        });
 
     }
 }
