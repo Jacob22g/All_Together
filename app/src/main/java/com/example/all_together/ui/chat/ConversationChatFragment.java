@@ -1,5 +1,7 @@
 package com.example.all_together.ui.chat;
 
+import android.app.ProgressDialog;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,6 +9,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
@@ -14,10 +19,13 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.adapter.ChatMassageAdapter;
 import com.example.all_together.model.ChatMessage;
 import com.example.all_together.model.Volunteering;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -25,7 +33,12 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -40,6 +53,9 @@ public class ConversationChatFragment extends Fragment {
     ImageButton backBtn;
     ImageButton sendMsgBtn;
 
+    TextView receiverNameTv;
+    ImageView receiverImage;
+
     List<ChatMessage> chatMessageList = new ArrayList<>();
     RecyclerView recyclerView;
     ChatMassageAdapter adapter;
@@ -51,7 +67,7 @@ public class ConversationChatFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference volunteersDB = database.getReference("volunteerList");
     DatabaseReference usersDB = database.getReference("users");
-//    DatabaseReference userChatsDB = database.getReference("user_chats");
+    private StorageReference storageRef;
 
     public ConversationChatFragment(Volunteering volunteering) {
         this.volunteering = volunteering;
@@ -68,12 +84,50 @@ public class ConversationChatFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
+        // Set profile name and image
+        receiverNameTv = view.findViewById(R.id.username_conversation_chat);
+        receiverNameTv.setText(volunteering.getName());
+        receiverImage = view.findViewById(R.id.image_conversation_chat);
+        storageRef = FirebaseStorage.getInstance().getReference();
+
+        // load user image
+        StorageReference imageStorageRef = storageRef.child(volunteering.getOldUID()+"/profile_image");
+        imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String uriStr = uri.toString();
+                Glide.with(getContext())
+                        .load(uriStr)
+                        .into(receiverImage);
+            }
+        });
+
+
+        // load the chat
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user!=null){
-                    //ReadeDB();
+                    // Read DB:
+                    usersDB.child(user.getUid()).child("chats").child(volunteering.getOldUID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+
+                            chatMessageList.clear();
+
+                            if (snapshot.exists()){
+                                for (DataSnapshot ds : snapshot.getChildren()){
+                                    ChatMessage chatMessage = ds.getValue(ChatMessage.class);
+                                    chatMessageList.add(chatMessage);
+                                }
+                            }
+                            adapter.notifyDataSetChanged();
+                        }
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    });
                 }
             }
         };
@@ -103,7 +157,7 @@ public class ConversationChatFragment extends Fragment {
                     // save it
                     usersDB.child(firebaseUser.getUid()).child("chats").child(volunteering.getOldUID()).setValue(chatMessageList);
 
-                    // NEED TO MAKE A VOLUNTEERING ID! THAT WOULD HELP A LOT.
+                    // NEED TO MAKE A VOLUNTEERING ID? THAT WOULD HELP A LOT.
 
                 }
                 // at the end
@@ -111,25 +165,7 @@ public class ConversationChatFragment extends Fragment {
             }
         });
 
-        usersDB.child(firebaseUser.getUid()).child("chats").child(volunteering.getOldUID()).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                chatMessageList.clear();
-
-                if (snapshot.exists()){
-                    for (DataSnapshot ds : snapshot.getChildren()){
-                        ChatMessage chatMessage = ds.getValue(ChatMessage.class);
-                        chatMessageList.add(chatMessage);
-                    }
-                }
-                adapter.notifyDataSetChanged();
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
+        recyclerView.setAdapter(adapter);
 
         backBtn = view.findViewById(R.id.conversation_chat_back_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {

@@ -16,7 +16,6 @@
             android:layout_height="wrap_content">
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar_conversation_chat"
-                app:layout_scrollFlags="scroll|enterAlways"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:background="?attr/colorPrimaryDark"
@@ -69,9 +68,8 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="4"
                     android:hint="Type a message"
-                    android:layout_marginLeft="5dp"
+                    android:layout_marginHorizontal="10dp"
                     android:background="@android:color/background_light"
                     android:layout_centerVertical="true"
                     android:layout_toLeftOf="@id/send_message_btn"
@@ -89,12 +87,12 @@
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
-    <com.google.android.material.navigation.NavigationView
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:id="@+id/navigation_view_conversation_chat"
-        app:headerLayout="@layout/header_layout"
-        app:menu="@menu/menu"/>
+<!--    <com.google.android.material.navigation.NavigationView-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="start"-->
+<!--        android:id="@+id/navigation_view_conversation_chat"-->
+<!--        app:headerLayout="@layout/header_layout"-->
+<!--        app:menu="@menu/menu"/>-->
 
 </androidx.drawerlayout.widget.DrawerLayout>

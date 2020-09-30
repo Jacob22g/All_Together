@@ -1,5 +1,6 @@
 package com.example.all_together.adapter;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.model.Volunteering;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
@@ -20,6 +24,8 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ChatVolunteeringAdapter extends RecyclerView.Adapter<ChatVolunteeringAdapter.ChatVolunteeringViewHolder> {
 
     List<Volunteering> volunteeringList;
+
+    StorageReference storageRef = FirebaseStorage.getInstance().getReference();
 
     public ChatVolunteeringAdapter(List<Volunteering> volunteeringList) {
         this.volunteeringList = volunteeringList;
@@ -76,8 +82,20 @@ public class ChatVolunteeringAdapter extends RecyclerView.Adapter<ChatVolunteeri
         holder.dateTv.setText(volunteering.getDate());
         holder.timeTv.setText(volunteering.getHour());
 
-        // load old image
-//        Glide.with(holder.itemView).load().into(holder.imageView);
+        final ChatVolunteeringAdapter.ChatVolunteeringViewHolder holder1 = holder;
+
+        // load image - might be to slow!
+        StorageReference imageStorageRef = storageRef.child(volunteering.getOldUID()+"/profile_image");
+        imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageURL = uri.toString();
+                Glide.with(holder1.itemView).
+                        load(imageURL).
+                        into(holder1.imageView);
+            }
+        });
+
     }
 
     @Override

@@ -120,7 +120,7 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-                if (passwordOld.length()< MIN_CHARACTERS_PASSWORD ) {
+                if (passwordOld.length() < MIN_CHARACTERS_PASSWORD ) {
                     passwordEditText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
                     return;
                 }
@@ -149,7 +149,7 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-                if (password.length() == MIN_CHARACTERS_PASSWORD ) {
+                if (password.length() < MIN_CHARACTERS_PASSWORD ) {
                     passwordEditText.setError("Password Must be " + MIN_CHARACTERS_PASSWORD + " Characters ");
                     return;
                 }
