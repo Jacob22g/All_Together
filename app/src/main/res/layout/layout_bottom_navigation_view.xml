@@ -15,12 +15,14 @@
         <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
             android:id="@+id/nav_view"
             android:layout_width="match_parent"
-            android:layout_height="130px"
+            android:layout_height="60dp"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
             android:background="?android:attr/windowBackground"
+            app:itemIconTint="@drawable/icon_color"
             android:layout_alignParentBottom="true"
-            app:menu="@menu/bottom_nav_menu">
+            app:menu="@menu/bottom_nav_menu"
+            android:layout_marginBottom="1dp">
         </com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx>
 
     </RelativeLayout>

@@ -20,7 +20,7 @@ public class BottomNavigationViewHelper {
 
     public static void setBottomNavigationView(BottomNavigationViewEx bottomNavigationViewEx){
 
-        bottomNavigationViewEx.enableAnimation(false);
+        bottomNavigationViewEx.enableAnimation(true);
         bottomNavigationViewEx.enableItemShiftingMode(false);
         bottomNavigationViewEx.enableShiftingMode(false);
         bottomNavigationViewEx.setTextVisibility(false);
