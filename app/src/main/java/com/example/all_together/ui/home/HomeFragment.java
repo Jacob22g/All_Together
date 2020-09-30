@@ -183,68 +183,6 @@ public class HomeFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
-            profileImageUri_local = data.getData();
-            Glide.with(getContext()).load(profileImageUri_local).into(profileImage);
-
-            uploadImage();
-
-        }
-    }
-
-    private void uploadImage(){
-
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
-        progressDialog.show();
-
-//        Uri file = Uri.fromFile(new File(profileImageUri.toString()));
-        StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-
-        imageStoreRef.putFile(profileImageUri_local)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        progressDialog.dismiss();
-
-//                                downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-
-                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String imageUrl = uri.toString();
-                                downloadUrl = uri;
-                            }
-                        });
-
-                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        progressDialog.dismiss();
-                        Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        // Progress bar
-                        double progress = (100.0*snapshot.getBytesTransferred()/snapshot
-                                .getTotalByteCount());
-                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                    }
-                });
-    }
-
     private void loadImage(){
 
         imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
