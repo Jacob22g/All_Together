@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.signature.MediaStoreSignature;
 import com.example.all_together.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -29,6 +30,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.inappmessaging.dagger.multibindings.StringKey;
 import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
@@ -37,6 +39,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
 
@@ -49,11 +53,13 @@ public class ProfileFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference usersDB = database.getReference("users");
 
-    private StorageReference storageRef;
+    StorageReference storageRef;
+    StorageReference imageStorageRef;
 
     final int IMAGE_REQUEST = 111;
 
-    ImageButton changePicBtn;
+    CircleImageView changePicBtn;
+
     Uri profileImageUri_local;
     Uri downloadUrl;
 
@@ -75,12 +81,18 @@ public class ProfileFragment extends Fragment {
         userAgeTv = view.findViewById(R.id.userAgeTv);
         userEmailTv = view.findViewById(R.id.userEmailTv);
 
-//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-//        progressDialog.setMessage("Loading profile Please wait..");
-//        progressDialog.show();
-
-        // Storage to save and load Image
         storageRef = FirebaseStorage.getInstance().getReference();
+
+        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
+        changePicBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+                intent.setType("image/*");
+                startActivityForResult(intent,IMAGE_REQUEST);
+            }
+        });
 
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -109,27 +121,22 @@ public class ProfileFragment extends Fragment {
 
                 userEmailTv.setText(firebaseUser.getEmail());
 
-//                progressDialog.dismiss();
+////                loadImage();
+//
+//                // gs://all-together-e88a5.appspot.com/vnnGxqosTfdClSaYShIrPNEwta83/profile_image
+//                imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
+//
+//                Glide.with(getContext())
+//                        .load(imageStorageRef)
+//                        .into(changePicBtn);
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
-        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
-        changePicBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent,IMAGE_REQUEST);
-            }
-        });
-
-        downloadImage();
+        loadImage();
 
         return view;
     }
@@ -141,39 +148,46 @@ public class ProfileFragment extends Fragment {
         if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
 
             profileImageUri_local = data.getData();
-            Glide.with(getContext()).load(profileImageUri_local).into(changePicBtn);
+//            Glide.with(getContext())
+//                    .load(profileImageUri_local)
+//                    .into(changePicBtn);
 
+            // Should be a service
             uploadImage();
 
+//            Glide.with(getContext())
+//                    .load(imageStorageRef)
+//                    .into(changePicBtn);
         }
     }
 
     private void uploadImage(){
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Uploading...");
+        progressDialog.setTitle("Replacing Image...");
         progressDialog.show();
 
 //        Uri file = Uri.fromFile(new File(profileImageUri.toString()));
-        StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
+        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
 
-        imageStoreRef.putFile(profileImageUri_local)
+        imageStorageRef.putFile(profileImageUri_local)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         // Get a URL to the uploaded content
                         progressDialog.dismiss();
 
-//                                downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
+                        // Replace the image
+                        loadImage();
 
-                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-                            @Override
-                            public void onSuccess(Uri uri) {
-                                String imageUrl = uri.toString();
-                                downloadUrl = uri;
-                            }
-                        });
+//                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
+//                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
+//                            @Override
+//                            public void onSuccess(Uri uri) {
+//                                String imageUrl = uri.toString();
+//                                downloadUrl = uri;
+//                            }
+//                        });
 
                         Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                     }
@@ -197,44 +211,62 @@ public class ProfileFragment extends Fragment {
                 });
     }
 
-    private void downloadImage(){
+    private void loadImage(){
 
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading profile Please wait..");
-        progressDialog.show();
+        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
 
-        File localFile = null;
-        try {
+        imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+            @Override
+            public void onSuccess(Uri uri) {
+                String imageURL = uri.toString();
+                Glide.with(getContext())
+                        .load(imageURL)
+                        .into(changePicBtn);
+            }
+        });
 
-            localFile = File.createTempFile("images", "jpg");
-            final File finalLocalFile = localFile;
+//        Glide.with(getContext())
+//                .load(imageStorageRef)
+//                .into(changePicBtn);
 
-            StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
+        // This is downloading the image
 
-            imageStoreRef.getFile(localFile)
-                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-                        @Override
-                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-                            // Successfully downloaded data to local file
-                            Uri profileUri = Uri.fromFile(finalLocalFile);
-                            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-
-                            progressDialog.dismiss();
-                        }
-                    }).addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception exception) {
-                    // Handle failed download
-                    Toast.makeText(getContext(), "Download Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-                }
-            });
-
-//            Uri profileUri = Uri.fromFile(localFile);
-//            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
+//        progressDialog.setMessage("Loading profile Please wait..");
+//        progressDialog.show();
+//
+//        File localFile = null;
+//        try {
+//
+//            localFile = File.createTempFile("images", "jpg");
+//            final File finalLocalFile = localFile;
+//
+//            StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
+//
+//            imageStoreRef.getFile(localFile)
+//                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+//                        @Override
+//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+//                            // Successfully downloaded data to local file
+//                            Uri profileUri = Uri.fromFile(finalLocalFile);
+//                            Glide.with(getContext()).load(profileUri).into(changePicBtn);
+//
+//                            progressDialog.dismiss();
+//                        }
+//                    }).addOnFailureListener(new OnFailureListener() {
+//                @Override
+//                public void onFailure(@NonNull Exception exception) {
+//                    // Handle failed download
+//                    Toast.makeText(getContext(), "Download Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//
+////            Uri profileUri = Uri.fromFile(localFile);
+////            Glide.with(getContext()).load(profileUri).into(changePicBtn);
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }
