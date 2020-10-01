@@ -69,9 +69,9 @@ public class FragmentVerifyPhoneNumber extends Fragment {
         confirmBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                    progressBar.setVisibility(View.VISIBLE);
-                    String code = verifyCodeEt.getText().toString();
-                    verifyCode(code);
+                progressBar.setVisibility(View.VISIBLE);
+                String code = verifyCodeEt.getText().toString();
+                verifyCode(code);
             }
         });
 
@@ -124,22 +124,22 @@ public class FragmentVerifyPhoneNumber extends Fragment {
     private void signInByCredential(PhoneAuthCredential credential) {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(),
-                        new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if(task.isSuccessful()){
+                new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if(task.isSuccessful()){
 //                                    FirebaseUser user = task.getResult().getUser();
-                                    Toast.makeText(getContext(), "Goooood", Toast.LENGTH_SHORT).show();
-                                    Intent intent = new Intent(getContext(),MainAppActivity.class);
-                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                    startActivity(intent);
+                            Toast.makeText(getContext(), "Goooood", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(getContext(),MainAppActivity.class);
+                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                            startActivity(intent);
 
-                                }else {
+                        }else {
 
-                                    Toast.makeText(getContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
+                            Toast.makeText(getContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
 }

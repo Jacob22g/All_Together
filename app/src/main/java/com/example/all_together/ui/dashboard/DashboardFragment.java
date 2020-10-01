@@ -106,7 +106,6 @@ public class DashboardFragment extends Fragment {
 //                // save list
 //                // Need to update the DB after release
 ////                myRef.setValue(volunteerList);
-
                 return true;
             }
 
@@ -129,7 +128,6 @@ public class DashboardFragment extends Fragment {
                                 volunteersDB.setValue(volunteerList);
                             }
                         });
-                //snackbar.setActionTextColor(Color.MAGENTA);
                 snackbar.show();
 
                 volunteersDB.setValue(volunteerList);
