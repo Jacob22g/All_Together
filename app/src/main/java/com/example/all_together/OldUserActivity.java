@@ -109,15 +109,13 @@ public class OldUserActivity extends AppCompatActivity {
 //            }
 //        };
 
-        BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.nav_view);
+        BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.nav_view_old);
 
         BottomNavigationViewHelper.setBottomNavigationView(bottomNavigationViewEx);
         BottomNavigationViewHelper.enableNavigation(this, bottomNavigationViewEx);
 
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(listener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
-
-
 
     }
 
@@ -139,6 +137,7 @@ public class OldUserActivity extends AppCompatActivity {
                         case R.id.navigation_chat_old:
                             selectedFragment = new ChatsFragment();
                             break;
+
                     }
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,selectedFragment).commit();
                     return true;

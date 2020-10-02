@@ -118,7 +118,6 @@ public class ProfileFragment extends Fragment {
                 }
 
                 userAddressTv.setText(city+", "+country);
-
                 userEmailTv.setText(firebaseUser.getEmail());
 
 ////                loadImage();

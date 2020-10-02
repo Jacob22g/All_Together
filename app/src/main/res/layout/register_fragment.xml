@@ -70,9 +70,8 @@
             android:id="@+id/cardView1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="13dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="60dp"
             android:visibility="gone"
             app:cardCornerRadius="15dp">
 
@@ -147,9 +146,9 @@
             android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40px"
+            android:layout_marginTop="13dp"
             android:layout_gravity="center_horizontal"
-            android:visibility="visible"
+            android:visibility="gone"
             app:cardCornerRadius="15dp">
 
             <ScrollView
