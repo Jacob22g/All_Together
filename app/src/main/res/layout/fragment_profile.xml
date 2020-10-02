@@ -222,7 +222,7 @@
                                 android:id="@+id/userEmailTv"
                                 android:layout_width="wrap_content"
                                 android:layout_height="match_parent"
-                                android:textSize="18sp"
+                                android:textSize="16sp"
                                 android:layout_marginStart="5dp"
                                 android:text="nissimlidan@gmail.com"
                                 android:layout_gravity="center"
@@ -231,11 +231,6 @@
 
                         </LinearLayout>
 
-                        <View
-                            android:layout_width="1dp"
-                            android:layout_height="match_parent"
-                            android:background="@color/grayDarkColor"
-                            />
 
                         <LinearLayout
                             android:layout_width="0dp"
