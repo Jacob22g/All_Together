@@ -50,10 +50,10 @@ public class VolunteeringFragment extends Fragment {
         this.volunteering = volunteering;
     }
 
-    public VolunteeringFragment(Volunteering volunteering, int positionInList) {
-        this.volunteering = volunteering;
-        this.positionInList = positionInList;
-    }
+//    public VolunteeringFragment(Volunteering volunteering, int positionInList) {
+//        this.volunteering = volunteering;
+//        this.positionInList = positionInList;
+//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -83,10 +83,18 @@ public class VolunteeringFragment extends Fragment {
                 // This method is called once with the initial value and again
                 // whenever data at this location is updated.
                 volunteerList.clear();
+                int i=0;
                 if (dataSnapshot.exists()) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        Volunteering volunteering = ds.getValue(Volunteering.class);
-                        volunteerList.add(volunteering);
+                        Volunteering listVolunteer = ds.getValue(Volunteering.class);
+
+                        // find the volunteering position in the list
+                        if (listVolunteer.getId() == volunteering.getId())
+                            positionInList=i;
+                        else
+                            i++;
+
+                        volunteerList.add(listVolunteer);
                     }
                 }
             }
@@ -108,8 +116,10 @@ public class VolunteeringFragment extends Fragment {
                 } else {
                     addBtn.setText("Remove me");
                     Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
-                    volunteering.setVolunteerUID(firebaseUser.getUid());
+                    volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
                 }
+
+                // Saving the new list
                 volunteerList.set(positionInList, volunteering);
                 volunteersDB.setValue(volunteerList);
             }

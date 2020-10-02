@@ -70,6 +70,9 @@ public class AddFragment extends Fragment implements LocationListener {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference volunteersDB = database.getReference("volunteerList");
     DatabaseReference usersDB = database.getReference("users");
+    DatabaseReference volunteers_id = database.getReference("volunteerIdNum");
+
+    long newVolunteerId;
 
     List<Volunteering> volunteerList  = new ArrayList<>();
 
@@ -77,7 +80,7 @@ public class AddFragment extends Fragment implements LocationListener {
     LocationManager manager;
     Geocoder geocoder;
     Handler handler;
-    TextView locationTv;
+
     EditText streetEt;
     EditText cityEt;
 
@@ -170,7 +173,6 @@ public class AddFragment extends Fragment implements LocationListener {
         // Location:
 
         geocoder = new Geocoder(getContext());
-        locationTv = view.findViewById(R.id.new_volunteer_location_tv);
         streetEt = view.findViewById(R.id.new_volunteer_location_street_et);
         cityEt = view.findViewById(R.id.new_volunteer_location_city_et);
         handler = new Handler();
@@ -248,6 +250,20 @@ public class AddFragment extends Fragment implements LocationListener {
             }
         });
 
+        //----------------
+        volunteers_id.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    newVolunteerId = snapshot.getValue(long.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.w(TAG, "Failed to read ID value.", error.toException());
+            }
+        });
+
         // get user name
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -295,7 +311,27 @@ public class AddFragment extends Fragment implements LocationListener {
                 }
 
                 // 1. get all the parameters into a volunteering object
-                Volunteering volunteering = new Volunteering();
+                    // Create ID for the Volunteering
+
+//                volunteers_id.addListenerForSingleValueEvent(new ValueEventListener() {
+//                    @Override
+//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                        if (snapshot.exists()) {
+//                            newVolunteerId = snapshot.getValue(long.class);
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onCancelled(@NonNull DatabaseError error) {
+//                        Toast.makeText(getContext(), "No ID Found" + error.getMessage(), Toast.LENGTH_SHORT).show();
+//                    }
+//                });
+
+                    // increase id by +1 for next volunteering
+                volunteers_id.setValue(newVolunteerId+1);
+
+                Volunteering volunteering = new Volunteering(newVolunteerId);
+
                 volunteering.setDate(dateTv.getText().toString());
                 volunteering.setHour(timeTv.getText().toString());
                 volunteering.setType(spinnerText);
@@ -313,8 +349,8 @@ public class AddFragment extends Fragment implements LocationListener {
                 volunteersDB.setValue(volunteerList);
 
                 // 4. if ok go to the volunteering page
-//                // going to dashboard fragment for now
-//                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DashboardFragment()).commit();
+//                // going to dashboard on back pressed inside the volunteerFragment
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DashboardFragment()).commit();
 
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -392,9 +428,6 @@ public class AddFragment extends Fragment implements LocationListener {
                     handler.post(new Runnable() {
                         @Override
                         public void run() {
-//                            locationTv.setText(bestAddress.getFeatureName() +
-//                                    ", " + bestAddress.getThoroughfare() + ", " + bestAddress.getSubThoroughfare() +
-//                                    ", " + bestAddress.getAdminArea() + ", " + bestAddress.getLocality());
 
                             cityEt.setText(bestAddress.getLocality()+"");
                             streetEt.setText(bestAddress.getThoroughfare()+"");

@@ -106,7 +106,6 @@ public class DashboardFragment extends Fragment {
 //                // save list
 //                // Need to update the DB after release
 ////                myRef.setValue(volunteerList);
-
                 return true;
             }
 
@@ -129,7 +128,6 @@ public class DashboardFragment extends Fragment {
                                 volunteersDB.setValue(volunteerList);
                             }
                         });
-                //snackbar.setActionTextColor(Color.MAGENTA);
                 snackbar.show();
 
                 volunteersDB.setValue(volunteerList);
@@ -146,12 +144,13 @@ public class DashboardFragment extends Fragment {
 
                 Volunteering volunteering = volunteerList.get(position);
 
-                adapter.notifyItemChanged(position);
-
-                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
+//                adapter.notifyItemChanged(position);
+//                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
 
                 // Open This volunteering
-                Fragment fragment = new VolunteeringFragment(volunteering, position);
+//                Fragment fragment = new VolunteeringFragment(volunteering, position);                // Maybe would change it and use the id and not position
+                Fragment fragment = new VolunteeringFragment(volunteering);
+
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, fragment);
@@ -161,7 +160,6 @@ public class DashboardFragment extends Fragment {
 
 //                // Need to update the DB
 //                volunteersDB.setValue(volunteerList);
-
 //                myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(volunteerList);
             }
         });
