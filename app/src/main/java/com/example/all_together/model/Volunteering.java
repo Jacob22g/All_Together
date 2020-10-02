@@ -1,6 +1,16 @@
 package com.example.all_together.model;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 public class Volunteering {
+
+    private long id;
 
     private String name;
     private String locationCity;
@@ -16,7 +26,11 @@ public class Volunteering {
     public Volunteering() {
     }
 
-    public Volunteering(String name, String locationCity, String locationStreet, String date, String hour, String type, String description, String oldUID) {
+    public Volunteering(long id) {
+        this.id = id;
+    }
+
+    public Volunteering(long id, String name, String locationCity, String locationStreet, String date, String hour, String type, String description, String oldUID) {
         this.name = name;
         this.locationCity = locationCity;
         this.locationStreet = locationStreet;
@@ -25,6 +39,16 @@ public class Volunteering {
         this.type = type;
         this.description = description;
         this.oldUID = oldUID;
+
+        this.id = id;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -98,6 +122,7 @@ public class Volunteering {
     public void setVolunteerUID(String volunteerUID) {
         this.volunteerUID = volunteerUID;
     }
+
 }
 
 

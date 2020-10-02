@@ -1,28 +1,35 @@
 package com.example.all_together.ui.profile;
 
 import android.app.ProgressDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.MediaStoreSignature;
 import com.example.all_together.R;
+import com.example.all_together.model.Volunteering;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -39,6 +46,8 @@ import com.google.firebase.storage.UploadTask;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -71,6 +80,13 @@ public class ProfileFragment extends Fragment {
     String city;
     String country;
 
+    Button TypesOfVolunteeringBtn;
+    ArrayList<String> volunteeringTypes = new ArrayList<>();
+    ListView listView;
+
+    Button aboutMeBtn;
+    TextView aboutMeTv;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -80,8 +96,91 @@ public class ProfileFragment extends Fragment {
         userAddressTv = view.findViewById(R.id.userAddressTv);
         userAgeTv = view.findViewById(R.id.userAgeTv);
         userEmailTv = view.findViewById(R.id.userEmailTv);
+        aboutMeTv = view.findViewById(R.id.about_me_tv);
+        aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
+
+        listView= view.findViewById(R.id.TypesOfVolunteering_list);
 
         storageRef = FirebaseStorage.getInstance().getReference();
+
+        // Save Volunteering types change
+        TypesOfVolunteeringBtn = view.findViewById(R.id.TypesOfVolunteering_edit_btn);
+        TypesOfVolunteeringBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+//                final ArrayList<String> types = new ArrayList<>();
+                final ArrayList<String> types = volunteeringTypes;
+                final String[] typesArr = getResources().getStringArray(R.array.volunteering_categories_array);
+
+                boolean[] isPreChecked = new boolean[typesArr.length];
+                for (int i=0;i<typesArr.length;i++){
+                    isPreChecked[i] = false;
+                    for (String t : volunteeringTypes){
+                        if (t.equals(typesArr[i]))
+                            isPreChecked[i] = true;
+                    }
+                }
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Please pick types")
+                        .setMultiChoiceItems(R.array.volunteering_categories_array, isPreChecked, new DialogInterface.OnMultiChoiceClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which, boolean isChecked) {
+                        if (isChecked)
+                            types.add(typesArr[which]);
+                        else
+                            types.remove(typesArr[which]);
+                    }
+                }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Toast.makeText(getContext(), types.toString(), Toast.LENGTH_SHORT).show();
+                        volunteeringTypes = types;
+                        usersDB.child(firebaseUser.getUid()).child("volunteeringTypes").setValue(types);
+
+                        // Display the list
+                        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, volunteeringTypes);
+                        listView.setAdapter(adapter);
+                    }
+                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                }).setIcon(R.drawable.volunteer_icon)
+                  .show();
+            }
+        });
+
+        // save about me
+        aboutMeBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open et dialog- custom dialog the save it in the tv
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View dialogView = getLayoutInflater().inflate(R.layout.edit_aboutme_dialog, null);
+
+                final EditText aboutMeEt = dialogView.findViewById(R.id.about_me_et_dialog);
+
+                final AlertDialog show = builder.setView(dialogView).show();
+
+                Button saveAboutMeBtn = dialogView.findViewById(R.id.about_me_et_btn_dialog);
+                saveAboutMeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        aboutMeTv.setText(aboutMeEt.getText().toString());
+
+                        usersDB.child(firebaseUser.getUid()).child("aboutMe").setValue(aboutMeTv.getText().toString());
+
+                        show.dismiss();
+                    }
+                });
+
+            }
+        });
+
 
         changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
         changePicBtn.setOnClickListener(new View.OnClickListener() {
@@ -112,6 +211,18 @@ public class ProfileFragment extends Fragment {
                                 break;
                             case "country":
                                 country = ds.getValue(String.class);
+                                break;
+                            case "volunteeringTypes":
+                                for (DataSnapshot d : ds.getChildren()){
+                                    String str = d.getValue(String.class);
+                                    volunteeringTypes.add(str);
+                                }
+                                // Display the list
+                                final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, volunteeringTypes);
+                                listView.setAdapter(adapter);
+                                break;
+                            case "aboutMe":
+                                aboutMeTv.setText(ds.getValue(String.class));
                                 break;
                         }
                     }

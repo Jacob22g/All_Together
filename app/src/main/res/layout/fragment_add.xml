@@ -126,17 +126,21 @@
                 android:text="get location"
                 android:textSize="14sp"
                 android:textColor="@color/grayDarkColor"
+                android:layout_marginStart="20dp"
                 android:fontFamily="@font/poppins_medium"
                 android:id="@+id/new_volunteer_get_location_btn"
                 android:background="@drawable/background_button_dark"/>
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:background="@color/whiteColor"
                 android:id="@+id/new_volunteer_location_tv"
                 android:fontFamily="@font/poppins_medium"
-                android:textSize="14sp"/>
+                android:gravity="center_vertical"
+                android:text="or type manually"
+                android:background="@color/grayBlueColor"
+                android:layout_marginStart="25dp"
+                android:textSize="20sp"/>
 
         </LinearLayout>
 

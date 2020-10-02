@@ -151,10 +151,10 @@ public class HomeFragment extends Fragment {
         recyclerViewNew.setLayoutManager(new LinearLayoutManager(rootView.getContext(),LinearLayoutManager.VERTICAL, false));
 
         final List<Volunteering>volunteeringListNew = new ArrayList<>();
-        volunteeringListNew.add(new Volunteering("Lidan", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListNew.add(new Volunteering("Lida", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListNew.add(new Volunteering("Lid", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListNew.add(new Volunteering("Li", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListNew.add(new Volunteering("Lidan", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListNew.add(new Volunteering("Lida", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListNew.add(new Volunteering("Lid", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListNew.add(new Volunteering("Li", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
 
         HomeVolunteeringAdapter volunteeringAdapterNew = new HomeVolunteeringAdapter(volunteeringListNew);
         volunteeringAdapterNew.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
@@ -171,10 +171,10 @@ public class HomeFragment extends Fragment {
         recyclerViewOld.setLayoutManager(new LinearLayoutManager(rootView.getContext(),LinearLayoutManager.VERTICAL, false));
 
         List<Volunteering>volunteeringListOld = new ArrayList<>();
-        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv","st", "10/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv","st", "10/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListOld.add(new Volunteering("Avi", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
-        volunteeringListOld.add(new Volunteering("Avi", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv","st", "10/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListOld.add(new Volunteering("Avi", "Tel-Aviv","st", "10/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListOld.add(new Volunteering("Avi", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
+//        volunteeringListOld.add(new Volunteering("Avi", "Haifa","st", "12/05/20", "12:15", "Shopping","bla bli blopy","1"));
 
         HomeVolunteeringAdapter volunteeringAdapterOld = new HomeVolunteeringAdapter(volunteeringListOld);
         recyclerViewOld.setAdapter(volunteeringAdapterOld);

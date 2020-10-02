@@ -128,7 +128,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         collapsingToolbarLayout = findViewById(R.id.collapsingLayout);
         drawerLayout = findViewById(R.id.drawerLayout);
-        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+//        coordinatorLayout = findViewById(R.id.coordinatorLayout);
         navigationView = findViewById(R.id.navigation_view);
 
         final EditText passwordEt = findViewById(R.id.passwordInput);

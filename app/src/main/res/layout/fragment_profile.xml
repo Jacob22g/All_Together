@@ -272,10 +272,20 @@
                         app:cardCornerRadius="15dp"
                         android:layout_marginTop="3dp">
 
-                        <androidx.recyclerview.widget.RecyclerView
+                        <Button
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="end|top"
+                            android:background="@drawable/ic_baseline_edit_24"
+                            android:id="@+id/TypesOfVolunteering_edit_btn"/>
+
+                        <ListView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="7dp"/>
+                            android:padding="7dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:id="@+id/TypesOfVolunteering_list"/>
 
                     </androidx.cardview.widget.CardView>
 
@@ -291,14 +301,14 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Hobbies"
+                        android:text="About Me"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_medium"
                         android:layout_marginTop="7dp"
                         android:layout_gravity="center" />
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/hobbiesCard"
+                        android:id="@+id/about_me_card"
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="10dp"
                         android:layout_height="150dp"
@@ -307,10 +317,23 @@
                         app:cardCornerRadius="15dp"
                         android:layout_marginTop="3dp">
 
-                        <androidx.recyclerview.widget.RecyclerView
+                        <Button
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_margin="8dp"
+                            android:layout_gravity="end|top"
+                            android:background="@drawable/ic_baseline_edit_24"
+                            android:id="@+id/about_me_edit_btn"/>
+
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:padding="7dp"/>
+                            android:id="@+id/about_me_tv"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="20sp"
+                            android:text="No info entered yet"
+                            android:padding="7dp"
+                            android:layout_marginStart="3dp"/>
 
                     </androidx.cardview.widget.CardView>
 
