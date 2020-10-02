@@ -43,6 +43,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -51,12 +56,6 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
-
 
         </LinearLayout>
 
@@ -91,6 +90,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
             <TextView
                 android:id="@+id/volunteer_time_tv"
                 android:layout_height="wrap_content"
@@ -99,12 +103,6 @@
                 android:text="Hour"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
-
 
         </LinearLayout>
         <LinearLayout
@@ -138,6 +136,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -146,12 +149,6 @@
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
-
 
         </LinearLayout>
 
@@ -186,6 +183,11 @@
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
             <TextView
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
@@ -193,13 +195,6 @@
                 android:text="Street"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
-
-            <View
-                android:layout_width="1px"
-                android:layout_height="match_parent"
-                android:background="@color/grayDarkColor"/>
-
-
 
         </LinearLayout>
 
