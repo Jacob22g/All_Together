@@ -15,165 +15,178 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:background="#9FD2DA">
+                android:background="@drawable/first_layer">
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            xmlns:app="http://schemas.android.com/apk/res-auto"
+                            android:id="@+id/change_profile_pic_btn"
+                            android:layout_width="120dp"
+                            android:layout_height="120dp"
+                            android:layout_margin="10dp"
+                            android:src="@drawable/old"
+                            app:civ_border_width="2dp"
+                            app:civ_border_color="@color/colorPrimaryLight" />
+
+                        <TextView
+                            android:id="@+id/userFullNameTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Name"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginStart="20dp"
+                            android:textSize="24sp"
+                            android:textStyle="bold"
+                            android:layout_toEndOf="@id/change_profile_pic_btn"/>
+
+                        <TextView
+                            android:id="@+id/userAddressTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="17sp"
+                            android:text="Address"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_below="@id/userFullNameTv"
+                            android:layout_toEndOf="@id/change_profile_pic_btn"
+                            />
+
+                        <TextView
+                            android:id="@+id/userAgeTv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="17sp"
+                            android:text="Null"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_below="@id/userAddressTv"
+                            android:layout_toEndOf="@id/change_profile_pic_btn"/>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="100dp"
+                            android:background="@color/grayDarkColor"
+                            android:layout_below="@id/change_profile_pic_btn"
+                            android:layout_marginTop="5dp"/>
+
+                    </RelativeLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
                     android:orientation="horizontal"
-                    android:background="@drawable/first_layer">
+                    android:paddingRight="3dp"
+                    android:paddingLeft="3dp"
+                    android:paddingBottom="3dp"
+                    android:paddingTop="3dp"
+                    android:gravity="center"
+                    android:weightSum="2">
 
-                    <de.hdodenhof.circleimageview.CircleImageView
-                        xmlns:app="http://schemas.android.com/apk/res-auto"
-                        android:id="@+id/change_profile_pic_btn"
-                        android:layout_width="120dp"
-                        android:layout_height="120dp"
-                        android:layout_margin="10dp"
-                        android:src="@drawable/old"
-                        app:civ_border_width="2dp"
-                        app:civ_border_color="@color/colorPrimaryLight" />
-
-                    <TextView
-                        android:id="@+id/userFullNameTv"
-                        android:layout_width="wrap_content"
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Name"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginStart="20dp"
-                        android:textSize="24sp"
-                        android:textStyle="bold"
-                        android:layout_toEndOf="@id/change_profile_pic_btn"/>
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_margin="5dp">
 
-                    <TextView
-                        android:id="@+id/userAddressTv"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:text="Volunteering"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="0"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1dp"
+                        android:layout_height="match_parent"
+                        android:background="@color/grayDarkColor"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="17sp"
-                        android:text="Address"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_below="@id/userFullNameTv"
-                        android:layout_toEndOf="@id/change_profile_pic_btn"
-                        />
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_margin="5dp">
 
-                    <TextView
-                        android:id="@+id/userAgeTv"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:text="Lavel"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="Beginner"
+                            android:gravity="center"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                    </LinearLayout>
+
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="match_parent"
+                        android:background="@color/grayDarkColor"/>
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="17sp"
-                        android:text="Null"
-                        android:layout_marginTop="3dp"
-                        android:layout_marginStart="20dp"
-                        android:layout_below="@id/userAddressTv"
-                        android:layout_toEndOf="@id/change_profile_pic_btn"/>
+                        android:orientation="vertical"
+                        android:gravity="center">
 
-                </RelativeLayout>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="normal"
+                            android:text="Likes"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:text="0"
+                            android:textSize="16sp"
+                            android:fontFamily="@font/poppins_medium"/>
+
+                    </LinearLayout>
+
 
             </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="70dp"
-                android:orientation="horizontal"
-                android:paddingRight="3dp"
-                android:paddingLeft="3dp"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp"
-                android:gravity="center"
-                android:weightSum="2"
-                android:background="@drawable/second_layer">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Volunteering"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"
-                        />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="0"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/grayDarkColor"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Lavel"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="Beginner"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/grayDarkColor"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Likes"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="0"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
 
 
             </LinearLayout>
@@ -208,7 +221,7 @@
                         android:layout_weight="1"
                         android:textSize="14sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:background="@drawable/background_button_dark"
+                        android:background="@drawable/color_back4_circle"
                         android:layout_marginEnd="5px"
                         android:layout_marginStart="5px"/>
 
@@ -303,7 +316,8 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:id="@+id/recyclerNew"
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent">
+                                android:layout_height="match_parent"
+                                android:background="@drawable/color_back3">
 
                             </androidx.recyclerview.widget.RecyclerView>
 

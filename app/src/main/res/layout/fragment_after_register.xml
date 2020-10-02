@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFF"
+    android:background="@drawable/color_back3"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".AfterRegisterFragment">
 
@@ -105,14 +105,14 @@
                 android:text="Add profile picture:"
                 android:gravity="center"
                 android:fontFamily="@font/poppins_medium"/>
+
             <ImageView
                 android:layout_width="200dp"
                 android:layout_height="200dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
-                android:backgroundTint="@color/whiteColor"
-                android:src="@drawable/ic_person"
-                android:background="#DDD"
+                android:background="@drawable/color_back3"
+                android:src="@drawable/ic_camera"
                 android:scaleType="fitXY"
                 android:id="@+id/image_profile_add_info"/>
 

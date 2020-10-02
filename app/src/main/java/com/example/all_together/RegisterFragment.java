@@ -73,7 +73,7 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
                 cardView2.setVisibility(View.GONE);
                 cardView1.setVisibility(View.VISIBLE);
-                layout1.setBackground(getResources().getDrawable(R.drawable.background_button_dark));
+                layout1.setBackground(getResources().getDrawable(R.drawable.color_back4_circle));
                 layout2.setBackground(getResources().getDrawable(R.drawable.background_button_light));
             }
         });
@@ -84,7 +84,7 @@ public class RegisterFragment extends Fragment {
                 cardView1.setVisibility(View.GONE);
                 cardView2.setVisibility(View.VISIBLE);
                 layout1.setBackground(getResources().getDrawable(R.drawable.background_button_light));
-                layout2.setBackground(getResources().getDrawable(R.drawable.background_button_dark));
+                layout2.setBackground(getResources().getDrawable(R.drawable.color_back4_circle));
 
             }
         });

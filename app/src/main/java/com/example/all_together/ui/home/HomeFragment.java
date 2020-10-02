@@ -128,7 +128,7 @@ public class HomeFragment extends Fragment {
         nextVolCardBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                nextVolCardBtn.setBackground(getResources().getDrawable(R.drawable.background_button_dark));
+                nextVolCardBtn.setBackground(getResources().getDrawable(R.drawable.color_back4_circle));
                 oldVolCardBtn.setBackground(getResources().getDrawable(R.drawable.background_button_light));
                 oldVolCardView.setVisibility(View.GONE);
                 nextVolCardView.setVisibility(View.VISIBLE);
@@ -139,7 +139,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 nextVolCardBtn.setBackground(getResources().getDrawable(R.drawable.background_button_light));
-                oldVolCardBtn.setBackground(getResources().getDrawable(R.drawable.background_button_dark));
+                oldVolCardBtn.setBackground(getResources().getDrawable(R.drawable.color_back4_circle));
                 nextVolCardView.setVisibility(View.GONE);
                 oldVolCardView.setVisibility(View.VISIBLE);
 
