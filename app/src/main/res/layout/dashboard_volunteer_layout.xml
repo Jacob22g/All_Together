@@ -1,64 +1,209 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardElevation="5dp"
     app:cardUseCompatPadding="true"
-    android:elevation="8dp"
+    app:cardCornerRadius="5dp"
     app:contentPadding="10dp"
-    app:cardCornerRadius="5dp">
+    android:orientation="horizontal">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_height="match_parent">
 
         <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="2"
-            android:orientation="vertical">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/layout_1">
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="2"
-                android:paddingStart="15dp"
-                android:layout_marginTop="5dp"
-                android:textSize="20sp"
-                android:text="Volunteer Type"
+                android:text="Name"
                 android:textStyle="bold"
-                android:id="@+id/volunteer_type_tv"/>
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:textSize="15sp"
-                android:text="Volunteer location"
-                android:id="@+id/volunteer_location_tv"/>
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Date"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:textSize="15sp"
-                android:text="Volunteer date"
-                android:id="@+id/volunteer_date_tv"/>
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Hour"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:paddingStart="20dp"
-                android:textSize="15sp"
-                android:text="Volunteer time"
-                android:id="@+id/volunteer_time_tv"/>
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
 
         </LinearLayout>
 
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/layout_2"
+            android:layout_below="@id/layout_1">
+
+            <TextView
+                android:id="@+id/volunteer_name_tv"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Name"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+            <TextView
+                android:id="@+id/volunteer_date_tv"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Date"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <TextView
+                android:id="@+id/volunteer_time_tv"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Hour"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/layout_3"
+            android:layout_below="@id/layout_2">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Type"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="City"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Street"
+                android:textStyle="bold"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/layout_4"
+            android:layout_below="@id/layout_3">
+
+            <TextView
+                android:id="@+id/volunteer_type_tv"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Type"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+            <TextView
+                android:id="@+id/volunteer_location_tv"
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="City"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="2"
+                android:text="Street"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"/>
+
+            <View
+                android:layout_width="1px"
+                android:layout_height="match_parent"
+                android:background="@color/grayDarkColor"/>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 </androidx.cardview.widget.CardView>
