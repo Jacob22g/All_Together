@@ -199,6 +199,7 @@
                                 android:textSize="18sp"
                                 android:textStyle="bold"
                                 android:text="Email"
+                                android:layout_gravity="center"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginStart="5dp"/>
 
@@ -209,6 +210,8 @@
                                 android:textSize="18sp"
                                 android:layout_marginStart="5dp"
                                 android:text="nissimlidan@gmail.com"
+                                android:layout_gravity="center"
+                                android:layout_marginTop="5dp"
                                 android:fontFamily="@font/poppins_medium"/>
 
                         </LinearLayout>
@@ -227,13 +230,21 @@
                             android:layout_gravity="center"
                             android:gravity="center_vertical">
 
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:text="Chat"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/poppins_medium"/>
+
                             <ImageButton
                                 android:layout_width="50dp"
                                 android:layout_height="50dp"
                                 android:src="@drawable/ic_email"
                                 android:scaleType="fitXY"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_marginEnd="20px"
                                 android:background="@color/colorPrimaryLight" />
 
                         </LinearLayout>
