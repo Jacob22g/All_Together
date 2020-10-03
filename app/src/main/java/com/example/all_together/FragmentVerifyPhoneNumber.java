@@ -7,6 +7,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -130,9 +132,23 @@ public class FragmentVerifyPhoneNumber extends Fragment {
                         if(task.isSuccessful()){
 //                                    FirebaseUser user = task.getResult().getUser();
                             Toast.makeText(getContext(), "Goooood", Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(getContext(),OldUserActivity.class);
-                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                            startActivity(intent);
+
+//                            Intent intent = new Intent(getContext(),OldUserActivity.class);
+//                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+//                            startActivity(intent);
+
+                            // Open AfterOldRegisterFragment
+                            Fragment fragment = new AfterOldRegisterFragment();
+
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+
+                            fragmentTransaction.replace(R.id.drawerLayout, fragment);
+
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+
+
 
                         }else {
 

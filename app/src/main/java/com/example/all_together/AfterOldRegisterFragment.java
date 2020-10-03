@@ -1,15 +1,9 @@
 package com.example.all_together;
 
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +12,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -28,15 +26,12 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-
 import static android.app.Activity.RESULT_OK;
 
-public class AfterRegisterFragment extends Fragment {
+public class AfterOldRegisterFragment extends Fragment {
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
@@ -57,17 +52,19 @@ public class AfterRegisterFragment extends Fragment {
 
     Uri downloadUrl;
 
-    interface OnAfterRegisterFragmentListener {
-        void onAfterRegister();
+    boolean isImageSelected;
+
+    interface OnAfterOldRegisterFragmentListener {
+        void onAfterOldRegister();
     }
 
-    AfterRegisterFragment.OnAfterRegisterFragmentListener callback;
+    AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener callback;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            callback = (AfterRegisterFragment.OnAfterRegisterFragmentListener) context;
+            callback = (AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener) context;
         } catch (ClassCastException ex) {
             throw new ClassCastException("The activity must implement OnAfterRegisterFragmentListener interface");
         }
@@ -87,9 +84,14 @@ public class AfterRegisterFragment extends Fragment {
         cityEt = view.findViewById(R.id.city_add_info);
         profileImage = view.findViewById(R.id.image_profile_add_info);
 
+        isImageSelected = false;
+
         profileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                isImageSelected = true;
+
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent,IMAGE_REQUEST);
@@ -101,60 +103,53 @@ public class AfterRegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                if (profileImageUri==null){
+                final String userName = userNameEt.getText().toString();
+                final String age = ageEt.getText().toString();
+                final String country = countryEt.getText().toString();
+                final String city = cityEt.getText().toString();
 
-                    Toast.makeText(getContext(), "Upload user image!", Toast.LENGTH_SHORT).show();
+                if (TextUtils.isEmpty(userName)) {
+                    userNameEt.setError("First name is Required");
+                    return;
+                }
 
-                } else {
+                if (TextUtils.isEmpty(age)) {
+                    ageEt.setError("Age is Required");
+                    return;
+                }
 
-                    final String userName = userNameEt.getText().toString();
-                    final String age = ageEt.getText().toString();
-                    final String country = countryEt.getText().toString();
-                    final String city = cityEt.getText().toString();
+                if (TextUtils.isEmpty(country)) {
+                    countryEt.setError("Country is Required");
+                    return;
+                }
 
-                    if (TextUtils.isEmpty(userName)) {
-                        userNameEt.setError("First name is Required");
-                        return;
-                    }
+                if (TextUtils.isEmpty(city)) {
+                    cityEt.setError("City is Required");
+                    return;
+                }
 
-                    if (TextUtils.isEmpty(age)) {
-                        ageEt.setError("Age is Required");
-                        return;
-                    }
+                // update the DB
+                usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("user_name").setValue(userName);
+                usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("age").setValue(age);
+                usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("country").setValue(country);
+                usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("city").setValue(city);
 
-                    if (TextUtils.isEmpty(country)) {
-                        countryEt.setError("Country is Required");
-                        return;
-                    }
+                // Set user as old
+                usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("is_old_user").setValue(true);
 
-                    if (TextUtils.isEmpty(city)) {
-                        cityEt.setError("City is Required");
-                        return;
-                    }
-
-                    // update the DB
-                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("user_name").setValue(userName);
-                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("age").setValue(age);
-                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("country").setValue(country);
-                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("city").setValue(city);
-
-                    // Set user as not old
-                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("is_old_user").setValue(false);
-
-//                usersDB.child(firebaseAuth.getCurrentUser().getUid()).setValue(profileImage);
-
+                // check if an image was selected
+                if (isImageSelected)
                     uploadImage();
 
-                    callback.onAfterRegister();
+                callback.onAfterOldRegister();
 
-                }
             }
         });
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-                 firebaseUser = firebaseAuth.getCurrentUser();
+                firebaseUser = firebaseAuth.getCurrentUser();
             }
         };
 
@@ -163,11 +158,6 @@ public class AfterRegisterFragment extends Fragment {
 
     private void uploadImage(){
 
-//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-//        progressDialog.setTitle("Uploading...");
-//        progressDialog.show();
-
-//        Uri file = Uri.fromFile(new File(profileImageUri.toString()));
         StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
 
         imageStoreRef.putFile(profileImageUri)
@@ -177,38 +167,25 @@ public class AfterRegisterFragment extends Fragment {
                         // Get a URL to the uploaded content
 //                        progressDialog.dismiss();
 
-//                                downloadUrl = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-
                         Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
                         result.addOnSuccessListener(new OnSuccessListener<Uri>() {
                             @Override
                             public void onSuccess(Uri uri) {
                                 String imageUrl = uri.toString();
                                 downloadUrl = uri;
-                                //createNewPost(imageUrl);
                             }
                         });
 
-//                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
-//                        progressDialog.dismiss();
                         Toast.makeText(getContext(), "Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        isImageSelected = false;
                     }
                 });
-//                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-//                    @Override
-//                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-//                        // Progress bar
-//                        double progress = (100.0*snapshot.getBytesTransferred()/snapshot
-//                                .getTotalByteCount());
-//                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
-//                    }
-//                });
     }
 
     @Override
@@ -219,8 +196,6 @@ public class AfterRegisterFragment extends Fragment {
 
             profileImageUri = data.getData();
             Glide.with(getContext()).load(profileImageUri).into(profileImage);
-
-            // Need to save image in firebase
 
         }
     }

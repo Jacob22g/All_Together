@@ -44,16 +44,20 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener {
+public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener {
 
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
+    final String FRAGMENT_AFTER_OLD_REGISTER_TAG = "fragment_after_old_register";
     final String FRAGMENT_VERIFY_TAG = "fragment_verify";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
@@ -63,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private Toolbar toolbar;
     private CardView cardView;
     private ArrayList<User> Users = new ArrayList<>();
-    private DatabaseReference mDatabase;
+
     private DrawerLayout drawerLayout;
     private NavigationView navigationView;
     private CoordinatorLayout coordinatorLayout;
@@ -75,8 +79,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
 
+    boolean isOldUser;
+
     FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference users = database.getReference("users");
+    DatabaseReference usersDB = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,14 +92,30 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-        // Go to Main App Activity
-        //check if user is null
+
+        // Check if user logged in
         if (firebaseUser != null){
-            Toast.makeText(this, "Auto Login From FireBase", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, MainAppActivity.class);
+
+            // Check if old user
+            usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    isOldUser = snapshot.child("is_old_user").getValue(boolean.class);
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+                }
+            });
+
+            Intent intent;
+            if(isOldUser){
+                intent  = new Intent(this, MainAppActivity.class);
+            } else
+                intent  = new Intent(this, OldUserActivity.class);
             startActivity(intent);
             finish();
         }
+
 
         googleSignInButton = findViewById(R.id.googleSignIn);
 
@@ -125,7 +147,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 //        actionBar.setIcon(R.drawable.icons_menu_w);
 
         cardView = findViewById(R.id.cardView);
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("Users");
         collapsingToolbarLayout = findViewById(R.id.collapsingLayout);
         drawerLayout = findViewById(R.id.drawerLayout);
 //        coordinatorLayout = findViewById(R.id.coordinatorLayout);
@@ -145,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 transaction.addToBackStack(null);
                 transaction.commit();
 
-//                cardView.setVisibility(View.GONE);
             }
         });
 
@@ -285,8 +305,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 //            FragmentManager verifyFragment = getSupportFragmentManager();
 //            FragmentTransaction transaction = verifyFragment.beginTransaction();
 //
-
-//
 //            transaction.add(R.id.drawerLayout, new FragmentVerifyPhoneNumber(),FRAGMENT_VERIFY_TAG);
 //            transaction.addToBackStack(null);
 //            transaction.commit();
@@ -301,14 +319,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
     public void onRegister(String email, String password) {
 
-//        //cardView.setVisibility(View.VISIBLE);
-
         if(password.equals("") && email.equals(""))
-
             // Simulate back press
             getSupportFragmentManager().popBackStack();
-            // Back Button Pressed
-//            cardView.setVisibility(View.VISIBLE);
 
         else {
 
@@ -340,11 +353,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
 //                        Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
 //                        startActivity(intent);
-
-//                    String user_id = mAuth.getCurrentUser().getUid();
-//                    DatabaseReference CurrentUser_db =  mDatabase.child(user_id);
-//                    CurrentUser_db.child("Email").setValue(email);
-//                    CurrentUser_db.child("Password").setValue(password);
                     }
 
                     //Add why a user was unable to log in
@@ -357,8 +365,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
             });
         }
-
-
 
 
 //        if(flag) {
@@ -394,6 +400,20 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_AFTER_REGISTER_TAG);
         getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+
+        finish();
+    }
+
+    @Override
+    public void onAfterOldRegister() {
+
+        Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(getApplicationContext(), OldUserActivity.class);
+        startActivity(intent);
+
+//        Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_AFTER_OLD_REGISTER_TAG);
+//        getSupportFragmentManager().beginTransaction().remove(fragment).commit();
 
         finish();
     }

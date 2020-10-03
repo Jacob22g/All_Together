@@ -218,8 +218,10 @@ public class ProfileFragment extends Fragment {
                                     volunteeringTypes.add(str);
                                 }
                                 // Display the list
-                                final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, volunteeringTypes);
-                                listView.setAdapter(adapter);
+                                if (getContext()!= null) {
+                                    final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, volunteeringTypes);
+                                    listView.setAdapter(adapter);
+                                }
                                 break;
                             case "aboutMe":
                                 aboutMeTv.setText(ds.getValue(String.class));
@@ -329,9 +331,11 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 String imageURL = uri.toString();
-                Glide.with(getContext())
-                        .load(imageURL)
-                        .into(changePicBtn);
+                if (getContext()!=null) {
+                    Glide.with(getContext())
+                            .load(imageURL)
+                            .into(changePicBtn);
+                }
             }
         });
 

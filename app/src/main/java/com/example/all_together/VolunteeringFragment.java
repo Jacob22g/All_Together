@@ -45,15 +45,13 @@ public class VolunteeringFragment extends Fragment {
     List<Volunteering> volunteerList  = new ArrayList<>();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference volunteersDB = database.getReference("volunteerList");
+    DatabaseReference usersDB = database.getReference("users");
+
+    boolean isOldUser = true;
 
     public VolunteeringFragment(Volunteering volunteering) {
         this.volunteering = volunteering;
     }
-
-//    public VolunteeringFragment(Volunteering volunteering, int positionInList) {
-//        this.volunteering = volunteering;
-//        this.positionInList = positionInList;
-//    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -75,6 +73,20 @@ public class VolunteeringFragment extends Fragment {
         descriptionTv.setText(volunteering.getDescription());
         if (volunteering.getDescription() == null)
             descriptionTv.setVisibility(View.GONE);
+
+        // Check if it is a old user
+        usersDB.child(firebaseUser.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    isOldUser = snapshot.child("is_old_user").getValue(boolean.class);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
 
         // Read the DB to update it if needed
         volunteersDB.addValueEventListener(new ValueEventListener() {
@@ -101,49 +113,57 @@ public class VolunteeringFragment extends Fragment {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
             }
         });
 
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
-                    addBtn.setText("Add me");
-                    Toast.makeText(getContext(), "you have been removed", Toast.LENGTH_SHORT).show();
-                    volunteering.setVolunteerUID(null);
-                } else {
-                    addBtn.setText("Remove me");
-                    Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
-                    volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
+        if (!isOldUser) {
+            addBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
+                        addBtn.setText("Add me");
+                        Toast.makeText(getContext(), "you have been removed", Toast.LENGTH_SHORT).show();
+                        volunteering.setVolunteerUID(null);
+                    } else {
+                        addBtn.setText("Remove me");
+                        Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
+                        volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
+                    }
+
+                    // Saving the new list
+                    volunteerList.set(positionInList, volunteering);
+                    volunteersDB.setValue(volunteerList);
                 }
+            });
+        } else {
+            addBtn.setVisibility(View.GONE);
+        }
 
-                // Saving the new list
-                volunteerList.set(positionInList, volunteering);
-                volunteersDB.setValue(volunteerList);
-            }
-        });
-
-        if (firebaseUser.getUid().equals(volunteering.getVolunteerUID()))
+        if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
             addBtn.setText("Remove me");
-        else
-            if (volunteering.getVolunteerUID()==null)
+        } else {
+            if (volunteering.getVolunteerUID() == null)
                 addBtn.setText("Add me");
             else {
                 // Check if another user took it
                 addBtn.setText("Volunteer taken");
                 addBtn.setEnabled(false);
             }
+        }
 
 
         chatBtn = view.findViewById(R.id.selected_volunteering_chat_btn);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getContext(), "need to open a chat old and volunteer", Toast.LENGTH_SHORT).show();
-            }
-        });
+        if (!isOldUser) {
+            chatBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getContext(), "need to open a chat old and volunteer", Toast.LENGTH_SHORT).show();
+                }
+            });
+        } else {
+            chatBtn.setVisibility(View.GONE);
+        }
 
 
         backBtn = view.findViewById(R.id.selected_volunteering_back_btn);

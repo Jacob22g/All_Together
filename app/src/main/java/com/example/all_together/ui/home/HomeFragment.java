@@ -59,6 +59,7 @@ public class HomeFragment extends Fragment {
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference usersDB = database.getReference("users");
+    DatabaseReference volunteersDB = database.getReference("volunteerList");
 
     CircleImageView profileImage;
     Uri profileImageUri_local;
@@ -191,9 +192,11 @@ public class HomeFragment extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 String imageURL = uri.toString();
-                Glide.with(getContext())
-                        .load(imageURL)
-                        .into(profileImage);
+                if (getContext()!=null) {
+                    Glide.with(getContext())
+                            .load(imageURL)
+                            .into(profileImage);
+                }
             }
         });
 

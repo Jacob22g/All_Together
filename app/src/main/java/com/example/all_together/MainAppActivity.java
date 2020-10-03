@@ -97,9 +97,9 @@ public class MainAppActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view_activitymainapp);
         drawerLayout = findViewById(R.id.drawerLayout_activitymainapp);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_activitymainapp);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.icons_menu_w);
+//        Toolbar toolbar = findViewById(R.id.toolbar_activitymainapp);
+//        setSupportActionBar(toolbar);
+//        toolbar.setNavigationIcon(R.drawable.icons_menu_w);
 
         //  To check sign from google
 //        View headerView = navigationView.getHeaderView(0);

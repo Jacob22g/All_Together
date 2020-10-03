@@ -43,6 +43,7 @@ import com.example.all_together.R;
 import com.example.all_together.VolunteeringFragment;
 import com.example.all_together.model.Volunteering;
 import com.example.all_together.ui.dashboard.DashboardFragment;
+import com.example.all_together.ui.home.HomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -349,14 +350,14 @@ public class AddFragment extends Fragment implements LocationListener {
                 volunteersDB.setValue(volunteerList);
 
                 // 4. if ok go to the volunteering page
-//                // going to dashboard on back pressed inside the volunteerFragment
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new DashboardFragment()).commit();
+                // going to home on back pressed inside the volunteerFragment
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
 
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 

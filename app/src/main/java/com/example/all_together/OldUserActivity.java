@@ -48,10 +48,6 @@ public class OldUserActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view_activityolduser);
         drawerLayout = findViewById(R.id.drawerLayout_activityolduser);
 
-        Toolbar toolbar = findViewById(R.id.toolbar_activityolduser);
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.icons_menu_w);
-
         View headerView = navigationView.getHeaderView(0);
         TextView userTv = headerView.findViewById(R.id.navigation_header_container);
         userTv.setText(firebaseUser.getEmail());
