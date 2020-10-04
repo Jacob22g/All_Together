@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/old">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:layout_marginTop="140dp"
+        android:layout_gravity="center_horizontal"
+        android:visibility="visible"
+        app:cardCornerRadius="15dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Enter Phone Number"
+                    android:gravity="center"
+                    android:textSize="23sp"/>
+
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="10dp"
+                    android:layout_marginTop="5dp"
+                    android:hint="Phone Number"
+                    app:startIconDrawable="@drawable/ic_phone">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/phone_register"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:fontFamily="@font/poppins_medium"
+                        android:inputType="phone"
+                        android:maxLines="1"
+                        android:textSize="17sp"/>
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <Button
+                    android:background="@drawable/color_back4_circle"
+                    android:textColor="@color/whiteColor"
+                    android:id="@+id/submit_register_help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="submit"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="10dp"
+                    />
+
+            </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

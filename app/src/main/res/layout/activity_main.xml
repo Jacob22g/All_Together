@@ -86,6 +86,7 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <TextView
+                    android:id="@+id/forgetPasswordBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
@@ -219,12 +220,37 @@
                     android:fontFamily="@font/poppins_medium"
                     android:gravity="center"/>
 
-                <com.google.android.gms.common.SignInButton
-                    android:layout_width="138dp"
-                    android:layout_height="45dp"
-                    android:id="@+id/googleSignIn"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <com.google.android.gms.common.SignInButton
+                        android:layout_width="138dp"
+                        android:layout_height="45dp"
+                        android:id="@+id/googleSignIn"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"/>
+
+                    <Button
+                        android:layout_width="138dp"
+                        android:layout_height="37dp"
+                        android:background="@drawable/back_phone_login"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textColor="@color/grayDarkColor"
+                        android:id="@+id/phoneSignIn"
+                        android:layout_gravity="center"
+                        android:paddingTop="5dp"
+                        android:layout_marginTop="5dp"
+                        android:textStyle="bold"
+                        android:src="@drawable/ic_phone"
+                        android:text="Phone-Login"
+                        android:textSize="10sp"/>
+
+
+                </LinearLayout>
+
 
 
             </LinearLayout>

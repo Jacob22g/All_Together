@@ -151,7 +151,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="13dp"
             android:layout_gravity="center_horizontal"
-            android:visibility="gone"
+            android:visibility="visible"
             app:cardCornerRadius="15dp">
 
             <ScrollView
@@ -182,24 +182,24 @@
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="10dp"
-                        android:layout_marginTop="5dp"
-                        android:hint="Password"
-                        android:textSize="17sp"
-                        app:endIconMode="password_toggle"
-                        app:startIconDrawable="@drawable/ic_lock">
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:layout_marginHorizontal="10dp"-->
+<!--                        android:layout_marginTop="5dp"-->
+<!--                        android:hint="Password"-->
+<!--                        android:textSize="17sp"-->
+<!--                        app:endIconMode="password_toggle"-->
+<!--                        app:startIconDrawable="@drawable/ic_lock">-->
 
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/password_old_register"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/poppins_medium"
-                            android:inputType="textPassword"
-                            android:maxLines="1" />
-                    </com.google.android.material.textfield.TextInputLayout>
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                            android:id="@+id/password_old_register"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content"-->
+<!--                            android:fontFamily="@font/poppins_medium"-->
+<!--                            android:inputType="textPassword"-->
+<!--                            android:maxLines="1" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
 
                     <Button
                        android:background="@drawable/color_back4_circle"
@@ -221,7 +221,6 @@
             </ScrollView>
 
         </androidx.cardview.widget.CardView>
-
 
     </LinearLayout>
 

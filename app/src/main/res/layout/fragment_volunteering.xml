@@ -55,14 +55,23 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Name: "/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:id="@+id/selected_volunteering_name"/>
+                        android:layout_weight="3"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textSize="18sp"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:id="@+id/selected_volunteering_name"/>
+
+                    </androidx.cardview.widget.CardView>
+
 
 
                 </LinearLayout>
@@ -81,14 +90,22 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Date: "/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:layout_marginStart="15dp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:id="@+id/selected_volunteering_date"/>
+                        android:layout_weight="3"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:id="@+id/selected_volunteering_date"/>
+
+                    </androidx.cardview.widget.CardView>
 
 
                 </LinearLayout>
@@ -107,40 +124,23 @@
                         android:fontFamily="@font/poppins_medium"
                         android:text="Time: "/>
 
-                    <TextView
+                    <androidx.cardview.widget.CardView
                         android:layout_width="0dp"
-                        android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:id="@+id/selected_volunteering_time"/>
+                        android:layout_weight="3"
+                        android:layout_gravity="center">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:id="@+id/selected_volunteering_time"
+                            android:layout_gravity="center"/>
 
-                </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:text="Location: "/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/poppins_medium"
-                        android:id="@+id/selected_volunteering_location"/>
 
                 </LinearLayout>
 
@@ -154,18 +154,68 @@
                         android:layout_width="0dp"
                         android:layout_weight="2"
                         android:layout_height="wrap_content"
-                        android:text="Description"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Location: "
+                        android:layout_marginEnd="2dp"/>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="3"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="18sp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:layout_gravity="center"
+                            android:id="@+id/selected_volunteering_location"/>
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:layout_height="wrap_content"
+                        android:text="Description:"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="20sp"/>
 
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="3"
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_margin="5dp">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/poppins_medium"
-                        android:textSize="18sp"
-                        android:layout_marginStart="15dp"
-                        android:id="@+id/selected_volunteering_description"/>
+                        android:layout_weight="2"
+                        android:layout_gravity="center">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="16sp"
+                            android:layout_marginStart="15dp"
+                            android:id="@+id/selected_volunteering_description"/>
+
+                    </androidx.cardview.widget.CardView>
 
                 </LinearLayout>
 

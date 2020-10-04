@@ -74,21 +74,13 @@
                         android:layout_below="@id/userAddressTv"
                         android:layout_toEndOf="@id/change_profile_pic_btn"/>
 
-                    <View
-                        android:layout_width="match_parent"
-                        android:layout_height="1dp"
-                        android:layout_marginStart="100dp"
-                        android:background="@color/grayDarkColor"
-                        android:layout_below="@id/change_profile_pic_btn"
-                        android:layout_marginTop="5dp"/>
-
                 </RelativeLayout>
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="70dp"
+                android:layout_height="10dp"
                 android:orientation="horizontal"
                 android:paddingRight="3dp"
                 android:paddingLeft="3dp"
@@ -96,95 +88,6 @@
                 android:paddingTop="3dp"
                 android:gravity="center"
                 android:weightSum="2">
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Volunteering"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="0"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
-
-                <View
-                    android:layout_width="1dp"
-                    android:layout_height="match_parent"
-                    android:background="@color/grayDarkColor"/>
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center"
-                    android:layout_margin="5dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Lavel"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="Beginner"
-                        android:gravity="center"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
-
-
-                <View
-                    android:layout_width="1px"
-                    android:layout_height="match_parent"
-                    android:background="@color/grayDarkColor"/>
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_weight="1"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:gravity="center">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="normal"
-                        android:text="Likes"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textStyle="bold"
-                        android:text="0"
-                        android:textSize="16sp"
-                        android:fontFamily="@font/poppins_medium"/>
-
-                </LinearLayout>
-
 
             </LinearLayout>
 

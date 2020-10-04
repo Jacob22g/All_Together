@@ -39,7 +39,7 @@ public class RegisterFragment extends Fragment {
 
     interface OnRegisterFragmentListener {
         void onRegister(String email, String password);
-        void onPhoneRegister(String phoneNumber,String password);
+        void onPhoneRegister(String phoneNumber);
     }
 
     OnRegisterFragmentListener callback;
@@ -93,7 +93,7 @@ public class RegisterFragment extends Fragment {
         final EditText passwordEditText = rootView.findViewById(R.id.password_register);
         final EditText emailEditText = rootView.findViewById(R.id.email_register);
 
-        final EditText passwordOldEditText = rootView.findViewById(R.id.password_old_register);
+        //final EditText passwordOldEditText = rootView.findViewById(R.id.password_old_register);
         final EditText phoneEditText = rootView.findViewById(R.id.phone_register);
 
         Button submitOldBtn = rootView.findViewById(R.id.submit_register_help);
@@ -102,7 +102,7 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                final String passwordOld = passwordOldEditText.getText().toString();
+                //final String passwordOld = passwordOldEditText.getText().toString();
                 final String phoneNumber = phoneEditText.getText().toString();
 
                 if(TextUtils.isEmpty(phoneNumber)){
@@ -115,17 +115,8 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-                if(TextUtils.isEmpty(passwordOld)){
-                    passwordEditText.setError("Password is Required");
-                    return;
-                }
 
-                if (passwordOld.length() < MIN_CHARACTERS_PASSWORD ) {
-                    passwordEditText.setError("Password Must be at least " + MIN_CHARACTERS_PASSWORD + " Characters ");
-                    return;
-                }
-
-                callback.onPhoneRegister(phoneNumber, passwordOld);
+                callback.onPhoneRegister(phoneNumber);
 
             }
         });
