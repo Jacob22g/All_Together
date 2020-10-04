@@ -112,7 +112,7 @@ public class OldUserActivity extends AppCompatActivity {
         BottomNavigationViewHelper.enableNavigation(this, bottomNavigationViewEx);
 
         bottomNavigationViewEx.setOnNavigationItemSelectedListener(listener);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
 
     }
 

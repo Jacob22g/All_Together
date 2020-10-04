@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -96,6 +97,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         // Check if user logged in
         if (firebaseUser != null){
 
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+            progressDialog.setMessage("Loading, Please wait..");
+            progressDialog.show();
+
             // Check if old user
             usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -108,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         intent  = new Intent(MainActivity.this, MainAppActivity.class);
                     startActivity(intent);
                     finish();
+                    progressDialog.dismiss();
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {

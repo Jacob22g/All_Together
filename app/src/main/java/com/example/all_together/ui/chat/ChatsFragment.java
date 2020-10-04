@@ -44,6 +44,8 @@ public class ChatsFragment extends Fragment {
     DatabaseReference usersDB = database.getReference("users");
     DatabaseReference chatsDB = database.getReference("chats");
 
+    boolean isOldUser;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,8 +80,11 @@ public class ChatsFragment extends Fragment {
                 Fragment fragment = new ConversationChatFragment(chat);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, fragment);
-                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                if (isOldUser) {
+                    fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                } else {
+                    fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                }
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -118,6 +123,18 @@ public class ChatsFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) {
                 Log.w("TAG", "onCancelled", error.toException());
             }
+        });
+
+        // Check if it is a old user
+        usersDB.child(firebaseUser.getUid()).child("is_old_user").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    isOldUser = snapshot.getValue(boolean.class);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
         });
 
     }

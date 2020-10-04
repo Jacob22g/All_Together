@@ -108,6 +108,41 @@ public class OldHomeFragment extends Fragment {
 
         loadImage();
 
+
+//        authStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                final FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user!=null){
+//                    // Load a list with all user volunteering
+//                    volunteersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//                            userVolunteerList.clear();
+//                            if (snapshot.exists()){
+//                                for (DataSnapshot ds : snapshot.getChildren()){
+//                                    Volunteering volunteering = ds.getValue(Volunteering.class);
+//                                    if (volunteering.getOldUID().equals(firebaseUser.getUid())) {
+//                                        // add only my ones
+//                                        userVolunteerList.add(volunteering);
+//                                    }
+//                                }
+//                                // Create the lists after getting all users list
+//                                CreateTheLists();
+//                            }
+//                        }
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//                            Log.w("TAG", "onCancelled", error.toException());
+//                        }
+//                    });
+//
+//                    loadImage();
+//                }
+//            }
+//        };
+
+
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -138,17 +173,6 @@ public class OldHomeFragment extends Fragment {
 
             }
         });
-
-//        // TEST
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                final FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user!=null){
-////                    CreateTheLists();
-//                }
-//            }
-//        };
 
         // Load a list with all user volunteering
         volunteersDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -216,24 +240,21 @@ public class OldHomeFragment extends Fragment {
     }
 
     private void CreateTheLists(){
-
         // Create the lists:
+
         String currentDateString = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault()).format(new Date());
 
         for (Volunteering volunteering: userVolunteerList){
             // Check if it happened or not
             try {
-
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 Date volunteeringDate = simpleDateFormat.parse(volunteering.getDate());
                 Date currentDate = simpleDateFormat.parse(currentDateString);
-
                 if (volunteeringDate.compareTo(currentDate) >= 0){
                     volunteeringListNew.add(volunteering);
                 } else{
                     volunteeringListOld.add(volunteering);
                 }
-
             } catch (ParseException e) {
                 e.printStackTrace();
             }
@@ -244,7 +265,6 @@ public class OldHomeFragment extends Fragment {
         volunteeringAdapterNew.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
             @Override
             public void onVolunteeringClicked(int position, View view) {
-
                 Volunteering volunteering = volunteeringListNew.get(position);
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -261,7 +281,6 @@ public class OldHomeFragment extends Fragment {
         volunteeringAdapterOld.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
             @Override
             public void onVolunteeringClicked(int position, View view) {
-
                 Volunteering volunteering = volunteeringListOld.get(position);
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
@@ -298,6 +317,7 @@ public class OldHomeFragment extends Fragment {
 //        super.onStart();
 //        firebaseAuth.addAuthStateListener(authStateListener);
 //    }
+//
 //    @Override
 //    public void onStop() {
 //        super.onStop();
