@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.adapter.ChatMassageAdapter;
+import com.example.all_together.model.Chat;
 import com.example.all_together.model.ChatMessage;
 import com.example.all_together.model.Volunteering;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -46,7 +47,7 @@ import java.util.List;
 
 public class ConversationChatFragment extends Fragment {
 
-    Volunteering volunteering;
+    Chat chat;
 
     EditText msgEt;
 
@@ -60,24 +61,34 @@ public class ConversationChatFragment extends Fragment {
     RecyclerView recyclerView;
     ChatMassageAdapter adapter;
 
+    String receiverID;
+
     //Firebase
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference volunteersDB = database.getReference("volunteerList");
+    DatabaseReference chatsDB = database.getReference("chats");
     DatabaseReference usersDB = database.getReference("users");
     private StorageReference storageRef;
 
-    public ConversationChatFragment(Volunteering volunteering) {
-        this.volunteering = volunteering;
+    public ConversationChatFragment(Chat chat) {
+        this.chat = chat;
     }
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_conversation_chat, container, false);
+
+        if (firebaseUser.getUid().equals(chat.getSideBUid()))
+            receiverID = chat.getSideAUid();
+        else {
+            receiverID = chat.getSideBUid();
+        }
 
         recyclerView = view.findViewById(R.id.chat_recycler);
         adapter = new ChatMassageAdapter(chatMessageList);
@@ -86,12 +97,11 @@ public class ConversationChatFragment extends Fragment {
 
         // Set profile name and image
         receiverNameTv = view.findViewById(R.id.username_conversation_chat);
-        receiverNameTv.setText(volunteering.getName());
+        receiverNameTv.setText(chat.getReceiverName());
         receiverImage = view.findViewById(R.id.image_conversation_chat);
         storageRef = FirebaseStorage.getInstance().getReference();
-
         // load user image
-        StorageReference imageStorageRef = storageRef.child(volunteering.getOldUID()+"/profile_image");
+        StorageReference imageStorageRef = storageRef.child(receiverID+"/profile_image");
         imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -103,26 +113,23 @@ public class ConversationChatFragment extends Fragment {
         });
 
 
-        // load the chat
+        // LOAD FROM CHAT DB
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user!=null){
-                    // Read DB:
-                    usersDB.child(user.getUid()).child("chats").child(volunteering.getOldUID()).addListenerForSingleValueEvent(new ValueEventListener() {
+                if (user != null) {
+                    chatsDB.child(String.valueOf(chat.getChatID())).child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                            chatMessageList.clear();
-
-                            if (snapshot.exists()){
-                                for (DataSnapshot ds : snapshot.getChildren()){
+                            if (snapshot.exists()) {
+                                chatMessageList.clear();
+                                for (DataSnapshot ds : snapshot.getChildren()) {
                                     ChatMessage chatMessage = ds.getValue(ChatMessage.class);
                                     chatMessageList.add(chatMessage);
                                 }
+                                adapter.notifyDataSetChanged();
                             }
-                            adapter.notifyDataSetChanged();
                         }
                         @Override
                         public void onCancelled(@NonNull DatabaseError error) {
@@ -131,6 +138,36 @@ public class ConversationChatFragment extends Fragment {
                 }
             }
         };
+
+//        // NEED TO load from chats DB and not like this
+//        // load the chat
+//        authStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                final FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user!=null){
+//                    // Read DB:
+//                    usersDB.child(user.getUid()).child("chats").child(volunteering.getOldUID()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                        @Override
+//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+//
+//                            chatMessageList.clear();
+//
+//                            if (snapshot.exists()){
+//                                for (DataSnapshot ds : snapshot.getChildren()){
+//                                    ChatMessage chatMessage = ds.getValue(ChatMessage.class);
+//                                    chatMessageList.add(chatMessage);
+//                                }
+//                            }
+//                            adapter.notifyDataSetChanged();
+//                        }
+//                        @Override
+//                        public void onCancelled(@NonNull DatabaseError error) {
+//                        }
+//                    });
+//                }
+//            }
+//        };
 
         msgEt = view.findViewById(R.id.text_message);
 
@@ -147,7 +184,7 @@ public class ConversationChatFragment extends Fragment {
                     // Create the message
                     ChatMessage chatMessage = new ChatMessage(msgEt.getText().toString(),
                             firebaseUser.getUid(),
-                            volunteering.getOldUID(),
+                            receiverID,
                              currentTime.getTime());
 
                     // add it
@@ -155,9 +192,9 @@ public class ConversationChatFragment extends Fragment {
                     adapter.notifyItemInserted(chatMessageList.size());
 
                     // save it
-                    usersDB.child(firebaseUser.getUid()).child("chats").child(volunteering.getOldUID()).setValue(chatMessageList);
-
-                    // NEED TO MAKE A VOLUNTEERING ID? THAT WOULD HELP A LOT.
+                    // SAVE IN THE CHAT DB
+//                    usersDB.child(firebaseUser.getUid()).child("chats").child(volunteering.getOldUID()).setValue(chatMessageList);
+                    chatsDB.child(String.valueOf(chat.getChatID())).child("messages").setValue(chatMessageList);
 
                 }
                 // at the end

@@ -97,23 +97,30 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         if (firebaseUser != null){
 
             // Check if old user
-            usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+            usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    isOldUser = snapshot.child("is_old_user").getValue(boolean.class);
+                    isOldUser = snapshot.getValue(boolean.class);
+                    Intent intent;
+                    if(isOldUser){
+                        intent  = new Intent(MainActivity.this, OldUserActivity.class);
+                    } else
+                        intent  = new Intent(MainActivity.this, MainAppActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
 
-            Intent intent;
-            if(isOldUser){
-                intent  = new Intent(this, MainAppActivity.class);
-            } else
-                intent  = new Intent(this, OldUserActivity.class);
-            startActivity(intent);
-            finish();
+//            Intent intent;
+//            if(isOldUser){
+//                intent  = new Intent(this, OldUserActivity.class);
+//            } else
+//                intent  = new Intent(this, MainAppActivity.class);
+//            startActivity(intent);
+//            finish();
         }
 
 

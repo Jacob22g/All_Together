@@ -263,6 +263,7 @@ public class AddFragment extends Fragment implements LocationListener {
                 Log.w(TAG, "Failed to read ID value.", error.toException());
             }
         });
+        //-------------
 
         // get user name
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -335,7 +336,7 @@ public class AddFragment extends Fragment implements LocationListener {
                 volunteering.setDate(dateTv.getText().toString());
                 volunteering.setHour(timeTv.getText().toString());
                 volunteering.setType(spinnerText);
-                volunteering.setName(userName);
+                volunteering.setNameOld(userName);
                 volunteering.setDescription(descriptionEt.getText().toString());
                 volunteering.setOldUID(firebaseUser.getUid());
 

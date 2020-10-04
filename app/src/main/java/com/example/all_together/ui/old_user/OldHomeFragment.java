@@ -97,7 +97,7 @@ public class OldHomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        final View rootView = inflater.inflate(R.layout.fragment_home,container,false);
+        final View rootView = inflater.inflate(R.layout.fragment_old_home,container,false);
 
         userNameTv = rootView.findViewById(R.id.userFullNameTv);
         userAddressTv = rootView.findViewById(R.id.userAddressTv);
@@ -138,6 +138,17 @@ public class OldHomeFragment extends Fragment {
 
             }
         });
+
+//        // TEST
+//        authStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//                final FirebaseUser user = firebaseAuth.getCurrentUser();
+//                if (user!=null){
+////                    CreateTheLists();
+//                }
+//            }
+//        };
 
         // Load a list with all user volunteering
         volunteersDB.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -281,4 +292,15 @@ public class OldHomeFragment extends Fragment {
         });
 
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        firebaseAuth.addAuthStateListener(authStateListener);
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        firebaseAuth.removeAuthStateListener(authStateListener);
+//    }
 }

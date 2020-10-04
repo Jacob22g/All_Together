@@ -280,4 +280,15 @@ public class HomeFragment extends Fragment {
         });
 
     }
+
+//    @Override
+//    public void onStart() {
+//        super.onStart();
+//        firebaseAuth.addAuthStateListener(authStateListener);
+//    }
+//    @Override
+//    public void onStop() {
+//        super.onStop();
+//        firebaseAuth.removeAuthStateListener(authStateListener);
+//    }
 }
