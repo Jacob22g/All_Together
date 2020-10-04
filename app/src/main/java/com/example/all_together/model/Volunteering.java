@@ -12,16 +12,19 @@ public class Volunteering {
 
     private long id;
 
-    private String name;
+    private String nameOld;
+
     private String locationCity;
     private String locationStreet;
     private String date;
     private String hour;
     private String type;
     private String description;
-
     private String oldUID;
+
+    // is null at first
     private String volunteerUID;
+    private String nameVolunteer;
 
     public Volunteering() {
     }
@@ -30,8 +33,8 @@ public class Volunteering {
         this.id = id;
     }
 
-    public Volunteering(long id, String name, String locationCity, String locationStreet, String date, String hour, String type, String description, String oldUID) {
-        this.name = name;
+    public Volunteering(long id, String nameOld, String locationCity, String locationStreet, String date, String hour, String type, String description, String oldUID) {
+        this.nameOld = nameOld;
         this.locationCity = locationCity;
         this.locationStreet = locationStreet;
         this.date = date;
@@ -51,12 +54,12 @@ public class Volunteering {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNameOld() {
+        return nameOld;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNameOld(String nameOld) {
+        this.nameOld = nameOld;
     }
 
     public String getLocationCity() {
@@ -123,6 +126,13 @@ public class Volunteering {
         this.volunteerUID = volunteerUID;
     }
 
+    public String getNameVolunteer() {
+        return nameVolunteer;
+    }
+
+    public void setNameVolunteer(String nameVolunteer) {
+        this.nameVolunteer = nameVolunteer;
+    }
 }
 
 

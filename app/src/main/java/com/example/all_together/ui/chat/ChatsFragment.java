@@ -16,8 +16,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.all_together.R;
-import com.example.all_together.VolunteeringFragment;
-import com.example.all_together.adapter.ChatVolunteeringAdapter;
+import com.example.all_together.adapter.ChatAdapter;
+import com.example.all_together.model.Chat;
 import com.example.all_together.model.Volunteering;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -32,9 +32,9 @@ import java.util.List;
 
 public class ChatsFragment extends Fragment {
 
-    List<Volunteering> volunteerList  = new ArrayList<>();
+    List<Chat> chatList = new ArrayList<>();
     RecyclerView recyclerView;
-    ChatVolunteeringAdapter adapter;
+    ChatAdapter adapter;
 
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
     FirebaseAuth.AuthStateListener authStateListener;
@@ -42,6 +42,7 @@ public class ChatsFragment extends Fragment {
     FirebaseDatabase database = FirebaseDatabase.getInstance();
     DatabaseReference volunteersDB = database.getReference("volunteerList");
     DatabaseReference usersDB = database.getReference("users");
+    DatabaseReference chatsDB = database.getReference("chats");
 
     @Nullable
     @Override
@@ -52,7 +53,7 @@ public class ChatsFragment extends Fragment {
         //  when click conversation chat opens.
 
         recyclerView =  view.findViewById(R.id.chats_list_recycler);
-        adapter = new ChatVolunteeringAdapter(volunteerList);
+        adapter = new ChatAdapter(chatList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
@@ -68,12 +69,13 @@ public class ChatsFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        adapter.setListener(new ChatVolunteeringAdapter.ChatVolunteeringListener() {
+        adapter.setListener(new ChatAdapter.ChatListener() {
             @Override
-            public void onChatVolunteerClicked(int position, View view) {
-                Volunteering volunteering = volunteerList.get(position);
+            public void onChatClicked(int position, View view) {
 
-                Fragment fragment = new ConversationChatFragment(volunteering);
+                Chat chat = chatList.get(position);
+
+                Fragment fragment = new ConversationChatFragment(chat);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 //                fragmentTransaction.replace(R.id.container, fragment);
@@ -89,25 +91,22 @@ public class ChatsFragment extends Fragment {
     private void ReadFirebaseDB(){
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading Volunteering list, Please wait..");
+        progressDialog.setMessage("Loading Chats, Please wait..");
         progressDialog.show();
 
-        volunteersDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
-                volunteerList.clear();
-
-//                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                chatList.clear();
 
                 if (snapshot.exists()){
                     for (DataSnapshot ds : snapshot.getChildren()){
-                        Volunteering volunteering = ds.getValue(Volunteering.class);
-                        if (volunteering.getVolunteerUID()!= null)
-                            if (volunteering.getVolunteerUID().equals(firebaseUser.getUid())) {
-                                // add only my ones
-                                volunteerList.add(volunteering);
-                            }
+                        Chat chat = ds.getValue(Chat.class);
+                        if ((chat.getSideAUid().equals(firebaseUser.getUid())) ||
+                                (chat.getSideBUid().equals(firebaseUser.getUid())))
+                            // add my chats only
+                            chatList.add(chat);
                     }
                     adapter.notifyDataSetChanged();
                 }

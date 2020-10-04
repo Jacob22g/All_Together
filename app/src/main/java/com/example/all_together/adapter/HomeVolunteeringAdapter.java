@@ -42,7 +42,7 @@ public class HomeVolunteeringAdapter extends RecyclerView.Adapter<HomeVolunteeri
     public void onBindViewHolder(@NonNull VolunteeringViewHolder holder, int position) {
 
             Volunteering volunteering = volunteeringList.get(position);
-            holder.nameTv.setText(volunteering.getName());
+            holder.nameTv.setText(volunteering.getNameOld());
             holder.locationTv.setText(volunteering.getLocationCity());
             holder.dateTv.setText(volunteering.getDate());
             holder.hourTv.setText(volunteering.getHour());

@@ -19,6 +19,7 @@ import com.example.all_together.ui.BottomNavigationViewHelper;
 import com.example.all_together.ui.add.AddFragment;
 import com.example.all_together.ui.chat.ChatsFragment;
 import com.example.all_together.ui.home.HomeFragment;
+import com.example.all_together.ui.old_user.*;
 import com.example.all_together.ui.profile.ProfileFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
@@ -122,13 +123,15 @@ public class OldUserActivity extends AppCompatActivity {
                     Fragment selectedFragment = null;
                     switch (item.getItemId()) {
                         case R.id.navigation_home_old:
-                            selectedFragment = new HomeFragment();
+//                            selectedFragment = new HomeFragment();
+                            selectedFragment = new OldHomeFragment();
                             break;
                         case R.id.navigation_add_old:
                             selectedFragment = new AddFragment();
                             break;
                         case R.id.navigation_profile_old:
-                            selectedFragment = new ProfileFragment();
+//                            selectedFragment = new ProfileFragment();
+                            selectedFragment = new OldProfileFragment();
                             break;
                         case R.id.navigation_chat_old:
                             selectedFragment = new ChatsFragment();

@@ -117,7 +117,6 @@ public class AddFragment extends Fragment implements LocationListener {
                 ((TextView)parent.getChildAt(0)).setTextSize(20);
 
                 spinnerText = parent.getItemAtPosition(position).toString();
-                Toast.makeText(getContext(), spinnerText+"", Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -144,7 +143,7 @@ public class AddFragment extends Fragment implements LocationListener {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-                        dateTv.setText(dayOfMonth + " / " + (month+1) + " / " + year);
+                        dateTv.setText(dayOfMonth + "/" + (month+1) + "/" + year);
                     }
                 },year,month,day);
                 dpd.show();
@@ -164,7 +163,7 @@ public class AddFragment extends Fragment implements LocationListener {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        timeTv.setText(hourOfDay + " : " + minute);
+                        timeTv.setText(hourOfDay + ":" + minute);
                     }
                 }, hour, minutes, true);
                 tpd.show();
@@ -264,6 +263,7 @@ public class AddFragment extends Fragment implements LocationListener {
                 Log.w(TAG, "Failed to read ID value.", error.toException());
             }
         });
+        //-------------
 
         // get user name
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -336,7 +336,7 @@ public class AddFragment extends Fragment implements LocationListener {
                 volunteering.setDate(dateTv.getText().toString());
                 volunteering.setHour(timeTv.getText().toString());
                 volunteering.setType(spinnerText);
-                volunteering.setName(userName);
+                volunteering.setNameOld(userName);
                 volunteering.setDescription(descriptionEt.getText().toString());
                 volunteering.setOldUID(firebaseUser.getUid());
 
