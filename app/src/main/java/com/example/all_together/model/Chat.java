@@ -17,12 +17,19 @@ public class Chat {
 //        chatMessages = new ArrayList<>();
     }
 
-    public Chat(String chatID, String sideAUid, String sideBUid, String receiverName) {
+//    public Chat(String chatID, String sideAUid, String sideBUid, String receiverName) {
+//        this.sideAUid = sideAUid;
+//        this.sideBUid = sideBUid;
+//        this.chatID = chatID;
+//        this.receiverName = receiverName;
+//
+////        chatMessages = new ArrayList<>();
+//    }
+
+    public Chat(String chatID, String sideAUid, String sideBUid) {
         this.sideAUid = sideAUid;
         this.sideBUid = sideBUid;
         this.chatID = chatID;
-        this.receiverName = receiverName;
-
 //        chatMessages = new ArrayList<>();
     }
 

@@ -44,6 +44,7 @@ import com.example.all_together.VolunteeringFragment;
 import com.example.all_together.model.Volunteering;
 import com.example.all_together.ui.dashboard.DashboardFragment;
 import com.example.all_together.ui.home.HomeFragment;
+import com.example.all_together.ui.old_user.OldHomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -351,7 +352,7 @@ public class AddFragment extends Fragment implements LocationListener {
 
                 // 4. if ok go to the volunteering page
                 // going to home on back pressed inside the volunteerFragment
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new HomeFragment()).commit();
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
 
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

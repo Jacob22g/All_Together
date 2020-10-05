@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +30,7 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +45,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class ConversationChatFragment extends Fragment {
@@ -62,6 +65,7 @@ public class ConversationChatFragment extends Fragment {
     ChatMassageAdapter adapter;
 
     String receiverID;
+    String receiverName;
 
     //Firebase
     FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -90,14 +94,32 @@ public class ConversationChatFragment extends Fragment {
             receiverID = chat.getSideBUid();
         }
 
+
         recyclerView = view.findViewById(R.id.chat_recycler);
         adapter = new ChatMassageAdapter(chatMessageList);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        // Make sure the chat scrolls up
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        linearLayoutManager.setStackFromEnd(true);
+        recyclerView.setLayoutManager(linearLayoutManager);
+
         recyclerView.setHasFixedSize(true);
 
         // Set profile name and image
         receiverNameTv = view.findViewById(R.id.username_conversation_chat);
-        receiverNameTv.setText(chat.getReceiverName());
+        usersDB.child(receiverID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    receiverName = snapshot.child("user_name").getValue(String.class);
+                    receiverNameTv.setText(receiverName);
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+//        receiverNameTv.setText(chat.getReceiverName());
+
         receiverImage = view.findViewById(R.id.image_conversation_chat);
         storageRef = FirebaseStorage.getInstance().getReference();
         // load user image
@@ -106,9 +128,11 @@ public class ConversationChatFragment extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 String uriStr = uri.toString();
-                Glide.with(getContext())
-                        .load(uriStr)
-                        .into(receiverImage);
+                if (getContext()!=null) {
+                    Glide.with(getContext())
+                            .load(uriStr)
+                            .into(receiverImage);
+                }
             }
         });
 
@@ -118,56 +142,78 @@ public class ConversationChatFragment extends Fragment {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
-                if (user != null) {
-                    chatsDB.child(String.valueOf(chat.getChatID())).child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
-                        @Override
-                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-                            if (snapshot.exists()) {
-                                chatMessageList.clear();
-                                for (DataSnapshot ds : snapshot.getChildren()) {
-                                    ChatMessage chatMessage = ds.getValue(ChatMessage.class);
-                                    chatMessageList.add(chatMessage);
-                                }
-                                adapter.notifyDataSetChanged();
-                            }
-                        }
-                        @Override
-                        public void onCancelled(@NonNull DatabaseError error) {
-                        }
-                    });
-                }
-            }
-        };
-
-//        // NEED TO load from chats DB and not like this
-//        // load the chat
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//                final FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user!=null){
-//                    // Read DB:
-//                    usersDB.child(user.getUid()).child("chats").child(volunteering.getOldUID()).addListenerForSingleValueEvent(new ValueEventListener() {
+//                if (user != null) {
+//                    // Load the chat
+//                    chatsDB.child(String.valueOf(chat.getChatID())).child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
 //                        @Override
 //                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//
-//                            chatMessageList.clear();
-//
-//                            if (snapshot.exists()){
-//                                for (DataSnapshot ds : snapshot.getChildren()){
+//                            if (snapshot.exists()) {
+//                                chatMessageList.clear();
+//                                for (DataSnapshot ds : snapshot.getChildren()) {
 //                                    ChatMessage chatMessage = ds.getValue(ChatMessage.class);
 //                                    chatMessageList.add(chatMessage);
 //                                }
+//                                adapter.notifyDataSetChanged();
 //                            }
-//                            adapter.notifyDataSetChanged();
 //                        }
 //                        @Override
 //                        public void onCancelled(@NonNull DatabaseError error) {
 //                        }
 //                    });
 //                }
+            }
+        };
+
+        chatsDB.child(String.valueOf(chat.getChatID())).child("messages").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    chatMessageList.clear();
+                    for (DataSnapshot ds : snapshot.getChildren()) {
+                        ChatMessage chatMessage = ds.getValue(ChatMessage.class);
+                        chatMessageList.add(chatMessage);
+                    }
+                    adapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
+
+//        // Chat update listener
+//        chatsDB.child(String.valueOf(chat.getChatID())).addChildEventListener(new ChildEventListener() {
+//            @Override
+//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                // Update the conversation
+//                chatMessageList.clear();
+//                Iterator i = snapshot.getChildren().iterator();
+//                while (i.hasNext()){
+//                    ChatMessage chatMessage = ((DataSnapshot)i.next()).getValue(ChatMessage.class);
+//                    // add it
+//                    chatMessageList.add(chatMessage);
+//                }
+//                adapter.notifyItemInserted(chatMessageList.size());
 //            }
-//        };
+//            @Override
+//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
+//                // Update the conversation
+//                chatMessageList.clear();
+//                Iterator i = snapshot.getChildren().iterator();
+//                while (i.hasNext()){
+//                    ChatMessage chatMessage = ((DataSnapshot)i.next()).getValue(ChatMessage.class);
+//                    // add it
+//                    chatMessageList.add(chatMessage);
+//                }
+//                adapter.notifyItemInserted(chatMessageList.size());
+//            }
+//            @Override
+//            public void onChildRemoved(@NonNull DataSnapshot snapshot) { }
+//            @Override
+//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) { }
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError error) { }
+//        });
 
         msgEt = view.findViewById(R.id.text_message);
 

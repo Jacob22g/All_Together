@@ -99,7 +99,7 @@ public class ChatsFragment extends Fragment {
         progressDialog.setMessage("Loading Chats, Please wait..");
         progressDialog.show();
 
-        chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+        chatsDB.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

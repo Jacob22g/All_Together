@@ -86,6 +86,7 @@ public class VolunteeringFragment extends Fragment {
             descriptionTv.setVisibility(View.GONE);
 
         chat = new Chat();
+        newChatId = UUID.randomUUID().toString();
 
         // Check if it is a old user
         //  Only after getting this result we cav know how to design the fragment
@@ -146,7 +147,6 @@ public class VolunteeringFragment extends Fragment {
 //        });
 
         // Generate a random id:
-        newChatId = UUID.randomUUID().toString();
 
         // Add user to the volunteering
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
@@ -244,55 +244,6 @@ public class VolunteeringFragment extends Fragment {
         return view;
     }
 
-    private boolean ChatExists(){
-
-        final boolean[] isExists = {false};
-
-        chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-//                    for (DataSnapshot ds: snapshot.getChildren()){
-//                        Chat checkChat = ds.getValue(Chat.class);
-//                        if ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
-//                                (checkChat.getSideBUid().equals(volunteering.getVolunteerUID()))) {
-//                            isExists[0] = true;
-//                            chat = checkChat;
-//                        }
-//                        if ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
-//                                (checkChat.getSideBUid().equals(volunteering.getOldUID()))) {
-//                            isExists[0] = true;
-//                            chat = checkChat;
-//                        }
-//                    }
-
-                    for (DataSnapshot ds: snapshot.getChildren()){
-
-                        // Need to create a chat manually one by one with the 4 parameters
-
-                        Chat checkChat = ds.getValue(Chat.class);
-                        if ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
-                                (checkChat.getSideBUid().equals(volunteering.getVolunteerUID()))) {
-                            isExists[0] = true;
-                            chat = checkChat;
-                        }
-                        if ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
-                                (checkChat.getSideBUid().equals(volunteering.getOldUID()))) {
-                            isExists[0] = true;
-                            chat = checkChat;
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-            }
-        });
-
-        return isExists[0];
-    }
-
     private void listenerForAddBtn(){
 
         if (!isOldUser) {
@@ -337,39 +288,174 @@ public class VolunteeringFragment extends Fragment {
                     // Open the Chat and add the chat to chats list
                     // Check if chat between these  two users exists
                     // if exists the ChatExists() will put existing chat into chat;
-                    if (!ChatExists()) {
-                        // if not exists Create the chat and add it
-                        chat.setChatID(newChatId);
-                        chat.setSideAUid(firebaseUser.getUid());
-                        if (isOldUser) {
-                            chat.setSideBUid(volunteering.getVolunteerUID());
-//                            chat.setReceiverName(volunteering.getNameVolunteer());
-                            chat.setReceiverName(volunteering.getNameVolunteer());
-                        } else {
-                            chat.setSideBUid(volunteering.getOldUID());
-                            chat.setReceiverName(volunteering.getNameOld());
-//                            chat.setReceiverName(volunteering.getNameOld());
-                        }
-                        // add the chat to chat list
-//                        chatsDB.setValue(newChatId+1);
-//                        chatsDB.child(String.valueOf(newChatId)).setValue(chat);
-                        chatsDB.child(newChatId).setValue(chat);
-                    }
+//                    if (!ChatExistsOrCreate()) {
+//                        // if not exists Create the chat and add it
+//                        chat.setChatID(newChatId);
+//                        chat.setSideAUid(firebaseUser.getUid());
+//                        if (isOldUser) {
+//                            chat.setSideBUid(volunteering.getVolunteerUID());
+////                            chat.setReceiverName(volunteering.getNameVolunteer());
+////                            chat.setReceiverName(volunteering.getNameVolunteer());
+//                        } else {
+//                            chat.setSideBUid(volunteering.getOldUID());
+////                            chat.setReceiverName(volunteering.getNameOld());
+////                            chat.setReceiverName(volunteering.getNameOld());
+//                        }
+//                        // add the chat to chat list
+////                        chatsDB.setValue(newChatId+1);
+////                        chatsDB.child(String.valueOf(newChatId)).setValue(chat);
+//                        chatsDB.child(newChatId).setValue(chat);
+//                    }
 
-                    // open the chat
-                    Fragment fragment = new ConversationChatFragment(chat);
-                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    if (isOldUser) {
-                        fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
-                    } else {
-                        fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
-                    }
-                    fragmentTransaction.addToBackStack(null);
-                    fragmentTransaction.commit();
+                    // Check if chat exists or create a new chat
+//                    ChatExistsOrCreate();
+
+                    chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()){
+
+                                for (DataSnapshot ds: snapshot.getChildren()){
+
+                                    Chat checkChat = ds.getValue(Chat.class);
+
+                                    // for testing -----------
+                                    String chatId = checkChat.getChatID();
+                                    String sideAId = checkChat.getSideAUid();
+                                    String sideBId = checkChat.getSideBUid();
+                                    String oldId = volunteering.getOldUID();
+                                    String volunteerId = volunteering.getVolunteerUID(); // may be null
+                                    String firebaseUserId = firebaseUser.getUid();
+                                    //-------------------------
+
+                                    // Chat when the volunteer user is sign to the volunteering
+                                    if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                            (checkChat.getSideBUid().equals(volunteering.getVolunteerUID())))
+                                            ||
+                                            ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
+                                                    (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
+                                        chat = checkChat;
+                                    }
+                                    // Chat when the volunteer user is not sign to the volunteering
+                                    else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
+                                            (checkChat.getSideBUid().equals(volunteering.getOldUID())))
+                                            ||
+                                            ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                                    (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
+                                        chat = checkChat;
+
+                                    } else {
+                                        // Create the chat
+                                        chat.setChatID(newChatId);
+                                        chat.setSideAUid(firebaseUser.getUid());
+                                        if (isOldUser) {
+                                            chat.setSideBUid(volunteering.getVolunteerUID());
+                                        } else {
+                                            chat.setSideBUid(volunteering.getOldUID());
+                                        }
+                                        chatsDB.child(newChatId).setValue(chat);
+                                    }
+                                }
+
+                            } else {
+
+                                chat.setChatID(newChatId);
+                                chat.setSideAUid(firebaseUser.getUid());
+                                if (isOldUser) {
+                                    chat.setSideBUid(volunteering.getVolunteerUID());
+                                } else {
+                                    chat.setSideBUid(volunteering.getOldUID());
+                                }
+                                chatsDB.child(newChatId).setValue(chat);
+                            }
+
+                            // open the chat
+                            Fragment fragment = new ConversationChatFragment(chat);
+                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                            if (isOldUser) {
+                                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                            } else {
+                                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+                            }
+                            fragmentTransaction.addToBackStack(null);
+                            fragmentTransaction.commit();
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) { }
+                    });
+
+
+//                    // open the chat
+//                    Fragment fragment = new ConversationChatFragment(chat);
+//                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                    if (isOldUser) {
+//                        fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+//                    } else {
+//                        fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+//                    }
+//                    fragmentTransaction.addToBackStack(null);
+//                    fragmentTransaction.commit();
                 }
             });
         }
+    }
+
+    private void ChatExistsOrCreate(){
+
+        chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()){
+
+                    for (DataSnapshot ds: snapshot.getChildren()){
+
+                        Chat checkChat = ds.getValue(Chat.class);
+                        // for testing -----------
+                        String chatId = checkChat.getChatID();
+                        String sideAId = checkChat.getSideAUid();
+                        String sideBId = checkChat.getSideBUid();
+                        String oldId = volunteering.getOldUID();
+                        String volunteerId = volunteering.getVolunteerUID(); // may be null
+                        String firebaseUserId = firebaseUser.getUid();
+                        //-------------------------
+
+                        // Chat when the volunteer user is sign to the volunteering
+                        if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                (checkChat.getSideBUid().equals(volunteering.getVolunteerUID())))
+                                ||
+                                ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
+                                        (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
+                            chat = checkChat;
+                        }
+                        // Chat when the volunteer user is not sign to the volunteering
+                        else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
+                                (checkChat.getSideBUid().equals(volunteering.getOldUID())))
+                                ||
+                                ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                        (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
+                            chat = checkChat;
+                        } else {
+
+                            // Create the chat
+                            chat.setChatID(newChatId);
+                            chat.setSideAUid(firebaseUser.getUid());
+                            if (isOldUser) {
+                                chat.setSideBUid(volunteering.getVolunteerUID());
+                            } else {
+                                chat.setSideBUid(volunteering.getOldUID());
+                            }
+                            chatsDB.child(newChatId).setValue(chat);
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
     }
 
 }

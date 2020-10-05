@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     app:cardUseCompatPadding="true"
     android:elevation="8dp"
-    app:contentPadding="10dp"
-    app:cardCornerRadius="5dp">
+    app:contentPadding="5dp"
+    app:cardCornerRadius="3dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:id="@+id/chat_volunteer_image"/>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginStart="20dp"
             android:orientation="vertical">
@@ -27,7 +27,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_gravity="left"
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:id="@+id/chat_volunteer_name"
@@ -36,15 +36,11 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:id="@+id/chat_volunteer_date"
-                android:text="date"/>
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="20sp"
-                android:id="@+id/chat_volunteer_time"
-                android:text="time"/>
+                android:layout_marginTop="7dp"
+                android:textSize="15sp"
+                android:id="@+id/chat_volunteer_last_msg"
+                android:maxLines="1"
+                android:text="lase message"/>
 
         </LinearLayout>
 
