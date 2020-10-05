@@ -12,7 +12,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -53,11 +52,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener {
+public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener, PhoneLogin.OnRegisterFragmentListener {
 
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
+    final String FRAGMENT_PHONE_TAG = "fragment_phone_login";
     final String FRAGMENT_AFTER_OLD_REGISTER_TAG = "fragment_after_old_register";
     final String FRAGMENT_VERIFY_TAG = "fragment_verify";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
@@ -97,36 +97,24 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         // Check if user logged in
         if (firebaseUser != null){
 
-            final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Loading, Please wait..");
-            progressDialog.show();
-
             // Check if old user
-            usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
+            usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    isOldUser = snapshot.getValue(boolean.class);
-                    Intent intent;
-                    if(isOldUser){
-                        intent  = new Intent(MainActivity.this, OldUserActivity.class);
-                    } else
-                        intent  = new Intent(MainActivity.this, MainAppActivity.class);
-                    startActivity(intent);
-                    finish();
-                    progressDialog.dismiss();
+                    isOldUser = snapshot.child("is_old_user").getValue(boolean.class);
                 }
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) {
                 }
             });
 
-//            Intent intent;
-//            if(isOldUser){
-//                intent  = new Intent(this, OldUserActivity.class);
-//            } else
-//                intent  = new Intent(this, MainAppActivity.class);
-//            startActivity(intent);
-//            finish();
+            Intent intent;
+            if(isOldUser){
+                intent  = new Intent(this, MainAppActivity.class);
+            } else
+                intent  = new Intent(this, OldUserActivity.class);
+            startActivity(intent);
+            finish();
         }
 
 
@@ -179,6 +167,19 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 transaction.addToBackStack(null);
                 transaction.commit();
 
+            }
+        });
+
+        final Button phoneLogin = findViewById(R.id.phoneSignIn);
+        phoneLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager phoneLogin = getSupportFragmentManager();
+                FragmentTransaction transaction = phoneLogin.beginTransaction();
+                transaction.add(R.id.drawerLayout,new PhoneLogin(), FRAGMENT_PHONE_TAG);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
 
@@ -272,6 +273,14 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             }
         });
 
+        TextView forgetPassword = (TextView)findViewById(R.id.forgetPasswordBtn);
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RestPasswordActivity.class));
+            }
+        });
+
     }
 
 
@@ -302,9 +311,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     }
 
     @Override
-    public void onPhoneRegister(String phoneNumber, String password) {
+    public void onPhoneRegister(String phoneNumber) {
 
-        if(password.equals("") && phoneNumber.equals(""))
+        if( phoneNumber.equals(""))
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {

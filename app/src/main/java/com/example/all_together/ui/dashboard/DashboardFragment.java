@@ -6,6 +6,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -56,6 +59,8 @@ public class DashboardFragment extends Fragment {
 //    DatabaseReference usersDB = database.getReference("users");
 
     CoordinatorLayout coordinatorLayout;
+    RelativeLayout filterRelativeLayout;
+    Boolean flag = true;
 
     @Nullable
     @Override
@@ -69,6 +74,24 @@ public class DashboardFragment extends Fragment {
         adapter = new DashboardVolunteeringAdapter(volunteerList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
+
+        final ImageView showFilterNavBtn = view.findViewById(R.id.showFiler);
+        filterRelativeLayout = view.findViewById(R.id.filterRelativeLayout);
+        showFilterNavBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (flag) {
+                    filterRelativeLayout.setVisibility(View.VISIBLE);
+                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_up));
+                    flag = false;
+                }
+                else {
+                    filterRelativeLayout.setVisibility(View.GONE);
+                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_down));
+                    flag = true;
+                }
+            }
+        });
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

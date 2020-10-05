@@ -15,20 +15,34 @@
         android:id="@+id/coordinator_dashboard"
         tools:context=".MainActivity">
 
-        <androidx.recyclerview.widget.RecyclerView
+          <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/volunteer_recycler"
-            app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+              android:layout_height="match_parent"
+              android:orientation="vertical">
 
-<!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_gravity="bottom|end"-->
-<!--            android:layout_marginBottom="20dp"-->
-<!--            android:layout_marginEnd="20dp"-->
-<!--            android:src="@drawable/ic_add"-->
-<!--            android:id="@+id/dashboard_fab"/>-->
+              <include
+                  android:id="@+id/layoutFilter"
+                  layout="@layout/top_nav_filter_requests"/>
+
+              <androidx.recyclerview.widget.RecyclerView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:id="@+id/volunteer_recycler"
+                  app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
+
+              <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->
+              <!--            android:layout_width="wrap_content"-->
+              <!--            android:layout_height="wrap_content"-->
+              <!--            android:layout_gravity="bottom|end"-->
+              <!--            android:layout_marginBottom="20dp"-->
+              <!--            android:layout_marginEnd="20dp"-->
+              <!--            android:src="@drawable/ic_add"-->
+              <!--            android:id="@+id/dashboard_fab"/>-->
+
+
+
+          </LinearLayout>
+
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:id="@+id/cardFilter"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    app:cardCornerRadius="3dp"
+    app:cardElevation="2dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginHorizontal="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grayBlueColor">
+
+        <TextView
+            android:id="@+id/headline"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Filter by.."
+            android:gravity="center"
+            android:background="@drawable/color_back4" />
+
+        <ImageView
+            android:id="@+id/showFiler"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_drop_down"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="10dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="310dp"
+            android:id="@+id/filterRelativeLayout"
+            android:layout_below="@id/headline"
+            android:visibility="gone"
+            android:background="@drawable/color_back3">
+
+
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Filer"
+                android:background="@drawable/color_back4_circle"
+                android:layout_below="@id/layoutType"
+                android:gravity="center"
+                android:layout_marginHorizontal="90dp"
+                android:textSize="18sp"
+                android:textColor="@color/grayDarkColor"
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginBottom="5dp"/>
+
+            <LinearLayout
+                android:id="@+id/layoutLanguage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/languageHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="language:"
+                    android:gravity="center"
+                    android:layout_below="@id/headline"
+                    android:layout_marginStart="3dp"/>
+
+                <CheckBox
+                    android:id="@+id/HebrewCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Hebrew"
+                    android:gravity="center"
+                    android:layout_below="@id/languageHeadline"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/EnglishCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="English"
+                    android:gravity="center"
+                    android:layout_below="@id/HebrewCb"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/RussianCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Russian"
+                    android:gravity="center"
+                    android:layout_below="@id/EnglishCb"
+                    android:checked="true"
+                    android:layout_marginStart="3dp"/>
+
+                <CheckBox
+                    android:id="@+id/ArabicCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Arabic"
+                    android:gravity="center"
+                    android:layout_below="@id/RussianCb"
+                    android:checked="true"
+                    android:layout_marginStart="3dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutDate"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/layoutLanguage"
+                android:layout_below="@id/headline"
+                android:layout_marginStart="10dp">
+
+
+                <TextView
+                    android:id="@+id/dateHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Date: "
+                    android:gravity="center"
+                    android:layout_below="@id/headline"
+                    android:layout_gravity="center"/>
+
+                <CheckBox
+                    android:id="@+id/nearToFarDateCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Closest"
+                    android:gravity="center"
+                    android:layout_below="@id/languageHeadline"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/farToNearDateCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Farthest"
+                    android:gravity="center"
+                    android:layout_below="@id/HebrewCb"
+                    android:layout_marginStart="3dp" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layoutType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_toEndOf="@id/layoutDate"
+                android:layout_marginStart="10dp">
+
+
+                <TextView
+                    android:id="@+id/typeHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Type: "
+                    android:gravity="center"
+                    android:layout_below="@id/headline"
+                    android:layout_gravity="center"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Games"
+                    android:gravity="center"
+                    android:layout_below="@id/languageHeadline"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Shopping"
+                    android:gravity="center"
+                    android:layout_below="@id/HebrewCb"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Just to talk"
+                    android:gravity="center"
+                    android:layout_below="@id/languageHeadline"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Cleaning"
+                    android:gravity="center"
+                    android:layout_below="@id/HebrewCb"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/medicalHelpCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Medical help"
+                    android:gravity="center"
+                    android:layout_below="@id/HebrewCb"
+                    android:layout_marginStart="3dp"
+                    android:checked="true"/>
+
+            </LinearLayout>
+
+<!--            <View-->
+<!--                android:layout_width="1dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginStart="7dp"-->
+<!--                android:layout_toEndOf="@id/layoutLanguage"-->
+<!--                android:background="@color/grayDarkColor"-->
+<!--                android:layout_marginBottom="80dp"/>-->
+
+<!--            <View-->
+<!--                android:layout_width="1dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:background="@color/grayDarkColor"-->
+<!--                android:layout_toEndOf="@id/layoutDate"-->
+<!--                android:layout_marginBottom="70dp"/>-->
+
+
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
