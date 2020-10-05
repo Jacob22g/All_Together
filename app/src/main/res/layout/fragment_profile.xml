@@ -224,7 +224,6 @@
                                 android:layout_height="match_parent"
                                 android:textSize="16sp"
                                 android:layout_marginStart="5dp"
-                                android:text="nissimlidan@gmail.com"
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/poppins_medium"/>
