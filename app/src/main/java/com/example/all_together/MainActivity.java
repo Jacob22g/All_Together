@@ -35,6 +35,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.common.internal.SignInButtonImpl;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
@@ -74,8 +75,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private NavigationView navigationView;
     private CoordinatorLayout coordinatorLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    private SignInButton googleSignInButton;
+    //private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
+    private SignInButtonImpl googleSignInButton;
 
     private FirebaseAuth.AuthStateListener listener;
     private FirebaseAuth mAuth;
