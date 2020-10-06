@@ -100,6 +100,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Loading, Please wait..");
+            progressDialog.setCancelable(false);
             progressDialog.show();
 
             // Check if old user

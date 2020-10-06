@@ -116,30 +116,10 @@ public class DashboardFragment extends Fragment {
             }
         };
 
-        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(ItemTouchHelper.UP | ItemTouchHelper.DOWN ,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0 ,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
             @Override
             public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-
-                // No need to make list movement
-//                int toPosition = target.getAdapterPosition();
-//                int fromPosition = viewHolder.getAdapterPosition();
-//
-//                if (fromPosition < toPosition) {
-//                    for (int i = fromPosition; i < toPosition; i++) {
-//                        Collections.swap(volunteerList, i, i + 1);
-//                    }
-//                } else {
-//                    for (int i = fromPosition; i > toPosition; i--) {
-//                        Collections.swap(volunteerList, i, i - 1);
-//                    }
-//                }
-//
-//                adapter.notifyItemMoved(fromPosition, toPosition);
-//
-//                // save list
-//                // Need to update the DB after release
-////                myRef.setValue(volunteerList);
-                return true;
+                return false;
             }
 
             @Override

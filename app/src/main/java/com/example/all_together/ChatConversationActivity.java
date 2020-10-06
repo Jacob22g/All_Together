@@ -1,24 +1,19 @@
-package com.example.all_together.ui.chat;
+package com.example.all_together;
 
-import android.app.ProgressDialog;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import androidx.fragment.app.Fragment;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.all_together.Notifications.APIService;
@@ -27,39 +22,34 @@ import com.example.all_together.Notifications.Data;
 import com.example.all_together.Notifications.MyResponse;
 import com.example.all_together.Notifications.Sender;
 import com.example.all_together.Notifications.Token;
-import com.example.all_together.R;
 import com.example.all_together.adapter.ChatMassageAdapter;
 import com.example.all_together.model.Chat;
 import com.example.all_together.model.ChatMessage;
-import com.example.all_together.model.Volunteering;
-import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.gson.Gson;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ConversationChatFragment extends Fragment {
+import static java.security.AccessController.getContext;
+
+public class ChatConversationActivity extends AppCompatActivity {
 
     Chat chat;
 
@@ -92,15 +82,17 @@ public class ConversationChatFragment extends Fragment {
 
     boolean notify = false;
 
-    public ConversationChatFragment(Chat chat) {
-        this.chat = chat;
-    }
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_chat_conversation);
 
-        View view = inflater.inflate(R.layout.fragment_conversation_chat, container, false);
+        // Get the chat:
+        SharedPreferences sharedPreferences = getSharedPreferences("chat",MODE_PRIVATE);
+//        SharedPreferences sharedPreferences = getSharedPreferences(MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = sharedPreferences.getString("chat", "");
+        chat = gson.fromJson(json, Chat.class);
 
         // For notifications
         apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
@@ -111,18 +103,18 @@ public class ConversationChatFragment extends Fragment {
             receiverID = chat.getSideBUid();
         }
 
-        recyclerView = view.findViewById(R.id.chat_recycler);
+        recyclerView = findViewById(R.id.chat_recycler);
         adapter = new ChatMassageAdapter(chatMessageList);
 
         // Make sure the chat scrolls up
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(ChatConversationActivity.this);
         linearLayoutManager.setStackFromEnd(true);
         recyclerView.setLayoutManager(linearLayoutManager);
 
         recyclerView.setHasFixedSize(true);
 
         // Set profile name and image
-        receiverNameTv = view.findViewById(R.id.username_conversation_chat);
+        receiverNameTv = findViewById(R.id.username_conversation_chat);
         usersDB.child(receiverID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -147,7 +139,7 @@ public class ConversationChatFragment extends Fragment {
             public void onCancelled(@NonNull DatabaseError error) { }
         });
 
-        receiverImage = view.findViewById(R.id.image_conversation_chat);
+        receiverImage = findViewById(R.id.image_conversation_chat);
         storageRef = FirebaseStorage.getInstance().getReference();
         // load user image
         StorageReference imageStorageRef = storageRef.child(receiverID+"/profile_image");
@@ -155,39 +147,18 @@ public class ConversationChatFragment extends Fragment {
             @Override
             public void onSuccess(Uri uri) {
                 String uriStr = uri.toString();
-                if (getContext()!=null) {
-                    Glide.with(getContext())
+                if (ChatConversationActivity.this!=null) {
+                    Glide.with(ChatConversationActivity.this)
                             .load(uriStr)
                             .into(receiverImage);
                 }
             }
         });
 
-
-        // LOAD FROM CHAT DB
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
-//                if (user != null) {
-//                    // Load the chat
-//                    chatsDB.child(String.valueOf(chat.getChatID())).child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
-//                        @Override
-//                        public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                            if (snapshot.exists()) {
-//                                chatMessageList.clear();
-//                                for (DataSnapshot ds : snapshot.getChildren()) {
-//                                    ChatMessage chatMessage = ds.getValue(ChatMessage.class);
-//                                    chatMessageList.add(chatMessage);
-//                                }
-//                                adapter.notifyDataSetChanged();
-//                            }
-//                        }
-//                        @Override
-//                        public void onCancelled(@NonNull DatabaseError error) {
-//                        }
-//                    });
-//                }
             }
         };
 
@@ -208,44 +179,10 @@ public class ConversationChatFragment extends Fragment {
             }
         });
 
-//        // Chat update listener
-//        chatsDB.child(String.valueOf(chat.getChatID())).addChildEventListener(new ChildEventListener() {
-//            @Override
-//            public void onChildAdded(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                // Update the conversation
-//                chatMessageList.clear();
-//                Iterator i = snapshot.getChildren().iterator();
-//                while (i.hasNext()){
-//                    ChatMessage chatMessage = ((DataSnapshot)i.next()).getValue(ChatMessage.class);
-//                    // add it
-//                    chatMessageList.add(chatMessage);
-//                }
-//                adapter.notifyItemInserted(chatMessageList.size());
-//            }
-//            @Override
-//            public void onChildChanged(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) {
-//                // Update the conversation
-//                chatMessageList.clear();
-//                Iterator i = snapshot.getChildren().iterator();
-//                while (i.hasNext()){
-//                    ChatMessage chatMessage = ((DataSnapshot)i.next()).getValue(ChatMessage.class);
-//                    // add it
-//                    chatMessageList.add(chatMessage);
-//                }
-//                adapter.notifyItemInserted(chatMessageList.size());
-//            }
-//            @Override
-//            public void onChildRemoved(@NonNull DataSnapshot snapshot) { }
-//            @Override
-//            public void onChildMoved(@NonNull DataSnapshot snapshot, @Nullable String previousChildName) { }
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) { }
-//        });
-
-        msgEt = view.findViewById(R.id.text_message);
+        msgEt = findViewById(R.id.text_message);
 
         // Send and save it in firebase
-        sendMsgBtn = view.findViewById(R.id.send_message_btn);
+        sendMsgBtn = findViewById(R.id.send_message_btn);
         sendMsgBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -260,7 +197,7 @@ public class ConversationChatFragment extends Fragment {
                     ChatMessage chatMessage = new ChatMessage(msgEt.getText().toString(),
                             firebaseUser.getUid(),
                             receiverID,
-                             currentTime.getTime());
+                            currentTime.getTime());
 
                     // add it
                     chatMessageList.add(chatMessage);
@@ -287,17 +224,17 @@ public class ConversationChatFragment extends Fragment {
 
         recyclerView.setAdapter(adapter);
 
-        backBtn = view.findViewById(R.id.conversation_chat_back_btn);
+        backBtn = findViewById(R.id.conversation_chat_back_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                getActivity().onBackPressed();
+                ChatConversationActivity.this.onBackPressed();
             }
         });
 
-        return view;
-    }
 
+
+    }
 
     private void sendNotification(final String receiverID, final String userName, final String message) {
 
@@ -324,7 +261,7 @@ public class ConversationChatFragment extends Fragment {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
                                         if (response.body().success != 1){
-                                            Toast.makeText(getContext(), "Notification Failed", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(ChatConversationActivity.this, "Notification Failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }

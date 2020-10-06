@@ -8,7 +8,6 @@ public class Chat {
     private String sideAUid;
     private String sideBUid;
     private String chatID;
-    private String receiverName;
 
 //    private List<ChatMessage> chatMessages;
 
@@ -57,11 +56,4 @@ public class Chat {
         this.chatID = chatID;
     }
 
-    public String getReceiverName() {
-        return receiverName;
-    }
-
-    public void setReceiverName(String receiverName) {
-        this.receiverName = receiverName;
-    }
 }

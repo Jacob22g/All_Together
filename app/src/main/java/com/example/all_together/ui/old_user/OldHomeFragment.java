@@ -59,8 +59,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class OldHomeFragment extends Fragment {
 
-    final int IMAGE_REQUEST = 111;
-
     Button nextVolCardBtn,oldVolCardBtn;
     CardView nextVolCardView,oldVolCardView;
 
