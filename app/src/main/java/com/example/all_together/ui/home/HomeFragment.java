@@ -59,8 +59,6 @@ import static android.app.Activity.RESULT_OK;
 
 public class HomeFragment extends Fragment {
 
-    final int IMAGE_REQUEST = 111;
-
     Button nextVolCardBtn,oldVolCardBtn;
     CardView nextVolCardView,oldVolCardView;
 
@@ -146,8 +144,6 @@ public class HomeFragment extends Fragment {
 
                 userVolunteerList.clear();
 
-//                firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
-
                 if (snapshot.exists()){
                     for (DataSnapshot ds : snapshot.getChildren()){
                         Volunteering volunteering = ds.getValue(Volunteering.class);
@@ -157,6 +153,9 @@ public class HomeFragment extends Fragment {
                                 userVolunteerList.add(volunteering);
                             }
                     }
+
+                    // Create the lists after getting all users list
+                    CreateTheLists();
                 }
             }
 
@@ -238,7 +237,7 @@ public class HomeFragment extends Fragment {
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }
@@ -255,7 +254,7 @@ public class HomeFragment extends Fragment {
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
             }

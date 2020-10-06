@@ -1,5 +1,7 @@
 package com.example.all_together;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -25,10 +27,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class VolunteeringFragment extends Fragment {
 
@@ -369,17 +374,28 @@ public class VolunteeringFragment extends Fragment {
                                 chatsDB.child(newChatId).setValue(chat);
                             }
 
-                            // open the chat
-                            Fragment fragment = new ConversationChatFragment(chat);
-                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                            if (isOldUser) {
-                                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
-                            } else {
-                                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
-                            }
-                            fragmentTransaction.addToBackStack(null);
-                            fragmentTransaction.commit();
+                            // Send the chat to the chat activity
+                            SharedPreferences sharedPreferences = getActivity().getSharedPreferences("chat",MODE_PRIVATE);
+                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                            Gson gson = new Gson();
+                            String json = gson.toJson(chat);
+                            editor.putString("chat", json);
+                            editor.commit();
+
+                            Intent intent = new Intent(getActivity().getApplicationContext(), ChatConversationActivity.class);
+                            startActivity(intent);
+
+//                            // open the chat
+//                            Fragment fragment = new ConversationChatFragment(chat);
+//                            FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                            if (isOldUser) {
+//                                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+//                            } else {
+//                                fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
+//                            }
+//                            fragmentTransaction.addToBackStack(null);
+//                            fragmentTransaction.commit();
                         }
 
                         @Override
