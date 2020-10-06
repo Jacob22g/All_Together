@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -61,6 +62,7 @@ public class DashboardFragment extends Fragment {
     CoordinatorLayout coordinatorLayout;
     RelativeLayout filterRelativeLayout;
     Boolean flag = true;
+    Button filterSubmitBtn;
 
     @Nullable
     @Override
@@ -75,6 +77,14 @@ public class DashboardFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
+        filterSubmitBtn = view.findViewById(R.id.filterBtn);
+        filterSubmitBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Collections.sort((List<Comparable>) volunteersDB);
+                adapter.notifyDataSetChanged();
+            }
+        });
         final ImageView showFilterNavBtn = view.findViewById(R.id.showFiler);
         filterRelativeLayout = view.findViewById(R.id.filterRelativeLayout);
         showFilterNavBtn.setOnClickListener(new View.OnClickListener() {

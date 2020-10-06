@@ -39,11 +39,12 @@
             android:layout_height="310dp"
             android:id="@+id/filterRelativeLayout"
             android:layout_below="@id/headline"
-            android:visibility="gone"
+            android:visibility="visible"
             android:background="@drawable/color_back3">
 
 
             <Button
+                android:id="@+id/filterBtn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Filer"

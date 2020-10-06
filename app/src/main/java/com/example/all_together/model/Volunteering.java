@@ -1,19 +1,12 @@
 package com.example.all_together.model;
 
-import androidx.annotation.NonNull;
+import com.google.type.Date;
 
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-
-public class Volunteering {
+public class Volunteering implements Comparable<Volunteering> {
 
     private long id;
 
     private String nameOld;
-
     private String locationCity;
     private String locationStreet;
     private String date;
@@ -42,7 +35,6 @@ public class Volunteering {
         this.type = type;
         this.description = description;
         this.oldUID = oldUID;
-
         this.id = id;
     }
 
@@ -132,6 +124,11 @@ public class Volunteering {
 
     public void setNameVolunteer(String nameVolunteer) {
         this.nameVolunteer = nameVolunteer;
+    }
+
+    @Override
+    public int compareTo(Volunteering o) {
+        return this.nameOld.compareTo(o.nameOld);
     }
 }
 
