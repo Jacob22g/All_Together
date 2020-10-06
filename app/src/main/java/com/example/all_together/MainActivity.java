@@ -53,11 +53,12 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener {
+public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener, PhoneLogin.OnRegisterFragmentListener {
 
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
+    final String FRAGMENT_PHONE_TAG = "fragment_phone_login";
     final String FRAGMENT_AFTER_OLD_REGISTER_TAG = "fragment_after_old_register";
     final String FRAGMENT_VERIFY_TAG = "fragment_verify";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
@@ -179,6 +180,27 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 transaction.addToBackStack(null);
                 transaction.commit();
 
+            }
+        });
+
+        final Button phoneLogin = findViewById(R.id.phoneSignIn);
+        phoneLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                FragmentManager phoneLogin = getSupportFragmentManager();
+                FragmentTransaction transaction = phoneLogin.beginTransaction();
+                transaction.add(R.id.drawerLayout,new PhoneLogin(), FRAGMENT_PHONE_TAG);
+                transaction.addToBackStack(null);
+                transaction.commit();
+            }
+        });
+
+        TextView forgetPassword = (TextView)findViewById(R.id.forgetPasswordBtn);
+        forgetPassword.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this,RestPasswordActivity.class));
             }
         });
 

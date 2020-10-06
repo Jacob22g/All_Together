@@ -77,6 +77,9 @@ public class OldProfileFragment extends Fragment {
     Button aboutMeBtn;
     TextView aboutMeTv;
 
+    Button editEmailBtn;
+    TextView emailAddressTv;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -88,6 +91,10 @@ public class OldProfileFragment extends Fragment {
         userEmailTv = view.findViewById(R.id.userEmailTv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
+
+        editEmailBtn = view.findViewById(R.id.edit_email_btn);
+        emailAddressTv = view.findViewById(R.id.OldUserEditEmailTv);
+
 
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
 
@@ -171,6 +178,34 @@ public class OldProfileFragment extends Fragment {
             }
         });
 
+        editEmailBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View dialogView = getLayoutInflater().inflate(R.layout.edit_email_dialog, null);
+
+                final EditText emailUpdate = dialogView.findViewById(R.id.email_et_dialog);
+                final AlertDialog show = builder.setView(dialogView).show();
+
+                Button saveEmail = dialogView.findViewById(R.id.email_et_btn_dialog);
+                saveEmail.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        emailAddressTv.setText(emailUpdate.getText().toString());
+
+                        usersDB.child(firebaseUser.getUid()).child("EmailAddress").setValue(emailAddressTv.getText().toString());
+
+                        show.dismiss();
+                    }
+                });
+
+            }
+        });
+
+
+
         changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
         changePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -215,12 +250,15 @@ public class OldProfileFragment extends Fragment {
                             case "aboutMe":
                                 aboutMeTv.setText(ds.getValue(String.class));
                                 break;
+                            case "EmailAddress":
+                                emailAddressTv.setText(ds.getValue(String.class));
+                                break;
                         }
                     }
                 }
 
                 userAddressTv.setText(city+", "+country);
-                userEmailTv.setText(firebaseUser.getEmail());
+                //userEmailTv.setText(firebaseUser.);
 
             }
 

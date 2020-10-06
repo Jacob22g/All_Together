@@ -2,9 +2,9 @@
 <resources>
     <string-array name="volunteering_categories_array">
         <item>Shopping</item>
-        <item>Games</item>
+        <item>Plat games</item>
         <item>Just to talk</item>
-        <item>Cleaning</item>
-        <item>Medical help</item>
+        <item>Home repairs</item>
+        <item>Medicines</item>
     </string-array>
 </resources>
