@@ -32,17 +32,22 @@ public class DashboardVolunteeringAdapter extends RecyclerView.Adapter<Dashboard
     public class VolunteerViewHolder extends RecyclerView.ViewHolder{
 
         TextView volunteerTypeTV;
-        TextView volunteerLocationTV;
+        TextView volunteerLocationCityTV;
+        TextView volunteerLocationStreetTV;
         TextView volunteerDateTV;
         TextView volunteerHourTV;
+        TextView volunteerNameTV;
 
         public VolunteerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             this.volunteerTypeTV = itemView.findViewById(R.id.volunteer_type_tv);
-            this.volunteerLocationTV = itemView.findViewById(R.id.volunteer_location_tv);
+            this.volunteerLocationCityTV = itemView.findViewById(R.id.volunteer_location_city_tv);
+            this.volunteerLocationStreetTV = itemView.findViewById(R.id.volunteer_location_street_tv);
             this.volunteerDateTV = itemView.findViewById(R.id.volunteer_date_tv);
             this.volunteerHourTV = itemView.findViewById(R.id.volunteer_time_tv);
+            this.volunteerNameTV = itemView.findViewById(R.id.volunteer_name_tv);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -71,7 +76,9 @@ public class DashboardVolunteeringAdapter extends RecyclerView.Adapter<Dashboard
         holder.volunteerTypeTV.setText(volunteering.getType());
         holder.volunteerDateTV.setText(volunteering.getDate());
         holder.volunteerHourTV.setText(volunteering.getHour());
-        holder.volunteerLocationTV.setText(volunteering.getLocationCity());
+        holder.volunteerNameTV.setText(volunteering.getNameOld());
+        holder.volunteerLocationCityTV.setText(volunteering.getLocationCity());
+        holder.volunteerLocationStreetTV.setText(volunteering.getLocationStreet());
     }
 
     @Override

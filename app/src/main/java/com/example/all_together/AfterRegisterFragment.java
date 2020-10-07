@@ -138,6 +138,10 @@ public class AfterRegisterFragment extends Fragment {
                     usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("country").setValue(country);
                     usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("city").setValue(city);
 
+                    // Number of Volunteering and level
+                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("number_of_volunteering").setValue(0);
+                    usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("volunteering_level").setValue("Beginner");
+
                     // Set user as not old
                     usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("is_old_user").setValue(false);
 

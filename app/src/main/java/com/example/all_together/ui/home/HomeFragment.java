@@ -88,9 +88,13 @@ public class HomeFragment extends Fragment {
     TextView userAddressTv;
     TextView userAgeTv;
     TextView userEmailTv;
+    TextView numOfVolunteeringTv;
+    TextView userLevelTv;
 
     String city;
     String country;
+
+    int numOfVolunteering;
 
     @Nullable
     @Override
@@ -101,6 +105,8 @@ public class HomeFragment extends Fragment {
         userAddressTv = rootView.findViewById(R.id.userAddressTv);
         userAgeTv = rootView.findViewById(R.id.userAgeTv);
         profileImage = rootView.findViewById(R.id.change_profile_pic_btn);
+        numOfVolunteeringTv = rootView.findViewById(R.id.user_num_of_vol_tv_home);
+        userLevelTv = rootView.findViewById(R.id.user_vol_lvl_tv_home);
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -123,6 +129,13 @@ public class HomeFragment extends Fragment {
                                 break;
                             case "country":
                                 country = ds.getValue(String.class);
+                                break;
+                            case "number_of_volunteering":
+                                numOfVolunteeringTv.setText(String.valueOf(ds.getValue(Integer.class)));
+                                numOfVolunteering = Integer.parseInt(numOfVolunteeringTv.getText().toString());
+                                break;
+                            case "volunteering_level":
+                                userLevelTv.setText(ds.getValue(String.class));
                                 break;
                         }
                     }
@@ -156,6 +169,10 @@ public class HomeFragment extends Fragment {
 
                     // Create the lists after getting all users list
                     CreateTheLists();
+
+                    // update num of volunteering for the user
+                    if (numOfVolunteering != userVolunteerList.size())
+                        usersDB.child(firebaseUser.getUid()).child("number_of_volunteering").setValue(userVolunteerList.size());
                 }
             }
 

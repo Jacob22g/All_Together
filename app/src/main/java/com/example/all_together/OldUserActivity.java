@@ -25,6 +25,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 public class OldUserActivity extends AppCompatActivity {
@@ -33,9 +38,14 @@ public class OldUserActivity extends AppCompatActivity {
     NavigationView navigationView;
     DrawerLayout drawerLayout;
 
+    String userName;
+    TextView userTv;
+
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference usersDB = database.getReference("users");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,13 +55,23 @@ public class OldUserActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
+        usersDB.child(firebaseUser.getUid()).child("user_name").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                userName = snapshot.getValue(String.class);
+                userTv.setText(userName);
+            }
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) { }
+        });
+
         coordinatorLayout = findViewById(R.id.container_activityolduser);
         navigationView = findViewById(R.id.navigation_view_activityolduser);
         drawerLayout = findViewById(R.id.drawerLayout_activityolduser);
 
         View headerView = navigationView.getHeaderView(0);
-        TextView userTv = headerView.findViewById(R.id.navigation_header_container);
-        userTv.setText(firebaseUser.getEmail());
+        userTv = headerView.findViewById(R.id.navigation_header_container);
+
         if (firebaseUser != null) { //signed in
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);

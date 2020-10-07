@@ -76,6 +76,8 @@ public class ProfileFragment extends Fragment {
     TextView userAddressTv;
     TextView userAgeTv;
     TextView userEmailTv;
+    TextView numOfVolunteeringTv;
+    TextView userLevelTv;
 
     String city;
     String country;
@@ -96,6 +98,8 @@ public class ProfileFragment extends Fragment {
         userAddressTv = view.findViewById(R.id.userAddressTv);
         userAgeTv = view.findViewById(R.id.userAgeTv);
         userEmailTv = view.findViewById(R.id.userEmailTv);
+        numOfVolunteeringTv = view.findViewById(R.id.user_num_of_vol_tv);
+        userLevelTv = view.findViewById(R.id.user_vol_lvl_tv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
 
@@ -212,6 +216,12 @@ public class ProfileFragment extends Fragment {
                             case "country":
                                 country = ds.getValue(String.class);
                                 break;
+                            case "number_of_volunteering":
+                                numOfVolunteeringTv.setText(String.valueOf(ds.getValue(Integer.class)));
+                                break;
+                            case "volunteering_level":
+                                userLevelTv.setText(ds.getValue(String.class));
+                                break;
                             case "volunteeringTypes":
                                 for (DataSnapshot d : ds.getChildren()){
                                     String str = d.getValue(String.class);
@@ -250,7 +260,32 @@ public class ProfileFragment extends Fragment {
 
         loadImage();
 
+        setUserVolunteeringLevel();
+
         return view;
+    }
+
+    private void setUserVolunteeringLevel() {
+//        String userLevel = userLevelTv.getText().toString();
+//        int numOfVolunteering = Integer.getInteger(numOfVolunteeringTv.getText().toString());
+//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals("2/5")){
+//            userLevel = "2/5";
+//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
+//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals("3/5")){
+//            userLevel = "3/5";
+//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
+//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals("4/5")){
+//            userLevel = "4/5";
+//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
+//        } else if (numOfVolunteering>50 && !userLevel.equals("5/5")){
+//            userLevel = "5/5";
+//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
+//        } else {
+//            if (!userLevel.equals("1/5")) {
+//                userLevel = "1/5";
+//                usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
+//            }
+//        }
     }
 
     @Override
