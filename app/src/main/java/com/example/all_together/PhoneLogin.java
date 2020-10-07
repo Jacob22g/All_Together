@@ -37,7 +37,7 @@ public class PhoneLogin extends Fragment {
     public static int PHONE_NUMBER_CHARACTERS = 9;
 
     interface OnRegisterFragmentListener{
-        void onPhoneRegister(String phoneNumber);
+        void onPhoneLogin(String phoneNumber);
     }
 
     OnRegisterFragmentListener callback;
@@ -77,7 +77,7 @@ public class PhoneLogin extends Fragment {
                     return;
                 }
 
-                callback.onPhoneRegister(phoneNumber);
+                callback.onPhoneLogin(phoneNumber);
 
             }
         });

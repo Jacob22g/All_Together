@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FragmentVerifyPhoneNumber"
+    android:background="@drawable/old">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="1000px"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        app:cardElevation="45px"
+        app:cardCornerRadius="45px"
+        app:contentPadding="20px"
+        app:cardUseCompatPadding="true"
+        android:layout_marginTop="150px">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Verify Phone Number"
+                android:gravity="center"
+                android:textSize="23sp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Enter the code you received to your phone"
+                android:textSize="16sp"
+                android:gravity="center"/>
+
+            <EditText
+                android:id="@+id/verify_code"
+                android:background="@drawable/color_back3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="16sp"
+                android:gravity="center"
+                android:padding="14px"
+                android:layout_margin="20px"
+                android:inputType="number"/>
+
+
+
+            <Button
+                android:id="@+id/confirm_verify_phone"
+                android:background="@drawable/color_back4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="10dp"
+                android:layout_gravity="center"
+                android:text="Confirm"
+                android:fontFamily="@font/poppins_medium"
+                android:textStyle="bold"
+                android:textColor="@color/whiteColor" />
+
+            <ProgressBar
+                android:id="@+id/progress_bar_verify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="20px"
+                android:visibility="gone"
+                />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+
+</FrameLayout>

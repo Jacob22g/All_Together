@@ -26,6 +26,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.MediaStoreSignature;
 import com.example.all_together.R;
 import com.example.all_together.model.Volunteering;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -79,6 +82,15 @@ public class ProfileFragment extends Fragment {
     TextView numOfVolunteeringTv;
     TextView userLevelTv;
 
+    String personName;
+    //    String personAge;
+//    String personAddress;
+    String personGivenName;
+    String personFamilyName;
+    String personEmail;
+    String personId;
+    Uri personPhoto;
+
     String city;
     String country;
 
@@ -88,6 +100,8 @@ public class ProfileFragment extends Fragment {
 
     Button aboutMeBtn;
     TextView aboutMeTv;
+
+    GoogleSignInAccount account;
 
     @Nullable
     @Override
@@ -104,6 +118,20 @@ public class ProfileFragment extends Fragment {
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
 
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
+
+        account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if (account!=null){
+            personName = account.getDisplayName();
+            personGivenName = account.getGivenName();
+            personFamilyName = account.getFamilyName();
+            personEmail = account.getEmail();
+            personId = account.getId();
+            personPhoto = account.getPhotoUrl();
+
+            userNameTv.setText(personName);
+            //Glide.with(getContext()).load(String.valueOf(personPhoto)).into(changePicBtn);
+            userAgeTv.setText(" ");
+        }
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
@@ -237,13 +265,13 @@ public class ProfileFragment extends Fragment {
                                 aboutMeTv.setText(ds.getValue(String.class));
                                 break;
                         }
+
                     }
+
                 }
+                    userAddressTv.setText(city + ", " + country);
+                    userEmailTv.setText(firebaseUser.getEmail());
 
-                userAddressTv.setText(city+", "+country);
-                userEmailTv.setText(firebaseUser.getEmail());
-
-////                loadImage();
 //
 //                // gs://all-together-e88a5.appspot.com/vnnGxqosTfdClSaYShIrPNEwta83/profile_image
 //                imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");

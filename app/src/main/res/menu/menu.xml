@@ -14,4 +14,9 @@
         android:title="Log Out"
         android:visible="true"/>
 
+    <item
+        android:id="@+id/sign_out_google"
+        android:title="Log Out from Google"
+        android:visible="true"/>
+
 </menu>

@@ -59,7 +59,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
-    final String FRAGMENT_PHONE_TAG = "fragment_phone_login";
+    final String FRAGMENT_PHONE_TAG = "fragment_phone_sign_in";
+    final String FRAGMENT_PHONE_LOGIN_TAG = "fragment_phone_login";
     final String FRAGMENT_AFTER_OLD_REGISTER_TAG = "fragment_after_old_register";
     final String FRAGMENT_VERIFY_TAG = "fragment_verify";
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
@@ -78,7 +79,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     //private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButtonImpl googleSignInButton;
-
     private FirebaseAuth.AuthStateListener listener;
     private FirebaseAuth mAuth;
     private FirebaseUser firebaseUser;
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    isOldUser = snapshot.getValue(boolean.class);
+                    //isOldUser = snapshot.getValue(boolean.class);
                     Intent intent;
                     if(isOldUser){
                         intent  = new Intent(MainActivity.this, OldUserActivity.class);
@@ -124,15 +124,14 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
             });
 
-//            Intent intent;
-//            if(isOldUser){
-//                intent  = new Intent(this, OldUserActivity.class);
-//            } else
-//                intent  = new Intent(this, MainAppActivity.class);
-//            startActivity(intent);
-//            finish();
+            Intent intent;
+            if(isOldUser){
+                intent  = new Intent(this, OldUserActivity.class);
+            } else
+                intent  = new Intent(this, MainAppActivity.class);
+            startActivity(intent);
+            finish();
         }
-
 
         googleSignInButton = findViewById(R.id.googleSignIn);
 
@@ -252,6 +251,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
 
 
                 } else { // sign out
@@ -259,6 +259,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
                 }
             }
         };
@@ -290,6 +291,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
                         FirebaseAuth firebaseAuth = null;
                         firebaseAuth.signOut();
+                        break;
+                    case R.id.sign_out_google:
+                        Toast.makeText(MainActivity.this, "Google Sign Out", Toast.LENGTH_SHORT).show();
+                        googleSignOut();
                         break;
                 }
 
@@ -327,31 +332,25 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     }
 
     @Override
+    public void onPhoneLogin(String phoneNumber) {
+        if(phoneNumber.equals(""))
+            // Simulate back press
+            getSupportFragmentManager().popBackStack();
+        else {
+            FragmentVerifyPhoneNumberLogin verifyPhoneNumberLogin = FragmentVerifyPhoneNumberLogin.newInstance(phoneNumber);
+            getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumberLogin,FRAGMENT_PHONE_LOGIN_TAG).commit();
+        }
+    }
+
+    @Override
     public void onPhoneRegister(String phoneNumber) {
 
         if(phoneNumber.equals(""))
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {
-
-//            final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-//            progressDialog.setMessage("Loading, Please wait..");
-//            progressDialog.show();
             FragmentVerifyPhoneNumber verifyPhoneNumber = FragmentVerifyPhoneNumber.newInstance(phoneNumber);
             getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumber,FRAGMENT_VERIFY_TAG).commit();
-
-//            FragmentManager verifyFragment = getSupportFragmentManager();
-//            FragmentTransaction transaction = verifyFragment.beginTransaction();
-//
-//            transaction.add(R.id.drawerLayout, new FragmentVerifyPhoneNumber(),FRAGMENT_VERIFY_TAG);
-//            transaction.addToBackStack(null);
-//            transaction.commit();
-//
-//            FragmentVerifyPhoneNumber fragInfo = new FragmentClass();
-//            fragInfo.setArguments(bundle);
-//
-//            transaction.replace(R.id.fragment_single, fragInfo);
-//            transaction.commit();
         }
     }
 
@@ -470,6 +469,19 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
+    private void googleSignOut() {
+        // Firebase sign out
+        Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getApplicationContext(), "Sign Out from your Google account", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
+
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -523,11 +535,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 if(task.isSuccessful()){
                     Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
-                    updateUI(user);
+                    Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+                    startActivity(intent);
+                    //updateUI(user);
                 }
                 else {
                     Toast.makeText(MainActivity.this, "Failed", Toast.LENGTH_SHORT).show();
-                    updateUI(null);
+                    //updateUI(null);
                 }
             }
         });
@@ -557,18 +571,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
         if (account != null) {
-            String personName = account.getDisplayName();
-            String personGivenName = account.getGivenName();
-            String personFamilyName = account.getFamilyName();
-            String personEmail = account.getEmail();
-            String personId = account.getId();
-            Uri personPhoto = account.getPhotoUrl();
-
-            Toast.makeText(MainActivity.this, personName + " " + personEmail, Toast.LENGTH_SHORT).show();
-
-            Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-            startActivity(intent);
-        }
+            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
+        }else navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
     }
-
 }

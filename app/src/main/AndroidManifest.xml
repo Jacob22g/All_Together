@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_foreground"
         android:supportsRtl="false"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        <activity android:name=".ChatConversationActivity"></activity>
+        <activity android:name=".FragmentVerifyPhoneNumberLogin"></activity>
+        <activity android:name=".ChatConversationActivity" />
         <activity android:name=".RestPasswordActivity" />
         <activity android:name=".OldUserActivity" />
         <activity android:name=".MainAppActivity" />

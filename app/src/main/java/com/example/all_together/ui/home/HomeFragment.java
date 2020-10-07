@@ -1,7 +1,5 @@
 package com.example.all_together.ui.home;
 
-import android.app.ProgressDialog;
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -24,11 +22,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.VolunteeringFragment;
-import com.example.all_together.model.Volunteering;
 import com.example.all_together.adapter.HomeVolunteeringAdapter;
-import com.google.android.gms.tasks.OnFailureListener;
+import com.example.all_together.model.Volunteering;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -36,26 +35,17 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.storage.FileDownloadTask;
 import com.google.firebase.storage.FirebaseStorage;
-import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
-import com.google.firebase.storage.UploadTask;
 
-import java.io.File;
-import java.io.IOException;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-import java.util.Timer;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-
-import static android.app.Activity.RESULT_OK;
 
 public class HomeFragment extends Fragment {
 
@@ -96,6 +86,16 @@ public class HomeFragment extends Fragment {
 
     int numOfVolunteering;
 
+    GoogleSignInClient mGoogleSignInClient;
+    String personName;
+//    String personAge;
+//    String personAddress;
+    String personGivenName;
+    String personFamilyName;
+    String personEmail;
+    String personId;
+    Uri personPhoto;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -110,7 +110,36 @@ public class HomeFragment extends Fragment {
 
         storageRef = FirebaseStorage.getInstance().getReference();
 
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+        if (account!=null){
+            personName = account.getDisplayName();
+            personGivenName = account.getGivenName();
+            personFamilyName = account.getFamilyName();
+            personEmail = account.getEmail();
+            personId = account.getId();
+            personPhoto = account.getPhotoUrl();
+
+            userNameTv.setText(personName);
+            Glide.with(getContext()).load(String.valueOf(personPhoto)).into(profileImage);
+            userAddressTv.setText(" ");
+            userAgeTv.setText(" ");
+        }
+
         loadImage();
+
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
+//        if (account != null) {
+//            String personName = account.getDisplayName();
+//            //String personGivenName = account.getGivenName();
+//            //String personFamilyName = account.getFamilyName();
+//            String personEmail = account.getEmail();
+//            //String personId = account.getId();
+//            Uri personPhoto = account.getPhotoUrl();
+//
+//            userNameTv.setText(personName);
+//            userEmailTv.setText(personEmail);
+//            Glide.with(this).load(String.valueOf(personPhoto)).into(profileImage);
+//        }
 
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
