@@ -17,6 +17,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.all_together.Notifications.APIService;
+import com.example.all_together.Notifications.Client;
+import com.example.all_together.Notifications.Data;
+import com.example.all_together.Notifications.MyResponse;
+import com.example.all_together.Notifications.Sender;
+import com.example.all_together.Notifications.Token;
 import com.example.all_together.model.Chat;
 import com.example.all_together.model.Volunteering;
 import com.example.all_together.ui.chat.ConversationChatFragment;
@@ -26,12 +32,17 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import static android.content.Context.MODE_PRIVATE;
 
@@ -65,6 +76,8 @@ public class VolunteeringFragment extends Fragment {
 
     boolean isOldUser;
 
+    APIService apiService;
+
     public VolunteeringFragment(Volunteering volunteering) {
         this.volunteering = volunteering;
     }
@@ -73,6 +86,9 @@ public class VolunteeringFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_volunteering, container, false);
+
+        // For notifications
+        apiService = Client.getClient("https://fcm.googleapis.com/").create(APIService.class);
 
         // Add the volunteering parameters
         nameTv = view.findViewById(R.id.selected_volunteering_name);
@@ -267,6 +283,9 @@ public class VolunteeringFragment extends Fragment {
                         Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
                         volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
                         volunteering.setNameVolunteer(firebaseUserName);
+
+                        // Send notification to old user
+                        sendNotification(volunteering.getOldUID(), firebaseUserName, "will volunteer with you");
                     }
 
                     // Saving the new list
@@ -324,14 +343,14 @@ public class VolunteeringFragment extends Fragment {
 
                                     Chat checkChat = ds.getValue(Chat.class);
 
-                                    // for testing -----------
-                                    String chatId = checkChat.getChatID();
-                                    String sideAId = checkChat.getSideAUid();
-                                    String sideBId = checkChat.getSideBUid();
-                                    String oldId = volunteering.getOldUID();
-                                    String volunteerId = volunteering.getVolunteerUID(); // may be null
-                                    String firebaseUserId = firebaseUser.getUid();
-                                    //-------------------------
+//                                    // for testing -----------
+//                                    String chatId = checkChat.getChatID();
+//                                    String sideAId = checkChat.getSideAUid();
+//                                    String sideBId = checkChat.getSideBUid();
+//                                    String oldId = volunteering.getOldUID();
+//                                    String volunteerId = volunteering.getVolunteerUID(); // may be null
+//                                    String firebaseUserId = firebaseUser.getUid();
+//                                    //-------------------------
 
                                     // Chat when the volunteer user is sign to the volunteering
                                     if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
@@ -417,6 +436,50 @@ public class VolunteeringFragment extends Fragment {
                 }
             });
         }
+    }
+
+    private void sendNotification(final String receiverID, final String userName, final String message) {
+
+        DatabaseReference tokens = FirebaseDatabase.getInstance().getReference("Tokens");
+        Query query = tokens.orderByKey().equalTo(receiverID);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                    Token token = snapshot.getValue(Token.class);
+                    Data data = new Data(firebaseUser.getUid(),
+                            R.drawable.volunteer_icon,
+                            userName + " " + message,
+                            "New Volunteer added",
+                            receiverID);
+
+                    Sender sender = new Sender(data, token.getToken());
+
+                    apiService.sendNotification(sender)
+                            .enqueue(new Callback<MyResponse>() {
+                                @Override
+                                public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
+                                    if (response.code() == 200) {
+                                        if (response.body().success != 1) {
+                                            Toast.makeText(getContext(), "Notification Failed", Toast.LENGTH_SHORT).show();
+                                        }
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<MyResponse> call, Throwable t) {
+                                }
+                            });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+            }
+        });
     }
 
     private void ChatExistsOrCreate(){

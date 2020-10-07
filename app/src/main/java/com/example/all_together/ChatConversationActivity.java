@@ -103,6 +103,9 @@ public class ChatConversationActivity extends AppCompatActivity {
             receiverID = chat.getSideBUid();
         }
 
+        // Torn off the notifications:
+        currentUser(receiverID);
+
         recyclerView = findViewById(R.id.chat_recycler);
         adapter = new ChatMassageAdapter(chatMessageList);
 
@@ -248,7 +251,7 @@ public class ChatConversationActivity extends AppCompatActivity {
 
                     Token token = snapshot.getValue(Token.class);
                     Data data = new Data(firebaseUser.getUid(),
-                            R.drawable.volunteer_icon,
+                            R.drawable.volunteer_icon, // This will be the user profile image ?
                             userName+": "+message,
                             "New Message",
                             receiverID); // NOT SURE THIS IS THE RECEIVER ID
@@ -269,7 +272,6 @@ public class ChatConversationActivity extends AppCompatActivity {
                                 public void onFailure(Call<MyResponse> call, Throwable t) { }
                             });
 
-
                 }
             }
 
@@ -279,15 +281,26 @@ public class ChatConversationActivity extends AppCompatActivity {
 
     }
 
+    // Notifications management:
+    private void currentUser(String userId){
+        SharedPreferences.Editor editor = getSharedPreferences("PREFS",MODE_PRIVATE).edit();
+        editor.putString("currentUser",userId);
+        editor.apply();
+    }
 
     @Override
     public void onStart() {
         super.onStart();
         firebaseAuth.addAuthStateListener(authStateListener);
+
+//        currentUser(firebaseUser.getUid());
     }
     @Override
     public void onStop() {
         super.onStop();
         firebaseAuth.removeAuthStateListener(authStateListener);
+
+        // Torn back on the notifications:
+        currentUser("none");
     }
 }
