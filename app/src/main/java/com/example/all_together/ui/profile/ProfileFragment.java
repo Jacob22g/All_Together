@@ -341,21 +341,21 @@ public class ProfileFragment extends Fragment {
     private void setUserVolunteeringLevel() {
 //        String userLevel = userLevelTv.getText().toString();
 //        int numOfVolunteering = Integer.getInteger(numOfVolunteeringTv.getText().toString());
-//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals("2/5")){
-//            userLevel = "2/5";
+//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals("Good")){
+//            userLevel = "Good";
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals("3/5")){
-//            userLevel = "3/5";
+//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals("Excellent")){
+//            userLevel = "Excellent";
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals("4/5")){
-//            userLevel = "4/5";
+//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals("superior")){
+//            userLevel = "superior";
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>50 && !userLevel.equals("5/5")){
-//            userLevel = "5/5";
+//        } else if (numOfVolunteering>50 && !userLevel.equals("Outstanding")){
+//            userLevel = "Outstanding";
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
 //        } else {
-//            if (!userLevel.equals("1/5")) {
-//                userLevel = "1/5";
+//            if (!userLevel.equals("Beginner")) {
+//                userLevel = "Beginner";
 //                usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
 //            }
 //        }
