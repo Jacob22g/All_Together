@@ -102,8 +102,8 @@ public class RegisterFragment extends Fragment {
             @Override
             public void onClick(View v) {
 
-                //final String passwordOld = passwordOldEditText.getText().toString();
-                final String phoneNumber = phoneEditText.getText().toString();
+                String phoneNum = phoneEditText.getText().toString();
+                final String phoneNumber = phoneNum.substring(1);
 
                 if(TextUtils.isEmpty(phoneNumber)){
                     phoneEditText.setError("Phone Number is Required");

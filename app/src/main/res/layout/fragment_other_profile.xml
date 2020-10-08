@@ -162,7 +162,7 @@
                     </LinearLayout>
 
 
-            </LinearLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -305,13 +305,6 @@
                                 app:cardCornerRadius="15dp"
                                 android:layout_marginTop="3dp">
 
-                                <Button
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="8dp"
-                                    android:layout_gravity="end|top"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:id="@+id/TypesOfVolunteering_edit_btn"/>
 
                                 <ListView
                                     android:layout_width="match_parent"
@@ -350,13 +343,6 @@
                                 app:cardCornerRadius="15dp"
                                 android:layout_marginTop="3dp">
 
-                                <Button
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="8dp"
-                                    android:layout_gravity="end|top"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:id="@+id/about_me_edit_btn"/>
 
                                 <TextView
                                     android:layout_width="match_parent"

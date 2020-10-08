@@ -59,6 +59,7 @@ public class VolunteeringFragment extends Fragment {
 
     Button addBtn;
     Button chatBtn;
+    Button profileBtn;
     ImageButton backBtn;
 
     String newChatId;
@@ -121,6 +122,8 @@ public class VolunteeringFragment extends Fragment {
                     // Do this here after we know id it is an old user
                     listenerForAddBtn();
                     listenerForChatBtn();
+                    listenerForProfileBtn();
+
                 }
             }
 
@@ -171,6 +174,14 @@ public class VolunteeringFragment extends Fragment {
 
         // Add user to the volunteering
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
+        profileBtn = view.findViewById(R.id.selected_profile_page_btn);
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
+
 //        if (!isOldUser) {
 //            addBtn.setOnClickListener(new View.OnClickListener() {
 //                @Override
@@ -263,6 +274,10 @@ public class VolunteeringFragment extends Fragment {
         });
 
         return view;
+    }
+
+    private void listenerForProfileBtn() {
+
     }
 
     private void listenerForAddBtn(){

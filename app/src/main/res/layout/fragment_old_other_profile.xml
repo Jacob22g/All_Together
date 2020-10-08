@@ -7,13 +7,14 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="#E1EEF1"
+        >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:background="#E1EEF1">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -77,21 +78,13 @@
                             android:layout_below="@id/userAddressTv"
                             android:layout_toEndOf="@id/change_profile_pic_btn"/>
 
-                        <View
-                            android:layout_width="match_parent"
-                            android:layout_height="1dp"
-                            android:layout_marginStart="100dp"
-                            android:background="@color/grayDarkColor"
-                            android:layout_below="@id/change_profile_pic_btn"
-                            android:layout_marginTop="5dp"/>
-
                     </RelativeLayout>
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="70dp"
+                    android:layout_height="10dp"
                     android:orientation="horizontal"
                     android:paddingRight="3dp"
                     android:paddingLeft="3dp"
@@ -100,69 +93,7 @@
                     android:gravity="center"
                     android:weightSum="2">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="normal"
-                            android:text="Volunteering"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_medium"
-                            />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/user_num_of_vol_tv"
-                            android:textStyle="bold"
-                            android:text="0"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/poppins_medium"/>
-
-                    </LinearLayout>
-
-                    <View
-                        android:layout_width="1px"
-                        android:layout_height="match_parent"
-                        android:background="@color/grayDarkColor"/>
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical"
-                        android:gravity="center"
-                        android:layout_margin="5dp">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textStyle="normal"
-                            android:text="Level"
-                            android:textSize="16sp"
-                            android:fontFamily="@font/poppins_medium"/>
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:id="@+id/user_vol_lvl_tv"
-                            android:textStyle="bold"
-                            android:text="Beginner"
-                            android:gravity="center"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/poppins_medium"/>
-
-                    </LinearLayout>
-
-
-            </LinearLayout>
+                </LinearLayout>
 
 
             </LinearLayout>
@@ -220,18 +151,29 @@
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginStart="5dp"/>
 
-                            <TextView
-                                android:id="@+id/userEmailTv"
-                                android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
-                                android:textSize="16sp"
-                                android:layout_marginStart="5dp"
-                                android:layout_gravity="center"
-                                android:layout_marginTop="5dp"
-                                android:fontFamily="@font/poppins_medium"/>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:gravity="center">
+
+                                <TextView
+                                    android:id="@+id/OldUserEditEmailTv"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:textSize="16sp"
+                                    android:layout_marginStart="5dp"
+                                    android:text="Click to add your Email"
+                                    android:layout_gravity="center"
+                                    android:layout_marginTop="5dp"
+                                    android:fontFamily="@font/poppins_medium"/>
+
+
+                            </LinearLayout>
+
+
 
                         </LinearLayout>
-
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -305,20 +247,13 @@
                                 app:cardCornerRadius="15dp"
                                 android:layout_marginTop="3dp">
 
-                                <Button
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="8dp"
-                                    android:layout_gravity="end|top"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:id="@+id/TypesOfVolunteering_edit_btn"/>
 
                                 <ListView
+                                    android:id="@+id/TypesOfVolunteering_list"
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:padding="7dp"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:id="@+id/TypesOfVolunteering_list"/>
+                                    android:padding="7dp" />
 
                             </androidx.cardview.widget.CardView>
 
@@ -327,7 +262,7 @@
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
+                            android:layout_height="match_parent"
                             android:orientation="vertical"
                             android:paddingBottom="40dp">
 
@@ -350,13 +285,6 @@
                                 app:cardCornerRadius="15dp"
                                 android:layout_marginTop="3dp">
 
-                                <Button
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_margin="8dp"
-                                    android:layout_gravity="end|top"
-                                    android:background="@drawable/ic_baseline_edit_24"
-                                    android:id="@+id/about_me_edit_btn"/>
 
                                 <TextView
                                     android:layout_width="match_parent"
@@ -364,7 +292,7 @@
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
                                     android:textSize="20sp"
-                                    android:layout_gravity="center_vertical"
+                                    android:text="No info entered yet"
                                     android:padding="7dp"
                                     android:layout_marginStart="3dp"/>
 

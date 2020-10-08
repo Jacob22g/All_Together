@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //isOldUser = snapshot.getValue(boolean.class);
+                    isOldUser = snapshot.getValue(boolean.class);
                     Intent intent;
                     if(isOldUser){
                         intent  = new Intent(MainActivity.this, OldUserActivity.class);
@@ -124,13 +124,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
             });
 
-            Intent intent;
-            if(isOldUser){
-                intent  = new Intent(this, OldUserActivity.class);
-            } else
-                intent  = new Intent(this, MainAppActivity.class);
-            startActivity(intent);
-            finish();
+//            Intent intent;
+//            if(isOldUser){
+//                intent  = new Intent(this, OldUserActivity.class);
+//            } else
+//                intent  = new Intent(this, MainAppActivity.class);
+//            startActivity(intent);
+//            finish();
         }
 
         googleSignInButton = findViewById(R.id.googleSignIn);
@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(listener);
-        updateUI(currentUser);
+        //updateUI(currentUser);
     }
 
     @Override

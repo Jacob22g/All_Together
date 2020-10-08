@@ -192,7 +192,7 @@
                 android:layout_marginHorizontal="50dp"
                 android:text="Phone Login available Only for help seekers!"
                 android:layout_below="@id/googleSignIn"
-                android:textColor="@color/grayDarkColor"
+                android:textColor="#DD2C00"
                 android:textStyle="bold"
                 android:textSize="12sp"
                 android:gravity="center"

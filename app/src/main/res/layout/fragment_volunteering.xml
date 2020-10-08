@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,12 +13,10 @@
         android:layout_height="match_parent"
         android:background="@drawable/color_back3">
 
-        <LinearLayout
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginTop="10dp"
-            android:layout_marginHorizontal="20dp">
+            android:layout_marginTop="10dp">
 
             <ImageButton
                 android:layout_width="40dp"
@@ -28,227 +26,195 @@
                 android:id="@+id/selected_volunteering_back_btn"/>
 
             <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:id="@+id/oldImage"
+                android:layout_width="120dp"
+                android:layout_height="120dp"
+                android:layout_marginStart="96dp"
                 android:layout_marginBottom="20dp"
-                app:civ_border_width="2dp"
-                android:layout_gravity="center"
-                app:civ_border_color="#FF000000"
-                android:src="@drawable/main_pic"/>
+                app:civ_border_width="1dp"
+                app:civ_border_color="@color/whiteColor"
+                android:src="@drawable/main_pic"
+                android:layout_toEndOf="@id/selected_volunteering_back_btn"/>
 
-            <LinearLayout
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardViewV"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_below="@id/oldImage"
+                app:cardElevation="5dp"
+                app:cardUseCompatPadding="true"
+                app:cardCornerRadius="10dp">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
+                    android:layout_height="match_parent">
+
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:id="@+id/dateHeadline"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:layout_marginTop="5dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Name: "/>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:textSize="18sp"
-                            android:layout_marginStart="15dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:id="@+id/selected_volunteering_name"/>
-
-                    </androidx.cardview.widget.CardView>
-
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
+                        android:gravity="center"
+                        android:text="Date: "
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:textColor="#D50000"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Date: "/>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:layout_gravity="center"
-                            android:layout_marginStart="15dp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:id="@+id/selected_volunteering_date"/>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
+                        android:id="@+id/selected_volunteering_date"
+                        android:layout_below="@id/dateHeadline"/>
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:id="@+id/timeHeadline"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:textSize="20sp"
+                        android:layout_below="@id/selected_volunteering_date"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Time: "/>
-
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="15dp"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:id="@+id/selected_volunteering_time"
-                            android:layout_gravity="center"/>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
+                        android:gravity="center"
+                        android:text="Time: "
+                        android:textSize="20sp" />
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:layout_below="@id/timeHeadline"
+                        android:textSize="18sp"
+                        android:textColor="#D50000"
+                        android:fontFamily="@font/poppins_medium"
+                        android:id="@+id/selected_volunteering_time"
+                        android:layout_gravity="center" />
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/nameHeadline"
+                        android:gravity="center"
                         android:textSize="20sp"
                         android:fontFamily="@font/poppins_medium"
+                        android:text="Name: "
+                        android:layout_below="@id/selected_volunteering_time"
+
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:fontFamily="@font/poppins_medium"
+                        android:id="@+id/selected_volunteering_name"
+                        android:layout_below="@id/nameHeadline"
+                        android:textColor="#D50000"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/locationHeadline"
+                        android:textSize="20sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:layout_below="@id/selected_volunteering_name"
                         android:text="Location: "
                         android:layout_marginEnd="2dp"/>
 
-                    <androidx.cardview.widget.CardView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="3"
-                        android:layout_gravity="center">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="18sp"
-                            android:fontFamily="@font/poppins_medium"
-                            android:layout_gravity="center"
-                            android:id="@+id/selected_volunteering_location"/>
-
-                    </androidx.cardview.widget.CardView>
-
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
 
                     <TextView
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_below="@id/locationHeadline"
+                        android:textSize="18sp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:id="@+id/selected_volunteering_location"
+                        android:textColor="#D50000"/>
+
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:id="@+id/descriptionHeadline"
                         android:text="Description:"
+                        android:layout_below="@id/selected_volunteering_location"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="20sp"/>
 
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="horizontal"
-                    android:layout_margin="5dp">
-
-                    <androidx.cardview.widget.CardView
+                    <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:layout_gravity="center">
+                        android:gravity="center"
+                        android:fontFamily="@font/poppins_medium"
+                        android:textSize="14sp"
+                        android:id="@+id/selected_volunteering_description"
+                        android:layout_below="@id/descriptionHeadline"
+                        android:textStyle="bold"
+                        android:textColor="#D50000"/>
+                </RelativeLayout>
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:fontFamily="@font/poppins_medium"
-                            android:textSize="16sp"
-                            android:layout_marginStart="15dp"
-                            android:id="@+id/selected_volunteering_description"/>
 
-                    </androidx.cardview.widget.CardView>
+            </androidx.cardview.widget.CardView>
 
-                </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_below="@id/cardViewV"
+                android:id="@+id/volunteering_btn_layout">
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Add"
+                    android:textStyle="bold"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:textColor="@color/grayDarkColor"
+                    android:background="@drawable/color_back4_circle"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="20dp"
+                    android:id="@+id/selected_volunteering_add_btn"/>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Chat"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:background="@drawable/background_button_light"
+                    android:layout_marginHorizontal="50dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/selected_volunteering_chat_btn" />
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Profile page"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:background="@drawable/color_back2_circle"
+                    android:layout_marginHorizontal="50dp"
+                    android:id="@+id/selected_profile_page_btn" />
+
 
             </LinearLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Add"
-                android:textStyle="bold"
-                android:textSize="18sp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/whiteColor"
-                android:background="@drawable/color_back4_circle"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="20dp"
-                android:id="@+id/selected_volunteering_add_btn"/>
+        </RelativeLayout>
 
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Chat"
-                android:textSize="18sp"
-                android:fontFamily="@font/poppins_medium"
-                android:background="@drawable/background_button_light"
-                android:layout_marginHorizontal="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="20dp"
-                android:id="@+id/selected_volunteering_chat_btn"/>
-
-        </LinearLayout>
 
     </ScrollView>
 
 
-</LinearLayout>
+</RelativeLayout>
