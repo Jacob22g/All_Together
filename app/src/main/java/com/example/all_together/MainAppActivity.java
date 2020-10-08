@@ -47,6 +47,7 @@ public class MainAppActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     NavigationView navigationView;
     DrawerLayout drawerLayout;
+    GoogleSignInClient mGoogleSignInClient;
 
     //user details
     TextView fullName,email,age;
@@ -108,7 +109,7 @@ public class MainAppActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
-            updateUI();
+//            updateUI();
 
         } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
@@ -134,8 +135,7 @@ public class MainAppActivity extends AppCompatActivity {
                         break;
                     case R.id.sign_out_google:
                         Toast.makeText(MainAppActivity.this, "Sign Out Google account", Toast.LENGTH_SHORT).show();
-                        firebaseAuth.signOut();
-                        startActivity(new Intent(getApplicationContext(),MainActivity.class));
+                        googleSignOut();
                         finish();
                         break;
                 }
@@ -153,9 +153,7 @@ public class MainAppActivity extends AppCompatActivity {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) { //sign in or sign up
-
                     userTv.setText(user.getEmail());
-
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
@@ -224,12 +222,24 @@ public class MainAppActivity extends AppCompatActivity {
         finish();
     }
 
-    private void updateUI() {
-        account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (account != null) {
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
-        }
+//    private void updateUI() {
+//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
+//        if (account != null) {
+//            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
+//        }else navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
+//    }
+
+    private void googleSignOut() {
+        // Firebase sign out
+        Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
+        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Toast.makeText(getApplicationContext(), "Sign Out from your Google account", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+        });
     }
 
 }

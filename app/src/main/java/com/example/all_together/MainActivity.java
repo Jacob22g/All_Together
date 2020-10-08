@@ -140,16 +140,12 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 .requestEmail()
                 .build();
 
-        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        //mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 signIn();
-
-                // if()
-//                Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-//                startActivity(intent);
             }
         });
 
@@ -157,14 +153,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icons_menu_w);
 
-//        ActionBar actionBar = getSupportActionBar();
-//        actionBar.setDisplayHomeAsUpEnabled(true);
-//        actionBar.setIcon(R.drawable.icons_menu_w);
-
         cardView = findViewById(R.id.cardView);
         collapsingToolbarLayout = findViewById(R.id.collapsingLayout);
         drawerLayout = findViewById(R.id.drawerLayout);
-//        coordinatorLayout = findViewById(R.id.coordinatorLayout);
         navigationView = findViewById(R.id.navigation_view);
 
         final EditText passwordEt = findViewById(R.id.passwordInput);
@@ -188,7 +179,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         phoneLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 FragmentManager phoneLogin = getSupportFragmentManager();
                 FragmentTransaction transaction = phoneLogin.beginTransaction();
                 transaction.add(R.id.drawerLayout,new PhoneLogin(), FRAGMENT_PHONE_TAG);
@@ -290,8 +280,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         firebaseAuth.signOut();
                         break;
                     case R.id.sign_out_google:
-                        Toast.makeText(MainActivity.this, "Google Sign Out", Toast.LENGTH_SHORT).show();
-                        googleSignOut();
+                        Toast.makeText(MainActivity.this, "Sign Out with Google", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
@@ -334,8 +323,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
             FragmentVerifyPhoneNumberLogin verifyPhoneNumberLogin = FragmentVerifyPhoneNumberLogin.newInstance(phoneNumber);
             getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumberLogin,FRAGMENT_PHONE_LOGIN_TAG).commit();
+
         }
     }
 
@@ -346,6 +337,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
             FragmentVerifyPhoneNumber verifyPhoneNumber = FragmentVerifyPhoneNumber.newInstance(phoneNumber);
             getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumber,FRAGMENT_VERIFY_TAG).commit();
         }
@@ -466,18 +458,18 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
-    private void googleSignOut() {
-        // Firebase sign out
-        Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
-        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                Toast.makeText(getApplicationContext(), "Sign Out from your Google account", Toast.LENGTH_SHORT).show();
-                finish();
-            }
-        });
-
-    }
+//    private void googleSignOut() {
+//        // Firebase sign out
+//        Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
+//        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
+//            @Override
+//            public void onComplete(@NonNull Task<Void> task) {
+//                Toast.makeText(getApplicationContext(), "Sign Out from your Google account", Toast.LENGTH_SHORT).show();
+//                finish();
+//            }
+//        });
+//
+//    }
 
 
     @Override
@@ -488,26 +480,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             handleSignInResult(task);
         }
     }
-
-//    @Override
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-//        if (requestCode == RC_SIGN_IN) {
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            try {
-//                // Google Sign In was successful, authenticate with Firebase
-//                GoogleSignInAccount account = task.getResult(ApiException.class);
-//                Log.d(TAG, "firebaseAuthWithGoogle:" + account.getId());
-//                firebaseAuthWithGoogle(account.getIdToken());
-//            } catch (ApiException e) {
-//                // Google Sign In failed, update UI appropriately
-//                Log.w(TAG, "Google sign in failed", e);
-//                // ...
-//            }
-//        }
-//    }
 
 
     private void handleSignInResult(Task<GoogleSignInAccount>completedTask){
@@ -530,6 +502,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
+                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
                     Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
@@ -542,34 +515,5 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 }
             }
         });
-    }
-
-//    private void firebaseAuthWithGoogle(String idToken) {
-//        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
-//        mAuth.signInWithCredential(credential)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // Sign in success, update UI with the signed-in user's information
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            updateUI(user);
-//                        } else {
-//                            // If sign in fails, display a message to the user.
-//                            updateUI(null);
-//                        }
-//
-//                        // ...
-//                    }
-//                });
-//    }
-
-    private void updateUI(FirebaseUser fUser) {
-
-        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-        if (account != null) {
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
-        }else navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
     }
 }

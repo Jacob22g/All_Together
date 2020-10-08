@@ -30,7 +30,6 @@
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_marginStart="96dp"
-                android:layout_marginBottom="20dp"
                 app:civ_border_width="1dp"
                 app:civ_border_color="@color/whiteColor"
                 android:src="@drawable/main_pic"
@@ -48,8 +47,6 @@
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
-
                     <TextView
                         android:id="@+id/dateHeadline"
                         android:layout_width="match_parent"
@@ -206,8 +203,18 @@
                     android:fontFamily="@font/poppins_medium"
                     android:background="@drawable/color_back2_circle"
                     android:layout_marginHorizontal="50dp"
+                    android:layout_marginBottom="10dp"
                     android:id="@+id/selected_profile_page_btn" />
 
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Delete"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:background="@drawable/color_back_circle"
+                    android:layout_marginHorizontal="50dp"
+                    android:id="@+id/selected_delete_btn" />
 
             </LinearLayout>
 

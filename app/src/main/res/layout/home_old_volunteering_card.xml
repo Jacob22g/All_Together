@@ -19,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/image_on_old_card"
-            android:layout_weight="1"
+            android:layout_weight="2"
             android:src="@drawable/ic_check_box_blank"
             android:scaleType="centerInside"
             android:layout_marginEnd="15dp"/>
@@ -34,11 +34,16 @@
             android:id="@+id/date_on_old_card"
             android:layout_height="wrap_content"
             android:layout_width="0dp"
-            android:layout_weight="6"
+            android:layout_weight="5"
             android:text="Date"
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"/>
+
+        <View
+            android:layout_width="1px"
+            android:layout_height="match_parent"
+            android:background="@color/grayDarkColor"/>
 
         <TextView
             android:id="@+id/hour_on_old_card"
@@ -49,7 +54,6 @@
             android:textSize="14sp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"/>
-
 
     </LinearLayout>
 
