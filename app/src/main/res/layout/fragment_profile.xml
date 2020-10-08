@@ -56,7 +56,7 @@
                         <Button
                             android:layout_width="30dp"
                             android:layout_height="30dp"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_marginTop="5dp"
                             android:layout_alignParentEnd="true"
                             android:background="@drawable/ic_baseline_edit_24"
@@ -64,10 +64,10 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="5dp"
+                            android:layout_marginEnd="10dp"
                             android:layout_below="@+id/profile_edit_btn"
                             android:fontFamily="@font/poppins_medium"
-                            android:textSize="17sp"
+                            android:textSize="15sp"
                             android:text="Edit"
                             android:layout_alignParentEnd="true"/>
 
@@ -222,10 +222,10 @@
                         android:weightSum="3">
 
                         <LinearLayout
-                            android:layout_width="0dp"
+                            android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:layout_weight="2"
                             android:orientation="vertical"
+                            android:layout_marginHorizontal="50dp"
                             android:background="@drawable/color_back4">
 
                             <TextView
@@ -247,35 +247,6 @@
                                 android:layout_gravity="center"
                                 android:layout_marginTop="5dp"
                                 android:fontFamily="@font/poppins_medium"/>
-
-                        </LinearLayout>
-
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:gravity="center_vertical"
-                            android:background="@drawable/color_back4">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:text="Chat"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/poppins_medium"/>
-
-                            <ImageButton
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ic_email"
-                                android:scaleType="centerCrop"
-                                android:layout_gravity="center_horizontal"
-                                android:background="@drawable/color_back4"/>
 
                         </LinearLayout>
 
@@ -381,8 +352,8 @@
                                     android:layout_height="match_parent"
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:textSize="20sp"
-                                    android:text=""
+                                    android:textSize="16sp"
+                                    android:text="Add something about yourself"
                                     android:padding="7dp"
                                     android:layout_marginStart="3dp"/>
 

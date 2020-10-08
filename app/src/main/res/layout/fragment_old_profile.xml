@@ -132,7 +132,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
-                        android:weightSum="3">
+                        android:layout_marginHorizontal="50dp">
 
                         <LinearLayout
                             android:layout_width="0dp"
@@ -178,36 +178,6 @@
                                     android:gravity="end"/>
 
                             </LinearLayout>
-
-
-
-                        </LinearLayout>
-
-                        <LinearLayout
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical"
-                            android:layout_gravity="center"
-                            android:gravity="center_vertical"
-                            android:background="@drawable/color_back4">
-
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:textSize="18sp"
-                                android:textStyle="bold"
-                                android:text="Chat"
-                                android:layout_gravity="center"
-                                android:fontFamily="@font/poppins_medium"/>
-
-                            <ImageButton
-                                android:layout_width="50dp"
-                                android:layout_height="50dp"
-                                android:src="@drawable/ic_email"
-                                android:scaleType="centerCrop"
-                                android:layout_gravity="center_horizontal"
-                                android:background="@drawable/color_back4"/>
 
                         </LinearLayout>
 
@@ -313,8 +283,8 @@
                                     android:layout_height="match_parent"
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
-                                    android:textSize="20sp"
-                                    android:text="No info entered yet"
+                                    android:textSize="16sp"
+                                    android:text="Add something about yourself"
                                     android:padding="7dp"
                                     android:layout_marginStart="3dp"/>
 
