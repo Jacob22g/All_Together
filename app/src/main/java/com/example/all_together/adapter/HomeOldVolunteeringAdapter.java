@@ -4,11 +4,13 @@ package com.example.all_together.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.model.Volunteering;
 
@@ -34,7 +36,7 @@ public class HomeOldVolunteeringAdapter extends RecyclerView.Adapter<HomeOldVolu
     @NonNull
     @Override
     public VolunteeringViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_volunteering_card,parent,false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.home_old_volunteering_card,parent,false);
         VolunteeringViewHolder volunteeringViewHolder = new VolunteeringViewHolder(view);
         return volunteeringViewHolder;
     }
@@ -42,11 +44,24 @@ public class HomeOldVolunteeringAdapter extends RecyclerView.Adapter<HomeOldVolu
     @Override
     public void onBindViewHolder(@NonNull VolunteeringViewHolder holder, int position) {
         Volunteering volunteering = volunteeringList.get(position);
-//      holder.nameTv.setText(volunteering.getNameOld());
-//      holder.locationTv.setText(volunteering.getLocationCity());
+
         holder.dateTv.setText(volunteering.getDate());
         holder.hourTv.setText(volunteering.getHour());
-        //holder.info.setImageResource(R.drawable.ic_sharp_info_24);
+
+        if (volunteering.getVolunteerUID()!=null){
+
+            Glide.with(holder.itemView).load(R.drawable.ic_check_box).into(holder.checkIv);
+        } else {
+
+//            Glide.with(holder.itemView).
+//                    load(R.drawable.ic_check_box_blank).
+//                    into(holder.checkIv);
+
+            // No image:
+            holder.checkIv.setVisibility(View.GONE);
+        }
+
+
     }
 
     @Override
@@ -60,18 +75,17 @@ public class HomeOldVolunteeringAdapter extends RecyclerView.Adapter<HomeOldVolu
     }
 
     public class VolunteeringViewHolder extends RecyclerView.ViewHolder {
-//        TextView nameTv;
-//        TextView locationTv;
+
         TextView dateTv;
         TextView hourTv;
-        //ImageButton infoBtn;
+        ImageView checkIv;
 
         public VolunteeringViewHolder(@NonNull View itemView) {
             super(itemView);
-//            nameTv = itemView.findViewById(R.id.name_on_card);
-//            locationTv = itemView.findViewById(R.id.location_on_card);
+
             dateTv = itemView.findViewById(R.id.date_on_old_card);
             hourTv = itemView.findViewById(R.id.hour_on_old_card);
+            checkIv = itemView.findViewById(R.id.image_on_old_card);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -82,14 +96,7 @@ public class HomeOldVolunteeringAdapter extends RecyclerView.Adapter<HomeOldVolu
                 }
             });
 
-//                infoBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(v.getContext(), "Your Name is: " + v., Toast.LENGTH_SHORT).show();
-//                    }
-//                });
         }
-
 
     }
 }

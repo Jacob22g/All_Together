@@ -24,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.example.all_together.R;
 import com.example.all_together.VolunteeringFragment;
+import com.example.all_together.adapter.HomeOldVolunteeringAdapter;
 import com.example.all_together.model.Volunteering;
 import com.example.all_together.adapter.HomeVolunteeringAdapter;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -71,7 +72,7 @@ public class OldHomeFragment extends Fragment {
 
     List<Volunteering> userVolunteerList  = new ArrayList<>();
     List<Volunteering> volunteeringListNew = new ArrayList<>();
-    List<Volunteering>volunteeringListOld = new ArrayList<>();
+    List<Volunteering> volunteeringListOld = new ArrayList<>();
 
     RecyclerView recyclerViewOld;
     RecyclerView recyclerViewNew;
@@ -258,9 +259,42 @@ public class OldHomeFragment extends Fragment {
             }
         }
 
+//        // new volunteering list
+//        HomeVolunteeringAdapter volunteeringAdapterNew = new HomeVolunteeringAdapter(volunteeringListNew);
+//        volunteeringAdapterNew.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
+//            @Override
+//            public void onVolunteeringClicked(int position, View view) {
+//                Volunteering volunteering = volunteeringListNew.get(position);
+//                Fragment fragment = new VolunteeringFragment(volunteering);
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//            }
+//        });
+//        recyclerViewNew.setAdapter(volunteeringAdapterNew);
+//
+//        // old volunteering list
+//        HomeVolunteeringAdapter volunteeringAdapterOld = new HomeVolunteeringAdapter(volunteeringListOld);
+//        volunteeringAdapterOld.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
+//            @Override
+//            public void onVolunteeringClicked(int position, View view) {
+//                Volunteering volunteering = volunteeringListOld.get(position);
+//                Fragment fragment = new VolunteeringFragment(volunteering);
+//                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+//                fragmentTransaction.addToBackStack(null);
+//                fragmentTransaction.commit();
+//            }
+//        });
+//        recyclerViewOld.setAdapter(volunteeringAdapterOld);
+
         // new volunteering list
-        HomeVolunteeringAdapter volunteeringAdapterNew = new HomeVolunteeringAdapter(volunteeringListNew);
-        volunteeringAdapterNew.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
+
+        HomeOldVolunteeringAdapter volunteeringAdapterNew = new HomeOldVolunteeringAdapter(volunteeringListNew);
+        volunteeringAdapterNew.setListener(new HomeOldVolunteeringAdapter.MyVolunteeringInfoListener() {
             @Override
             public void onVolunteeringClicked(int position, View view) {
                 Volunteering volunteering = volunteeringListNew.get(position);
@@ -275,8 +309,8 @@ public class OldHomeFragment extends Fragment {
         recyclerViewNew.setAdapter(volunteeringAdapterNew);
 
         // old volunteering list
-        HomeVolunteeringAdapter volunteeringAdapterOld = new HomeVolunteeringAdapter(volunteeringListOld);
-        volunteeringAdapterOld.setListener(new HomeVolunteeringAdapter.MyVolunteeringInfoListener() {
+        HomeOldVolunteeringAdapter volunteeringAdapterOld = new HomeOldVolunteeringAdapter(volunteeringListOld);
+        volunteeringAdapterOld.setListener(new HomeOldVolunteeringAdapter.MyVolunteeringInfoListener() {
             @Override
             public void onVolunteeringClicked(int position, View view) {
                 Volunteering volunteering = volunteeringListOld.get(position);
