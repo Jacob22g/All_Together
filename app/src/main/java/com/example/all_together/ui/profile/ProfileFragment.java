@@ -75,6 +75,8 @@ public class ProfileFragment extends Fragment {
     Uri profileImageUri_local;
     Uri downloadUrl;
 
+    Button profileEditBtn;
+
     TextView userNameTv;
     TextView userAddressTv;
     TextView userAgeTv;
@@ -116,6 +118,7 @@ public class ProfileFragment extends Fragment {
         userLevelTv = view.findViewById(R.id.user_vol_lvl_tv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
+        profileEditBtn = view.findViewById(R.id.profile_edit_btn);
 
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
 
@@ -129,7 +132,7 @@ public class ProfileFragment extends Fragment {
             personPhoto = account.getPhotoUrl();
 
             userNameTv.setText(personName);
-            //Glide.with(getContext()).load(String.valueOf(personPhoto)).into(changePicBtn);
+//            Glide.with(getContext()).load(String.valueOf(personPhoto)).into(changePicBtn);
             userAgeTv.setText(" ");
         }
 
@@ -213,6 +216,48 @@ public class ProfileFragment extends Fragment {
             }
         });
 
+        profileEditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open dialog of editing name address and age
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View dialogView = getLayoutInflater().inflate(R.layout.edit_user_info_dialog, null);
+
+                final EditText nameEt = dialogView.findViewById(R.id.full_name_edit_user_info);
+                final EditText cityEt = dialogView.findViewById(R.id.city_edit_user_info);
+                final EditText countryEt = dialogView.findViewById(R.id.country_edit_user_info);
+                final EditText ageEt = dialogView.findViewById(R.id.age_edit_user_info);
+
+                final AlertDialog show = builder.setView(dialogView).show();
+
+                Button saveAboutMeBtn = dialogView.findViewById(R.id.save_edit_user_dialog);
+                saveAboutMeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!nameEt.getText().toString().isEmpty()) {
+                            userNameTv.setText(nameEt.getText().toString());
+                            usersDB.child(firebaseUser.getUid()).child("user_name").setValue(nameEt.getText().toString());
+                        }
+                        if (!cityEt.getText().toString().isEmpty()) {
+                            city = (cityEt.getText().toString());
+                            userAddressTv.setText(city + ", " + country);
+                            usersDB.child(firebaseUser.getUid()).child("city").setValue(cityEt.getText().toString());
+                        }
+                        if (!countryEt.getText().toString().isEmpty()) {
+                            country = (countryEt.getText().toString());
+                            userAddressTv.setText(city + ", " + country);
+                            usersDB.child(firebaseUser.getUid()).child("country").setValue(countryEt.getText().toString());
+                        }
+                        if (!ageEt.getText().toString().isEmpty()) {
+                            userAgeTv.setText(ageEt.getText().toString());
+                            usersDB.child(firebaseUser.getUid()).child("age").setValue(ageEt.getText().toString());
+                        }
+                        show.dismiss();
+                    }
+                });
+            }
+        });
 
         changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
         changePicBtn.setOnClickListener(new View.OnClickListener() {

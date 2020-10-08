@@ -36,8 +36,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -81,12 +85,14 @@ public class DashboardFragment extends Fragment {
         filterSubmitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Collections.sort((List<Comparable>) volunteersDB);
-                adapter.notifyDataSetChanged();
+//                Collections.sort((List<Comparable>) volunteersDB);
+//                adapter.notifyDataSetChanged();
             }
         });
+
         final ImageView showFilterNavBtn = view.findViewById(R.id.showFiler);
         filterRelativeLayout = view.findViewById(R.id.filterRelativeLayout);
+        filterRelativeLayout.setVisibility(View.GONE);
         showFilterNavBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -110,45 +116,44 @@ public class DashboardFragment extends Fragment {
                 final FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user!=null){
-
                     ReadFirebaseDB();
                 }
             }
         };
 
-        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0 ,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
-            @Override
-            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
-                return false;
-            }
-
-            @Override
-            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
-
-                final int position = viewHolder.getAdapterPosition();
-                final Volunteering item = volunteerList.get(position);
-
-                volunteerList.remove(viewHolder.getAdapterPosition());
-                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
-
-                Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item removed from list", Snackbar.LENGTH_LONG)
-                        .setAction("UNDO", new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-
-                                volunteerList.add(position, item);
-                                adapter.notifyItemInserted(position);
-                                volunteersDB.setValue(volunteerList);
-                            }
-                        });
-                snackbar.show();
-
-                volunteersDB.setValue(volunteerList);
-            }
-        };
-
-        ItemTouchHelper helper = new ItemTouchHelper(callback);
-        helper.attachToRecyclerView(recyclerView);
+//        ItemTouchHelper.SimpleCallback callback = new ItemTouchHelper.SimpleCallback(0 ,ItemTouchHelper.RIGHT | ItemTouchHelper.LEFT) {
+//            @Override
+//            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+//                return false;
+//            }
+//
+//            @Override
+//            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+//
+//                final int position = viewHolder.getAdapterPosition();
+//                final Volunteering item = volunteerList.get(position);
+//
+//                volunteerList.remove(viewHolder.getAdapterPosition());
+//                adapter.notifyItemRemoved(viewHolder.getAdapterPosition());
+//
+//                Snackbar snackbar = Snackbar.make(coordinatorLayout, "Item removed from list", Snackbar.LENGTH_LONG)
+//                        .setAction("UNDO", new View.OnClickListener() {
+//                            @Override
+//                            public void onClick(View view) {
+//
+//                                volunteerList.add(position, item);
+//                                adapter.notifyItemInserted(position);
+//                                volunteersDB.setValue(volunteerList);
+//                            }
+//                        });
+//                snackbar.show();
+//
+//                volunteersDB.setValue(volunteerList);
+//            }
+//        };
+//
+//        ItemTouchHelper helper = new ItemTouchHelper(callback);
+//        helper.attachToRecyclerView(recyclerView);
 
         recyclerView.setAdapter(adapter);
         adapter.setListener(new DashboardVolunteeringAdapter.VolunteerListener() {
@@ -171,24 +176,8 @@ public class DashboardFragment extends Fragment {
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
 
-//                // Need to update the DB
-//                volunteersDB.setValue(volunteerList);
-//                myRef.child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(volunteerList);
             }
         });
-
-//        fab = view.findViewById(R.id.dashboard_fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//                volunteerList.add(new Volunteering("name","city","str","date","hour","type"+volunteerList.size(),"bla bli blopy", firebaseUser.getUid()));
-//                adapter.notifyItemInserted(volunteerList.size());
-//
-//                // Write to DB
-//                volunteersDB.setValue(volunteerList);
-//            }
-//        });
 
         return view;
     }
@@ -210,10 +199,33 @@ public class DashboardFragment extends Fragment {
                 if (dataSnapshot.exists()){
                     for (DataSnapshot ds : dataSnapshot.getChildren()){
                         Volunteering volunteering = ds.getValue(Volunteering.class);
-                        volunteerList.add(volunteering);
+
+//                        volunteerList.add(volunteering);
+                        if (volunteering.getVolunteerUID()==null){
+                            volunteerList.add(volunteering);
+                        }
+
                     }
                     adapter.notifyDataSetChanged();
                 }
+
+                // Sort the list by date
+                final SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                Collections.sort(volunteerList, new Comparator<Volunteering>() {
+                    public int compare(Volunteering v1, Volunteering v2) {
+                        Date volunteeringDate1 = null, volunteeringDate2 = null;
+                        int result;
+                        try {
+                            volunteeringDate1 = simpleDateFormat.parse(v1.getDate());
+                            volunteeringDate2 = simpleDateFormat.parse(v2.getDate());
+                            result = volunteeringDate1.compareTo(volunteeringDate2);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                            result=0;
+                        }
+                        return result;
+                    }
+                });
 
                 progressDialog.dismiss();
             }
@@ -224,7 +236,22 @@ public class DashboardFragment extends Fragment {
                 Log.w(TAG, "Failed to read value.", error.toException());
             }
         });
+
+//        final VolunteeringComparator comparator = new VolunteeringComparator();
+//        comparator.compare(volunteerList.get(0),volunteerList.get(1));
+
+
+
     }
+
+
+//    static class VolunteeringComparator implements Comparator<Volunteering> {
+//        public int compare(Volunteering v1, Volunteering v2) {
+//            //possibly check for nulls to avoid NullPointerException
+//            return v1.getDate().compareTo(v2.getDate());
+//        }
+//    }
+
 
     @Override
     public void onStart() {

@@ -120,8 +120,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     progressDialog.dismiss();
                 }
                 @Override
-                public void onCancelled(@NonNull DatabaseError error) {
-                }
+                public void onCancelled(@NonNull DatabaseError error) { }
             });
 
 //            Intent intent;
@@ -276,7 +275,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 switch (item.getItemId()) {
                     case R.id.sign_up:
                         Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
-//                        cardView.setVisibility(View.GONE);
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
                         transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
@@ -285,7 +283,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         break;
                     case R.id.sign_in:
                         Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
-//                        //cardView.setVisibility(View.VISIBLE);
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
@@ -317,7 +314,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         mAuth.addAuthStateListener(listener);
-        //updateUI(currentUser);
+//        updateUI(currentUser);
     }
 
     @Override

@@ -174,13 +174,15 @@ public class VolunteeringFragment extends Fragment {
 
         // Add user to the volunteering
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
-        profileBtn = view.findViewById(R.id.selected_profile_page_btn);
+        addBtn.setVisibility(View.GONE);
 
+        profileBtn = view.findViewById(R.id.selected_profile_page_btn);
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
             }
         });
+
 
 //        if (!isOldUser) {
 //            addBtn.setOnClickListener(new View.OnClickListener() {
@@ -220,6 +222,7 @@ public class VolunteeringFragment extends Fragment {
         }
 
         chatBtn = view.findViewById(R.id.selected_volunteering_chat_btn);
+        chatBtn.setVisibility(View.GONE);
 //        if (isOldUser && volunteering.getVolunteerUID()==null) {
 //            chatBtn.setVisibility(View.GONE);
 //        } else {
@@ -284,7 +287,7 @@ public class VolunteeringFragment extends Fragment {
 
         if (!isOldUser) {
             // change it to default View.GONE
-//            chatBtn.setVisibility(View.VISIBLE);
+            addBtn.setVisibility(View.VISIBLE);
             addBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -319,7 +322,7 @@ public class VolunteeringFragment extends Fragment {
             chatBtn.setVisibility(View.GONE);
         } else {
             // change it to default View.GONE
-//            chatBtn.setVisibility(View.VISIBLE);
+            chatBtn.setVisibility(View.VISIBLE);
             chatBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

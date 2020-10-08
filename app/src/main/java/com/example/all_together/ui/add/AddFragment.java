@@ -164,7 +164,10 @@ public class AddFragment extends Fragment implements LocationListener {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
 
-                        timeTv.setText(hourOfDay + ":" + minute);
+                        if (minute<=9)
+                            timeTv.setText(hourOfDay + ":0" + minute);
+                        else
+                            timeTv.setText(hourOfDay + ":" + minute);
                     }
                 }, hour, minutes, true);
                 tpd.show();

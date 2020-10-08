@@ -53,6 +53,24 @@
                             android:textStyle="bold"
                             android:layout_toEndOf="@id/change_profile_pic_btn"/>
 
+                        <Button
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_marginRight="5dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_alignParentEnd="true"
+                            android:background="@drawable/ic_baseline_edit_24"
+                            android:id="@+id/profile_edit_btn"/>
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="5dp"
+                            android:layout_below="@+id/profile_edit_btn"
+                            android:fontFamily="@font/poppins_medium"
+                            android:textSize="17sp"
+                            android:text="Edit"
+                            android:layout_alignParentEnd="true"/>
+
                         <TextView
                             android:id="@+id/userAddressTv"
                             android:layout_width="wrap_content"
@@ -71,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="17sp"
-                            android:text="Null"
+                            android:text="Age"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_below="@id/userAddressTv"
@@ -364,7 +382,7 @@
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
                                     android:textSize="20sp"
-                                    android:layout_gravity="center_vertical"
+                                    android:text=""
                                     android:padding="7dp"
                                     android:layout_marginStart="3dp"/>
 
