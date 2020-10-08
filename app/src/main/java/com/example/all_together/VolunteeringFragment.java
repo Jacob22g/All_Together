@@ -51,6 +51,8 @@ public class VolunteeringFragment extends Fragment {
     Volunteering volunteering;
     int positionInList;
 
+    String otherProfileId;
+
     TextView nameTv;
     TextView dateTv;
     TextView timeTv;
@@ -223,6 +225,7 @@ public class VolunteeringFragment extends Fragment {
 
         chatBtn = view.findViewById(R.id.selected_volunteering_chat_btn);
         chatBtn.setVisibility(View.GONE);
+        profileBtn.setVisibility(View.GONE);
 //        if (isOldUser && volunteering.getVolunteerUID()==null) {
 //            chatBtn.setVisibility(View.GONE);
 //        } else {
@@ -280,6 +283,35 @@ public class VolunteeringFragment extends Fragment {
     }
 
     private void listenerForProfileBtn() {
+
+        if (isOldUser){
+            if (volunteering.getVolunteerUID()!=null){
+                profileBtn.setVisibility(View.VISIBLE);
+                otherProfileId = volunteering.getVolunteerUID();
+            }
+        } else {
+            otherProfileId = volunteering.getOldUID();
+            profileBtn.setVisibility(View.VISIBLE);
+        }
+
+        profileBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Toast.makeText(getContext(), otherProfileId+"", Toast.LENGTH_SHORT).show();
+
+                // Go to profile:
+                if (otherProfileId!=null){
+                    // Open Fragment
+                    Fragment fragment = new FragmentOtherProfile(otherProfileId); // send it the id we will fetch info from
+                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                    fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                    fragmentTransaction.addToBackStack(null);
+                    fragmentTransaction.commit();
+                }
+            }
+        });
 
     }
 

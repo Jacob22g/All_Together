@@ -68,12 +68,9 @@ public class FragmentOtherProfile extends Fragment {
     StorageReference storageRef;
     StorageReference imageStorageRef;
 
-    final int IMAGE_REQUEST = 111;
-
     CircleImageView changePicBtn;
 
-    Uri profileImageUri_local;
-    Uri downloadUrl;
+    ImageButton chatBtn;
 
     TextView userNameTv;
     TextView userAddressTv;
@@ -83,8 +80,6 @@ public class FragmentOtherProfile extends Fragment {
     TextView userLevelTv;
 
     String personName;
-    //    String personAge;
-//    String personAddress;
     String personGivenName;
     String personFamilyName;
     String personEmail;
@@ -94,19 +89,25 @@ public class FragmentOtherProfile extends Fragment {
     String city;
     String country;
 
-    Button TypesOfVolunteeringBtn;
     ArrayList<String> volunteeringTypes = new ArrayList<>();
     ListView listView;
 
-    Button aboutMeBtn;
     TextView aboutMeTv;
 
     GoogleSignInAccount account;
 
+    String otherProfileId;
+
+    public FragmentOtherProfile(String otherProfileId) {
+        this.otherProfileId = otherProfileId;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile,container,false);
+
+        // maybe will check here if old user or not
+        View view = inflater.inflate(R.layout.fragment_other_profile ,container,false);
 
         userNameTv = view.findViewById(R.id.userFullNameTv);
         userAddressTv = view.findViewById(R.id.userAddressTv);
@@ -115,9 +116,22 @@ public class FragmentOtherProfile extends Fragment {
         numOfVolunteeringTv = view.findViewById(R.id.user_num_of_vol_tv);
         userLevelTv = view.findViewById(R.id.user_vol_lvl_tv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
-        aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
-
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
+        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
+
+        // Need to add the chat btn option
+
+        chatBtn = view.findViewById(R.id.open_chat_from_profile_btn);
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Open Chat:
+            }
+        });
+
+
+        //-----------------------
 
         account = GoogleSignIn.getLastSignedInAccount(getContext());
         if (account!=null){
@@ -133,99 +147,12 @@ public class FragmentOtherProfile extends Fragment {
             userAgeTv.setText(" ");
         }
 
+        //-----------------------
+
         storageRef = FirebaseStorage.getInstance().getReference();
 
-        // Save Volunteering types change
-        TypesOfVolunteeringBtn = view.findViewById(R.id.TypesOfVolunteering_edit_btn);
-        TypesOfVolunteeringBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-//                final ArrayList<String> types = new ArrayList<>();
-                final ArrayList<String> types = volunteeringTypes;
-                final String[] typesArr = getResources().getStringArray(R.array.volunteering_categories_array);
-
-                boolean[] isPreChecked = new boolean[typesArr.length];
-                for (int i=0;i<typesArr.length;i++){
-                    isPreChecked[i] = false;
-                    for (String t : volunteeringTypes){
-                        if (t.equals(typesArr[i]))
-                            isPreChecked[i] = true;
-                    }
-                }
-
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Please pick types")
-                        .setMultiChoiceItems(R.array.volunteering_categories_array, isPreChecked, new DialogInterface.OnMultiChoiceClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which, boolean isChecked) {
-                                if (isChecked)
-                                    types.add(typesArr[which]);
-                                else
-                                    types.remove(typesArr[which]);
-                            }
-                        }).setPositiveButton("Save", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(getContext(), types.toString(), Toast.LENGTH_SHORT).show();
-                        volunteeringTypes = types;
-                        usersDB.child(firebaseUser.getUid()).child("volunteeringTypes").setValue(types);
-
-                        // Display the list
-                        final ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), android.R.layout.simple_list_item_1, android.R.id.text1, volunteeringTypes);
-                        listView.setAdapter(adapter);
-                    }
-                }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                }).setIcon(R.drawable.volunteer_icon)
-                        .show();
-            }
-        });
-
-        // save about me
-        aboutMeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Open et dialog- custom dialog the save it in the tv
-
-                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                View dialogView = getLayoutInflater().inflate(R.layout.edit_aboutme_dialog, null);
-
-                final EditText aboutMeEt = dialogView.findViewById(R.id.about_me_et_dialog);
-
-                final AlertDialog show = builder.setView(dialogView).show();
-
-                Button saveAboutMeBtn = dialogView.findViewById(R.id.about_me_et_btn_dialog);
-                saveAboutMeBtn.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        aboutMeTv.setText(aboutMeEt.getText().toString());
-
-                        usersDB.child(firebaseUser.getUid()).child("aboutMe").setValue(aboutMeTv.getText().toString());
-
-                        show.dismiss();
-                    }
-                });
-
-            }
-        });
-
-
-        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
-        changePicBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                intent.setType("image/*");
-                startActivityForResult(intent,IMAGE_REQUEST);
-            }
-        });
-
-        usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
+        // otherProfileId Info load
+        usersDB.child(otherProfileId).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
@@ -265,20 +192,10 @@ public class FragmentOtherProfile extends Fragment {
                                 aboutMeTv.setText(ds.getValue(String.class));
                                 break;
                         }
-
                     }
-
                 }
                 userAddressTv.setText(city + ", " + country);
                 userEmailTv.setText(firebaseUser.getEmail());
-
-//
-//                // gs://all-together-e88a5.appspot.com/vnnGxqosTfdClSaYShIrPNEwta83/profile_image
-//                imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-//
-//                Glide.with(getContext())
-//                        .load(imageStorageRef)
-//                        .into(changePicBtn);
             }
 
             @Override
@@ -288,108 +205,11 @@ public class FragmentOtherProfile extends Fragment {
 
         loadImage();
 
-        setUserVolunteeringLevel();
-
         return view;
     }
 
-    private void setUserVolunteeringLevel() {
-//        String userLevel = userLevelTv.getText().toString();
-//        int numOfVolunteering = Integer.getInteger(numOfVolunteeringTv.getText().toString());
-//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals("2/5")){
-//            userLevel = "2/5";
-//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals("3/5")){
-//            userLevel = "3/5";
-//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals("4/5")){
-//            userLevel = "4/5";
-//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>50 && !userLevel.equals("5/5")){
-//            userLevel = "5/5";
-//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else {
-//            if (!userLevel.equals("1/5")) {
-//                userLevel = "1/5";
-//                usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//            }
-//        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if(requestCode == IMAGE_REQUEST && resultCode == RESULT_OK){
-
-            profileImageUri_local = data.getData();
-//            Glide.with(getContext())
-//                    .load(profileImageUri_local)
-//                    .into(changePicBtn);
-
-            // Should be a service
-            uploadImage();
-
-//            Glide.with(getContext())
-//                    .load(imageStorageRef)
-//                    .into(changePicBtn);
-        }
-    }
-
-    private void uploadImage(){
-
-        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Replacing Image...");
-        progressDialog.show();
-
-//        Uri file = Uri.fromFile(new File(profileImageUri.toString()));
-        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-
-        imageStorageRef.putFile(profileImageUri_local)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Get a URL to the uploaded content
-                        progressDialog.dismiss();
-
-                        // Replace the image
-                        loadImage();
-
-//                        Task<Uri> result = taskSnapshot.getStorage().getDownloadUrl();
-//                        result.addOnSuccessListener(new OnSuccessListener<Uri>() {
-//                            @Override
-//                            public void onSuccess(Uri uri) {
-//                                String imageUrl = uri.toString();
-//                                downloadUrl = uri;
-//                            }
-//                        });
-
-                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        progressDialog.dismiss();
-                        Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        // Progress bar
-                        double progress = (100.0*snapshot.getBytesTransferred()/snapshot
-                                .getTotalByteCount());
-                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
-                    }
-                });
-    }
-
     private void loadImage(){
-
-        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-
+        imageStorageRef = storageRef.child(otherProfileId+"/profile_image");
         imageStorageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
@@ -401,49 +221,5 @@ public class FragmentOtherProfile extends Fragment {
                 }
             }
         });
-
-//        Glide.with(getContext())
-//                .load(imageStorageRef)
-//                .into(changePicBtn);
-
-        // This is downloading the image
-
-//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-//        progressDialog.setMessage("Loading profile Please wait..");
-//        progressDialog.show();
-//
-//        File localFile = null;
-//        try {
-//
-//            localFile = File.createTempFile("images", "jpg");
-//            final File finalLocalFile = localFile;
-//
-//            StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-//
-//            imageStoreRef.getFile(localFile)
-//                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                            // Successfully downloaded data to local file
-//                            Uri profileUri = Uri.fromFile(finalLocalFile);
-//                            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-//
-//                            progressDialog.dismiss();
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception exception) {
-//                    // Handle failed download
-//                    Toast.makeText(getContext(), "Download Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-////            Uri profileUri = Uri.fromFile(localFile);
-////            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
     }
 }

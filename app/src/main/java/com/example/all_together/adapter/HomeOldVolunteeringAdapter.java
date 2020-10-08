@@ -58,7 +58,7 @@ public class HomeOldVolunteeringAdapter extends RecyclerView.Adapter<HomeOldVolu
 //                    into(holder.checkIv);
 
             // No image:
-            holder.checkIv.setVisibility(View.GONE);
+            holder.checkIv.setVisibility(View.INVISIBLE);
         }
 
 
