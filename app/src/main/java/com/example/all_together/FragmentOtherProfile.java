@@ -3,6 +3,7 @@ package com.example.all_together;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import androidx.fragment.app.Fragment;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.signature.MediaStoreSignature;
 import com.example.all_together.R;
+import com.example.all_together.model.Chat;
 import com.example.all_together.model.Volunteering;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -46,15 +48,18 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.google.gson.Gson;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 import static android.app.Activity.RESULT_OK;
+import static android.content.Context.MODE_PRIVATE;
 
 public class FragmentOtherProfile extends Fragment {
 
@@ -63,7 +68,10 @@ public class FragmentOtherProfile extends Fragment {
     FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference volunteersDB = database.getReference("volunteerList");
     DatabaseReference usersDB = database.getReference("users");
+    DatabaseReference chats_id = database.getReference("chatIdNum");
+    DatabaseReference chatsDB = database.getReference("chats");
 
     StorageReference storageRef;
     StorageReference imageStorageRef;
@@ -97,39 +105,45 @@ public class FragmentOtherProfile extends Fragment {
     GoogleSignInAccount account;
 
     String otherProfileId;
+    Volunteering volunteering;
 
-    public FragmentOtherProfile(String otherProfileId) {
+    String newChatId;
+    Chat chat;
+    boolean isOldOtherUser;
+    boolean loadOldLayout;
+
+    public FragmentOtherProfile(String otherProfileId, Volunteering volunteering, boolean loadOldLayout) {
         this.otherProfileId = otherProfileId;
+        this.volunteering = volunteering;
+        this.loadOldLayout = !loadOldLayout;
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        // maybe will check here if old user or not
-        View view = inflater.inflate(R.layout.fragment_other_profile ,container,false);
+//        View view = inflater.inflate(R.layout.fragment_other_profile ,container,false);
+
+        View view;
+
+        if(loadOldLayout){
+            view = inflater.inflate(R.layout.fragment_old_other_profile ,container,false);
+        } else{
+            view = inflater.inflate(R.layout.fragment_other_profile ,container,false);
+        }
+
+        if (!loadOldLayout) {
+            numOfVolunteeringTv = view.findViewById(R.id.user_num_of_vol_tv);
+            userLevelTv = view.findViewById(R.id.user_vol_lvl_tv);
+        }
 
         userNameTv = view.findViewById(R.id.userFullNameTv);
         userAddressTv = view.findViewById(R.id.userAddressTv);
         userAgeTv = view.findViewById(R.id.userAgeTv);
         userEmailTv = view.findViewById(R.id.userEmailTv);
-        numOfVolunteeringTv = view.findViewById(R.id.user_num_of_vol_tv);
-        userLevelTv = view.findViewById(R.id.user_vol_lvl_tv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
         changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
-
-        // Need to add the chat btn option
-
-        chatBtn = view.findViewById(R.id.open_chat_from_profile_btn);
-        chatBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                // Open Chat:
-            }
-        });
-
 
         //-----------------------
 
@@ -172,10 +186,14 @@ public class FragmentOtherProfile extends Fragment {
                                 country = ds.getValue(String.class);
                                 break;
                             case "number_of_volunteering":
-                                numOfVolunteeringTv.setText(String.valueOf(ds.getValue(Integer.class)));
+                                if (!loadOldLayout) {
+                                    numOfVolunteeringTv.setText(String.valueOf(ds.getValue(Integer.class)));
+                                }
                                 break;
                             case "volunteering_level":
-                                userLevelTv.setText(ds.getValue(String.class));
+                                if (!loadOldLayout) {
+                                    userLevelTv.setText(ds.getValue(String.class));
+                                }
                                 break;
                             case "volunteeringTypes":
                                 for (DataSnapshot d : ds.getChildren()){
@@ -191,11 +209,19 @@ public class FragmentOtherProfile extends Fragment {
                             case "aboutMe":
                                 aboutMeTv.setText(ds.getValue(String.class));
                                 break;
+                            case "is_old_user":
+                                isOldOtherUser = ds.getValue(boolean.class);
+                                break;
                         }
                     }
                 }
                 userAddressTv.setText(city + ", " + country);
-                userEmailTv.setText(firebaseUser.getEmail());
+
+                //////
+                //////
+                // userEmailTv.setText(firebaseUser.getEmail()); // need to get other users email!
+                //////
+                //////
             }
 
             @Override
@@ -204,6 +230,86 @@ public class FragmentOtherProfile extends Fragment {
         });
 
         loadImage();
+
+
+        // Need to add the chat btn option
+        chat = new Chat();
+        newChatId = UUID.randomUUID().toString();
+
+        chatBtn = view.findViewById(R.id.open_chat_from_profile_btn);
+        chatBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                // Open Chat:
+                chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.exists()){
+
+                            for (DataSnapshot ds: snapshot.getChildren()){
+
+                                Chat checkChat = ds.getValue(Chat.class);
+
+                                // Chat when the volunteer user is sign to the volunteering
+                                if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                        (checkChat.getSideBUid().equals(volunteering.getVolunteerUID())))
+                                        ||
+                                        ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
+                                                (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
+                                    chat = checkChat;
+                                }
+                                // Chat when the volunteer user is not sign to the volunteering
+                                else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
+                                        (checkChat.getSideBUid().equals(volunteering.getOldUID())))
+                                        ||
+                                        ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
+                                                (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
+                                    chat = checkChat;
+
+                                } else {
+                                    // Create the chat
+                                    chat.setChatID(newChatId);
+                                    chat.setSideAUid(firebaseUser.getUid());
+                                    if (!isOldOtherUser) {
+                                        chat.setSideBUid(volunteering.getVolunteerUID());
+                                    } else {
+                                        chat.setSideBUid(volunteering.getOldUID());
+                                    }
+                                    chatsDB.child(newChatId).setValue(chat);
+                                }
+                            }
+
+                        } else {
+                            // Create the chat
+                            chat.setChatID(newChatId);
+                            chat.setSideAUid(firebaseUser.getUid());
+                            if (!isOldOtherUser) {
+                                chat.setSideBUid(volunteering.getVolunteerUID());
+                            } else {
+                                chat.setSideBUid(volunteering.getOldUID());
+                            }
+                            chatsDB.child(newChatId).setValue(chat);
+                        }
+
+                        // Send the chat to the chat activity
+                        SharedPreferences sharedPreferences = getActivity().getSharedPreferences("chat",MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        Gson gson = new Gson();
+                        String json = gson.toJson(chat);
+                        editor.putString("chat", json);
+                        editor.commit();
+
+                        Intent intent = new Intent(getActivity().getApplicationContext(), ChatConversationActivity.class);
+                        startActivity(intent);
+
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) { }
+                });
+            }
+        });
+
 
         return view;
     }

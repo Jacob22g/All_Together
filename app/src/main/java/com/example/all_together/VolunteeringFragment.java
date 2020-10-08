@@ -297,16 +297,16 @@ public class VolunteeringFragment extends Fragment {
         profileBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Toast.makeText(getContext(), otherProfileId+"", Toast.LENGTH_SHORT).show();
-
                 // Go to profile:
                 if (otherProfileId!=null){
                     // Open Fragment
-                    Fragment fragment = new FragmentOtherProfile(otherProfileId); // send it the id we will fetch info from
+                    Fragment fragment = new FragmentOtherProfile(otherProfileId, volunteering, isOldUser); // send it the id we will fetch info from, the volunteering
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                    fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                    if (isOldUser)
+                        fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
+                    else
+                        fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
                     fragmentTransaction.addToBackStack(null);
                     fragmentTransaction.commit();
                 }
