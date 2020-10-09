@@ -212,16 +212,13 @@ public class FragmentOtherProfile extends Fragment {
                             case "is_old_user":
                                 isOldOtherUser = ds.getValue(boolean.class);
                                 break;
+                            case "EmailAddress":
+                                userEmailTv.setText(ds.getValue(String.class));
+                                break;
                         }
                     }
+                    userAddressTv.setText(city + ", " + country);
                 }
-                userAddressTv.setText(city + ", " + country);
-
-                //////
-                //////
-                // userEmailTv.setText(firebaseUser.getEmail()); // need to get other users email!
-                //////
-                //////
             }
 
             @Override

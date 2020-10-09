@@ -357,6 +357,8 @@ public class AddFragment extends Fragment implements LocationListener {
                 // 4. if ok go to the volunteering page
                 // going to home on back pressed inside the volunteerFragment
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
+
+                // Open the volunteering
                 Toast.makeText(getContext(), "Your request has been added to the list of volunteers", Toast.LENGTH_SHORT).show();
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();

@@ -1,14 +1,17 @@
 package com.example.all_together;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +29,8 @@ import com.example.all_together.Notifications.Token;
 import com.example.all_together.model.Chat;
 import com.example.all_together.model.Volunteering;
 import com.example.all_together.ui.chat.ConversationChatFragment;
+import com.example.all_together.ui.home.HomeFragment;
+import com.example.all_together.ui.old_user.OldHomeFragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -62,6 +67,7 @@ public class VolunteeringFragment extends Fragment {
     Button addBtn;
     Button chatBtn;
     Button profileBtn;
+    Button deleteBtn;
     ImageButton backBtn;
 
     String newChatId;
@@ -178,13 +184,39 @@ public class VolunteeringFragment extends Fragment {
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
         addBtn.setVisibility(View.GONE);
 
-        profileBtn = view.findViewById(R.id.selected_profile_page_btn);
-        profileBtn.setOnClickListener(new View.OnClickListener() {
+        deleteBtn = view.findViewById(R.id.selected_delete_btn);
+        deleteBtn.setVisibility(View.GONE);
+        if (volunteering.getOldUID().equals(firebaseUser.getUid())){
+            deleteBtn.setVisibility(View.VISIBLE);
+        }
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                // open are you sure Dialog:
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setTitle("Confirm Delete").setMessage("Are you sure you want to delete this volunteering?")
+                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.dismiss();
+                            }
+                        })
+                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // Delete the volunteering
+                                volunteerList.remove(positionInList);
+                                volunteersDB.setValue(volunteerList);
+
+                                // reload OldHome
+                                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
+                                // simulate back pressed:
+                                getActivity().onBackPressed();
+                            }
+                        }).show();
             }
         });
-
 
 //        if (!isOldUser) {
 //            addBtn.setOnClickListener(new View.OnClickListener() {
@@ -225,7 +257,7 @@ public class VolunteeringFragment extends Fragment {
 
         chatBtn = view.findViewById(R.id.selected_volunteering_chat_btn);
         chatBtn.setVisibility(View.GONE);
-        profileBtn.setVisibility(View.GONE);
+
 //        if (isOldUser && volunteering.getVolunteerUID()==null) {
 //            chatBtn.setVisibility(View.GONE);
 //        } else {
@@ -270,6 +302,9 @@ public class VolunteeringFragment extends Fragment {
 //                }
 //            });
 //        }
+
+        profileBtn = view.findViewById(R.id.selected_profile_page_btn);
+        profileBtn.setVisibility(View.GONE);
 
         backBtn = view.findViewById(R.id.selected_volunteering_back_btn);
         backBtn.setOnClickListener(new View.OnClickListener() {

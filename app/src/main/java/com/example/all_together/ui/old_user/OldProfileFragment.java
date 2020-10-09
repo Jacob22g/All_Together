@@ -76,7 +76,7 @@ public class OldProfileFragment extends Fragment {
 
     Button aboutMeBtn;
     TextView aboutMeTv;
-
+    Button profileEditBtn;
     Button editEmailBtn;
     TextView emailAddressTv;
 
@@ -91,10 +91,9 @@ public class OldProfileFragment extends Fragment {
         userEmailTv = view.findViewById(R.id.userEmailTv);
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
-
         editEmailBtn = view.findViewById(R.id.edit_email_btn);
         emailAddressTv = view.findViewById(R.id.OldUserEditEmailTv);
-
+        profileEditBtn = view.findViewById(R.id.old_profile_edit_btn);
 
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
 
@@ -178,6 +177,49 @@ public class OldProfileFragment extends Fragment {
             }
         });
 
+        profileEditBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Open dialog of editing name address and age
+                final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                View dialogView = getLayoutInflater().inflate(R.layout.edit_user_info_dialog, null);
+
+                final EditText nameEt = dialogView.findViewById(R.id.full_name_edit_user_info);
+                final EditText cityEt = dialogView.findViewById(R.id.city_edit_user_info);
+                final EditText countryEt = dialogView.findViewById(R.id.country_edit_user_info);
+                final EditText ageEt = dialogView.findViewById(R.id.age_edit_user_info);
+
+                final AlertDialog show = builder.setView(dialogView).show();
+
+                Button saveAboutMeBtn = dialogView.findViewById(R.id.save_edit_user_dialog);
+                saveAboutMeBtn.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        if (!nameEt.getText().toString().isEmpty()) {
+                            userNameTv.setText(nameEt.getText().toString());
+                            usersDB.child(firebaseUser.getUid()).child("user_name").setValue(nameEt.getText().toString());
+                        }
+                        if (!cityEt.getText().toString().isEmpty()) {
+                            city = (cityEt.getText().toString());
+                            userAddressTv.setText(city + ", " + country);
+                            usersDB.child(firebaseUser.getUid()).child("city").setValue(cityEt.getText().toString());
+                        }
+                        if (!countryEt.getText().toString().isEmpty()) {
+                            country = (countryEt.getText().toString());
+                            userAddressTv.setText(city + ", " + country);
+                            usersDB.child(firebaseUser.getUid()).child("country").setValue(countryEt.getText().toString());
+                        }
+                        if (!ageEt.getText().toString().isEmpty()) {
+                            userAgeTv.setText(ageEt.getText().toString());
+                            usersDB.child(firebaseUser.getUid()).child("age").setValue(ageEt.getText().toString());
+                        }
+                        show.dismiss();
+                    }
+                });
+            }
+        });
+
         editEmailBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -203,8 +245,6 @@ public class OldProfileFragment extends Fragment {
 
             }
         });
-
-
 
         changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
         changePicBtn.setOnClickListener(new View.OnClickListener() {
