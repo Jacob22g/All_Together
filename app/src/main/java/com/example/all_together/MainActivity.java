@@ -273,6 +273,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         break;
                     case R.id.sign_in:
                         Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+                        // open main activity again
+//                        finish();
+//                        startActivity(getIntent());
+                        onBackPressed();
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
@@ -444,7 +448,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0)
             getSupportFragmentManager().popBackStack();
-//            //cardView.setVisibility(View.VISIBLE);
         else
             super.onBackPressed();
     }
