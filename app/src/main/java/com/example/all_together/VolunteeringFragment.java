@@ -335,7 +335,7 @@ public class VolunteeringFragment extends Fragment {
                 // Go to profile:
                 if (otherProfileId!=null){
                     // Open Fragment
-                    Fragment fragment = new FragmentOtherProfile(otherProfileId, volunteering, isOldUser); // send it the id we will fetch info from, the volunteering
+                    Fragment fragment = new FragmentOtherProfile(otherProfileId, volunteering, isOldUser);
                     FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                     FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                     if (isOldUser)
@@ -424,18 +424,11 @@ public class VolunteeringFragment extends Fragment {
                         public void onDataChange(@NonNull DataSnapshot snapshot) {
                             if (snapshot.exists()){
 
+                                boolean isChatExist = false;
+
                                 for (DataSnapshot ds: snapshot.getChildren()){
 
                                     Chat checkChat = ds.getValue(Chat.class);
-
-//                                    // for testing -----------
-//                                    String chatId = checkChat.getChatID();
-//                                    String sideAId = checkChat.getSideAUid();
-//                                    String sideBId = checkChat.getSideBUid();
-//                                    String oldId = volunteering.getOldUID();
-//                                    String volunteerId = volunteering.getVolunteerUID(); // may be null
-//                                    String firebaseUserId = firebaseUser.getUid();
-//                                    //-------------------------
 
                                     // Chat when the volunteer user is sign to the volunteering
                                     if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
@@ -444,6 +437,7 @@ public class VolunteeringFragment extends Fragment {
                                             ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
                                                     (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
                                         chat = checkChat;
+                                        isChatExist = true;
                                     }
                                     // Chat when the volunteer user is not sign to the volunteering
                                     else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
@@ -452,8 +446,18 @@ public class VolunteeringFragment extends Fragment {
                                             ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
                                                     (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
                                         chat = checkChat;
+                                        isChatExist = true;
+                                    // Chat when the user and the profile user already have a chat
+                                    } else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
+                                            (checkChat.getSideBUid().equals(otherProfileId)))
+                                            ||
+                                            ((checkChat.getSideAUid().equals(otherProfileId)) &&
+                                                    (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
+                                        chat = checkChat;
+                                        isChatExist = true;
+                                    }
 
-                                    } else {
+                                    if (!isChatExist){
                                         // Create the chat
                                         chat.setChatID(newChatId);
                                         chat.setSideAUid(firebaseUser.getUid());

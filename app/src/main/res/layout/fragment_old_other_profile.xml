@@ -157,7 +157,7 @@
                                 android:gravity="center">
 
                                 <TextView
-                                    android:id="@+id/OldUserEditEmailTv"
+                                    android:id="@+id/userEmailTv"
                                     android:layout_width="wrap_content"
                                     android:layout_height="match_parent"
                                     android:textSize="16sp"

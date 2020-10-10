@@ -213,7 +213,8 @@ public class FragmentOtherProfile extends Fragment {
                                 isOldOtherUser = ds.getValue(boolean.class);
                                 break;
                             case "EmailAddress":
-                                userEmailTv.setText(ds.getValue(String.class));
+                                if (ds.exists())
+                                    userEmailTv.setText(ds.getValue(String.class));
                                 break;
                         }
                     }
@@ -244,6 +245,8 @@ public class FragmentOtherProfile extends Fragment {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         if (snapshot.exists()){
 
+                            boolean isChatExist = false;
+
                             for (DataSnapshot ds: snapshot.getChildren()){
 
                                 Chat checkChat = ds.getValue(Chat.class);
@@ -255,6 +258,7 @@ public class FragmentOtherProfile extends Fragment {
                                         ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
                                                 (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
                                     chat = checkChat;
+                                    isChatExist = true;
                                 }
                                 // Chat when the volunteer user is not sign to the volunteering
                                 else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
@@ -263,18 +267,28 @@ public class FragmentOtherProfile extends Fragment {
                                         ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
                                                 (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
                                     chat = checkChat;
-
-                                } else {
-                                    // Create the chat
-                                    chat.setChatID(newChatId);
-                                    chat.setSideAUid(firebaseUser.getUid());
-                                    if (!isOldOtherUser) {
-                                        chat.setSideBUid(volunteering.getVolunteerUID());
-                                    } else {
-                                        chat.setSideBUid(volunteering.getOldUID());
-                                    }
-                                    chatsDB.child(newChatId).setValue(chat);
+                                    isChatExist = true;
+                                // Chat when the user and the profile user already have a chat
+                                } else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
+                                        (checkChat.getSideBUid().equals(otherProfileId)))
+                                        ||
+                                        ((checkChat.getSideAUid().equals(otherProfileId)) &&
+                                                (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
+                                    chat = checkChat;
+                                    isChatExist = true;
                                 }
+                            }
+
+                            if (!isChatExist) {
+                                // Create the chat
+                                chat.setChatID(newChatId);
+                                chat.setSideAUid(firebaseUser.getUid());
+                                if (!isOldOtherUser) {
+                                    chat.setSideBUid(volunteering.getVolunteerUID());
+                                } else {
+                                    chat.setSideBUid(volunteering.getOldUID());
+                                }
+                                chatsDB.child(newChatId).setValue(chat);
                             }
 
                         } else {

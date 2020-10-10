@@ -162,16 +162,10 @@ public class DashboardFragment extends Fragment {
 
                 Volunteering volunteering = volunteerList.get(position);
 
-//                adapter.notifyItemChanged(position);
-//                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
-
-                // Open This volunteering
-//                Fragment fragment = new VolunteeringFragment(volunteering, position);                // Maybe would change it and use the id and not position
                 Fragment fragment = new VolunteeringFragment(volunteering);
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.container, fragment);
                 fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
@@ -237,20 +231,8 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-//        final VolunteeringComparator comparator = new VolunteeringComparator();
-//        comparator.compare(volunteerList.get(0),volunteerList.get(1));
-
-
 
     }
-
-
-//    static class VolunteeringComparator implements Comparator<Volunteering> {
-//        public int compare(Volunteering v1, Volunteering v2) {
-//            //possibly check for nulls to avoid NullPointerException
-//            return v1.getDate().compareTo(v2.getDate());
-//        }
-//    }
 
 
     @Override

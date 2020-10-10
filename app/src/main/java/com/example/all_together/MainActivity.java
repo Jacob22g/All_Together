@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 .requestEmail()
                 .build();
 
-        //mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
+        mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,12 +267,16 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
-                        transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                        transaction.add(R.id.drawerLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
                         transaction.addToBackStack(null);
                         transaction.commit();
                         break;
                     case R.id.sign_in:
                         Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+                        // open main activity again
+//                        finish();
+//                        startActivity(getIntent());
+                        onBackPressed();
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
@@ -448,7 +452,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     public void onBackPressed() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 0)
             getSupportFragmentManager().popBackStack();
-//            //cardView.setVisibility(View.VISIBLE);
         else
             super.onBackPressed();
     }

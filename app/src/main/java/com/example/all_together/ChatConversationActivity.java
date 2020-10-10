@@ -251,7 +251,7 @@ public class ChatConversationActivity extends AppCompatActivity {
 
                     Token token = snapshot.getValue(Token.class);
                     Data data = new Data(firebaseUser.getUid(),
-                            R.drawable.volunteer_icon, // This will be the user profile image ?
+                            R.drawable.main_pic, // This will be the user profile image ?
                             userName+": "+message,
                             "New Message",
                             receiverID); // NOT SURE THIS IS THE RECEIVER ID
