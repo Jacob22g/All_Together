@@ -57,7 +57,7 @@
                             android:layout_below="@+id/old_profile_edit_btn"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="15sp"
-                            android:text="Edit"
+                            android:text="@string/edit"
                             android:layout_alignParentEnd="true"/>
 
                         <TextView
@@ -65,7 +65,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:layout_marginTop="10dp"
                             android:layout_marginStart="20dp"
                             android:textSize="24sp"
@@ -78,7 +78,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="17sp"
-                            android:text="Address"
+                            android:text="@string/address"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_below="@id/userFullNameTv"
@@ -90,7 +90,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="17sp"
-                            android:text="Null"
+                            android:text="@string/age"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_below="@id/userAddressTv"
@@ -137,7 +137,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Contact information"
+                            android:text="@string/contact_information"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_margin="3dp"
@@ -164,7 +164,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:text="Email"
+                                android:text="@string/email"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginStart="5dp"/>
@@ -181,7 +181,7 @@
                                     android:layout_height="match_parent"
                                     android:textSize="16sp"
                                     android:layout_marginStart="5dp"
-                                    android:text="Click to add your Email"
+                                    android:text="@string/click_to_add_your_email"
                                     android:layout_gravity="center"
                                     android:layout_marginTop="5dp"
                                     android:fontFamily="@font/poppins_medium"/>
@@ -227,7 +227,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Types of volunteering"
+                                android:text="@string/types_of_volunteering"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="10dp"
@@ -272,7 +272,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="About Me"
+                                android:text="@string/about_me"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="7dp"
@@ -302,9 +302,10 @@
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
                                     android:textSize="16sp"
-                                    android:text="Add something about yourself"
+                                    android:text="@string/add_something_about_yourself"
                                     android:padding="7dp"
-                                    android:layout_marginStart="3dp"/>
+                                    android:layout_marginStart="3dp"
+                                    android:layout_marginRight="15dp"/>
 
                             </androidx.cardview.widget.CardView>
 

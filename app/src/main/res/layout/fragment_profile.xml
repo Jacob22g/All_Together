@@ -46,7 +46,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
-                            android:text="Name"
+                            android:text="@string/name"
                             android:layout_marginTop="10dp"
                             android:layout_marginStart="20dp"
                             android:textSize="24sp"
@@ -77,7 +77,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="17sp"
-                            android:text="Address"
+                            android:text="@string/address"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_below="@id/userFullNameTv"
@@ -89,7 +89,7 @@
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/poppins_medium"
                             android:textSize="17sp"
-                            android:text="Age"
+                            android:text="@string/age"
                             android:layout_marginTop="3dp"
                             android:layout_marginStart="20dp"
                             android:layout_below="@id/userAddressTv"
@@ -130,7 +130,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="normal"
-                            android:text="Volunteering"
+                            android:text="@string/volunteering"
                             android:textSize="16sp"
                             android:fontFamily="@font/poppins_medium"
                             />
@@ -163,7 +163,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:textStyle="normal"
-                            android:text="Level"
+                            android:text="@string/level"
                             android:textSize="16sp"
                             android:fontFamily="@font/poppins_medium"/>
 
@@ -172,7 +172,7 @@
                             android:layout_height="wrap_content"
                             android:id="@+id/user_vol_lvl_tv"
                             android:textStyle="bold"
-                            android:text="Beginner"
+                            android:text="@string/beginner"
                             android:gravity="center"
                             android:textSize="18sp"
                             android:fontFamily="@font/poppins_medium"/>
@@ -206,7 +206,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Contact information"
+                            android:text="@string/contact_information"
                             android:textStyle="bold"
                             android:fontFamily="@font/poppins_medium"
                             android:layout_margin="3dp"
@@ -233,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:text="Email"
+                                android:text="@string/email"
                                 android:layout_gravity="center"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginStart="5dp"/>
@@ -278,7 +278,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="Types of volunteering"
+                                android:text="@string/types_of_volunteering"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="10dp"
@@ -323,7 +323,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="About Me"
+                                android:text="@string/about_me"
                                 android:textStyle="bold"
                                 android:fontFamily="@font/poppins_medium"
                                 android:layout_marginTop="7dp"
@@ -353,7 +353,7 @@
                                     android:id="@+id/about_me_tv"
                                     android:fontFamily="@font/poppins_medium"
                                     android:textSize="16sp"
-                                    android:text="Add something about yourself"
+                                    android:text="@string/add_something_about_yourself"
                                     android:padding="7dp"
                                     android:layout_marginStart="3dp"/>
 

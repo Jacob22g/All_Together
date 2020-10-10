@@ -23,7 +23,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Name"
+                android:text="@string/name"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -38,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Date"
+                android:text="@string/date"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Hour"
+                android:text="@string/hour"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Name"
+                android:text="@string/name"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
@@ -86,7 +86,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Date"
+                android:text="@string/date"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
@@ -100,7 +100,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Hour"
+                android:text="@string/hour"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
@@ -124,7 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Type"
+                android:text="@string/type"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -139,7 +139,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="City"
+                android:text="@string/city"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -153,7 +153,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Street"
+                android:text="@string/street"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -172,7 +172,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Type"
+                android:text="@string/type"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
@@ -187,7 +187,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="City"
+                android:text="@string/city"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 
@@ -201,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="0dp"
                 android:layout_weight="2"
-                android:text="Street"
+                android:text="@string/street"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
 

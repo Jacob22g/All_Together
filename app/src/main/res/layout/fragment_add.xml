@@ -9,7 +9,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
         android:orientation="vertical">
 
@@ -21,50 +21,51 @@
             android:gravity="center"
             android:fontFamily="@font/poppins_medium"
             android:textSize="20sp"
-            android:text="Add a new Volunteering" />
+            android:text="@string/add_a_new_volunteering"/>
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:hint="description"
-            android:textSize="20sp"
             app:startIconDrawable="@drawable/ic_emoji_people"
-            android:layout_below="@id/Category">
+            android:layout_below="@id/language">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/new_volunteer_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_medium"
+                android:textSize="18sp"
+                android:hint="@string/description"
                 android:inputType="text"/>
 
         </com.google.android.material.textfield.TextInputLayout>
+
 
         <TextView
             android:id="@+id/Category"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Category"
+            android:text="@string/category"
             android:textSize="18sp"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="30dp"
-            android:layout_below="@id/Address"/>
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_below="@id/Address"
+            android:drawableStart="@drawable/ic_category"/>
 
         <Spinner
             android:id="@+id/new_volunteer_spinner"
             android:layout_width="match_parent"
             android:padding="5dp"
             android:layout_marginEnd="20dp"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_below="@id/Address"
             android:layout_toEndOf="@id/Category"
-            android:layout_marginTop="30dp"
-            android:layout_marginStart="30dp" />
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="10dp" />
 
         <LinearLayout
             android:id="@+id/datePickerLayout"
@@ -78,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:text="pick date"
+                android:text="@string/pick_date"
                 android:textSize="14sp"
                 android:textColor="@color/grayDarkColor"
                 android:background="@drawable/color_back4"
@@ -113,7 +114,7 @@
                 android:layout_weight="2"
                 android:background="@drawable/color_back4"
                 android:textColor="@color/grayDarkColor"
-                android:text="pick time"
+                android:text="@string/pick_time"
                 android:textSize="14sp"
                 android:fontFamily="@font/poppins_medium"
                 android:id="@+id/new_volunteer_time_btn"
@@ -140,7 +141,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/timePickerLayout"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <Button
@@ -150,14 +151,14 @@
                 android:layout_gravity="center"
                 android:background="@drawable/color_back4"
                 android:fontFamily="@font/poppins_medium"
-                android:text="get location"
+                android:text="@string/get_location"
                 android:paddingHorizontal="20dp"
                 android:textColor="@color/grayDarkColor"
                 android:textSize="14sp" />
 
             <TextView
                 android:layout_width="10dp"
-                android:layout_height="5dp"
+                android:layout_height="1dp"
                 android:id="@+id/new_volunteer_location_tv"
                 android:fontFamily="@font/poppins_medium"
                 android:textSize="14sp"
@@ -180,10 +181,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:layout_marginStart="5dp"
-                android:layout_marginTop="5dp"
-                android:hint="City"
-                android:textSize="20sp"
+                android:hint="@string/city"
+                android:textSize="18sp"
                 app:startIconDrawable="@drawable/ic_baseline_location_city_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -201,9 +200,8 @@
                 android:layout_weight="1"
                 android:layout_toEndOf="@id/city"
                 android:layout_marginEnd="5dp"
-                android:layout_marginTop="5dp"
-                android:hint="Street"
-                android:textSize="20sp"
+                android:hint="@string/street"
+                android:textSize="18sp"
                 app:startIconDrawable="@drawable/ic_baseline_home_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -217,13 +215,102 @@
 
         </LinearLayout>
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_below="@id/Category"
+            android:layout_marginTop="20dp"
+            android:layout_marginHorizontal="10dp"
+            android:id="@+id/language">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/languageHeadline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="18sp"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/language"
+                    android:gravity="center"
+                    android:layout_below="@id/headline"
+                    android:drawableStart="@drawable/ic_round_g_translate_24"
+                    />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="10dp">
+
+                <CheckBox
+                    android:id="@+id/HebrewCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/hebrew"
+                    android:gravity="center"
+                    android:checked="true"/>
+
+                <CheckBox
+                    android:id="@+id/EnglishCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/english"
+                    android:gravity="center"
+                    android:layout_marginStart="10dp"
+                    android:checked="false"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/RussianCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/russian"
+                    android:gravity="center"
+                    android:checked="false" />
+
+                <CheckBox
+                    android:id="@+id/ArabicCb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/arabic"
+                    android:gravity="center"
+                    android:checked="false"
+                    android:layout_marginStart="10dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
 
 
         <Button
             android:layout_below="@id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="submit"
+            android:text="@string/submit"
             android:textColor="@color/grayDarkColor"
             android:background="@drawable/color_back2_circle"
             android:textSize="20sp"

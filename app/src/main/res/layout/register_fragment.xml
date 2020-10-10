@@ -20,7 +20,7 @@
             android:layout_marginVertical="20dp"
             android:fontFamily="@font/poppins_medium"
             android:gravity="center"
-            android:text="Register"
+            android:text="@string/register"
             android:textColor="@color/grayDarkColor"
             android:textSize="40sp" />
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text="Register as ... "
+            android:text="@string/register_as"
             android:textColor="@color/grayDarkColor"
             android:textSize="20sp"
             android:textStyle="bold" />
@@ -49,7 +49,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="layout1V"
-                android:text="Volunteer"
+                android:text="@string/volunteer"
                  />
 
             <Button
@@ -60,7 +60,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:onClick="layout2V"
-                android:text="Need help"
+                android:text="@string/need_help"
                 />
 
 
@@ -89,7 +89,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="5dp"
-                        android:hint="Email"
+                        android:hint="@string/email"
                         android:textSize="17sp"
                         app:startIconDrawable="@drawable/ic_email">
 
@@ -107,7 +107,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="5dp"
-                        android:hint="Password"
+                        android:hint="@string/password"
                         android:textSize="17sp"
                         app:endIconMode="password_toggle"
                         app:startIconDrawable="@drawable/ic_lock">
@@ -130,7 +130,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="submit"
+                        android:text="@string/submit"
                         android:textStyle="bold"
                         android:textSize="16sp"
                         android:fontFamily="@font/poppins_medium"
@@ -169,7 +169,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="10dp"
                         android:layout_marginTop="5dp"
-                        android:hint="Phone Number"
+                        android:hint="@string/phone_number"
                         android:textSize="17sp"
                         app:startIconDrawable="@drawable/ic_phone">
 
@@ -208,7 +208,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:text="submit"
+                        android:text="@string/submit"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:fontFamily="@font/poppins_medium"

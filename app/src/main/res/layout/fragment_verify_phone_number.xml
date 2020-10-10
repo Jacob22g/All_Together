@@ -29,7 +29,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="20dp"
             android:fontFamily="@font/poppins_medium"
-            android:text="Verify Phone Number"
+            android:text="@string/verify_phone_number"
             android:gravity="center"
             android:textSize="23sp"/>
 
@@ -39,7 +39,7 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Enter the code you received to your phone"
+                android:text="@string/enter_the_code_you_received_to_your_phone"
                 android:textSize="16sp"
                 android:gravity="center"/>
 
@@ -65,7 +65,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:layout_gravity="center"
-                android:text="Confirm"
+                android:text="@string/confirm"
                 android:fontFamily="@font/poppins_medium"
                 android:textStyle="bold"
                 android:textColor="@color/whiteColor" />

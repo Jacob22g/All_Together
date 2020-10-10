@@ -54,7 +54,7 @@
                         android:layout_marginTop="5dp"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
-                        android:text="Date: "
+                        android:text="@string/date2"
                         android:textSize="20sp" />
 
                     <TextView
@@ -75,7 +75,7 @@
                         android:layout_below="@id/selected_volunteering_date"
                         android:fontFamily="@font/poppins_medium"
                         android:gravity="center"
-                        android:text="Time: "
+                        android:text="@string/time2"
                         android:textSize="20sp" />
 
                     <TextView
@@ -98,7 +98,7 @@
                         android:gravity="center"
                         android:textSize="20sp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Name: "
+                        android:text="@string/name2"
                         android:layout_below="@id/selected_volunteering_time"
 
                         />
@@ -114,17 +114,18 @@
                         android:layout_below="@id/nameHeadline"
                         android:textColor="#D50000"/>
 
+
                     <TextView
+                        android:id="@+id/locationHeadline"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:id="@+id/locationHeadline"
-                        android:textSize="20sp"
-                        android:fontFamily="@font/poppins_medium"
                         android:layout_below="@id/selected_volunteering_name"
-                        android:text="Location: "
-                        android:layout_marginEnd="2dp"/>
-
+                        android:layout_marginTop="0dp"
+                        android:layout_marginEnd="2dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:gravity="center"
+                        android:text="@string/location2"
+                        android:textSize="20sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -143,7 +144,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="center"
                         android:id="@+id/descriptionHeadline"
-                        android:text="Description:"
+                        android:text="@string/description2"
                         android:layout_below="@id/selected_volunteering_location"
                         android:fontFamily="@font/poppins_medium"
                         android:textSize="20sp"/>
@@ -173,7 +174,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Add"
+                    android:text="@string/add"
                     android:textStyle="bold"
                     android:textSize="18sp"
                     android:fontFamily="@font/poppins_medium"
@@ -186,7 +187,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Chat"
+                    android:text="@string/chat"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_medium"
                     android:background="@drawable/background_button_light"
@@ -198,7 +199,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Profile page"
+                    android:text="@string/profile_page"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_medium"
                     android:background="@drawable/color_back2_circle"
@@ -209,7 +210,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Delete"
+                    android:text="@string/delete"
                     android:textSize="16sp"
                     android:fontFamily="@font/poppins_medium"
                     android:background="@drawable/color_back_circle"

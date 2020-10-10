@@ -4,19 +4,19 @@
 
     <item
         android:id="@+id/sign_up"
-        android:title="Sign Up" />
+        android:title="@string/sign_up" />
     <item
         android:id="@+id/sign_in"
-        android:title="Sign In" />
+        android:title="@string/sign_in" />
 
     <item
         android:id="@+id/sign_out"
-        android:title="Log Out"
+        android:title="@string/log_out"
         android:visible="true"/>
 
     <item
         android:id="@+id/sign_out_google"
-        android:title="Log Out from Google"
+        android:title="@string/log_out_from_google"
         android:visible="true"/>
 
 </menu>

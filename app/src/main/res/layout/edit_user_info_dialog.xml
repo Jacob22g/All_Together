@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Edit user Info"
+        android:text="@string/edit_user_information"
         android:layout_gravity="center"
         android:layout_marginHorizontal="10dp"
         android:textSize="19sp"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:layout_marginHorizontal="40dp"
-        android:hint="Full Name"
+        android:hint="@string/full_name"
         android:textSize="20sp"
         app:startIconDrawable="@drawable/ic_emoji_people">
         <com.google.android.material.textfield.TextInputEditText
@@ -42,7 +42,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="5dp"
-        android:hint="Age"
+        android:hint="@string/age"
         android:textSize="20sp"
         app:startIconDrawable="@drawable/ic_baseline_eco_24">
 
@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="5dp"
-        android:hint="Country"
+        android:hint="@string/country"
         android:textSize="20sp"
         app:startIconDrawable="@drawable/ic_baseline_location_city_24">
 
@@ -78,7 +78,7 @@
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="40dp"
         android:layout_marginTop="5dp"
-        android:hint="City"
+        android:hint="@string/city"
         android:textSize="20sp"
         app:startIconDrawable="@drawable/ic_baseline_home_24">
 
@@ -99,7 +99,7 @@
         android:layout_margin="10dp"
         android:background="@drawable/color_back4"
         android:fontFamily="@font/poppins_medium"
-        android:text="Save"
+        android:text="@string/save"
         android:textColor="@color/browser_actions_text_color"
         android:textSize="12sp" />
 

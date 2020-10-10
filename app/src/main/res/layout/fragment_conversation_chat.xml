@@ -43,7 +43,7 @@
                     android:layout_marginLeft="25dp"
                     android:textColor="@color/grayDarkColor"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="User Name"/>
+                    android:text="@string/user_name"/>
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
@@ -71,7 +71,7 @@
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="Type a message"
+                    android:hint="@string/type_a_message"
                     android:layout_marginHorizontal="10dp"
                     android:background="@android:color/background_light"
                     android:layout_centerVertical="true"

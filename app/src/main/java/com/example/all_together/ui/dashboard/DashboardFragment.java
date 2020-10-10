@@ -81,33 +81,33 @@ public class DashboardFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setHasFixedSize(true);
 
-        filterSubmitBtn = view.findViewById(R.id.filterBtn);
-        filterSubmitBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                Collections.sort((List<Comparable>) volunteersDB);
-//                adapter.notifyDataSetChanged();
-            }
-        });
+//        filterSubmitBtn = view.findViewById(R.id.filterBtn);
+//        filterSubmitBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+////                Collections.sort((List<Comparable>) volunteersDB);
+////                adapter.notifyDataSetChanged();
+//            }
+//        });
 
-        final ImageView showFilterNavBtn = view.findViewById(R.id.showFiler);
-        filterRelativeLayout = view.findViewById(R.id.filterRelativeLayout);
-        filterRelativeLayout.setVisibility(View.GONE);
-        showFilterNavBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (flag) {
-                    filterRelativeLayout.setVisibility(View.VISIBLE);
-                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_up));
-                    flag = false;
-                }
-                else {
-                    filterRelativeLayout.setVisibility(View.GONE);
-                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_down));
-                    flag = true;
-                }
-            }
-        });
+//        final ImageView showFilterNavBtn = view.findViewById(R.id.showFiler);
+//        filterRelativeLayout = view.findViewById(R.id.filterRelativeLayout);
+//        filterRelativeLayout.setVisibility(View.GONE);
+//        showFilterNavBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if (flag) {
+//                    filterRelativeLayout.setVisibility(View.VISIBLE);
+//                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_up));
+//                    flag = false;
+//                }
+//                else {
+//                    filterRelativeLayout.setVisibility(View.GONE);
+//                    showFilterNavBtn.setImageDrawable(getResources().getDrawable(R.drawable.ic_drop_down));
+//                    flag = true;
+//                }
+//            }
+//        });
 
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override

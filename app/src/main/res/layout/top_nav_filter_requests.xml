@@ -39,7 +39,7 @@
             android:layout_height="310dp"
             android:id="@+id/filterRelativeLayout"
             android:layout_below="@id/headline"
-            android:visibility="visible"
+            android:visibility="gone"
             android:background="@drawable/color_back3">
 
 

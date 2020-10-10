@@ -20,7 +20,7 @@
                 android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Hello and Welcome!\nPlease Enter your profile info"
+                android:text="@string/hello_and_welcome_nplease_enter_your_profile_info"
                 android:textSize="20sp"
                 android:fontFamily="@font/poppins_medium"
                 android:gravity="center"/>
@@ -30,7 +30,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:layout_marginHorizontal="40dp"
-                android:hint="Full Name"
+                android:hint="@string/full_name"
                 android:textSize="20sp"
                 app:startIconDrawable="@drawable/ic_emoji_people">
                 <com.google.android.material.textfield.TextInputEditText
@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="5dp"
-                android:hint="Age"
+                android:hint="@string/age"
                 android:textSize="20sp"
                 app:startIconDrawable="@drawable/ic_baseline_eco_24">
 
@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="5dp"
-                android:hint="Country"
+                android:hint="@string/country"
                 android:textSize="20sp"
                 app:startIconDrawable="@drawable/ic_baseline_location_city_24">
 
@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="40dp"
                 android:layout_marginTop="5dp"
-                android:hint="City"
+                android:hint="@string/city"
                 android:textSize="20sp"
                 app:startIconDrawable="@drawable/ic_baseline_home_24">
 
@@ -102,7 +102,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="15dp"
                 android:textSize="15sp"
-                android:text="Add profile picture:"
+                android:text="@string/add_profile_picture"
                 android:gravity="center"
                 android:fontFamily="@font/poppins_medium"/>
 
@@ -122,7 +122,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="submit"
+                android:text="@string/submit"
                 android:textColor="@color/grayDarkColor"
                 android:textStyle="bold"
                 android:fontFamily="@font/poppins_medium"

@@ -244,13 +244,13 @@ public class VolunteeringFragment extends Fragment {
 //        }
 
         if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
-            addBtn.setText("Remove me");
+            addBtn.setText(R.string.remove_me);
         } else {
             if (volunteering.getVolunteerUID() == null)
-                addBtn.setText("Add me");
+                addBtn.setText(R.string.add_me);
             else {
                 // Check if another user took it
-                addBtn.setText("Volunteer taken");
+                addBtn.setText(R.string.volunteer_taken);
                 addBtn.setEnabled(false);
             }
         }
@@ -359,12 +359,12 @@ public class VolunteeringFragment extends Fragment {
                 @Override
                 public void onClick(View v) {
                     if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
-                        addBtn.setText("Add me");
+                        addBtn.setText(R.string.add_me);
                         Toast.makeText(getContext(), "you have been removed", Toast.LENGTH_SHORT).show();
                         volunteering.setVolunteerUID(null);
                         volunteering.setNameVolunteer(null);
                     } else {
-                        addBtn.setText("Remove me");
+                        addBtn.setText(R.string.remove_me);
                         Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
                         volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
                         volunteering.setNameVolunteer(firebaseUserName);

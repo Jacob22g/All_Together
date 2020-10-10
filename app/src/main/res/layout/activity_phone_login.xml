@@ -26,7 +26,7 @@
                     android:layout_gravity="center_horizontal"
                     android:layout_marginTop="20dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Enter Phone Number"
+                    android:text="@string/enter_phone_number"
                     android:gravity="center"
                     android:textSize="23sp"/>
 
@@ -36,7 +36,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp"
                     android:layout_marginTop="5dp"
-                    android:hint="Phone Number"
+                    android:hint="@string/phone_number"
                     app:startIconDrawable="@drawable/ic_phone">
 
                     <com.google.android.material.textfield.TextInputEditText
@@ -56,13 +56,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="submit"
+                    android:text="@string/submit"
                     android:textSize="16sp"
                     android:textStyle="bold"
                     android:fontFamily="@font/poppins_medium"
                     android:layout_marginTop="20dp"
-                    android:layout_marginBottom="10dp"
-                    />
+                    android:layout_marginBottom="10dp"/>
 
             </LinearLayout>
 

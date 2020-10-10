@@ -31,7 +31,7 @@
                 android:textStyle="bold"
                 android:textSize="20sp"
                 android:id="@+id/chat_volunteer_name"
-                android:text="Name"/>
+                android:text="@string/name"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
                 android:textSize="15sp"
                 android:id="@+id/chat_volunteer_last_msg"
                 android:maxLines="1"
-                android:text="lase message"/>
+                android:text="@string/lase_message"/>
 
         </LinearLayout>
 
