@@ -76,10 +76,12 @@ public class OldUserActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

@@ -98,4 +98,11 @@
     <string name="outstanding">יוצא מן הכלל!</string>
     <string name="loading_chats">טוען הודעות, הנה המתן</string>
     <string name="new_message">הודעה חדשה</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="are_you_sure_you_want_to_delete_this_volunteering">Are you sure you want to delete this volunteering?</string>
+    <string name="no">לא</string>
+    <string name="yes">כן</string>
+    <string name="will_volunteer_with_you">בחר להתנדב איתך</string>
+    <string name="new_volunteer_added">התנדבות חדשה הוספה</string>
+    <string name="loading">טוען, נא להמתין..</string>
 </resources>
