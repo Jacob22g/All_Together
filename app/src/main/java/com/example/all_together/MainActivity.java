@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
+
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -456,7 +457,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     }
 
     public void signIn(){
-
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
