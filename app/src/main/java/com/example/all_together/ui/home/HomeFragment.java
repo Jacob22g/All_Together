@@ -107,7 +107,6 @@ public class HomeFragment extends Fragment {
         profileImage = rootView.findViewById(R.id.change_profile_pic_btn);
         numOfVolunteeringTv = rootView.findViewById(R.id.user_num_of_vol_tv_home);
         userLevelTv = rootView.findViewById(R.id.user_vol_lvl_tv_home);
-
         storageRef = FirebaseStorage.getInstance().getReference();
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
@@ -121,8 +120,8 @@ public class HomeFragment extends Fragment {
 
             userNameTv.setText(personName);
             Glide.with(getContext()).load(String.valueOf(personPhoto)).into(profileImage);
-            userAddressTv.setText(" ");
-            userAgeTv.setText(" ");
+
+            usersDB.child(firebaseUser.getUid()).child("EmailAddress").setValue(personEmail);
         }
 
         loadImage();

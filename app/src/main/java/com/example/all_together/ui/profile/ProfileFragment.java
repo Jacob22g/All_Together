@@ -341,21 +341,21 @@ public class ProfileFragment extends Fragment {
     private void setUserVolunteeringLevel() {
 //        String userLevel = userLevelTv.getText().toString();
 //        int numOfVolunteering = Integer.getInteger(numOfVolunteeringTv.getText().toString());
-//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals("Good")){
-//            userLevel = "Good";
+//        if (numOfVolunteering>5 && numOfVolunteering<=15 && !userLevel.equals(getResources().getString(R.string.good))){
+//            userLevel = getResources().getString(R.string.good);
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals("Excellent")){
-//            userLevel = "Excellent";
+//        } else if (numOfVolunteering>15 && numOfVolunteering<=30 && !userLevel.equals(getResources().getString(R.string.excellent))){
+//            userLevel =  getResources().getString(R.string.excellent);
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals("superior")){
-//            userLevel = "superior";
+//        } else if (numOfVolunteering>30 && numOfVolunteering<=50 && !userLevel.equals(getResources().getString(R.string.superior))){
+//            userLevel =  getResources().getString(R.string.superior);
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
-//        } else if (numOfVolunteering>50 && !userLevel.equals("Outstanding")){
-//            userLevel = "Outstanding";
+//        } else if (numOfVolunteering>50 && !userLevel.equals(getResources().getString(R.string.outstanding))){
+//            userLevel =  getResources().getString(R.string.outstanding);
 //            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
 //        } else {
-//            if (!userLevel.equals("Beginner")) {
-//                userLevel = "Beginner";
+//            if (!userLevel.equals(getResources().getString(R.string.beginner))) {
+//                userLevel = getResources().getString(R.string.beginner);
 //                usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue(userLevel);
 //            }
 //        }

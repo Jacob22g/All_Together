@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         if (firebaseUser != null){
 
             final ProgressDialog progressDialog = new ProgressDialog(this);
-            progressDialog.setMessage("Loading, Please wait..");
+            progressDialog.setMessage(getResources().getString(R.string.loading));
             progressDialog.setCancelable(false);
             progressDialog.show();
 
@@ -211,10 +211,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             //Add why a user was unable to log in
                             if (task.isSuccessful()) {
+
                                 Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
-//                            Intent intent = new Intent(getApplicationContext(),MyHomeActivity.class);
-//                            //intent.putExtra(userName,"userName");
-//                            startActivity(intent);
+                                navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+                                navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
 
                                 Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
                                 startActivity(intent);
@@ -237,11 +237,10 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                 FirebaseUser user = firebaseAuth.getCurrentUser();
 
                 if (user != null) { //sign in or sign up
-
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
+                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
 
 
                 } else { // sign out
@@ -268,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
-                        transaction.add(R.id.coordinatorLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
+                        transaction.add(R.id.drawerLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
                         transaction.addToBackStack(null);
                         transaction.commit();
                         break;
@@ -324,10 +323,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
             FragmentVerifyPhoneNumberLogin verifyPhoneNumberLogin = FragmentVerifyPhoneNumberLogin.newInstance(phoneNumber);
             getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumberLogin,FRAGMENT_PHONE_LOGIN_TAG).commit();
-
         }
     }
 
@@ -338,7 +335,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             // Simulate back press
             getSupportFragmentManager().popBackStack();
         else {
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
             FragmentVerifyPhoneNumber verifyPhoneNumber = FragmentVerifyPhoneNumber.newInstance(phoneNumber);
             getSupportFragmentManager().beginTransaction().add(R.id.drawerLayout, verifyPhoneNumber,FRAGMENT_VERIFY_TAG).commit();
         }
@@ -353,9 +349,8 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         else {
 
             final ProgressDialog progressDialog = new ProgressDialog(MainActivity.this);
-            progressDialog.setMessage("Loading, Please wait..");
+            progressDialog.setMessage(getResources().getString(R.string.loading));
             progressDialog.show();
-
             mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
@@ -503,9 +498,9 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
                     Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
+                    usersDB.child(user.getUid()).child("is_old_user").setValue(false);
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
                     startActivity(intent);
                     //updateUI(user);

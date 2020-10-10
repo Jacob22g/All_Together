@@ -57,13 +57,6 @@ public class MainAppActivity extends AppCompatActivity {
     String userName;
     TextView userTv;
 
-    String personName;
-    String personGivenName;
-    String personFamilyName;
-    String personEmail;
-    String personId;
-    Uri personPhoto;
-
     private FirebaseAuth.AuthStateListener authStateListener;
     private FirebaseAuth firebaseAuth;
     FirebaseUser firebaseUser;
@@ -79,6 +72,7 @@ public class MainAppActivity extends AppCompatActivity {
 
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
+
 
         fullName = findViewById(R.id.userFullNameTv);
         email = findViewById(R.id.userEmailTv);

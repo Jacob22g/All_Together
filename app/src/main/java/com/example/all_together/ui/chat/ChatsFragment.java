@@ -158,7 +158,7 @@ public class ChatsFragment extends Fragment {
     private void ReadFirebaseDB(){
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setMessage("Loading Chats, Please wait..");
+        progressDialog.setMessage(getResources().getString(R.string.loading_chats));
         progressDialog.show();
 
         chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {

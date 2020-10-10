@@ -313,7 +313,7 @@ public class ConversationChatFragment extends Fragment {
                     Data data = new Data(firebaseUser.getUid(),
                             R.drawable.volunteer_icon,
                             userName+": "+message,
-                            "New Message",
+                            getResources().getString(R.string.new_message),
                             receiverID); // NOT SURE THIS IS THE RECEIVER ID
 
                     Sender sender = new Sender(data, token.getToken());

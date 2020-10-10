@@ -195,14 +195,14 @@ public class VolunteeringFragment extends Fragment {
 
                 // open are you sure Dialog:
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Confirm Delete").setMessage("Are you sure you want to delete this volunteering?")
-                        .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setTitle(getResources().getString(R.string.confirm_delete)).setMessage(getResources().getString(R.string.are_you_sure_you_want_to_delete_this_volunteering))
+                        .setNegativeButton(getResources().getString(R.string.no), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dialog.dismiss();
                             }
                         })
-                        .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                        .setPositiveButton(getResources().getString(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // Delete the volunteering
@@ -370,7 +370,7 @@ public class VolunteeringFragment extends Fragment {
                         volunteering.setNameVolunteer(firebaseUserName);
 
                         // Send notification to old user
-                        sendNotification(volunteering.getOldUID(), firebaseUserName, "will volunteer with you");
+                        sendNotification(volunteering.getOldUID(), firebaseUserName, getResources().getString(R.string.will_volunteer_with_you));
                     }
 
                     // Saving the new list
@@ -537,7 +537,7 @@ public class VolunteeringFragment extends Fragment {
                     Data data = new Data(firebaseUser.getUid(),
                             R.drawable.volunteer_icon,
                             userName + " " + message,
-                            "New Volunteer added",
+                            getResources().getString(R.string.new_volunteer_added),
                             receiverID);
 
                     Sender sender = new Sender(data, token.getToken());

@@ -87,4 +87,15 @@
     <string name="log_out_from_google">יציאה מחשבון גוגל</string>
     <string name="log_out">יציאה</string>
     <string name="new_user">.</string>
+    <string name="shopping">קניות</string>
+    <string name="play_games">לשחק ביחד</string>
+    <string name="just_to_talk">שותף לשיחה</string>
+    <string name="home_repairs">תיקון בבית</string>
+    <string name="medicines">הבאת תרופות</string>
+    <string name="good">טוב</string>
+    <string name="excellent">מצויין</string>
+    <string name="superior">מעולה</string>
+    <string name="outstanding">יוצא מן הכלל!</string>
+    <string name="loading_chats">טוען הודעות, הנה המתן</string>
+    <string name="new_message">הודעה חדשה</string>
 </resources>

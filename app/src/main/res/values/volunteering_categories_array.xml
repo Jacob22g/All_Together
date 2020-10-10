@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="volunteering_categories_array">
-        <item>Shopping</item>
-        <item>Plat games</item>
-        <item>Just to talk</item>
-        <item>Home repairs</item>
-        <item>Medicines</item>
+        <item>@string/shopping</item>
+        <item>@string/play_games</item>
+        <item>@string/just_to_talk</item>
+        <item>@string/home_repairs</item>
+        <item>@string/medicines</item>
     </string-array>
 </resources>
