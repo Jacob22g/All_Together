@@ -76,12 +76,10 @@ public class OldUserActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -104,29 +102,6 @@ public class OldUserActivity extends AppCompatActivity {
             }
         });
 
-//        authStateListener = new FirebaseAuth.AuthStateListener() {
-//            @Override
-//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-//
-//                View headerView = navigationView.getHeaderView(0);
-//                TextView userTv = headerView.findViewById(R.id.navigation_header_container);
-//
-//                FirebaseUser user = firebaseAuth.getCurrentUser();
-//
-//                if (user != null) { //sign in or sign up
-//
-//                    userTv.setText(user.getEmail());
-//
-//                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
-//                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
-//                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-//                } else { // sign out
-//                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
-//                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
-//                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-//                }
-//            }
-//        };
 
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.nav_view_old);
 

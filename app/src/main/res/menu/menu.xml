@@ -15,6 +15,7 @@
 
     <item
         android:id="@+id/sign_out_google"
-        android:title="@string/log_out_from_google" />
+        android:title="@string/log_out_from_google"
+        android:visible="false"/>
 
 </menu>

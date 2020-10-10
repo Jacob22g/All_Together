@@ -70,6 +70,8 @@ public class MainAppActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_app);
 
+        Boolean isGoogle = getIntent().getBooleanExtra("isGoogle",false);
+
         firebaseAuth = FirebaseAuth.getInstance();
         firebaseUser = firebaseAuth.getCurrentUser();
 
@@ -95,6 +97,11 @@ public class MainAppActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view_activitymainapp);
         drawerLayout = findViewById(R.id.drawerLayout_activitymainapp);
 
+        if (isGoogle){
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
+            Toast.makeText(this, "navigationView Google", Toast.LENGTH_SHORT).show();
+        }
+
         View headerView = navigationView.getHeaderView(0);
         userTv = headerView.findViewById(R.id.navigation_header_container);
 
@@ -102,14 +109,12 @@ public class MainAppActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
 //            updateUI();
 
         } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -151,12 +156,10 @@ public class MainAppActivity extends AppCompatActivity {
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
                 } else { // sign out
                     navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
                 }
             }
         };
@@ -216,17 +219,12 @@ public class MainAppActivity extends AppCompatActivity {
         finish();
     }
 
-//    private void updateUI() {
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getApplicationContext());
-//        if (account != null) {
-//            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-//            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
-//        }else navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
-//    }
+
 
     private void googleSignOut() {
         // Firebase sign out
         Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
+        FirebaseAuth.getInstance().signOut();
         mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
             @Override
             public void onComplete(@NonNull Task<Void> task) {

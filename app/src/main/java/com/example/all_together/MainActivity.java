@@ -15,6 +15,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -96,7 +97,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         mAuth = FirebaseAuth.getInstance();
         firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
-
         // Check if user logged in
         if (firebaseUser != null){
 
@@ -132,14 +132,17 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 //            finish();
         }
 
-        googleSignInButton = findViewById(R.id.googleSignIn);
-
         // Configure Google Sign In
+//        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestIdToken(getString(R.string.default_web_client_id))
+//                .requestEmail()
+//                .build();
+
+        googleSignInButton = findViewById(R.id.googleSignIn);
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
                 .requestEmail()
                 .build();
-
         mGoogleSignInClient = GoogleSignIn.getClient(this,gso);
 
         googleSignInButton.setOnClickListener(new View.OnClickListener() {
@@ -453,6 +456,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     }
 
     public void signIn(){
+
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
@@ -505,6 +509,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     FirebaseUser user = mAuth.getCurrentUser();
                     usersDB.child(user.getUid()).child("is_old_user").setValue(false);
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+                    intent.putExtra("isGoogle", true);
                     startActivity(intent);
                     //updateUI(user);
                 }
