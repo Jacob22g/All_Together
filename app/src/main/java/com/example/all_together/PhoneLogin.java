@@ -66,14 +66,18 @@ public class PhoneLogin extends Fragment {
             public void onClick(View v) {
 
                 String phoneNum = phoneEditText.getText().toString();
-                final String phoneNumber = phoneNum.substring(1);
+                String phoneNumber;
+                if (phoneNum.equals(""))
+                    phoneNumber = "";
+                else
+                    phoneNumber = phoneNum.substring(1);
 
                 if(TextUtils.isEmpty(phoneNumber)){
                     phoneEditText.setError(getResources().getString(R.string.phone_required));
                     return;
                 }
 
-                if (phoneNumber.length()< PHONE_NUMBER_CHARACTERS ) {
+                if (phoneNumber.length() < PHONE_NUMBER_CHARACTERS - 1 ) {
                     phoneEditText.setError(getResources().getString(R.string.phone_number_must_be_at_least) + " " + + PHONE_NUMBER_CHARACTERS + " " + getResources().getString(R.string.numbers));
                     return;
                 }

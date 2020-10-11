@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             usersDB.child(firebaseUser.getUid()).child("is_old_user").addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    //isOldUser = snapshot.getValue(boolean.class);
+                    isOldUser = snapshot.getValue(boolean.class);
                     Intent intent;
                     if(isOldUser){
                         intent  = new Intent(MainActivity.this, OldUserActivity.class);

@@ -122,4 +122,12 @@
     <string name="email_not_sent">"המייל לא נשלח "</string>
     <string name="you_have_been_removed">אתה הוסרת</string>
     <string name="you_have_been_added">אתה הוספת</string>
+    <string name="alartMsgNoGPS">ה-GPS שלך כבוי. האם תרצה להדליק אותו?</string>
+    <string name="RequestPermissionsResult">האפליקציה דורשת שירותי מיקום בכדי לבצע פעולה זו של מציאת מיקום</string>
+    <string name="attention">שים לב!</string>
+    <string name="quit">יציאה</string>
+    <string name="settings">הגדרות</string>
+    <string name="street_is_required">אנא הכנס רחוב</string>
+    <string name="hour_is_required">אנא הכנס זמן</string>
+    <string name="date_is_required">אנא הכנס תאריך</string>
 </resources>

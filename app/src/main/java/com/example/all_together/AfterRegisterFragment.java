@@ -148,8 +148,6 @@ public class AfterRegisterFragment extends Fragment {
                     // Set user as not old
                     usersDB.child(firebaseAuth.getCurrentUser().getUid()).child("is_old_user").setValue(false);
 
-//                usersDB.child(firebaseAuth.getCurrentUser().getUid()).setValue(profileImage);
-
                     uploadImage();
 
                     callback.onAfterRegister();

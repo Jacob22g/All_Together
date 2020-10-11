@@ -107,6 +107,31 @@ public class MainAppActivity extends AppCompatActivity {
         if (isGoogle){
             navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
             //Toast.makeText(this, "navigationView Google", Toast.LENGTH_SHORT).show();
+
+            // set num of volunteering and lvl if it is first enter from google:
+            usersDB.child(firebaseUser.getUid()).child("number_of_volunteering").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()){
+                        usersDB.child(firebaseUser.getUid()).child("number_of_volunteering").setValue(0);
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) { }
+            });
+            usersDB.child(firebaseUser.getUid()).child("volunteering_level").addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (!snapshot.exists()){
+                        usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue("Beginner");
+                    }
+                }
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) { }
+            });
+
+//            usersDB.child(firebaseUser.getUid()).child("number_of_volunteering").setValue(0);
+//            usersDB.child(firebaseUser.getUid()).child("volunteering_level").setValue("Beginner");
         }
 
         View headerView = navigationView.getHeaderView(0);

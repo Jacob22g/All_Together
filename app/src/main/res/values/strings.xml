@@ -121,4 +121,12 @@
     <string name="email_not_sent">Email not sent</string>
     <string name="you_have_been_removed">You have been removed</string>
     <string name="you_have_been_added">You have been added</string>
+    <string name="alartMsgNoGPS">Your GPS seems to be disabled, do you want to enable it?</string>
+    <string name="RequestPermissionsResult">The application must have location permission in order to get location!</string>
+    <string name="attention">Attention</string>
+    <string name="settings">Settings</string>
+    <string name="quit">Quit</string>
+    <string name="street_is_required">Street is Required</string>
+    <string name="hour_is_required">Hour is Required</string>
+    <string name="date_is_required">Date is Required</string>
 </resources>

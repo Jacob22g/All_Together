@@ -2,6 +2,7 @@ package com.example.all_together.ui.add;
 
 import android.Manifest;
 import android.app.DatePickerDialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -92,11 +93,15 @@ public class AddFragment extends Fragment implements LocationListener {
 
     EditText descriptionEt;
 
+    ProgressDialog progressDialog;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_add,container,false);
+
+        progressDialog = new ProgressDialog(getContext());
 
         // Description:
 
@@ -223,9 +228,19 @@ public class AddFragment extends Fragment implements LocationListener {
                         if (has1locationPermission != PackageManager.PERMISSION_GRANTED) {
                             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, LOCATION_PERMISSION_REQUEST);
                         } else {
+
+                            progressDialog.setMessage(getResources().getString(R.string.loading));
+                            progressDialog.setCancelable(false);
+                            progressDialog.show();
+
                             manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, AddFragment.this);
                         }
                     } else {
+
+                        progressDialog.setMessage(getResources().getString(R.string.loading));
+                        progressDialog.setCancelable(false);
+                        progressDialog.show();
+
                         manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 1000, 100, AddFragment.this);
                     }
 
@@ -300,19 +315,19 @@ public class AddFragment extends Fragment implements LocationListener {
 
                 // 0. check if all required values are submitted
                 if (TextUtils.isEmpty(dateTv.getText().toString())) {
-                    dateTv.setError("Date is Required");
+                    dateTv.setError(getString(R.string.date_is_required));
                     return;
                 }
                 if (TextUtils.isEmpty(timeTv.getText().toString())) {
-                    timeTv.setError("Hour is Required");
+                    timeTv.setError(getString(R.string.hour_is_required));
                     return;
                 }
                 if (TextUtils.isEmpty(cityEt.getText().toString())) {
-                    cityEt.setError("City is Required");
+                    cityEt.setError(getString(R.string.city_required));
                     return;
                 }
                 if (TextUtils.isEmpty(streetEt.getText().toString())) {
-                    streetEt.setError("Street is Required");
+                    streetEt.setError(getString(R.string.street_is_required));
                     return;
                 }
 
@@ -359,7 +374,7 @@ public class AddFragment extends Fragment implements LocationListener {
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
 
                 // Open the volunteering
-                Toast.makeText(getContext(), "Your request has been added to the list of volunteers", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(), "Your request has been added to the list of volunteers", Toast.LENGTH_SHORT).show();
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -377,14 +392,14 @@ public class AddFragment extends Fragment implements LocationListener {
     // Check if GPS is ON
     private void buildAlertMessageNoGps() {
         final AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-        builder.setMessage("Your GPS seems to be disabled, do you want to enable it?")
+        builder.setMessage(R.string.alartMsgNoGPS)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
-                        startActivity(new Intent(android.provider.Settings.ACTION_LOCATION_SOURCE_SETTINGS));
+                        startActivity(new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS));
                     }
                 })
-                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
                     public void onClick(final DialogInterface dialog, final int id) {
                         dialog.cancel();
                     }
@@ -399,9 +414,9 @@ public class AddFragment extends Fragment implements LocationListener {
 
         if (requestCode == LOCATION_PERMISSION_REQUEST && grantResults[0] != PackageManager.PERMISSION_GRANTED){
                 AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setTitle("Attention")
-                        .setMessage("The application must have location permission in order to get location!")
-                        .setPositiveButton("Settings", new DialogInterface.OnClickListener() {
+                builder.setTitle(R.string.attention)
+                        .setMessage(R.string.RequestPermissionsResult)
+                        .setPositiveButton(R.string.settings, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
@@ -409,7 +424,7 @@ public class AddFragment extends Fragment implements LocationListener {
                                 startActivity(intent);
                             }
                         })
-                        .setNegativeButton("Quit", new DialogInterface.OnClickListener() {
+                        .setNegativeButton(R.string.quit, new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 getActivity().finish();
@@ -447,6 +462,8 @@ public class AddFragment extends Fragment implements LocationListener {
                 }
             }
         }.start();
+
+        progressDialog.dismiss();
     }
     @Override
     public void onStatusChanged(String provider, int status, Bundle extras) { }

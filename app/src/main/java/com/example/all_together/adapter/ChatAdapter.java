@@ -159,19 +159,6 @@ public class ChatAdapter extends RecyclerView.Adapter<ChatAdapter.ChatViewHolder
         return chatList.size();
     }
 
-    private void getReceiverName(){
-        usersDB.child(receiverId).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-                    receiverName = snapshot.child("user_name").getValue(String.class);
-                }
-            }
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
-        });
-    }
-
     private void getLastChatMessage(Chat chat){
         chatsDB.child(chat.getChatID()).child("messages").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
