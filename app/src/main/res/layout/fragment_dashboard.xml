@@ -18,15 +18,16 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-<!--              <include-->
-<!--                  android:id="@+id/layoutFilter"-->
-<!--                  layout="@layout/top_nav_filter_requests"-->
-<!--                  />-->
+              <include
+                  android:id="@+id/dashboard_headline"
+                  layout="@layout/dashboard_headline_card"
+                  />
 
               <androidx.recyclerview.widget.RecyclerView
                   android:layout_width="match_parent"
                   android:layout_height="match_parent"
                   android:id="@+id/volunteer_recycler"
+                  android:layout_marginTop="15dp"
                   app:layout_behavior="@string/appbar_scrolling_view_behavior"/>
 
               <!--        <com.google.android.material.floatingactionbutton.FloatingActionButton-->

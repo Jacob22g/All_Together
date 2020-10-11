@@ -1,5 +1,6 @@
 package com.example.all_together.ui.home;
 
+import android.app.ProgressDialog;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -27,6 +28,7 @@ import com.example.all_together.model.Volunteering;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,7 +38,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.OnProgressListener;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -118,27 +122,16 @@ public class HomeFragment extends Fragment {
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
 
+            saveImageInStorage();
+
             userNameTv.setText(personName);
+            saveImageInStorage();
             Glide.with(getContext()).load(String.valueOf(personPhoto)).into(profileImage);
 
             usersDB.child(firebaseUser.getUid()).child("EmailAddress").setValue(personEmail);
         }
 
-        loadImage();
-
-//        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(getContext());
-//        if (account != null) {
-//            String personName = account.getDisplayName();
-//            //String personGivenName = account.getGivenName();
-//            //String personFamilyName = account.getFamilyName();
-//            String personEmail = account.getEmail();
-//            //String personId = account.getId();
-//            Uri personPhoto = account.getPhotoUrl();
-//
-//            userNameTv.setText(personName);
-//            userEmailTv.setText(personEmail);
-//            Glide.with(this).load(String.valueOf(personPhoto)).into(profileImage);
-//        }
+        //loadImage();
 
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -247,6 +240,33 @@ public class HomeFragment extends Fragment {
         return rootView;
 
     }
+
+    private void saveImageInStorage() {
+        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
+        imageStorageRef.putFile(personPhoto)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        // Replace the image
+                        loadImage();
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception exception) {
+                        // Handle unsuccessful uploads
+                        //Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
+                        // Progress bar
+
+                    }
+                });
+    }
+
 
     private void CreateTheLists(){
 

@@ -392,7 +392,7 @@ public class ProfileFragment extends Fragment {
     private void uploadImage(){
 
         final ProgressDialog progressDialog = new ProgressDialog(getContext());
-        progressDialog.setTitle("Replacing Image...");
+        progressDialog.setTitle(getResources().getString(R.string.replacing_Image));
         progressDialog.show();
 
 //        Uri file = Uri.fromFile(new File(profileImageUri.toString()));
@@ -417,7 +417,7 @@ public class ProfileFragment extends Fragment {
 //                            }
 //                        });
 
-                        Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Uploaded", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
@@ -425,7 +425,7 @@ public class ProfileFragment extends Fragment {
                     public void onFailure(@NonNull Exception exception) {
                         // Handle unsuccessful uploads
                         progressDialog.dismiss();
-                        Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
@@ -434,7 +434,7 @@ public class ProfileFragment extends Fragment {
                         // Progress bar
                         double progress = (100.0*snapshot.getBytesTransferred()/snapshot
                                 .getTotalByteCount());
-                        progressDialog.setMessage("Uploaded "+(int)progress+"%");
+                        progressDialog.setMessage(getResources().getString(R.string.uploaded) + " " +(int)progress+"%");
                     }
                 });
     }
@@ -454,49 +454,6 @@ public class ProfileFragment extends Fragment {
                 }
             }
         });
-
-//        Glide.with(getContext())
-//                .load(imageStorageRef)
-//                .into(changePicBtn);
-
-        // This is downloading the image
-
-//        final ProgressDialog progressDialog = new ProgressDialog(getContext());
-//        progressDialog.setMessage("Loading profile Please wait..");
-//        progressDialog.show();
-//
-//        File localFile = null;
-//        try {
-//
-//            localFile = File.createTempFile("images", "jpg");
-//            final File finalLocalFile = localFile;
-//
-//            StorageReference imageStoreRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-//
-//            imageStoreRef.getFile(localFile)
-//                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
-//                        @Override
-//                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
-//                            // Successfully downloaded data to local file
-//                            Uri profileUri = Uri.fromFile(finalLocalFile);
-//                            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-//
-//                            progressDialog.dismiss();
-//                        }
-//                    }).addOnFailureListener(new OnFailureListener() {
-//                @Override
-//                public void onFailure(@NonNull Exception exception) {
-//                    // Handle failed download
-//                    Toast.makeText(getContext(), "Download Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-//                }
-//            });
-//
-////            Uri profileUri = Uri.fromFile(localFile);
-////            Glide.with(getContext()).load(profileUri).into(changePicBtn);
-//
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
     }
 }

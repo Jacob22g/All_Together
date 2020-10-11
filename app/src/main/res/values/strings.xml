@@ -6,7 +6,7 @@
     <string name="password">Password</string>
     <string name="forgot_password">Forgot password?</string>
     <string name="login">Login</string>
-    <string name="login_with_google">Login with Google</string>
+    <string name="login_with_google">Login with Google to volunteer</string>
     <string name="phone_login_available_only_for_help_seekers">Phone Login available Only for help seekers!</string>
     <string name="login_with_phone">Login With Phone</string>
     <string name="new_user">New User?</string>
@@ -121,12 +121,11 @@
     <string name="email_not_sent">Email not sent</string>
     <string name="you_have_been_removed">You have been removed</string>
     <string name="you_have_been_added">You have been added</string>
-    <string name="alartMsgNoGPS">Your GPS seems to be disabled, do you want to enable it?</string>
-    <string name="RequestPermissionsResult">The application must have location permission in order to get location!</string>
-    <string name="attention">Attention</string>
-    <string name="settings">Settings</string>
-    <string name="quit">Quit</string>
-    <string name="street_is_required">Street is Required</string>
-    <string name="hour_is_required">Hour is Required</string>
-    <string name="date_is_required">Date is Required</string>
+    <string name="volunteering_list">Volunteering list</string>
+    <string name="code_error_please_trya_another_code">Code error, please try another code</string>
+    <string name="error">Error</string>
+    <string name="your_request_has_been_added">Your request has been added</string>
+    <string name="sms">The sms has been sent</string>
+    <string name="replacing_Image">Replacing Image...</string>
+    <string name="uploaded">Uploaded</string>
 </resources>

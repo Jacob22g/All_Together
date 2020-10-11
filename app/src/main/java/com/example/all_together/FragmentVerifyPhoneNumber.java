@@ -61,7 +61,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
 
         if (getArguments()!= null) {
             phoneNumber = getArguments().getString(ARGS_PHONE_NUMBER);
-            Toast.makeText(getContext(), phoneNumber, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(), getResources().getString(R.string.sms), Toast.LENGTH_SHORT).show();
         }
 
         confirmBtn = rootView.findViewById(R.id.confirm_verify_phone);
@@ -131,7 +131,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
 //                                    FirebaseUser user = task.getResult().getUser();
-                            Toast.makeText(getContext(), "Login with phone", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "Login with phone", Toast.LENGTH_SHORT).show();
 
 //                            Intent intent = new Intent(getContext(),OldUserActivity.class);
 //                            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -154,7 +154,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
 
                         }else {
                             progressBar.setVisibility(View.GONE);
-                            Toast.makeText(getContext(), "Code error, please try another code ", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), getResources().getString(R.string.code_error_please_trya_another_code), Toast.LENGTH_SHORT).show();
                             //Toast.makeText(getContext(), "Error " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }

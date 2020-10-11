@@ -35,7 +35,7 @@ import java.util.HashMap;
 public class RegisterFragment extends Fragment {
 
     public static int MIN_CHARACTERS_PASSWORD = 6;
-    public static int PHONE_NUMBER_CHARACTERS = 9;
+    public static int PHONE_NUMBER_CHARACTERS = 10;
 
     interface OnRegisterFragmentListener {
         void onRegister(String email, String password);
@@ -110,7 +110,7 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-                if (phoneNumber.length()< PHONE_NUMBER_CHARACTERS ) {
+                if (phoneNumber.length()< (PHONE_NUMBER_CHARACTERS-1) ) {
                     passwordEditText.setError(getResources().getString(R.string.phone_required) + " "
                             + PHONE_NUMBER_CHARACTERS + " " + getResources().getString(R.string.numbers));
                     return;
