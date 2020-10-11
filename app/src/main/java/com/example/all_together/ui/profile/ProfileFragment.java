@@ -119,6 +119,7 @@ public class ProfileFragment extends Fragment {
         aboutMeTv = view.findViewById(R.id.about_me_tv);
         aboutMeBtn = view.findViewById(R.id.about_me_edit_btn);
         profileEditBtn = view.findViewById(R.id.profile_edit_btn);
+        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
 
         listView= view.findViewById(R.id.TypesOfVolunteering_list);
 
@@ -132,7 +133,9 @@ public class ProfileFragment extends Fragment {
             personPhoto = account.getPhotoUrl();
 
             userNameTv.setText(personName);
-//            Glide.with(getContext()).load(String.valueOf(personPhoto)).into(changePicBtn);
+
+            Glide.with(getContext()).load(String.valueOf(personPhoto)).into(changePicBtn);
+
             userAgeTv.setText(" ");
         }
 
@@ -259,7 +262,6 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        changePicBtn = view.findViewById(R.id.change_profile_pic_btn);
         changePicBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

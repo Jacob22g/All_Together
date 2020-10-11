@@ -103,7 +103,11 @@ public class RegisterFragment extends Fragment {
             public void onClick(View v) {
 
                 String phoneNum = phoneEditText.getText().toString();
-                final String phoneNumber = phoneNum.substring(1);
+                String phoneNumber;
+                if (phoneNum.equals(""))
+                    phoneNumber = "";
+                else
+                    phoneNumber = phoneNum.substring(1);
 
                 if(TextUtils.isEmpty(phoneNumber)){
                     phoneEditText.setError(getResources().getString(R.string.phone_required));

@@ -30,6 +30,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -122,16 +123,13 @@ public class HomeFragment extends Fragment {
             personId = account.getId();
             personPhoto = account.getPhotoUrl();
 
-            saveImageInStorage();
-
             userNameTv.setText(personName);
-            saveImageInStorage();
             Glide.with(getContext()).load(String.valueOf(personPhoto)).into(profileImage);
 
             usersDB.child(firebaseUser.getUid()).child("EmailAddress").setValue(personEmail);
         }
 
-        //loadImage();
+        loadImage();
 
         usersDB.child(firebaseUser.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -240,33 +238,6 @@ public class HomeFragment extends Fragment {
         return rootView;
 
     }
-
-    private void saveImageInStorage() {
-        imageStorageRef = storageRef.child(firebaseUser.getUid()+"/profile_image");
-        imageStorageRef.putFile(personPhoto)
-                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        // Replace the image
-                        loadImage();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception exception) {
-                        // Handle unsuccessful uploads
-                        //Toast.makeText(getContext(), "Upload Failed "+exception.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnProgressListener(new OnProgressListener<UploadTask.TaskSnapshot>() {
-                    @Override
-                    public void onProgress(@NonNull UploadTask.TaskSnapshot snapshot) {
-                        // Progress bar
-
-                    }
-                });
-    }
-
 
     private void CreateTheLists(){
 

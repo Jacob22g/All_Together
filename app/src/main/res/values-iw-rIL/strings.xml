@@ -1,133 +1,279 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
+
 <resources>
+
     <string name="app_name">כולנו יחד</string>
+
     <string name="user_name">שם משתמש</string>
+
     <string name="type_a_message">רשום הודעה</string>
+
     <string name="email">כתובת מייל</string>
+
     <string name="password">סיסמא</string>
+
     <string name="forgot_password">שכחת סיסמא?</string>
+
     <string name="login">כניסה</string>
+
     <string name="login_with_google">כניסה עם גוגל</string>
+
     <string name="phone_login_available_only_for_help_seekers">כניסה עם טלפון מיועדת רק לאנשים שצריכים עזרה</string>
+
     <string name="login_with_phone">כניסה עם טלפון</string>
+
     <string name="register_now">משתמש חדש? הרשם עכשיו!</string>
+
     <string name="enter_phone_number">הכנס מספר טלפון</string>
+
     <string name="submit">אשר</string>
+
     <string name="phone_number">מספר טלפון</string>
+
     <string name="reset_your_password">אתחל את הסיסמא שלך</string>
+
     <string name="enter_your_email_address_and_wait_for_link_we_will_send_you_inside_the_link_you_will_reset_your_password">הכנס את כתובת האימייל שלך ואפס את הסיסמא דרך המייל שנשלח לחשבונך</string>
+
     <string name="confirm">אישור</string>
+
     <string name="name">שם</string>
+
     <string name="lase_message">הודעה אחרונה</string>
+
     <string name="hello">שלום</string>
+
     <string name="date">תאריך</string>
+
     <string name="hour">שעה</string>
+
     <string name="type">סוג</string>
+
     <string name="city">עיר</string>
+
     <string name="street">רחוב</string>
+
     <string name="write_a_little_bit_about_yourself">תכתוב קצת על עצמך</string>
+
     <string name="you_can_write_some_hobbies">אתה יכול לכתוב על התחביבים שלך</string>
+
     <string name="save">שמור</string>
+
     <string name="add_your_email_address">הוסף כתובת מייל</string>
+
     <string name="click_here">הקלד פה</string>
+
     <string name="edit_user_information">ערוך פרטי משתמש</string>
+
     <string name="full_name">שם מלא</string>
+
     <string name="country">מדינה</string>
+
     <string name="age">גיל</string>
+
     <string name="add_a_new_volunteering">הוסף התנדבות חדשה</string>
+
     <string name="pick_date">בחר תאריך</string>
+
     <string name="pick_time">בחר שעה</string>
+
     <string name="get_location">אתר את מיקומך</string>
+
     <string name="category">קטגוריה:</string>
+
     <string name="language">שפה:</string>
+
     <string name="hebrew">עברית</string>
+
     <string name="russian">רוסית</string>
+
     <string name="english">אנגלית</string>
+
     <string name="arabic">ערבית</string>
+
     <string name="description">פרט</string>
+
     <string name="add_profile_picture">הוסף תמונת פרופיל</string>
+
     <string name="hello_and_welcome_nplease_enter_your_profile_info">שלום וברוך הבא! בבקשה הכנס את פרטי הפרופיל שלך</string>
+
     <string name="address">כתובת</string>
+
     <string name="volunteering">התנדבויות</string>
+
     <string name="level">דרגה</string>
+
     <string name="beginner">מתחיל</string>
+
     <string name="your_volunteering">ההתנדבויות שלך</string>
+
     <string name="next_volunteering">ההתנדבויות הבאות שלך</string>
+
     <string name="old_volunteering">ההתנדבויות הישנות שלך</string>
+
     <string name="time">זמן</string>
+
     <string name="location">מיקום</string>
+
     <string name="approved">אושר</string>
+
     <string name="contact_information">פרטי יצירת קשר</string>
+
     <string name="chat">צ\'אט</string>
+
     <string name="types_of_volunteering">סוג ההתנדבות</string>
+
     <string name="about_me">על עצמי</string>
+
     <string name="edit">ערוך</string>
+
     <string name="click_to_add_your_email">לחץ לעריכת כתובת המייל</string>
+
     <string name="add_something_about_yourself">רשום משהו על עצמך</string>
+
     <string name="verify_phone_number">אמת מספר טלפון</string>
+
     <string name="enter_the_code_you_received_to_your_phone">הכנס את הקוד שקיבלת בטלפון</string>
+
     <string name="date2">תאריך:</string>
+
     <string name="time2">זמן:</string>
+
     <string name="name2">שם:</string>
+
     <string name="location2">מיקום:</string>
+
     <string name="description2">פרט:</string>
+
     <string name="add">הוסף</string>
+
     <string name="profile_page">הפרופיל שלו</string>
+
     <string name="delete">מחק התנדבות</string>
+
     <string name="remove_me">הסר התנדבות</string>
+
     <string name="add_me">הוסף התנדבות</string>
+
     <string name="volunteer_taken">התנדבות תפוסה</string>
+
     <string name="welcome">ברוך הבא!</string>
+
     <string name="register">הרשמה</string>
+
     <string name="register_as">הרשם בתור..</string>
+
     <string name="volunteer">מתנדב</string>
+
     <string name="need_help">זקוק לעזרה</string>
+
     <string name="sign_up">הרשמה</string>
+
     <string name="sign_in">כניסה</string>
+
     <string name="log_out_from_google">יציאה מחשבון גוגל</string>
+
     <string name="log_out">יציאה</string>
+
     <string name="new_user">.</string>
+
     <string name="shopping">קניות</string>
+
     <string name="play_games">לשחק ביחד</string>
+
     <string name="just_to_talk">שותף לשיחה</string>
+
     <string name="home_repairs">תיקון בבית</string>
+
     <string name="medicines">הבאת תרופות</string>
+
     <string name="good">טוב</string>
+
     <string name="excellent">מצויין</string>
+
     <string name="superior">מעולה</string>
+
     <string name="outstanding">יוצא מן הכלל!</string>
+
     <string name="loading_chats">טוען הודעות, הנה המתן</string>
+
     <string name="new_message">הודעה חדשה</string>
+
     <string name="confirm_delete">Confirm Delete</string>
+
     <string name="are_you_sure_you_want_to_delete_this_volunteering">Are you sure you want to delete this volunteering?</string>
+
     <string name="no">לא</string>
+
     <string name="yes">כן</string>
+
     <string name="will_volunteer_with_you">בחר להתנדב איתך</string>
+
     <string name="new_volunteer_added">התנדבות חדשה הוספה</string>
+
     <string name="loading">טוען, נא להמתין..</string>
+
     <string name="massages">ההודעות שלי</string>
+
     <string name="name_required">אנא הכנס שם</string>
+
     <string name="age_required">אנא הכנס גיל</string>
+
     <string name="country_required">אנא הכנס מדינה</string>
+
     <string name="city_required">אנא הכנס עיר</string>
+
     <string name="upload_user_image">מעדכן תמונת פרופיל</string>
+
     <string name="phone_required">הכנס מספר טלפון</string>
+
     <string name="phone_number_must_be_at_least">מספר טלפון חייב להכיל לפחות</string>
+
     <string name="numbers">מספרים</string>
+
     <string name="user_email_is_required">אנא הכנס כתובת מייל</string>
+
     <string name="password_is_required">אנא הכנס סיסמא</string>
+
     <string name="password_must_be">הסיסמא חייבת להכיל לפחות</string>
+
     <string name="characters">תווים</string>
+
     <string name="email_sent">המייל נשלח לחשבונך</string>
+
     <string name="email_not_sent">"המייל לא נשלח "</string>
+
     <string name="you_have_been_removed">אתה הוסרת</string>
+
     <string name="you_have_been_added">אתה הוספת</string>
+
     <string name="alartMsgNoGPS">ה-GPS שלך כבוי. האם תרצה להדליק אותו?</string>
+
     <string name="RequestPermissionsResult">האפליקציה דורשת שירותי מיקום בכדי לבצע פעולה זו של מציאת מיקום</string>
+
     <string name="attention">שים לב!</string>
+
     <string name="quit">יציאה</string>
+
     <string name="settings">הגדרות</string>
+
     <string name="street_is_required">אנא הכנס רחוב</string>
+
     <string name="hour_is_required">אנא הכנס זמן</string>
+
     <string name="date_is_required">אנא הכנס תאריך</string>
+
+    <string name="volunteering_list">רשימת התנדבויות</string>
+
+    <string name="error">שגיאה</string>
+
+    <string name="your_request_has_been_added">הבקשה שלך הוספה</string>
+
+    <string name="sms">ההודעה נשלחה</string>
+
+    <string name="replacing_Image">מחליף תמונה...</string>
+
+    <string name="uploaded">מעדכן</string>
+
+    <string name="code_error_please_trya_another_code">שגיאה בקוד, אנא נסה קוד אחר</string>
+
 </resources>
