@@ -106,12 +106,13 @@ public class RegisterFragment extends Fragment {
                 final String phoneNumber = phoneNum.substring(1);
 
                 if(TextUtils.isEmpty(phoneNumber)){
-                    phoneEditText.setError("Phone Number is Required");
+                    phoneEditText.setError(getResources().getString(R.string.phone_required));
                     return;
                 }
 
                 if (phoneNumber.length()< PHONE_NUMBER_CHARACTERS ) {
-                    passwordEditText.setError("Phone Number Must be at least " + PHONE_NUMBER_CHARACTERS + " Numbers ");
+                    passwordEditText.setError(getResources().getString(R.string.phone_required) + " "
+                            + PHONE_NUMBER_CHARACTERS + " " + getResources().getString(R.string.numbers));
                     return;
                 }
 
@@ -130,17 +131,18 @@ public class RegisterFragment extends Fragment {
                 final String email = emailEditText.getText().toString();
 
                 if(TextUtils.isEmpty(email)){
-                     emailEditText.setError("User Email is Required");
+                     emailEditText.setError(getResources().getString(R.string.user_email_is_required));
                      return;
                 }
 
                 if(TextUtils.isEmpty(password)){
-                    passwordEditText.setError("Password is Required");
+                    passwordEditText.setError(getResources().getString(R.string.password_is_required));
                     return;
                 }
 
                 if (password.length() < MIN_CHARACTERS_PASSWORD ) {
-                    passwordEditText.setError("Password Must be " + MIN_CHARACTERS_PASSWORD + " Characters ");
+                    passwordEditText.setError(getResources().getString(R.string.password_is_required) + " " + MIN_CHARACTERS_PASSWORD
+                            + " " + getResources().getString(R.string.characters));
                     return;
                 }
 

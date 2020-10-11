@@ -34,7 +34,7 @@ import java.util.HashMap;
 
 public class PhoneLogin extends Fragment {
 
-    public static int PHONE_NUMBER_CHARACTERS = 9;
+    public static int PHONE_NUMBER_CHARACTERS = 10;
 
     interface OnRegisterFragmentListener{
         void onPhoneLogin(String phoneNumber);
@@ -69,12 +69,12 @@ public class PhoneLogin extends Fragment {
                 final String phoneNumber = phoneNum.substring(1);
 
                 if(TextUtils.isEmpty(phoneNumber)){
-                    phoneEditText.setError("Phone Number is Required");
+                    phoneEditText.setError(getResources().getString(R.string.phone_required));
                     return;
                 }
 
                 if (phoneNumber.length()< PHONE_NUMBER_CHARACTERS ) {
-                    phoneEditText.setError("Phone Number Must be at least " + PHONE_NUMBER_CHARACTERS + " Numbers ");
+                    phoneEditText.setError(getResources().getString(R.string.phone_number_must_be_at_least) + " " + + PHONE_NUMBER_CHARACTERS + " " + getResources().getString(R.string.numbers));
                     return;
                 }
 

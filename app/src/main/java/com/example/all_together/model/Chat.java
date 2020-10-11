@@ -9,21 +9,10 @@ public class Chat {
     private String sideBUid;
     private String chatID;
 
-//    private List<ChatMessage> chatMessages;
-
     public Chat() {
 
-//        chatMessages = new ArrayList<>();
     }
 
-//    public Chat(String chatID, String sideAUid, String sideBUid, String receiverName) {
-//        this.sideAUid = sideAUid;
-//        this.sideBUid = sideBUid;
-//        this.chatID = chatID;
-//        this.receiverName = receiverName;
-//
-////        chatMessages = new ArrayList<>();
-//    }
 
     public Chat(String chatID, String sideAUid, String sideBUid) {
         this.sideAUid = sideAUid;

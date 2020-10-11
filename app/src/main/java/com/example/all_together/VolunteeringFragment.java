@@ -126,12 +126,10 @@ public class VolunteeringFragment extends Fragment {
                 if (snapshot.exists()) {
                     isOldUser = snapshot.child("is_old_user").getValue(boolean.class);
                     firebaseUserName = snapshot.child("user_name").getValue(String.class);
-
                     // Do this here after we know id it is an old user
                     listenerForAddBtn();
                     listenerForChatBtn();
                     listenerForProfileBtn();
-
                 }
             }
 
@@ -166,21 +164,6 @@ public class VolunteeringFragment extends Fragment {
             }
         });
 
-//        // Get the chat ID if we create a chat
-//        chats_id.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                newChatId = snapshot.getValue(long.class);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError error) {
-//            }
-//        });
-
-        // Generate a random id:
-
-        // Add user to the volunteering
         addBtn = view.findViewById(R.id.selected_volunteering_add_btn);
         addBtn.setVisibility(View.GONE);
 
@@ -218,31 +201,6 @@ public class VolunteeringFragment extends Fragment {
             }
         });
 
-//        if (!isOldUser) {
-//            addBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
-//                        addBtn.setText("Add me");
-//                        Toast.makeText(getContext(), "you have been removed", Toast.LENGTH_SHORT).show();
-//                        volunteering.setVolunteerUID(null);
-//                        volunteering.setNameVolunteer(null);
-//                    } else {
-//                        addBtn.setText("Remove me");
-//                        Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
-//                        volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
-//                        volunteering.setNameVolunteer(firebaseUserName);
-//                    }
-//
-//                    // Saving the new list
-//                    volunteerList.set(positionInList, volunteering);
-//                    volunteersDB.setValue(volunteerList);
-//                }
-//            });
-//        } else {
-//            addBtn.setVisibility(View.GONE);
-//        }
-
         if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
             addBtn.setText(R.string.remove_me);
         } else {
@@ -257,52 +215,6 @@ public class VolunteeringFragment extends Fragment {
 
         chatBtn = view.findViewById(R.id.selected_volunteering_chat_btn);
         chatBtn.setVisibility(View.GONE);
-
-//        if (isOldUser && volunteering.getVolunteerUID()==null) {
-//            chatBtn.setVisibility(View.GONE);
-//        } else {
-//            chatBtn.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//
-//                    // Open the Chat and add the chat to chats list
-//
-//                    // Check if chat between these  two users exists
-//
-//                    // if exists the ChatExists() will put existing chat into chat;
-//                    if (!ChatExists()) {
-//                        // if not exists Create the chat and add it
-//                        chat.setChatID(newChatId);
-//                        chat.setSideAUid(firebaseUser.getUid());
-//                        if (isOldUser) {
-//                            chat.setSideBUid(volunteering.getVolunteerUID());
-////                            chat.setReceiverName(volunteering.getNameVolunteer());
-//                            chat.setReceiverName(volunteering.getNameVolunteer());
-//                        } else {
-//                            chat.setSideBUid(volunteering.getOldUID());
-//                            chat.setReceiverName(volunteering.getNameOld());
-////                            chat.setReceiverName(volunteering.getNameOld());
-//                        }
-//                        // add the chat to chat list
-//                        chatsDB.setValue(newChatId+1);
-//                        chatsDB.child(String.valueOf(newChatId)).setValue(chat);
-//                    }
-//
-//                    // open the chat
-//                    Fragment fragment = new ConversationChatFragment(chat);
-//                    FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
-//                    FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                    if (isOldUser) {
-//                        fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
-//                    } else {
-//                        fragmentTransaction.replace(R.id.drawerLayout_activitymainapp, fragment);
-//                    }
-//                    fragmentTransaction.addToBackStack(null);
-//                    fragmentTransaction.commit();
-//                }
-//            });
-//        }
-
         profileBtn = view.findViewById(R.id.selected_profile_page_btn);
         profileBtn.setVisibility(View.GONE);
 
@@ -360,12 +272,12 @@ public class VolunteeringFragment extends Fragment {
                 public void onClick(View v) {
                     if (firebaseUser.getUid().equals(volunteering.getVolunteerUID())) {
                         addBtn.setText(R.string.add_me);
-                        Toast.makeText(getContext(), "you have been removed", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), getResources().getString(R.string.you_have_been_added), Toast.LENGTH_SHORT).show();
                         volunteering.setVolunteerUID(null);
                         volunteering.setNameVolunteer(null);
                     } else {
                         addBtn.setText(R.string.remove_me);
-                        Toast.makeText(getContext(), "you have been added", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),getResources().getString(R.string.you_have_been_removed), Toast.LENGTH_SHORT).show();
                         volunteering.setVolunteerUID(firebaseUser.getUid()); // Saving user in the volunteering
                         volunteering.setNameVolunteer(firebaseUserName);
 
@@ -552,7 +464,7 @@ public class VolunteeringFragment extends Fragment {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
                                         if (response.body().success != 1) {
-                                            Toast.makeText(getContext(), "Notification Failed", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(getContext(), "Notification Failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }
@@ -568,61 +480,6 @@ public class VolunteeringFragment extends Fragment {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
             }
-        });
-    }
-
-    private void ChatExistsOrCreate(){
-
-        chatsDB.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()){
-
-                    for (DataSnapshot ds: snapshot.getChildren()){
-
-                        Chat checkChat = ds.getValue(Chat.class);
-                        // for testing -----------
-                        String chatId = checkChat.getChatID();
-                        String sideAId = checkChat.getSideAUid();
-                        String sideBId = checkChat.getSideBUid();
-                        String oldId = volunteering.getOldUID();
-                        String volunteerId = volunteering.getVolunteerUID(); // may be null
-                        String firebaseUserId = firebaseUser.getUid();
-                        //-------------------------
-
-                        // Chat when the volunteer user is sign to the volunteering
-                        if (((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
-                                (checkChat.getSideBUid().equals(volunteering.getVolunteerUID())))
-                                ||
-                                ((checkChat.getSideAUid().equals(volunteering.getVolunteerUID())) &&
-                                        (checkChat.getSideBUid().equals(volunteering.getOldUID())))) {
-                            chat = checkChat;
-                        }
-                        // Chat when the volunteer user is not sign to the volunteering
-                        else if (((checkChat.getSideAUid().equals(firebaseUser.getUid())) &&
-                                (checkChat.getSideBUid().equals(volunteering.getOldUID())))
-                                ||
-                                ((checkChat.getSideAUid().equals(volunteering.getOldUID())) &&
-                                        (checkChat.getSideBUid().equals(firebaseUser.getUid())))) {
-                            chat = checkChat;
-                        } else {
-
-                            // Create the chat
-                            chat.setChatID(newChatId);
-                            chat.setSideAUid(firebaseUser.getUid());
-                            if (isOldUser) {
-                                chat.setSideBUid(volunteering.getVolunteerUID());
-                            } else {
-                                chat.setSideBUid(volunteering.getOldUID());
-                            }
-                            chatsDB.child(newChatId).setValue(chat);
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) { }
         });
     }
 

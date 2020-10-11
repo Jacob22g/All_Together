@@ -83,12 +83,6 @@ public class HomeVolunteeringAdapter extends RecyclerView.Adapter<HomeVolunteeri
                     }
                 });
 
-//                infoBtn.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        Toast.makeText(v.getContext(), "Your Name is: " + v., Toast.LENGTH_SHORT).show();
-//                    }
-//                });
             }
 
 

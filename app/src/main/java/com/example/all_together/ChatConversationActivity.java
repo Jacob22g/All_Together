@@ -253,7 +253,7 @@ public class ChatConversationActivity extends AppCompatActivity {
                     Data data = new Data(firebaseUser.getUid(),
                             R.drawable.main_pic, // This will be the user profile image ?
                             userName+": "+message,
-                            "New Message",
+                            getResources().getString(R.string.new_message),
                             receiverID); // NOT SURE THIS IS THE RECEIVER ID
 
                     Sender sender = new Sender(data, token.getToken());
@@ -264,7 +264,7 @@ public class ChatConversationActivity extends AppCompatActivity {
                                 public void onResponse(Call<MyResponse> call, Response<MyResponse> response) {
                                     if (response.code() == 200) {
                                         if (response.body().success != 1){
-                                            Toast.makeText(ChatConversationActivity.this, "Notification Failed", Toast.LENGTH_SHORT).show();
+                                            //Toast.makeText(ChatConversationActivity.this, "Notification Failed", Toast.LENGTH_SHORT).show();
                                         }
                                     }
                                 }

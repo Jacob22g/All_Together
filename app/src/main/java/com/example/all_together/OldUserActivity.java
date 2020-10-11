@@ -88,13 +88,13 @@ public class OldUserActivity extends AppCompatActivity {
                 drawerLayout.closeDrawers();
                 switch (item.getItemId()) {
                     case R.id.sign_up:
-                        Toast.makeText(OldUserActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(OldUserActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.sign_in:
-                        Toast.makeText(OldUserActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(OldUserActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.sign_out:
-                        Toast.makeText(OldUserActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(OldUserActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
                         logout(new View(OldUserActivity.this));
                         break;
                 }

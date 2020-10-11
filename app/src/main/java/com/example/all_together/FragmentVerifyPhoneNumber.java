@@ -118,7 +118,7 @@ public class FragmentVerifyPhoneNumber extends Fragment {
 
         @Override
         public void onVerificationFailed(@NonNull FirebaseException e) {
-            Toast.makeText(getContext(), "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Error" + e.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("phone","Error " + e.getMessage());
         }
     };
@@ -153,8 +153,9 @@ public class FragmentVerifyPhoneNumber extends Fragment {
 
 
                         }else {
-
-                            Toast.makeText(getContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "Code error, please try another code ", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(getContext(), "Error " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

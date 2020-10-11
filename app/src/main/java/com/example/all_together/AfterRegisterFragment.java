@@ -103,7 +103,7 @@ public class AfterRegisterFragment extends Fragment {
 
                 if (profileImageUri==null){
 
-                    Toast.makeText(getContext(), "Upload user image!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), getResources().getString(R.string.upload_user_image),Toast.LENGTH_SHORT).show();
 
                 } else {
 
@@ -113,22 +113,22 @@ public class AfterRegisterFragment extends Fragment {
                     final String city = cityEt.getText().toString();
 
                     if (TextUtils.isEmpty(userName)) {
-                        userNameEt.setError("First name is Required");
+                        userNameEt.setError(getResources().getString(R.string.name_required));
                         return;
                     }
 
                     if (TextUtils.isEmpty(age)) {
-                        ageEt.setError("Age is Required");
+                        ageEt.setError(getResources().getString(R.string.age_required));
                         return;
                     }
 
                     if (TextUtils.isEmpty(country)) {
-                        countryEt.setError("Country is Required");
+                        countryEt.setError(getResources().getString(R.string.country_required));
                         return;
                     }
 
                     if (TextUtils.isEmpty(city)) {
-                        cityEt.setError("City is Required");
+                        cityEt.setError(getResources().getString(R.string.city_required));
                         return;
                     }
 

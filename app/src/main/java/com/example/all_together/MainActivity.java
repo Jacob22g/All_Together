@@ -215,7 +215,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                             //Add why a user was unable to log in
                             if (task.isSuccessful()) {
 
-                                Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
+                                //Toast.makeText(MainActivity.this, "Sign In in Successful", Toast.LENGTH_SHORT).show();
                                 navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
                                 navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
 
@@ -224,7 +224,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                                 finish();
                             } else
-                                Toast.makeText(MainActivity.this, "Sign In Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(MainActivity.this, "Sign In Failed, " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     });
 
@@ -267,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                 switch (item.getItemId()) {
                     case R.id.sign_up:
-                        Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Sign Up", Toast.LENGTH_SHORT).show();
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
                         transaction.add(R.id.drawerLayout,new RegisterFragment(), FRAGMENT_REGISTER_TAG);
@@ -275,19 +275,19 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         transaction.commit();
                         break;
                     case R.id.sign_in:
-                        Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Sign In", Toast.LENGTH_SHORT).show();
                         // open main activity again
 //                        finish();
 //                        startActivity(getIntent());
 //                        onBackPressed();
                         break;
                     case R.id.sign_out:
-                        Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();
                         FirebaseAuth firebaseAuth = null;
                         firebaseAuth.signOut();
                         break;
                     case R.id.sign_out_google:
-                        Toast.makeText(MainActivity.this, "Sign Out with Google", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Sign Out with Google", Toast.LENGTH_SHORT).show();
                         break;
                 }
 
@@ -364,7 +364,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                     if (task.isSuccessful()) {
 
-                        Toast.makeText(MainActivity.this, "Sign Up is Successful", Toast.LENGTH_SHORT).show();
+                        //Toast.makeText(MainActivity.this, "Sign Up is Successful", Toast.LENGTH_SHORT).show();
 
                         progressDialog.dismiss();
 
@@ -387,29 +387,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     //Add why a user was unable to log in
                     else{
                         progressDialog.dismiss();
-                        Toast.makeText(MainActivity.this, "Sign Up Failed" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(MainActivity.this, "Sign Up Failed, " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                     }
 
 
                 }
             });
         }
-
-
-//        if(flag) {
-//
-////            Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
-////            getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-////
-////
-////            FragmentManager registerFragment = getSupportFragmentManager();
-////            FragmentTransaction transaction = registerFragment.beginTransaction();
-////            transaction.add(R.id.drawerLayout,new AfterRegisterFragment(), FRAGMENT_AFTER_REGISTER_TAG);
-////            transaction.addToBackStack(null);
-////            transaction.commit();
-//            flag = false;
-//
-//        } else {
 
         Fragment fragment = getSupportFragmentManager().findFragmentByTag(FRAGMENT_REGISTER_TAG);
         getSupportFragmentManager().beginTransaction().remove(fragment).commit();
@@ -422,7 +406,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         // All the work is happening in the fragment
         //     save user profile data
 
-        Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
         startActivity(intent);
@@ -436,7 +420,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     @Override
     public void onAfterOldRegister() {
 
-        Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
+        //Toast.makeText(MainActivity.this, "Saved user data", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(getApplicationContext(), OldUserActivity.class);
         startActivity(intent);
@@ -460,19 +444,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         startActivityForResult(signInIntent,RC_SIGN_IN);
     }
 
-//    private void googleSignOut() {
-//        // Firebase sign out
-//        Toast.makeText(this, "Google", Toast.LENGTH_SHORT).show();
-//        mGoogleSignInClient.signOut().addOnCompleteListener(this, new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                Toast.makeText(getApplicationContext(), "Sign Out from your Google account", Toast.LENGTH_SHORT).show();
-//                finish();
-//            }
-//        });
-//
-//    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -487,7 +458,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private void handleSignInResult(Task<GoogleSignInAccount>completedTask){
         try {
             GoogleSignInAccount acc = completedTask.getResult(ApiException.class);
-            Toast.makeText(MainActivity.this, "Signed In With Google Successfully", Toast.LENGTH_SHORT).show();
+            //Toast.makeText(MainActivity.this, "Signed In With Google Successfully", Toast.LENGTH_SHORT).show();
             FirebaseGoogleAuth(acc);
         }
         catch (ApiException e) {
@@ -504,7 +475,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
-                    Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(MainActivity.this, "Successfully", Toast.LENGTH_SHORT).show();
                     FirebaseUser user = mAuth.getCurrentUser();
                     usersDB.child(user.getUid()).child("is_old_user").setValue(false);
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);

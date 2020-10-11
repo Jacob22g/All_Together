@@ -105,4 +105,21 @@
     <string name="will_volunteer_with_you">בחר להתנדב איתך</string>
     <string name="new_volunteer_added">התנדבות חדשה הוספה</string>
     <string name="loading">טוען, נא להמתין..</string>
+    <string name="massages">ההודעות שלי</string>
+    <string name="name_required">אנא הכנס שם</string>
+    <string name="age_required">אנא הכנס גיל</string>
+    <string name="country_required">אנא הכנס מדינה</string>
+    <string name="city_required">אנא הכנס עיר</string>
+    <string name="upload_user_image">מעדכן תמונת פרופיל</string>
+    <string name="phone_required">הכנס מספר טלפון</string>
+    <string name="phone_number_must_be_at_least">מספר טלפון חייב להכיל לפחות</string>
+    <string name="numbers">מספרים</string>
+    <string name="user_email_is_required">אנא הכנס כתובת מייל</string>
+    <string name="password_is_required">אנא הכנס סיסמא</string>
+    <string name="password_must_be">הסיסמא חייבת להכיל לפחות</string>
+    <string name="characters">תווים</string>
+    <string name="email_sent">המייל נשלח לחשבונך</string>
+    <string name="email_not_sent">"המייל לא נשלח "</string>
+    <string name="you_have_been_removed">אתה הוסרת</string>
+    <string name="you_have_been_added">אתה הוספת</string>
 </resources>

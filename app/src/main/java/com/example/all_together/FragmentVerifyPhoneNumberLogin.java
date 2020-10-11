@@ -145,8 +145,8 @@ public class FragmentVerifyPhoneNumberLogin extends Fragment {
                             startActivity(intent);
 
                         }else {
-
-                            Toast.makeText(getContext(), "Error" + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE);
+                            Toast.makeText(getContext(), "Code error, please try another code ", Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -104,4 +104,21 @@
     <string name="will_volunteer_with_you">will volunteer with you</string>
     <string name="new_volunteer_added">New Volunteer added</string>
     <string name="loading">Loading, Please wait..</string>
+    <string name="massages">My messages</string>
+    <string name="name_required">First name is Required</string>
+    <string name="age_required">Age is Required</string>
+    <string name="country_required">Country is Required</string>
+    <string name="city_required">City is Required</string>
+    <string name="upload_user_image">Upload user image!</string>
+    <string name="phone_required">Phone Number is Required</string>
+    <string name="phone_number_must_be_at_least">Phone Number Must be at least</string>
+    <string name="numbers">numbers</string>
+    <string name="user_email_is_required">User Email is Required</string>
+    <string name="password_is_required">Password is Required</string>
+    <string name="password_must_be">Password Must be</string>
+    <string name="characters">Characters</string>
+    <string name="email_sent">Email sent</string>
+    <string name="email_not_sent">Email not sent</string>
+    <string name="you_have_been_removed">You have been removed</string>
+    <string name="you_have_been_added">You have been added</string>
 </resources>

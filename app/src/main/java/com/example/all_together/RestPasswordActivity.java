@@ -40,12 +40,12 @@ public class RestPasswordActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(RestPasswordActivity.this, "Email sent.", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RestPasswordActivity.this, getResources().getString(R.string.email_sent), Toast.LENGTH_SHORT).show();
                                     Intent intent = new Intent(RestPasswordActivity.this, MainActivity.class);
                                     startActivity(intent);
                                 }
                                 else
-                                    Toast.makeText(RestPasswordActivity.this, "Email Error", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(RestPasswordActivity.this, getResources().getString(R.string.email_not_sent) , Toast.LENGTH_SHORT).show();
                             }
                         });
             }

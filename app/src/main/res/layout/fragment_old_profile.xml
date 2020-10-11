@@ -304,8 +304,7 @@
                                     android:textSize="16sp"
                                     android:text="@string/add_something_about_yourself"
                                     android:padding="7dp"
-                                    android:layout_marginStart="3dp"
-                                    android:layout_marginRight="15dp"/>
+                                    android:layout_marginRight="40dp"/>
 
                             </androidx.cardview.widget.CardView>
 

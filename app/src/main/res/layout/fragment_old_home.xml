@@ -271,7 +271,7 @@
                                     android:layout_height="wrap_content"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
-                                    android:text= "@string/name"
+                                    android:text= "@string/approved"
                                     android:textStyle="bold"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="center"/>
@@ -282,14 +282,14 @@
                                     android:layout_weight="1"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="center"
-                                    android:text= "@string/time"
+                                    android:text="@string/date"
                                     android:textStyle="bold" />
 
                                 <TextView
                                     android:layout_height="wrap_content"
                                     android:layout_width="0dp"
                                     android:layout_weight="1"
-                                    android:text="@string/location"
+                                    android:text="@string/hour"
                                     android:textStyle="bold"
                                     android:fontFamily="@font/poppins_medium"
                                     android:gravity="center"/>
