@@ -67,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
 
-    boolean flag = false;
+    //boolean flag = false;
 
     private Toolbar toolbar;
     private CardView cardView;
@@ -373,7 +373,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
 
                         progressDialog.dismiss();
 
-//                        flag = true;
+                        //flag = true;
                         // Open data fragment insertion for new users
                         FragmentManager registerFragment = getSupportFragmentManager();
                         FragmentTransaction transaction = registerFragment.beginTransaction();
@@ -483,7 +483,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     FirebaseUser user = mAuth.getCurrentUser();
                     usersDB.child(user.getUid()).child("is_old_user").setValue(false);
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
-                    intent.putExtra("isGoogle", true);
                     startActivity(intent);
                     //updateUI(user);
                 }

@@ -198,9 +198,9 @@
 
     <string name="new_message">הודעה חדשה</string>
 
-    <string name="confirm_delete">Confirm Delete</string>
+    <string name="confirm_delete">אשר מחיקה</string>
 
-    <string name="are_you_sure_you_want_to_delete_this_volunteering">Are you sure you want to delete this volunteering?</string>
+    <string name="are_you_sure_you_want_to_delete_this_volunteering">האם אתה בטוח שתרצה למחוק את ההתנדבות?</string>
 
     <string name="no">לא</string>
 
