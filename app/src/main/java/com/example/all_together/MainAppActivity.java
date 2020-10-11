@@ -104,9 +104,21 @@ public class MainAppActivity extends AppCompatActivity {
         navigationView = findViewById(R.id.navigation_view_activitymainapp);
         drawerLayout = findViewById(R.id.drawerLayout_activitymainapp);
 
+        if (firebaseUser != null) { //signed in
+            navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
+            navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+//            updateUI();
+
+        } else { // signed out
+            navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
+            navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
+            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+        }
+
         if (isGoogle){
             navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
-            //Toast.makeText(this, "navigationView Google", Toast.LENGTH_SHORT).show();
+            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
 
             // set num of volunteering and lvl if it is first enter from google:
             usersDB.child(firebaseUser.getUid()).child("number_of_volunteering").addListenerForSingleValueEvent(new ValueEventListener() {
@@ -137,18 +149,6 @@ public class MainAppActivity extends AppCompatActivity {
         View headerView = navigationView.getHeaderView(0);
         userTv = headerView.findViewById(R.id.navigation_header_container);
 
-        if (firebaseUser != null) { //signed in
-            navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-//            updateUI();
-
-        } else { // signed out
-            navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
-            navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-        }
-
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -167,7 +167,7 @@ public class MainAppActivity extends AppCompatActivity {
                     case R.id.sign_out_google:
                         //Toast.makeText(MainAppActivity.this, "Sign Out Google account", Toast.LENGTH_SHORT).show();
                         googleSignOut();
-                        finish();
+//                        finish();
                         break;
                 }
                 return false;

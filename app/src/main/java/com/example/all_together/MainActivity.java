@@ -113,8 +113,13 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     Intent intent;
                     if(isOldUser){
                         intent  = new Intent(MainActivity.this, OldUserActivity.class);
-                    } else
-                        intent  = new Intent(MainActivity.this, MainAppActivity.class);
+                    } else {
+                        intent = new Intent(MainActivity.this, MainAppActivity.class);
+                        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(MainActivity.this);
+                        if (account != null) {
+                            intent.putExtra("isGoogle", true);
+                        }
+                    }
                     startActivity(intent);
                     finish();
                     progressDialog.dismiss();
@@ -463,8 +468,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
         }
         catch (ApiException e) {
             e.printStackTrace();
-            Toast.makeText(MainActivity.this, "Sign In With Google Failed", Toast.LENGTH_SHORT).show();
-            FirebaseGoogleAuth(null);
+//            FirebaseGoogleAuth(null);
         }
 
     }
