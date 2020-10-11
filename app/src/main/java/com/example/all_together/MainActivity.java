@@ -153,7 +153,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
             }
         });
 
-
         toolbar = findViewById(R.id.myToolbar);
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.icons_menu_w);

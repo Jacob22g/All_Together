@@ -23,49 +23,36 @@
             android:textSize="20sp"
             android:text="@string/add_a_new_volunteering"/>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/description"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            app:startIconDrawable="@drawable/ic_emoji_people"
-            android:layout_below="@id/language">
+            android:orientation="vertical"
+            android:id="@+id/CategoryLayout"
+            android:layout_below="@id/Address">
 
-            <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/new_volunteer_description"
+
+            <TextView
+                android:id="@+id/Category"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/poppins_medium"
+                android:gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="@string/category"
                 android:textSize="18sp"
-                android:hint="@string/description"
-                android:inputType="text"/>
+                android:fontFamily="@font/poppins_medium"
+                android:layout_marginHorizontal="50dp"
+                android:layout_below="@id/Address"/>
 
-        </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+                android:id="@+id/new_volunteer_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginHorizontal="50dp"
+                android:layout_marginTop="10dp" />
 
 
-        <TextView
-            android:id="@+id/Category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/category"
-            android:textSize="18sp"
-            android:fontFamily="@font/poppins_medium"
-            android:layout_marginHorizontal="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_below="@id/Address"
-            android:drawableStart="@drawable/ic_category"/>
-
-        <Spinner
-            android:id="@+id/new_volunteer_spinner"
-            android:layout_width="match_parent"
-            android:padding="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_height="30dp"
-            android:layout_below="@id/Address"
-            android:layout_toEndOf="@id/Category"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="10dp" />
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/datePickerLayout"
@@ -85,19 +72,22 @@
                 android:background="@drawable/color_back4"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_marginBottom="10px"
+                android:layout_marginEnd="5dp"
                 android:id="@+id/new_volunteer_date_btn"/>
-            <TextView
+
+            <Button
                 android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:layout_marginStart="5dp"
+                android:background="@drawable/color_back4"
+                android:textColor="@color/grayDarkColor"
+                android:text="@string/pick_time"
+                android:textSize="14sp"
                 android:fontFamily="@font/poppins_medium"
-                android:gravity="center"
-                android:background="@color/whiteColor"
-                android:layout_weight="3"
-                android:layout_marginBottom="5dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginStart="10dp"
-                android:id="@+id/new_volunteer_date_tv"
-                android:textSize="16sp"/>
+                android:id="@+id/new_volunteer_time_btn"
+                android:layout_marginBottom="3dp"/>
+
 
         </LinearLayout>
 
@@ -108,21 +98,22 @@
             android:layout_marginHorizontal="20dp"
             android:layout_below="@id/datePickerLayout">
 
-            <Button
+            <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="2"
-                android:background="@drawable/color_back4"
-                android:textColor="@color/grayDarkColor"
-                android:text="@string/pick_time"
-                android:textSize="14sp"
+                android:layout_height="match_parent"
                 android:fontFamily="@font/poppins_medium"
-                android:id="@+id/new_volunteer_time_btn"
-                android:layout_marginBottom="3dp"/>
+                android:gravity="center"
+                android:layout_weight="3"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="10dp"
+                android:id="@+id/new_volunteer_date_tv"
+                android:textStyle="bold"
+                android:textSize="18sp"/>
+
 
             <TextView
                 android:id="@+id/new_volunteer_time_tv"
-                android:background="@color/whiteColor"
                 android:gravity="center"
                 android:fontFamily="@font/poppins_medium"
                 android:layout_width="0dp"
@@ -131,7 +122,8 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginStart="10dp"
                 android:layout_weight="3"
-                android:textSize="16sp" />
+                android:textStyle="bold"
+                android:textSize="18sp" />
 
         </LinearLayout>
 
@@ -172,17 +164,17 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:id="@+id/Address"
             android:layout_below="@id/locationPicker">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/city"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
                 android:hint="@string/city"
                 android:textSize="18sp"
+                android:layout_marginHorizontal="50dp"
                 app:startIconDrawable="@drawable/ic_baseline_location_city_24">
 
                 <com.google.android.material.textfield.TextInputEditText
@@ -195,12 +187,12 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/street"
-                android:layout_width="0dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:layout_toEndOf="@id/city"
                 android:layout_marginEnd="5dp"
                 android:hint="@string/street"
+                android:layout_marginHorizontal="50dp"
                 android:textSize="18sp"
                 app:startIconDrawable="@drawable/ic_baseline_home_24">
 
@@ -212,97 +204,123 @@
                     android:inputType="text" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="5dp"
+                />c
+
 
         </LinearLayout>
 
-        <LinearLayout
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:layout_below="@id/Category"-->
+<!--            android:layout_marginTop="20dp"-->
+<!--            android:layout_marginHorizontal="10dp"-->
+<!--            android:id="@+id/language">-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <TextView-->
+<!--                    android:id="@+id/languageHeadline"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="18sp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/language"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_below="@id/headline"-->
+<!--                    android:drawableStart="@drawable/ic_round_g_translate_24"-->
+<!--                    />-->
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal"-->
+<!--                android:layout_marginTop="10dp">-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/HebrewCb"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/hebrew"-->
+<!--                    android:gravity="center"-->
+<!--                    android:checked="true"/>-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/EnglishCb"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/english"-->
+<!--                    android:gravity="center"-->
+<!--                    android:layout_marginStart="10dp"-->
+<!--                    android:checked="false"/>-->
+
+
+<!--            </LinearLayout>-->
+
+<!--            <LinearLayout-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:orientation="horizontal">-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/RussianCb"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/russian"-->
+<!--                    android:gravity="center"-->
+<!--                    android:checked="false" />-->
+
+<!--                <CheckBox-->
+<!--                    android:id="@+id/ArabicCb"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:textSize="16sp"-->
+<!--                    android:fontFamily="@font/poppins_medium"-->
+<!--                    android:text="@string/arabic"-->
+<!--                    android:gravity="center"-->
+<!--                    android:checked="false"-->
+<!--                    android:layout_marginStart="10dp"/>-->
+
+<!--            </LinearLayout>-->
+
+<!--        </LinearLayout>-->
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_below="@id/Category"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="10dp"
-            android:id="@+id/language">
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            app:startIconDrawable="@drawable/ic_emoji_people"
+            android:layout_below="@id/CategoryLayout">
 
-            <LinearLayout
-                android:layout_width="wrap_content"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/new_volunteer_description"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="18sp"
+                android:hint="@string/description"
+                android:inputType="text"/>
 
-                <TextView
-                    android:id="@+id/languageHeadline"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="18sp"
-                    android:layout_gravity="center"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/language"
-                    android:gravity="center"
-                    android:layout_below="@id/headline"
-                    android:drawableStart="@drawable/ic_round_g_translate_24"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginTop="10dp">
-
-                <CheckBox
-                    android:id="@+id/HebrewCb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/hebrew"
-                    android:gravity="center"
-                    android:checked="true"/>
-
-                <CheckBox
-                    android:id="@+id/EnglishCb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/english"
-                    android:gravity="center"
-                    android:layout_marginStart="10dp"
-                    android:checked="false"/>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <CheckBox
-                    android:id="@+id/RussianCb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/russian"
-                    android:gravity="center"
-                    android:checked="false" />
-
-                <CheckBox
-                    android:id="@+id/ArabicCb"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="16sp"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="@string/arabic"
-                    android:gravity="center"
-                    android:checked="false"
-                    android:layout_marginStart="10dp"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
+        </com.google.android.material.textfield.TextInputLayout>
 
 
 

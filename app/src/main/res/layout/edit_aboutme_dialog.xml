@@ -14,6 +14,7 @@
         android:layout_marginTop="10dp"
         android:text="@string/write_a_little_bit_about_yourself"
         android:gravity="center"
+        android:layout_gravity="center"
         android:layout_marginHorizontal="10dp"
         android:textSize="19sp"
         app:startIconDrawable="@drawable/ic_baseline_edit_24"
