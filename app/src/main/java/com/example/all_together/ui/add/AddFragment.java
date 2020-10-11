@@ -331,24 +331,6 @@ public class AddFragment extends Fragment implements LocationListener {
                     return;
                 }
 
-                // 1. get all the parameters into a volunteering object
-                // Create ID for the Volunteering
-
-//                volunteers_id.addListenerForSingleValueEvent(new ValueEventListener() {
-//                    @Override
-//                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-//                        if (snapshot.exists()) {
-//                            newVolunteerId = snapshot.getValue(long.class);
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onCancelled(@NonNull DatabaseError error) {
-//                        Toast.makeText(getContext(), "No ID Found" + error.getMessage(), Toast.LENGTH_SHORT).show();
-//                    }
-//                });
-
-                // increase id by +1 for next volunteering
                 volunteers_id.setValue(newVolunteerId+1);
 
                 Volunteering volunteering = new Volunteering(newVolunteerId);
@@ -373,12 +355,12 @@ public class AddFragment extends Fragment implements LocationListener {
                 // going to home on back pressed inside the volunteerFragment
                 getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new OldHomeFragment()).commit();
 
+                Toast.makeText(getContext(), "Your request has been added to the list of volunteers", Toast.LENGTH_SHORT).show();
+
                 // Open the volunteering
-//                Toast.makeText(getContext(), "Your request has been added to the list of volunteers", Toast.LENGTH_SHORT).show();
                 Fragment fragment = new VolunteeringFragment(volunteering);
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//                fragmentTransaction.replace(R.id.fragment_container, fragment);
                 fragmentTransaction.replace(R.id.drawerLayout_activityolduser, fragment);
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.commit();
