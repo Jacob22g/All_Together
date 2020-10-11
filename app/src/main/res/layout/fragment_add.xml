@@ -23,14 +23,12 @@
             android:textSize="20sp"
             android:text="@string/add_a_new_volunteering"/>
 
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:id="@+id/CategoryLayout"
             android:layout_below="@id/Address">
-
 
             <TextView
                 android:id="@+id/Category"
@@ -50,7 +48,6 @@
                 android:layout_height="50dp"
                 android:layout_marginHorizontal="50dp"
                 android:layout_marginTop="10dp" />
-
 
         </LinearLayout>
 
@@ -208,99 +205,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:layout_marginTop="5dp"
-                />c
-
+                />
 
         </LinearLayout>
-
-<!--        <LinearLayout-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:orientation="vertical"-->
-<!--            android:layout_below="@id/Category"-->
-<!--            android:layout_marginTop="20dp"-->
-<!--            android:layout_marginHorizontal="10dp"-->
-<!--            android:id="@+id/language">-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/languageHeadline"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="18sp"-->
-<!--                    android:layout_gravity="center"-->
-<!--                    android:fontFamily="@font/poppins_medium"-->
-<!--                    android:text="@string/language"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_below="@id/headline"-->
-<!--                    android:drawableStart="@drawable/ic_round_g_translate_24"-->
-<!--                    />-->
-
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal"-->
-<!--                android:layout_marginTop="10dp">-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/HebrewCb"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:fontFamily="@font/poppins_medium"-->
-<!--                    android:text="@string/hebrew"-->
-<!--                    android:gravity="center"-->
-<!--                    android:checked="true"/>-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/EnglishCb"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:fontFamily="@font/poppins_medium"-->
-<!--                    android:text="@string/english"-->
-<!--                    android:gravity="center"-->
-<!--                    android:layout_marginStart="10dp"-->
-<!--                    android:checked="false"/>-->
-
-
-<!--            </LinearLayout>-->
-
-<!--            <LinearLayout-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:orientation="horizontal">-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/RussianCb"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:fontFamily="@font/poppins_medium"-->
-<!--                    android:text="@string/russian"-->
-<!--                    android:gravity="center"-->
-<!--                    android:checked="false" />-->
-
-<!--                <CheckBox-->
-<!--                    android:id="@+id/ArabicCb"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:fontFamily="@font/poppins_medium"-->
-<!--                    android:text="@string/arabic"-->
-<!--                    android:gravity="center"-->
-<!--                    android:checked="false"-->
-<!--                    android:layout_marginStart="10dp"/>-->
-
-<!--            </LinearLayout>-->
-
-<!--        </LinearLayout>-->
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/description"
@@ -323,7 +230,6 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <Button
             android:layout_below="@id/description"
             android:layout_width="match_parent"
@@ -335,8 +241,6 @@
             android:layout_marginVertical="20dp"
             android:layout_marginHorizontal="50dp"
             android:id="@+id/submit_new_volunteering"/>
-
-
 
 
     </RelativeLayout>

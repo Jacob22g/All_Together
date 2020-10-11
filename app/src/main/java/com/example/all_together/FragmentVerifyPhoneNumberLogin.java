@@ -23,8 +23,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -41,6 +44,9 @@ public class FragmentVerifyPhoneNumberLogin extends Fragment {
     String verificationCodeBySystem;
     PhoneAuthProvider.ForceResendingToken mResendToken;
 
+    FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference usersDB = database.getReference("users");
+    FirebaseUser firebaseUser = FirebaseAuth.getInstance().getCurrentUser();
 
     public static FragmentVerifyPhoneNumberLogin newInstance(String phoneNumber){
         FragmentVerifyPhoneNumberLogin verifyFragmentLogin = new FragmentVerifyPhoneNumberLogin();
@@ -120,7 +126,7 @@ public class FragmentVerifyPhoneNumberLogin extends Fragment {
     };
 
     private void signInByCredential(PhoneAuthCredential credential) {
-        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+        final FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithCredential(credential).addOnCompleteListener(getActivity(),
                 new OnCompleteListener<AuthResult>() {
                     @Override
@@ -128,6 +134,11 @@ public class FragmentVerifyPhoneNumberLogin extends Fragment {
                         if(task.isSuccessful()){
 //                                    FirebaseUser user = task.getResult().getUser();
                             Toast.makeText(getContext(), "Login with phone", Toast.LENGTH_SHORT).show();
+
+                            // Update the user as an old user:
+                            // this is for when a user login with phone without registering
+                            firebaseUser = firebaseAuth.getCurrentUser();
+                            usersDB.child(firebaseUser.getUid()).child("is_old_user").setValue(true);
 
                             Intent intent = new Intent(getContext(),OldUserActivity.class);
                             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

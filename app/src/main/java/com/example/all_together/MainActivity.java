@@ -279,7 +279,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                         // open main activity again
 //                        finish();
 //                        startActivity(getIntent());
-                        onBackPressed();
+//                        onBackPressed();
                         break;
                     case R.id.sign_out:
                         Toast.makeText(MainActivity.this, "Sign Out", Toast.LENGTH_SHORT).show();

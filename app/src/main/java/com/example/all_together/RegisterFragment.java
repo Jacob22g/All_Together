@@ -115,7 +115,6 @@ public class RegisterFragment extends Fragment {
                     return;
                 }
 
-
                 callback.onPhoneRegister(phoneNumber);
 
             }

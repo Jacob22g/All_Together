@@ -98,6 +98,7 @@ public class ChatsFragment extends Fragment {
                 // Send the chat to the chat activity
                 SharedPreferences sharedPreferences = getActivity().getSharedPreferences("chat",MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+
                 Gson gson = new Gson();
                 String json = gson.toJson(chat);
                 editor.putString("chat", json);

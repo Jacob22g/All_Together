@@ -107,6 +107,8 @@ public class MainAppActivity extends AppCompatActivity {
         if (isGoogle){
             navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
             Toast.makeText(this, "navigationView Google", Toast.LENGTH_SHORT).show();
+        } else {
+            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         }
 
         View headerView = navigationView.getHeaderView(0);
@@ -116,12 +118,14 @@ public class MainAppActivity extends AppCompatActivity {
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+//            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
 //            updateUI();
 
         } else { // signed out
             navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
             navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+//            navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
         }
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
@@ -149,27 +153,29 @@ public class MainAppActivity extends AppCompatActivity {
             }
         });
 
-        authStateListener = new FirebaseAuth.AuthStateListener() {
-            @Override
-            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
-
-                View headerView = navigationView.getHeaderView(0);
-                TextView userTv = headerView.findViewById(R.id.navigation_header_container);
-
-                FirebaseUser user = firebaseAuth.getCurrentUser();
-
-                if (user != null) { //sign in or sign up
-                    userTv.setText(user.getEmail());
-                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
-                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
-                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
-                } else { // sign out
-                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
-                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
-                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
-                }
-            }
-        };
+//        authStateListener = new FirebaseAuth.AuthStateListener() {
+//            @Override
+//            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+//
+//                View headerView = navigationView.getHeaderView(0);
+//                TextView userTv = headerView.findViewById(R.id.navigation_header_container);
+//
+//                FirebaseUser user = firebaseAuth.getCurrentUser();
+//
+//                if (user != null) { //sign in or sign up
+//                    userTv.setText(user.getEmail());
+//                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(false);
+//                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
+//                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
+//                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
+//                } else { // sign out
+//                    navigationView.getMenu().findItem(R.id.sign_in).setVisible(true);
+//                    navigationView.getMenu().findItem(R.id.sign_up).setVisible(true);
+//                    navigationView.getMenu().findItem(R.id.sign_out).setVisible(false);
+//                    navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(false);
+//                }
+//            }
+//        };
 
 
         BottomNavigationViewEx bottomNavigationViewEx = findViewById(R.id.nav_view);

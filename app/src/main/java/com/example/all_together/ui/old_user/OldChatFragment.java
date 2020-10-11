@@ -10,6 +10,12 @@ import android.view.ViewGroup;
 
 import com.example.all_together.R;
 
+//------------------------
+//------------------------
+// NOT IN USE!------------
+//------------------------
+//------------------------
+
 public class OldChatFragment extends Fragment {
 
     @Override
