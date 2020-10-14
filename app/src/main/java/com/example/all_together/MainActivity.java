@@ -57,7 +57,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements RegisterFragment.OnRegisterFragmentListener, AfterRegisterFragment.OnAfterRegisterFragmentListener, AfterOldRegisterFragment.OnAfterOldRegisterFragmentListener, PhoneLogin.OnRegisterFragmentListener {
 
-    final String TAG = "tag" ;
     final String FRAGMENT_REGISTER_TAG = "fragment_register";
     final String FRAGMENT_AFTER_REGISTER_TAG = "fragment_after_register";
     final String FRAGMENT_PHONE_TAG = "fragment_phone_sign_in";
@@ -67,8 +66,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     final String FRAGMENT_SIGN_IN_TAG = "sign_in_register";
     final int RC_SIGN_IN = 1;
 
-    //boolean flag = false;
-
     private Toolbar toolbar;
     private CardView cardView;
     private ArrayList<User> Users = new ArrayList<>();
@@ -77,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
     private NavigationView navigationView;
     private CoordinatorLayout coordinatorLayout;
     private CollapsingToolbarLayout collapsingToolbarLayout;
-    //private SignInButton googleSignInButton;
     private GoogleSignInClient mGoogleSignInClient;
     private SignInButtonImpl googleSignInButton;
     private FirebaseAuth.AuthStateListener listener;
@@ -249,7 +245,6 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     navigationView.getMenu().findItem(R.id.sign_up).setVisible(false);
                     navigationView.getMenu().findItem(R.id.sign_out).setVisible(true);
                     navigationView.getMenu().findItem(R.id.sign_out_google).setVisible(true);
-
 
                 } else { // sign out
 
@@ -483,6 +478,7 @@ public class MainActivity extends AppCompatActivity implements RegisterFragment.
                     FirebaseUser user = mAuth.getCurrentUser();
                     usersDB.child(user.getUid()).child("is_old_user").setValue(false);
                     Intent intent = new Intent(getApplicationContext(), MainAppActivity.class);
+                    intent.putExtra("isGoogle", true);
                     startActivity(intent);
                     //updateUI(user);
                 }
